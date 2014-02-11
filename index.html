@@ -1,0 +1,56 @@
+<html>
+<head>
+    <title>trackr</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+
+    <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css"/>
+    <!-- build:css(.) css/trackr.css -->
+    <link type="text/css" href="css/trackr.css" rel="stylesheet" media="screen"/>
+    <!-- endbuild -->
+
+    <!-- vendor libraries -->
+    <!-- process:js bower_components/jquery/jquery.min.js -->
+    <script type="text/javascript" src="bower_components/jquery/jquery.js"></script>
+    <!-- /process -->
+    <!-- process:js bower_components/bootstrap/dist/js/bootstrap.min.js -->
+    <script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <!-- /process -->
+    <!-- process:js bower_components/angular/angular.min.js -->
+    <script type="text/javascript" src="bower_components/angular/angular.js"></script>
+    <!-- /process -->
+    <!-- process:js bower_components/angular-route/angular-route.min.js -->
+    <script type="text/javascript" src="bower_components/angular-route/angular-route.js"></script>
+    <!-- /process -->
+
+    <!-- trackr javascript -->
+    <!-- build:js(.) js/trackr.js -->
+    <script type="text/javascript" src="js/trackr.js"></script>
+
+    <!-- controllers -->
+    <script type="text/javascript" src="js/controllers/NavigationController.js"></script>
+    <script type="text/javascript" src="js/controllers/WelcomeController.js"></script>
+
+    <!-- services -->
+    <script type="text/javascript" src="js/services/UserRestService.js"></script>
+    <!-- endbuild -->
+</head>
+<body ng-app="trackr">
+<header class="navbar navbar-fixed-top navbar-inverse" role="banner">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#/">trackr</a>
+        </div>
+        <nav class="collapse navbar-collapse" ng-include src="'views/navigation.html'">
+        </nav>
+    </div>
+</header>
+<div class="container">
+    <div class="row">
+        <!-- main content -->
+        <div class="col-lg-12">
+            <div ng-view></div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

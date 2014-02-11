@@ -1,0 +1,11 @@
+# npm
+node_modules/
+
+# bower
+bower_components/
+
+# build
+dist/
+
+# grunt concat
+.tmp/

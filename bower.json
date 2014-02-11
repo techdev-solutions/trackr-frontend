@@ -1,0 +1,28 @@
+{
+  "name": "trackr-frontend",
+  "version": "1.0.0",
+  "authors": [
+    "Moritz Schulze <moritz.schulze@techdev.de>"
+  ],
+  "description": "Trackr frontend",
+  "keywords": [
+    "angular"
+  ],
+  "license": "Closed source",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "3.0.3",
+    "angular": "1.2.12",
+    "angular-route": "1.2.12"
+  },
+  "devDependencies": {
+    "angular-mocks": "1.2.12"
+  }
+}
