@@ -10,9 +10,17 @@ trackr.service('UserService', ['$http', function($http) {
         setUser: function(_user) {
             user = _user;
         },
+
         getUser: function () {
             return user;
         },
+
+        allUsers: function() {
+            return $http.get('/api/users/').then(function(result) {
+                return result.data;
+            });
+        },
+
         /**
          * Check if the current user has a higher or equal authority than the argument
          * @param authority The authority to check for

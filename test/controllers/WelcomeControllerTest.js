@@ -1,26 +1,26 @@
 describe('WelcomeController', function () {
     'use strict';
-    var UserRestService, WelcomeController, scope;
+    var UserService, WelcomeController, scope;
 
     beforeEach(module('trackr'));
 
     beforeEach(inject(function($rootScope, $controller, $q) {
         scope = $rootScope.$new();
-        UserRestService = {
-            getActiveUser: function() {
+        UserService = {
+            getUser: function() {
                 var deferred = $q.defer();
                 deferred.resolve('moritz.schulze@techdev.de');
                 return deferred.promise;
             }
         };
-        spyOn(UserRestService, 'getActiveUser').andCallThrough();
+        spyOn(UserService, 'getUser').andCallThrough();
         WelcomeController = $controller('WelcomeController', {
             $scope: scope,
-            UserRestService: UserRestService
+            UserService: UserService
         });
     }));
 
     it('should load the active user', function() {
-        expect(UserRestService.getActiveUser).toHaveBeenCalled();
+        expect(UserService.getUser).toHaveBeenCalled();
     });
 });
