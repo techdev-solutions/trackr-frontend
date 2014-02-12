@@ -1,6 +1,4 @@
-trackr.controller('WelcomeController', ['$scope', 'UserRestService', function ($scope, UserRestService) {
+trackr.controller('WelcomeController', ['$scope', 'UserService', function ($scope, UserService) {
     'use strict';
-    UserRestService.getActiveUser().then(function (user) {
-        $scope.user = user;
-    });
+    $scope.user = UserService.getUser();
 }]);
