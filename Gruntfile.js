@@ -47,6 +47,7 @@ module.exports = function (grunt) {
                         dest: '<%= config.distFolder %>',
                         src: [
                             'index.html',
+                            'views/**',
                             'bower_components/**'
                         ]
                     }
