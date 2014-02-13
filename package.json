@@ -1,23 +1,27 @@
 {
-    "name": "trackr-frontend",
-    "version": "1.0.0",
-    "author": "Moritz Schulze <moritz.schulze@techdev.de>",
-    "private": true,
-    "keywords": ["angular", "frontend"],
-    "licenses": "Closed source",
-    "description": "Trackr frontend",
-    "devDependencies": {
-        "grunt": "0.4.x",
-        "grunt-usemin": "2.0.x",
-        "grunt-contrib-concat": "0.3.x",
-        "grunt-contrib-uglify": "0.2.x",
-        "grunt-contrib-copy": "0.5.x",
-        "grunt-contrib-clean": "0.5.x",
-        "grunt-contrib-watch": "0.5.x",
-        "grunt-contrib-jshint": "0.8.x",
-        "grunt-contrib-cssmin": "0.7.x",
-        "grunt-contrib-htmlmin": "0.1.x",
-        "grunt-processhtml": "0.2.x",
-        "grunt-karma": "0.6.x"
-    }
+  "name": "trackr-frontend",
+  "version": "1.0.0",
+  "author": "Moritz Schulze <moritz.schulze@techdev.de>",
+  "private": true,
+  "keywords": [
+    "angular",
+    "frontend"
+  ],
+  "licenses": "Closed source",
+  "description": "Trackr frontend",
+  "devDependencies": {
+    "grunt": "0.4.x",
+    "grunt-usemin": "2.0.x",
+    "grunt-contrib-concat": "0.3.x",
+    "grunt-contrib-uglify": "0.2.x",
+    "grunt-contrib-copy": "0.5.x",
+    "grunt-contrib-clean": "0.5.x",
+    "grunt-contrib-watch": "0.5.x",
+    "grunt-contrib-jshint": "0.8.x",
+    "grunt-contrib-cssmin": "0.7.x",
+    "grunt-contrib-htmlmin": "0.1.x",
+    "grunt-processhtml": "0.2.x",
+    "grunt-karma": "0.6.x",
+    "grunt-contrib-requirejs": "~0.4.1"
+  }
 }

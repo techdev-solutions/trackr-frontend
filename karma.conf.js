@@ -1,3 +1,6 @@
+// Karma configuration
+// Generated on Thu Feb 13 2014 16:29:52 GMT+0100 (CET)
+
 module.exports = function (config) {
     'use strict';
     config.set({
@@ -6,23 +9,20 @@ module.exports = function (config) {
         basePath: '',
 
         // frameworks to use
-        frameworks: ['jasmine'],
+        frameworks: ['jasmine', 'requirejs'],
 
         // list of files / patterns to load in the browser
         files: [
-            'bower_components/jquery/jquery.js',
-            'bower_components/bootstrap/dist/js/bootstrap.js',
-            'bower_components/angular/angular.js',
-            'bower_components/angular-mocks/angular-mocks.js',
-            'bower_components/angular-route/angular-route.js',
-            'js/trackr.js',
-            'js/**/*.js',
-            'test/**/*.js'
+            {pattern: 'src/modules/**/*.js', included: false},
+            {pattern: 'test/**/*Spec.js', included: false}, //I don't have any clue why it must be *Spec. TODO: find out.
+            {pattern: 'test/fixtures.js', included: false},
+            {pattern: 'src/app.js', included: false},
+            {pattern: 'src/bower_components/**/*.js', included: false},
+            'test/test-main.js'
         ],
 
         // list of files to exclude
         exclude: [
-
         ],
 
         // test results reporter to use

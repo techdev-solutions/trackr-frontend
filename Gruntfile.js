@@ -11,7 +11,7 @@ module.exports = function (grunt) {
         jshint: {
             dev: {
                 files: [{
-                    src: ['js/**/*.js', 'Gruntfile.js', '!js/<%= config.name %>-templates.js']
+                    src: ['src/modules/**/*.js', 'Gruntfile.js']
                 }],
                 options: {
                     jshintrc: '.jshintrc'
@@ -22,7 +22,7 @@ module.exports = function (grunt) {
                     jshintrc: 'test/.jshintrc'
                 },
                 files: [{
-                    src: ['test/**/*.js']
+                    src: ['test/**/*.js', '!test/test-main.js']
                 }]
             }
         },
@@ -47,11 +47,30 @@ module.exports = function (grunt) {
                         dest: '<%= config.distFolder %>',
                         src: [
                             'index.html',
-                            'views/**',
-                            'bower_components/**'
+                            'src/views/**',
+                            'src/bower_components/**'
                         ]
                     }
                 ]
+            }
+        },
+
+        requirejs: {
+            compile: {
+                options: {
+                    baseUrl: 'src',
+                    mainConfigFile: 'bootstrap.js',
+                    name: 'bower_components/almond/almond',
+                    include: ['app'],
+                    insertRequire: ['app'],
+                    out: '<%= config.distFolder %>/trackr.js',
+                    paths: {
+                        'jQuery': 'bower_components/jquery/jquery.min',
+                        'bootstrap': 'bower_components/bootstrap/dist/js/bootstrap.min',
+                        'angular': 'bower_components/angular/angular.min',
+                        'angular-route': 'bower_components/angular-route/angular-route.min'
+                    }
+                }
             }
         },
 
@@ -87,14 +106,11 @@ module.exports = function (grunt) {
                 configFile: 'karma.conf.js',
                 singleRun: true,
                 browsers: ['PhantomJS']
-            },
-            dist: {
-                configFile: 'karma-dist.conf.js',
-                singleRun: true
             }
         }
     });
 
+    grunt.loadNpmTasks('grunt-contrib-requirejs');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-copy');
@@ -108,5 +124,5 @@ module.exports = function (grunt) {
 
     grunt.registerTask('dev', ['jshint:dev', 'karma:dev']);
     grunt.registerTask('test', ['jshint', 'karma:test']);
-    grunt.registerTask('dist', ['clean', 'useminPrepare', 'concat', 'copy', 'uglify', 'cssmin', 'usemin', 'processhtml']);
+    grunt.registerTask('dist', ['clean', 'useminPrepare', 'concat', 'copy', 'requirejs', 'uglify', 'cssmin', 'usemin', 'processhtml']);
 };
