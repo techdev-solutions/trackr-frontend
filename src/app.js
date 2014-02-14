@@ -13,7 +13,7 @@ define(['angular', 'jQuery', 'angular-route', 'modules/base/base', 'modules/trac
         After the user is loaded the trackr app gets bootstrapped manually.
      */
     angular.element(document).ready(function () {
-        $.get('/api/users/current', function (data) {
+        $.get('/api/principal', function (data) {
             trackrUser = data;
             angular.bootstrap(document, ['app']);
         });
