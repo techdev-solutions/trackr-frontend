@@ -1,7 +1,7 @@
 require.config({
     baseUrl: 'src',
     paths: {
-        'jQuery': 'bower_components/jquery/jquery',
+        'jQuery': 'bower_components/jquery/dist/jquery',
         'bootstrap': 'bower_components/bootstrap/dist/js/bootstrap',
         'angular': 'bower_components/angular/angular',
         'angular-route': 'bower_components/angular-route/angular-route',
