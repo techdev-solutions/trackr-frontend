@@ -11,7 +11,7 @@ for (var file in window.__karma__.files) {
 require.config({
     baseUrl: '/base/src',
     paths: {
-        'jQuery': 'bower_components/jquery/dist/jquery',
+        'jQuery': 'bower_components/jQuery/dist/jquery',
         'bootstrap': 'bower_components/bootstrap/dist/js/bootstrap',
         'angular': 'bower_components/angular/angular',
         'angular-route': 'bower_components/angular-route/angular-route',
