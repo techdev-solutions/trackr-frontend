@@ -1,7 +1,7 @@
 /* global document */
-define(['angular', 'jQuery', 'angular-route', 'modules/base/base', 'modules/trackr/trackr'], function(angular, $) {
+define(['angular', 'jQuery', 'restangular', 'angular-route', 'modules/base/base', 'modules/trackr/trackr'], function(angular, $) {
     'use strict';
-    var configFn = ['ngRoute', 'base', 'trackr'];
+    var configFn = ['ngRoute', 'base', 'trackr', 'restangular'];
     var app = angular.module('app', configFn);
     var trackrUser;
     app.run(['base.services.user', function (UserService) {
@@ -19,7 +19,18 @@ define(['angular', 'jQuery', 'angular-route', 'modules/base/base', 'modules/trac
         });
     });
 
-    app.config(['$routeProvider', function ($routeProvider) {
+    app.config(['$routeProvider', 'RestangularProvider', function ($routeProvider, RestangularProvider) {
+        RestangularProvider.setBaseUrl('/api');
+        RestangularProvider.addResponseInterceptor(function(data, operation, route) {
+            var returnData;
+            if(operation === 'getList') {
+                returnData = data._embedded[route];
+                returnData.page = data.page;
+            } else {
+                returnData = data;
+            }
+            return returnData;
+        });
         $routeProvider.
             when('/', {
                 templateUrl: 'src/views/welcome.html',
