@@ -13,7 +13,8 @@ require.config({
         'angular-route': { deps: ['angular']},
         'jQuery': { exports: '$' },
         'bootstrap': { deps: ['jQuery'] },
-        'restangular': { deps: ['angular', 'lodash']}
+        'restangular': { deps: ['angular', 'lodash']},
+        'lodash' : { exports: '_'}
     }
 });
 

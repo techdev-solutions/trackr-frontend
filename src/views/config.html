@@ -1,0 +1,15 @@
+<table class="table">
+    <tr>
+        <th>Name</th>
+        <th>Authorities</th>
+    </tr>
+    <tr ng-repeat="credential in credentials">
+        <td>{{credential.email}}</td>
+        <td>
+            <span ng-repeat="authority in authorities">
+                <label>{{authority.screenName}}</label>
+                <input type="checkbox" ng-checked="hasAuthority(credential, authority)" ng-click="updateCredentialAuthorities(credential, authority)">
+            </span>
+        </td>
+    </tr>
+</table>

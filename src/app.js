@@ -37,7 +37,11 @@ define(['angular', 'jQuery', 'restangular', 'angular-route', 'modules/base/base'
                 controller: 'trackr.pages.controllers.welcome'
             }).
             when('/zeiten', {
-                templateUrl: 'scr/views/zeiten.html'
+                templateUrl: 'src/views/zeiten.html'
+            }).
+            when('/config', {
+                templateUrl: 'src/views/config.html',
+                controller: 'trackr.pages.controllers.config'
             });
     }]);
     return app;
