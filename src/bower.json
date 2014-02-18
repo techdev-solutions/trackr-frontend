@@ -28,7 +28,7 @@
   "devDependencies": {
     "angular-mocks": "1.2.13"
   },
-  "resolve": {
+  "resolutions": {
       "angular": "1.2.13"
   }
 }
