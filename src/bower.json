@@ -20,12 +20,15 @@
   "dependencies": {
     "bootstrap": "3.0.3",
     "angular": "1.2.13",
-    "requirejs": "~2.1.10",
-    "almond": "~0.2.9",
-    "restangular": "~1.3.1",
+    "requirejs": "2.1.10",
+    "almond": "0.2.9",
+    "restangular": "1.3.1",
     "angular-ui-router": "git://github.com/angular-ui/ui-router.git#master"
   },
   "devDependencies": {
     "angular-mocks": "1.2.13"
+  },
+  "resolve": {
+      "angular": "1.2.13"
   }
 }
