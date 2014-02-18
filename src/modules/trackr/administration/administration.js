@@ -8,10 +8,7 @@ define(['angular', 'modules/trackr/administration/controllers/controllers'], fun
             url: '/administration',
             views: {
                 'center@': {
-                    templateUrl: 'src/modules/trackr/administration/partials/administration.tpl.html',
-                    controllerProvider: function() {
-                        console.log('HERPADPER');
-                    }
+                    templateUrl: 'src/modules/trackr/administration/partials/administration.tpl.html'
                 }
             }
         })
@@ -22,9 +19,9 @@ define(['angular', 'modules/trackr/administration/controllers/controllers'], fun
                     templateUrl: function(stateParams) {
                         return 'src/modules/trackr/administration/partials/administration-' + stateParams.page + '.tpl.html';
                     },
-                    controllerProvider: function($stateParams) {
+                    controllerProvider: ['$stateParams', function($stateParams) {
                         return 'trackr.administration.controllers.administration-' + $stateParams.page;
-                    }
+                    }]
                 }
             }
         });

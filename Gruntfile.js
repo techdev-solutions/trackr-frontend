@@ -47,7 +47,7 @@ module.exports = function (grunt) {
                         dest: '<%= config.distFolder %>',
                         src: [
                             'index.html',
-                            'src/views/**',
+                            'src/modules/**/*.tpl.html',
                             'src/bower_components/**'
                         ]
                     }
