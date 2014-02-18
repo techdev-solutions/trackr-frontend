@@ -1,0 +1,14 @@
+<div class="navbar-header">
+    <a class="navbar-brand" href="#/trackr">trackr</a>
+</div>
+<nav class="collapse navbar-collapse">
+    <div>
+        <ul class="nav navbar-nav">
+            <li ng-class="{active: isActive('/trackr/administration')}" has-permission="ROLE_SUPERVISOR"><a href="#/trackr/administration">Verwaltung</a></li>
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="/logout">{{user.email}} (Logout)</a></li>
+        </ul>
+    </div>
+</nav>

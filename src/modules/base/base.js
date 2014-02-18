@@ -9,5 +9,16 @@ define([
     controllers.init(base);
     services.init(base);
     directives.init(base);
+
+    base.config(['$stateProvider', function($stateProvider) {
+        $stateProvider.state('home', {
+            url: '/',
+            views: {
+                center: {
+                    templateUrl: 'src/modules/base/partials/modules.tpl.html'
+                }
+            }
+        });
+    }]);
     return base;
 });

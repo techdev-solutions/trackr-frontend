@@ -1,3 +1,4 @@
+<!doctype html>
 <html>
 <head>
     <title>trackr</title>
@@ -11,25 +12,8 @@
     <!-- process:js trackr.js -->
     <script type="text/javascript" data-main="./bootstrap" src="src/bower_components/requirejs/require.js"></script>
     <!-- /process -->
-
 </head>
 <body>
-<header class="navbar navbar-fixed-top navbar-inverse" role="banner">
-    <div class="container">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#/">trackr</a>
-        </div>
-        <nav class="collapse navbar-collapse" ng-include src="'src/views/navigation.html'">
-        </nav>
-    </div>
-</header>
-<div class="container">
-    <div class="row">
-        <!-- main content -->
-        <div class="col-lg-12">
-            <div ng-view></div>
-        </div>
-    </div>
-</div>
+    <div ng-include src="'src/modules/base/partials/index.tpl.html'"></div>
 </body>
 </html>

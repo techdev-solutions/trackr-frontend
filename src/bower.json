@@ -1,31 +1,31 @@
 {
-    "name": "trackr-frontend",
-    "version": "1.0.0",
-    "authors": [
-        "Moritz Schulze <moritz.schulze@techdev.de>"
-    ],
-    "description": "Trackr frontend",
-    "keywords": [
-        "angular"
-    ],
-    "license": "Closed source",
-    "private": true,
-    "ignore": [
-        "**/.*",
-        "node_modules",
-        "bower_components",
-        "test",
-        "tests"
-    ],
-    "dependencies": {
-        "bootstrap": "3.0.3",
-        "angular": "1.2.12",
-        "angular-route": "1.2.12",
-        "requirejs": "~2.1.10",
-        "almond": "~0.2.9",
-        "restangular": "~1.3.1"
-    },
-    "devDependencies": {
-        "angular-mocks": "1.2.12"
-    }
+  "name": "trackr-frontend",
+  "version": "1.0.0",
+  "authors": [
+    "Moritz Schulze <moritz.schulze@techdev.de>"
+  ],
+  "description": "Trackr frontend",
+  "keywords": [
+    "angular"
+  ],
+  "license": "Closed source",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "3.0.3",
+    "angular": "1.2.13",
+    "requirejs": "~2.1.10",
+    "almond": "~0.2.9",
+    "restangular": "~1.3.1",
+    "angular-ui-router": "git://github.com/angular-ui/ui-router.git#master"
+  },
+  "devDependencies": {
+    "angular-mocks": "1.2.13"
+  }
 }

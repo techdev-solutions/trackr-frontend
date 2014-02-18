@@ -68,7 +68,7 @@ module.exports = function (grunt) {
                         'jQuery': 'bower_components/jquery/dist/jquery.min',
                         'bootstrap': 'bower_components/bootstrap/dist/js/bootstrap.min',
                         'angular': 'bower_components/angular/angular.min',
-                        'angular-route': 'bower_components/angular-route/angular-route.min',
+                        'angular-ui-router': 'bower_components/angular-ui-router/release/angular-ui-router.min',
                         'restangular':'bower_components/restangular/dist/restangular.min',
                         'lodash': 'bower_components/lodash/dist/lodash.min'
                     }

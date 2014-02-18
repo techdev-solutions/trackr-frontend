@@ -1,13 +1,13 @@
 define(['app', 'angular-mocks'], function() {
     'use strict';
-    describe('trackr.pages.controllers.config', function () {
-        var ConfigController, scope;
+    describe('trackr.administration.controllers.administration-roles', function () {
+        var AdministrationRolesController, scope;
 
         beforeEach(module('app'));
 
         beforeEach(inject(function($rootScope, $controller) {
             scope = $rootScope.$new();
-            ConfigController = $controller('trackr.pages.controllers.config', {
+            AdministrationRolesController = $controller('trackr.administration.controllers.administration-roles', {
                 $scope: scope
             });
         }));
