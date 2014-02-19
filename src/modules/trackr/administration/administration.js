@@ -8,16 +8,16 @@ define(['angular', 'modules/trackr/administration/controllers/controllers'], fun
             url: '/administration',
             views: {
                 'center@': {
-                    templateUrl: 'src/modules/trackr/administration/partials/administration.tpl.html'
+                    templateUrl: '/src/modules/trackr/administration/partials/administration.tpl.html'
                 }
             }
         })
-        .state('trackr.administrationPages', {
-            url: '/administration/{page:[\\w]+}',
+        .state('trackr.administration.page', {
+            url: '/{page:[\\w]+}',
             views: {
                 'center@': {
                     templateUrl: function(stateParams) {
-                        return 'src/modules/trackr/administration/partials/administration-' + stateParams.page + '.tpl.html';
+                        return '/src/modules/trackr/administration/partials/administration-' + stateParams.page + '.tpl.html';
                     },
                     controllerProvider: ['$stateParams', function($stateParams) {
                         return 'trackr.administration.controllers.administration-' + $stateParams.page;

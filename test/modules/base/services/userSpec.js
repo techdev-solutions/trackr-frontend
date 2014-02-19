@@ -1,28 +1,15 @@
-define(['fixtures', 'app', 'angular-mocks'], function (fixtures) {
+define(['app', 'angular-mocks'], function () {
     'use strict';
-    describe('WelcomeController', function () {
-        var UserService, $httpBackend;
+    describe('base.services.user', function () {
+        var UserService;
         beforeEach(module('app'));
 
         beforeEach(inject(function ($injector) {
-            $httpBackend = $injector.get('$httpBackend');
-            $httpBackend.when('GET', '/api/users/').respond(fixtures.employees);
             UserService = $injector.get('base.services.user');
         }));
 
-        afterEach(function () {
-            $httpBackend.verifyNoOutstandingExpectation();
-            $httpBackend.verifyNoOutstandingRequest();
-        });
-
-        it('should load all employees', function () {
-            var users;
-            UserService.allUsers().then(function (_users) {
-                users = _users;
-            });
-            $httpBackend.flush();
-            expect(users).toBeDefined();
-            expect(users.length).toBeGreaterThan(0);
+        it('must have a setUser method', function() {
+            expect(UserService.setUser).toBeDefined();
         });
     });
 });

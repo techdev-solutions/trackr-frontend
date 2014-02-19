@@ -19,7 +19,8 @@ define(['angular', 'jQuery', 'restangular', 'angular-ui-router', 'modules/base/b
         });
     });
 
-    app.config(['RestangularProvider', function (RestangularProvider) {
+    app.config(['RestangularProvider', '$locationProvider', function (RestangularProvider, $locationProvider) {
+        $locationProvider.html5Mode(false);
         RestangularProvider.setBaseUrl('/api');
         RestangularProvider.addResponseInterceptor(function (data, operation, route) {
             var returnData;

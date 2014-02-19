@@ -1,11 +1,11 @@
 <div class="navbar-header">
-    <a class="navbar-brand" href="#/example">Example</a>
+    <a class="navbar-brand" ui-sref="example.home">Example</a>
 </div>
 <nav class="collapse navbar-collapse">
     <div>
         <ul class="nav navbar-nav">
-            <li ng-class="{active: isActive('/example/page1')}"><a href="#/example/page1">Seite 1</a></li>
-            <li ng-class="{active: isActive('/example/page2')}"><a href="#/example/page2">Seite 2</a></li>
+            <li ng-class="{active: isActive('/example/page1')}"><a ui-sref="example.page1">Seite 1</a></li>
+            <li ng-class="{active: isActive('/example/page2')}"><a ui-sref="example.page2">Seite 2</a></li>
         </ul>
     </div>
 </nav>

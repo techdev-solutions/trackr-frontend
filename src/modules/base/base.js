@@ -15,7 +15,7 @@ define([
             url: '/',
             views: {
                 center: {
-                    templateUrl: 'src/modules/base/partials/modules.tpl.html'
+                    templateUrl: '/src/modules/base/partials/modules.tpl.html'
                 }
             }
         });
