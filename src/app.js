@@ -1,7 +1,8 @@
 /* global document */
-define(['angular', 'jQuery', 'restangular', 'angular-ui-router', 'modules/base/base', 'modules/trackr/trackr', 'modules/example/example'], function (angular, $) {
+define(['angular', 'jQuery', 'restangular', 'angular-ui-router', 'modules/base/base', 'modules/trackr/trackr', 'modules/example/example', 'modules/shared/shared'
+], function (angular, $) {
     'use strict';
-    var configFn = ['ui.router', 'base', 'trackr', 'restangular', 'example'];
+    var configFn = ['ui.router', 'base', 'trackr', 'restangular', 'example', 'shared'];
     var app = angular.module('app', configFn);
     var trackrUser;
     app.run(['base.services.user', function (UserService) {

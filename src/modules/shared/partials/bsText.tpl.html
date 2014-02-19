@@ -1,0 +1,7 @@
+<div class="form-group" ng-class="{'has-error': hasError(propertyName)}">
+    <label class="col-sm-2 control-label" for="{{propertyName}}">{{ translateCode | translate }}</label>
+    <div class="col-sm-6">
+        <input type="text" class="form-control" id="{{propertyName}}" placeholder="{{ translateCode | translate }}" ng-model="path"/>
+        <span ng-show="hasError(propertyName)" class="help-block">{{errorText(propertyName)}}</span>
+    </div>
+</div>
