@@ -70,7 +70,8 @@ module.exports = function (grunt) {
                         'angular': 'vendor/angular/angular.min',
                         'angular-ui-router': 'vendor/angular-ui-router/release/angular-ui-router.min',
                         'restangular':'vendor/restangular/dist/restangular.min',
-                        'lodash': 'vendor/lodash/dist/lodash.min'
+                        'lodash': 'vendor/lodash/dist/lodash.min',
+                        'angular-translate': 'vendor/angular-translate/angular-translate.min'
                     }
                 }
             }

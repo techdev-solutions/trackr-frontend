@@ -18,7 +18,8 @@ require.config({
         'angular-mocks': 'vendor/angular-mocks/angular-mocks',
         'restangular':'vendor/restangular/dist/restangular',
         'lodash': 'vendor/lodash/dist/lodash',
-        'fixtures': '../test/fixtures'
+        'fixtures': '../test/fixtures',
+        'angular-translate': 'vendor/angular-translate/angular-translate'
     },
     shim: {
         'angular': { exports: 'angular' },
@@ -26,7 +27,8 @@ require.config({
         'jQuery': { exports: '$' },
         'bootstrap': { deps: ['jQuery'] },
         'restangular': {deps: ['angular', 'lodash']},
-        'angular-mocks': { deps: ['angular']}
+        'angular-mocks': { deps: ['angular']},
+        'angular-translate': { deps: ['angular'] }
     },
     deps: tests,
 
