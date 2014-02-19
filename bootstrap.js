@@ -1,12 +1,12 @@
 require.config({
     baseUrl: 'src',
     paths: {
-        'jQuery': 'bower_components/jquery/dist/jquery',
-        'bootstrap': 'bower_components/bootstrap/dist/js/bootstrap',
-        'angular': 'bower_components/angular/angular',
-        'angular-ui-router': 'bower_components/angular-ui-router/release/angular-ui-router',
-        'restangular':'bower_components/restangular/dist/restangular',
-        'lodash': 'bower_components/lodash/dist/lodash'
+        'jQuery': 'vendor/jquery/dist/jquery',
+        'bootstrap': 'vendor/bootstrap/dist/js/bootstrap',
+        'angular': 'vendor/angular/angular',
+        'angular-ui-router': 'vendor/angular-ui-router/release/angular-ui-router',
+        'restangular':'vendor/restangular/dist/restangular',
+        'lodash': 'vendor/lodash/dist/lodash'
     },
     shim: {
         'angular': { exports: 'angular' },

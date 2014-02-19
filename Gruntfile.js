@@ -48,7 +48,7 @@ module.exports = function (grunt) {
                         src: [
                             'index.html',
                             'src/modules/**/*.tpl.html',
-                            'src/bower_components/**'
+                            'src/vendor/**'
                         ]
                     }
                 ]
@@ -60,17 +60,17 @@ module.exports = function (grunt) {
                 options: {
                     baseUrl: 'src',
                     mainConfigFile: 'bootstrap.js',
-                    name: 'bower_components/almond/almond',
+                    name: 'vendor/almond/almond',
                     include: ['app'],
                     insertRequire: ['app'],
                     out: '<%= config.distFolder %>/trackr.js',
                     paths: {
-                        'jQuery': 'bower_components/jquery/dist/jquery.min',
-                        'bootstrap': 'bower_components/bootstrap/dist/js/bootstrap.min',
-                        'angular': 'bower_components/angular/angular.min',
-                        'angular-ui-router': 'bower_components/angular-ui-router/release/angular-ui-router.min',
-                        'restangular':'bower_components/restangular/dist/restangular.min',
-                        'lodash': 'bower_components/lodash/dist/lodash.min'
+                        'jQuery': 'vendor/jquery/dist/jquery.min',
+                        'bootstrap': 'vendor/bootstrap/dist/js/bootstrap.min',
+                        'angular': 'vendor/angular/angular.min',
+                        'angular-ui-router': 'vendor/angular-ui-router/release/angular-ui-router.min',
+                        'restangular':'vendor/restangular/dist/restangular.min',
+                        'lodash': 'vendor/lodash/dist/lodash.min'
                     }
                 }
             }
