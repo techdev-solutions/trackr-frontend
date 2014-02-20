@@ -11,7 +11,7 @@ require.config({
         'angular-ui': 'vendor/angular-ui-bootstrap-bower/ui-bootstrap-tpls'
     },
     shim: {
-        'angular': { exports: 'angular' },
+        'angular': { exports: 'angular', deps: ['jQuery'] },
         'angular-ui-router': { deps: ['angular']},
         'jQuery': { exports: '$' },
         'twitter-bootstrap': { deps: ['jQuery'] },
