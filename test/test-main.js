@@ -12,23 +12,25 @@ require.config({
     baseUrl: '/base/src',
     paths: {
         'jQuery': 'vendor/jquery/dist/jquery',
-        'bootstrap': 'vendor/bootstrap/dist/js/bootstrap',
+        'twitter-bootstrap': 'vendor/bootstrap/dist/js/bootstrap',
         'angular': 'vendor/angular/angular',
         'angular-ui-router': 'vendor/angular-ui-router/release/angular-ui-router',
         'angular-mocks': 'vendor/angular-mocks/angular-mocks',
         'restangular':'vendor/restangular/dist/restangular',
         'lodash': 'vendor/lodash/dist/lodash',
         'fixtures': '../test/fixtures',
-        'angular-translate': 'vendor/angular-translate/angular-translate'
+        'angular-translate': 'vendor/angular-translate/angular-translate',
+        'angular-ui': 'vendor/angular-ui-bootstrap-bower/ui-bootstrap-tpls'
     },
     shim: {
         'angular': { exports: 'angular' },
         'angular-ui-router': { deps: ['angular']},
         'jQuery': { exports: '$' },
-        'bootstrap': { deps: ['jQuery'] },
+        'twitter-bootstrap': { deps: ['jQuery'] },
         'restangular': {deps: ['angular', 'lodash']},
         'angular-mocks': { deps: ['angular']},
-        'angular-translate': { deps: ['angular'] }
+        'angular-translate': { deps: ['angular'] },
+        'angular-ui': { deps: ['angular'] }
     },
     deps: tests,
 

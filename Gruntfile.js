@@ -66,12 +66,13 @@ module.exports = function (grunt) {
                     out: '<%= config.distFolder %>/trackr.js',
                     paths: {
                         'jQuery': 'vendor/jquery/dist/jquery.min',
-                        'bootstrap': 'vendor/bootstrap/dist/js/bootstrap.min',
+                        'twitter-bootstrap': 'vendor/bootstrap/dist/js/bootstrap.min',
                         'angular': 'vendor/angular/angular.min',
                         'angular-ui-router': 'vendor/angular-ui-router/release/angular-ui-router.min',
                         'restangular':'vendor/restangular/dist/restangular.min',
                         'lodash': 'vendor/lodash/dist/lodash.min',
-                        'angular-translate': 'vendor/angular-translate/angular-translate.min'
+                        'angular-translate': 'vendor/angular-translate/angular-translate.min',
+                        'angular-ui': 'vendor/angular-ui-bootstrap-bower/ui-bootstrap-tpls.min'
                     }
                 }
             }
