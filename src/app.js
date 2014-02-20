@@ -50,5 +50,23 @@ define(['angular', 'jQuery', 'restangular', 'angular-ui-router', 'angular-ui', '
             return returnData;
         });
     }]);
+
+    /**
+     * Implement state authorization
+     */
+    app.run(['$rootScope', '$log', 'base.services.user', function ($rootScope, $log, UserService) {
+        $rootScope.$on('$stateChangeStart', function(event, toState) {
+            if(toState.needsAuthority) {
+                var user = UserService.getUser();
+                $log.debug('User ' + user.email + ' tries to access state ' + toState.name + ' that needs the role ' + toState.needsAuthority);
+                if(!UserService.userHasAuthority(toState.needsAuthority)) {
+                    $log.debug('User ' + user.email + ' was denied access to state ' + toState.name);
+                    event.preventDefault();
+                } else {
+                    $log.debug('User ' + user.email + ' was granted access to state ' + toState.name);
+                }
+            }
+        });
+    }]);
     return app;
 });

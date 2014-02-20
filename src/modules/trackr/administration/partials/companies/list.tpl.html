@@ -5,7 +5,7 @@
             <li ng-repeat="company in companies" ui-sref-active="active">
                 <a href ui-sref="trackr.administration.companies.edit({id: company.companyId})">{{company.name}}</a>
             </li>
-            <li>
+            <li has-authority="ROLE_ADMIN">
                 <button type="button" class="btn btn-default" ng-click="addNew()">
                     <span class="glyphicon glyphicon-plus"></span> {{ 'ACTIONS.NEW' | translate }}
                 </button>

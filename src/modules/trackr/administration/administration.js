@@ -10,7 +10,8 @@ define(['angular', 'modules/trackr/administration/controllers/controllers'], fun
                 'center@': {
                     templateUrl: '/src/modules/trackr/administration/partials/administration.tpl.html'
                 }
-            }
+            },
+            needsAuthority: 'ROLE_SUPERVISOR'
         })
         .state('trackr.administration.companies', {
             url: '/companies',
@@ -19,7 +20,8 @@ define(['angular', 'modules/trackr/administration/controllers/controllers'], fun
                     templateUrl: '/src/modules/trackr/administration/partials/companies/list.tpl.html',
                     controller: 'trackr.administration.controllers.companies.list'
                 }
-            }
+            },
+            needsAuthority: 'ROLE_SUPERVISOR'
         })
         .state('trackr.administration.companies.edit', {
             url: '/{id:[\\w\\.]+}',
@@ -28,7 +30,8 @@ define(['angular', 'modules/trackr/administration/controllers/controllers'], fun
                     templateUrl: '/src/modules/trackr/administration/partials/companies/edit.tpl.html',
                     controller: 'trackr.administration.controllers.companies.edit'
                 }
-            }
+            },
+            needsAuthority: 'ROLE_SUPERVISOR'
         })
         .state('trackr.administration.roles', {
             url: '/roles',
@@ -37,7 +40,8 @@ define(['angular', 'modules/trackr/administration/controllers/controllers'], fun
                     templateUrl: '/src/modules/trackr/administration/partials/roles/edit.tpl.html',
                     controller: 'trackr.administration.controllers.roles.edit'
                 }
-            }
+            },
+            needsAuthority: 'ROLE_SUPERVISOR'
         });
     }]);
 
