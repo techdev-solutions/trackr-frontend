@@ -1,16 +1,12 @@
 <div class="row">
     <div class="col-sm-4">
         <h3>Rollen</h3>
-        <p>Verwalten Sie die Rollen der Nutzer von trackr.</p>
-        <a ui-sref="trackr.administration.page({page: 'roles'})" class="btn btn-lg btn-default">Rollen</a>
+        <p>{{ 'PAGES.ADMINISTRATION.TEXT_ROLES' | translate }}</p>
+        <a ui-sref="trackr.administration.roles" class="btn btn-lg btn-default">Rollen</a>
     </div>
     <div class="col-sm-4">
-        <h3>Firmen</h3>
-        <p>Hier kann man Firmen verwalten</p>
-        <a ui-sref="trackr.administration.page({page: 'companies'})" class="btn btn-lg btn-default">Firmen</a>
-    </div>
-    <div class="col-sm-4">
-        <h3>Sonstiges</h3>
-        <p>Hier kommt sicher auch noch was hin</p>
+        <h3>{{ 'COMPANY.COMPANIES' | translate }}</h3>
+        <p>{{ 'PAGES.ADMINISTRATION.TEXT_COMPANIES' | translate }}</p>
+        <a ui-sref="trackr.administration.companies" class="btn btn-lg btn-default">{{ 'COMPANY.COMPANIES' | translate }}</a>
     </div>
 </div>

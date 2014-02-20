@@ -1,0 +1,18 @@
+<div class="row">
+    <div class="col-lg-3">
+        <ul class="nav nav-pills nav-stacked">
+            <li><h3>{{ 'COMPANY.COMPANIES' | translate }}</h3></li>
+            <li ng-repeat="company in companies" ui-sref-active="active">
+                <a href ui-sref="trackr.administration.companies.edit({id: company.companyId})">{{company.name}}</a>
+            </li>
+            <li>
+                <button type="button" class="btn btn-default" ng-click="addNew()">
+                    <span class="glyphicon glyphicon-plus"></span> {{ 'ACTIONS.NEW' | translate }}
+                </button>
+            </li>
+        </ul>
+    </div>
+    <div class="col-lg-9">
+        <ui-view name="company"/>
+    </div>
+</div>

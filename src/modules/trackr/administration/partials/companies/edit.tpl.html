@@ -1,0 +1,19 @@
+<h1>{{company.name}}</h1>
+<dl>
+    <dt>{{ 'COMPANY.COMPANY_ID' | translate }}
+        <dd>{{company.companyId}}</dd>
+    </dt>
+    <h2>{{ 'ADDRESS.ADDRESS' | translate}}</h2>
+    <dt>{{ 'ADDRESS.STREET' | translate }}
+        <dd>{{company.address.street}} {{company.address.houseNumber}}</dd>
+    </dt>
+    <dt>{{ 'ADDRESS.CITY' | translate }}
+        <dd>{{company.address.city}}</dd>
+    </dt>
+    <dt>{{ 'ADDRESS.ZIPCODE' | translate }}
+        <dd>{{company.address.zipCode}}</dd>
+    </dt>
+    <dt>{{ 'ADDRESS.COUNTRY' | translate }}
+        <dd>{{company.address.country}}</dd>
+    </dt>
+</dl>

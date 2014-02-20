@@ -4,11 +4,18 @@
 <nav class="collapse navbar-collapse">
     <div>
         <ul class="nav navbar-nav">
-            <li ui-sref-active="active" has-authority="ROLE_SUPERVISOR"><a href ui-sref="trackr.administration">Verwaltung</a></li>
+            <li ui-sref-active="active" has-authority="ROLE_SUPERVISOR"><a href ui-sref="trackr.administration">{{ 'PAGES.ADMINISTRATION.TITLE' | translate }}</a></li>
         </ul>
 
         <ul class="nav navbar-nav navbar-right">
             <li><a href="/logout">{{user.email}} (Logout)</a></li>
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="">{{ 'LANGUAGE' | translate }}</a>
+                <ul class="dropdown-menu">
+                    <li><a href ng-click="changeLanguage('en')">English</a></li>
+                    <li><a href ng-click="changeLanguage('de')">Deutsch</a></li>
+                </ul>
+            </li>
         </ul>
     </div>
 </nav>

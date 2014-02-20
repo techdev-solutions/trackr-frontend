@@ -1,6 +1,6 @@
-define(['angular', 'modules/trackr/administration/administration'], function(angular) {
+define(['angular', 'modules/trackr/i18n', 'modules/trackr/administration/administration', 'angular-translate'], function(angular, i18n) {
     'use strict';
-    var configFn = ['trackr.administration'];
+    var configFn = ['trackr.administration', 'pascalprecht.translate'];
     var trackr = angular.module('trackr', configFn);
     trackr.config(['$stateProvider', function($stateProvider) {
         $stateProvider.
@@ -23,5 +23,6 @@ define(['angular', 'modules/trackr/administration/administration'], function(ang
                 }
             });
     }]);
+    i18n.init(trackr);
     return trackr;
 });
