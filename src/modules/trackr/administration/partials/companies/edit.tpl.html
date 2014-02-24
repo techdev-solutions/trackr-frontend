@@ -26,6 +26,7 @@
         <td>{{contactPerson.lastName}}</td>
         <td><a href="mailto:{{contactPerson.email}}">{{contactPerson.email}}</a></td>
         <td>{{contactPerson.phone}}</td>
+        <td><a href ng-click="removeContactPerson(contactPerson)"><i class="glyphicon glyphicon-remove"></i></a></td>
     </tr>
 </table>
 <div has-authority="ROLE_SUPERVISOR">
