@@ -41,7 +41,7 @@ define(['angular', 'modules/trackr/administration/controllers/controllers'], fun
                     controller: 'trackr.administration.controllers.roles.edit'
                 }
             },
-            needsAuthority: 'ROLE_SUPERVISOR'
+            needsAuthority: 'ROLE_ADMIN'
         });
     }]);
 
