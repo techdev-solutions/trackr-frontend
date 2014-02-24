@@ -1,8 +1,8 @@
-define([], function() {
+define([], function () {
     'use strict';
     return {
-        init: function(trackr) {
-            trackr.config(['$translateProvider', function($translateProvider) {
+        init: function (trackr) {
+            trackr.config(['$translateProvider', function ($translateProvider) {
                 $translateProvider.translations('de', {
                     COMPANY: {
                         CREATE_NEW: 'Neue Firma anlegen',
@@ -16,7 +16,16 @@ define([], function() {
                         HOUSE_NUMBER: 'Hausnummer',
                         CITY: 'Stadt',
                         ZIPCODE: 'PLZ',
-                        COUNTRY:' Land'
+                        COUNTRY: ' Land'
+                    },
+                    CONTACTPERSON: {
+                        CONTACTPERSON: 'Kontaktperson',
+                        CONTACTPERSONS: 'Kontaktpersonen',
+                        SALUTATION: ' Anrede',
+                        FIRST_NAME: 'Vorname',
+                        LAST_NAME: 'Nachname',
+                        EMAIL: 'Email',
+                        PHONE: 'Telefon'
                     },
                     PAGES: {
                         HOME: {
@@ -48,7 +57,16 @@ define([], function() {
                         HOUSE_NUMBER: 'House number',
                         CITY: 'City',
                         ZIPCODE: 'Zipcode',
-                        COUNTRY:' Country'
+                        COUNTRY: ' Country'
+                    },
+                    CONTACTPERSON: {
+                        CONTACTPERSON: 'Contact person',
+                        CONTACTPERSONS: 'Contact persons',
+                        SALUTATION: ' Salutation',
+                        FIRST_NAME: 'First name',
+                        LAST_NAME: 'Last name',
+                        EMAIL: 'Email',
+                        PHONE: 'Phone'
                     },
                     PAGES: {
                         HOME: {

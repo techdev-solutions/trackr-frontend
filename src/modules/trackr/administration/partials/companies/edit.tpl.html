@@ -17,3 +17,27 @@
         <dd>{{company.address.country}}</dd>
     </dt>
 </dl>
+
+<h3>{{ 'CONTACTPERSON.CONTACTPERSONS' | translate }}</h3>
+<table>
+    <tr ng-repeat="contactPerson in contactPersons">
+        <td>{{contactPerson.salutation}}</td>
+        <td>{{contactPerson.firstName}}</td>
+        <td>{{contactPerson.lastName}}</td>
+        <td><a href="mailto:{{contactPerson.email}}">{{contactPerson.email}}</a></td>
+        <td>{{contactPerson.phone}}</td>
+    </tr>
+</table>
+<div has-authority="ROLE_SUPERVISOR">
+    <button class="btn btn-sm btn-default" ng-click="doShowContactPersonForm(true)">
+        <i class="glyphicon glyphicon-plus"/>
+    </button>
+    <form ng-show="showContactPersonForm" class="form-inline" role="form" ng-submit="saveNewContactPerson()">
+        <bs-text path="newContactPerson.salutation" translate-code="CONTACTPERSON.SALUTATION" property-name="salutation" inline="true" errors="contactPersonErrors"></bs-text>
+        <bs-text path="newContactPerson.firstName" translate-code="CONTACTPERSON.FIRST_NAME" property-name="firstName" inline="true" errors="contactPersonErrors"></bs-text>
+        <bs-text path="newContactPerson.lastName" translate-code="CONTACTPERSON.LAST_NAME" property-name="lastName" inline="true" errors="contactPersonErrors"></bs-text>
+        <bs-text path="newContactPerson.email" translate-code="CONTACTPERSON.EMAIL" property-name="email" inline="true" errors="contactPersonErrors"></bs-text>
+        <bs-text path="newContactPerson.phone" translate-code="CONTACTPERSON.PHONE" property-name="phone" inline="true" errors="contactPersonErrors"></bs-text>
+        <button type="submit" class="btn btn-success">{{ 'ACTIONS.SAVE' | translate }}</button>
+    </form>
+</div>
