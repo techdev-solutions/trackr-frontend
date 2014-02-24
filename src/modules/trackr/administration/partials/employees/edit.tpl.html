@@ -1,0 +1,31 @@
+<h1>{{employee.firstName}} {{employee.lastName}}</h1>
+<span ng-if="credential" ng-repeat="authority in authorities">
+    <label>{{authority.screenName}}</label>
+    <input type="checkbox" ng-checked="hasAuthority(credential, authority)" ng-click="updateCredentialAuthorities(credential, authority)">
+</span>
+<dl>
+    <dt>
+        {{ 'EMPLOYEE.TITLE' | translate }}
+        <dd>{{ employee.title }}</dd>
+    </dt>
+    <dt>
+        {{ 'EMPLOYEE.SALARY' | translate }}
+        <dd>{{ employee.salary }}</dd>
+    </dt>
+    <dt>
+        {{ 'EMPLOYEE.HOURLY_COST_RATE' | translate }}
+        <dd>{{ employee.hourlyCostRate }}</dd>
+    </dt>
+    <dt>
+        {{ 'EMPLOYEE.PHONE_NUMBER' | translate }}
+        <dd>{{ employee.phoneNumber }}</dd>
+    </dt>
+    <dt>
+        {{ 'CREDENTIAL.EMAIL' | translate }}
+        <dd>{{ credential.email }}</dd>
+    </dt>
+    <dt>
+        {{ 'CREDENTIAL.ENABLED' | translate }}
+        <dd>{{ credential.enabled }}</dd>
+    </dt>
+</dl>

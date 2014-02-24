@@ -33,12 +33,30 @@ define(['angular', 'modules/trackr/administration/controllers/controllers'], fun
             },
             needsAuthority: 'ROLE_SUPERVISOR'
         })
-        .state('trackr.administration.roles', {
-            url: '/roles',
+        .state('trackr.administration.employees', {
+            url: '/employees',
             views: {
                 'center@': {
-                    templateUrl: '/src/modules/trackr/administration/partials/roles/edit.tpl.html',
-                    controller: 'trackr.administration.controllers.roles.edit'
+                    templateUrl: '/src/modules/trackr/administration/partials/employees/list.tpl.html',
+                    controller: 'trackr.administration.controllers.employees.list'
+                }
+            },
+            needsAuthority: 'ROLE_SUPERVISOR'
+        }).state('trackr.administration.employees.edit', {
+            url: '/{id:[\\d]+}',
+            views: {
+                'employee': {
+                    templateUrl: '/src/modules/trackr/administration/partials/employees/edit.tpl.html',
+                    controller: 'trackr.administration.controllers.employees.edit'
+                }
+            },
+            needsAuthority: 'ROLE_SUPERVISOR'
+        }).state('trackr.administration.employees.roles', {
+            url: '/roles',
+            views: {
+                'employee': {
+                    templateUrl: '/src/modules/trackr/administration/partials/employees/rolesList.tpl.html',
+                    controller: 'trackr.administration.controllers.employees.roles-list'
                 }
             },
             needsAuthority: 'ROLE_ADMIN'

@@ -1,0 +1,21 @@
+<div class="row">
+    <div class="col-lg-3">
+        <ul class="nav nav-pills nav-stacked">
+            <li><h3>{{ 'EMPLOYEE.EMPLOYEES' | translate }}</h3></li>
+            <li ng-repeat="employee in employees" ui-sref-active="active">
+                <a href ui-sref="trackr.administration.employees.edit({id: employee.id})">{{employee.firstName}} <b>{{employee.lastName}}</b></a>
+            </li>
+            <li has-authority="ROLE_ADMIN">
+                <button type="button" class="btn btn-default" ng-click="addNew()">
+                    <span class="glyphicon glyphicon-plus"></span> {{ 'ACTIONS.NEW' | translate }}
+                </button>
+            </li>
+            <li has-authority="ROLE_ADMIN" ui-sref-active="active">
+                <a ui-sref="trackr.administration.employees.roles" href>{{ 'EMPLOYEE.ADMINISTRATE_ROLES' | translate }}</a>
+            </li>
+        </ul>
+    </div>
+    <div class="col-lg-9">
+        <ui-view name="employee"/>
+    </div>
+</div>

@@ -27,6 +27,19 @@ define([], function () {
                         EMAIL: 'Email',
                         PHONE: 'Telefon'
                     },
+                    EMPLOYEE: {
+                        EMPLOYEES: 'Angestellte',
+                        EMPLOYEE: 'Angestellte/r',
+                        TITLE: 'Titel',
+                        SALARY: 'Gehalt',
+                        PHONE_NUMBER: 'Telefon',
+                        HOURLY_COST_RATE: 'Stundensatz',
+                        ADMINISTRATE_ROLES: 'Alle Rollen'
+                    },
+                    CREDENTIAL: {
+                        EMAIL: 'E-Mail',
+                        ENABLED: 'Aktiv'
+                    },
                     PAGES: {
                         HOME: {
                             WELCOME_TEXT: 'Willkommen bei trackr'
@@ -34,7 +47,7 @@ define([], function () {
                         ADMINISTRATION: {
                             TITLE: 'Verwaltung',
                             TEXT_COMPANIES: 'Legen Sie neue Firmen an und editieren Sie bestehende.',
-                            TEXT_ROLES: 'Verwalten Sie Nutzerrollen in trackr.'
+                            TEXT_EMPLOYEES: 'Verwalten Sie Angestellte in trackr.'
                         }
                     },
                     ACTIONS: {
@@ -68,6 +81,19 @@ define([], function () {
                         EMAIL: 'Email',
                         PHONE: 'Phone'
                     },
+                    EMPLOYEE: {
+                        EMPLOYEES: 'Employees',
+                        EMPLOYEE: 'Employee',
+                        TITLE: 'Title',
+                        SALARY: 'Salary',
+                        PHONE_NUMBER: 'Phone number',
+                        HOURLY_COST_RATE: 'Hourly cost rate',
+                        ADMINISTRATE_ROLES: 'All roles'
+                    },
+                    CREDENTIAL: {
+                        EMAIL: 'E-Mail',
+                        ENABLED: 'Enabled'
+                    },
                     PAGES: {
                         HOME: {
                             WELCOME_TEXT: 'Welcome to trackr'
@@ -75,7 +101,7 @@ define([], function () {
                         ADMINISTRATION: {
                             TITLE: 'Administration',
                             TEXT_COMPANIES: 'Edit and create companies.',
-                            TEXT_ROLES: 'Administrate user roles in trackr.'
+                            TEXT_EMPLOYEES: 'Administrate employees in trackr.'
                         }
                     },
                     ACTIONS: {
