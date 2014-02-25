@@ -28,8 +28,11 @@ define([], function () {
                         PHONE: 'Telefon'
                     },
                     EMPLOYEE: {
+                        CREATE_NEW: 'Neuen Angestellten anlegen',
                         EMPLOYEES: 'Angestellte',
                         EMPLOYEE: 'Angestellte/r',
+                        FIRST_NAME: 'Vorname',
+                        LAST_NAME: 'Nachname',
                         TITLE: 'Titel',
                         SALARY: 'Gehalt',
                         PHONE_NUMBER: 'Telefon',
@@ -52,7 +55,8 @@ define([], function () {
                     },
                     ACTIONS: {
                         SAVE: 'Speichern',
-                        NEW: 'Neu'
+                        NEW: 'Neu',
+                        CANCEL: 'Abbrechen'
                     },
                     LANGUAGE: 'Sprache'
                 });
@@ -82,8 +86,11 @@ define([], function () {
                         PHONE: 'Phone'
                     },
                     EMPLOYEE: {
+                        CREATE_NEW: 'Create new employee',
                         EMPLOYEES: 'Employees',
                         EMPLOYEE: 'Employee',
+                        FIRST_NAME: 'First name',
+                        LAST_NAME: 'Last name',
                         TITLE: 'Title',
                         SALARY: 'Salary',
                         PHONE_NUMBER: 'Phone number',
@@ -106,7 +113,8 @@ define([], function () {
                     },
                     ACTIONS: {
                         SAVE: 'Save',
-                        NEW: 'New'
+                        NEW: 'New',
+                        CANCEL: 'Cancel'
                     },
                     LANGUAGE: 'Language'
                 });

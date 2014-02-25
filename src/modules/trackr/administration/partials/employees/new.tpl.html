@@ -1,0 +1,27 @@
+<div class="modal-header">
+    <h3>{{ 'EMPLOYEE.CREATE_NEW' | translate }}</h3>
+</div>
+<div class="modal-body">
+    <form class="form-horizontal" action="">
+        <bs-text property-name="firstName" translate-code="EMPLOYEE.FIRST_NAME" path="employee.firstName"></bs-text>
+        <bs-text property-name="lastName" translate-code="EMPLOYEE.LAST_NAME" path="employee.lastName"></bs-text>
+        <bs-text property-name="phoneNumber" translate-code="EMPLOYEE.PHONE_NUMBER" path="employee.phoneNumber"></bs-text>
+        <bs-text property-name="title" translate-code="EMPLOYEE.TITLE" path="employee.title"></bs-text>
+        <bs-text property-name="salary" translate-code="EMPLOYEE.SALARY" path="employee.salary"></bs-text>
+        <bs-text property-name="hourlyCostRate" translate-code="EMPLOYEE.HOURLY_COST_RATE" path="employee.hourlyCostRate"></bs-text>
+        <bs-text property-name="email" translate-code="CREDENTIAL.EMAIL" path="credential.email" errors="credentialErrors"></bs-text>
+        <div class="form-group">
+            <div class="col-sm-offset-4 col-sm-8">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" ng-model="credential.enabled"> {{ 'CREDENTIAL.ENABLED' | translate }}
+                    </label>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" ng-click="cancel()">{{ 'ACTIONS.CANCEL' | translate }}</button>
+    <button type="submit" class="btn btn-primary" ng-click="saveEmployee()">{{ 'ACTIONS.SAVE' | translate }}</button>
+</div>
