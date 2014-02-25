@@ -1,0 +1,14 @@
+<div ng-if="!edit">
+    <span ng-if="!entity[propertyName]">-</span>
+    <span ng-if="entity[propertyName]">{{entity[propertyName]}}</span>
+</div>
+<div ng-if="edit">
+    <form action="" class="form-inline" ng-submit="submit()">
+        <div class="form-group" ng-class="{'has-error': hasError(propertyName)}">
+            <div>
+                <input type="text" class="form-control input-sm" ng-model="entity[propertyName]"/>
+                <span ng-show="hasError(propertyName)" class="help-block">{{errorText(propertyName)}}</span>
+            </div>
+        </div>
+    </form>
+</div>
