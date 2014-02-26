@@ -1,4 +1,4 @@
-<h1>{{employee.firstName}} {{employee.lastName}}</h1>
+<h1><bs-edit entity="employee" property-name="firstName"></bs-edit> <bs-edit entity="employee" property-name="lastName"></bs-edit></h1>
 <span ng-if="credential" ng-repeat="authority in authorities">
     <label>{{authority.screenName}}</label>
     <input type="checkbox" ng-checked="hasAuthority(credential, authority)" ng-click="updateCredentialAuthorities(credential, authority)">
