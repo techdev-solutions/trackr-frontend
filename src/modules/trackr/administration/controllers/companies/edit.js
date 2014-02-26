@@ -1,6 +1,6 @@
 define(['lodash'], function(_) {
     'use strict';
-    return ['$stateParams', '$scope', 'Restangular', '$log', function($stateParams, $scope, Restangular, $log) {
+    return ['$stateParams', '$scope', 'Restangular', '$log', '$state', function($stateParams, $scope, Restangular, $log, $state) {
         /**
          * Show or hide the form for a new contact person for this company
          * @param show true/false = show/hide
@@ -42,6 +42,10 @@ define(['lodash'], function(_) {
             }, function(response) {
                 $log.error(response);
             });
+        };
+
+        $scope.companyIdChanged = function() {
+            $state.go('trackr.administration.companies.edit', {id: $scope.company.companyId});
         };
 
         /*

@@ -1,7 +1,7 @@
 <h1><bs-edit entity="company" property-name="name"></bs-edit></h1>
 <dl>
     <dt>{{ 'COMPANY.COMPANY_ID' | translate }}
-        <dd><bs-edit entity="company" property-name="companyId"></bs-edit></dd>
+        <dd><bs-edit entity="company" property-name="companyId" callback="companyIdChanged"></bs-edit></dd>
     </dt>
     <h2>{{ 'ADDRESS.ADDRESS' | translate}}</h2>
     <dt>{{ 'ADDRESS.STREET' | translate }}

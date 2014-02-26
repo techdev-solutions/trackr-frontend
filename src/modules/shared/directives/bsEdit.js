@@ -6,12 +6,13 @@ define([], function() {
      * Attributes:
      * * entity: Reference to a restangularified entity
      * * propertyName: the name of the property to display/edit
+     * * callback: (optional) A callback that will be called <b>after</b> a successful PATCH call to the API.
      */
     return [function() {
         return {
             restrict: 'E',
             templateUrl: '/src/modules/shared/partials/bsEdit.tpl.html',
-            scope: {propertyName: '@', entity: '='},
+            scope: {propertyName: '@', entity: '=', callback: '='},
             link: function(scope, element) {
                 var oldValue;
 
@@ -71,6 +72,9 @@ define([], function() {
                     //TODO: how to find out the name of the resource? entity.resource is not correct (e.g. credential, not credentials)
                     Restangular.oneUrl('necessary', $scope.entity._links.self.href).patch(patchObject).then(function() {
                         $scope.edit = false;
+                        if($scope.callback) {
+                            $scope.callback();
+                        }
                     }, function(response) {
                         $scope.errors = response.data;
                     });
