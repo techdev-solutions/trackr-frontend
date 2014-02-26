@@ -26,6 +26,6 @@
     </dt>
     <dt>
         {{ 'CREDENTIAL.ENABLED' | translate }}
-        <dd>{{ credential.enabled }}</dd>
+        <dd><input type="checkbox" ng-checked="credential.enabled" ng-click="changeEnabled()"/></dd>
     </dt>
 </dl>
