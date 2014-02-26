@@ -55,6 +55,9 @@ define(['lodash'], function(_) {
             var company = companies[0];
 
             $scope.company = company;
+            company.customGET('address').then(function(address) {
+                $scope.address = address;
+            });
             company.getList('contactPersons').then(function(contactPersons) {
                 $scope.contactPersons = contactPersons;
             });
