@@ -7,24 +7,27 @@ define([], function() {
      * * entity: Reference to a restangularified entity
      * * propertyName: the name of the property to display/edit
      * * callback: (optional) A callback that will be called <b>after</b> a successful PATCH call to the API.
+     * * role: (optional) If a role is needed to edit the field.
      */
-    return [function() {
+    return ['base.services.user', function(UserService) {
         return {
             restrict: 'E',
             templateUrl: '/src/modules/shared/partials/bsEdit.tpl.html',
-            scope: {propertyName: '@', entity: '=', callback: '='},
+            scope: {propertyName: '@', entity: '=', callback: '=', role: '@'},
             link: function(scope, element) {
                 var oldValue;
 
-                //on click show the edit field
-                element.bind('click', function() {
-                    //save the old value so we can put it back if the user wants to abort
-                    oldValue = scope.entity[scope.propertyName];
-                    scope.edit = true;
-                    scope.$apply();
-                    //focus the cursor on the input element
-                    element.find('input')[0].focus();
-                });
+                if(!scope.role || UserService.userHasAuthority(scope.role)) {
+                    //on click show the edit field
+                    element.bind('click', function() {
+                        //save the old value so we can put it back if the user wants to abort
+                        oldValue = scope.entity[scope.propertyName];
+                        scope.edit = true;
+                        scope.$apply();
+                        //focus the cursor on the input element
+                        element.find('input')[0].focus();
+                    });
+                }
 
                 //on focusout submit
                 element.bind('focusout', function () {

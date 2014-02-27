@@ -1,35 +1,35 @@
-<h1><bs-edit entity="company" property-name="name"></bs-edit></h1>
+<h1><bs-edit entity="company" property-name="name" role="ROLE_ADMIN"></bs-edit></h1>
 <dl>
     <dt>{{ 'COMPANY.COMPANY_ID' | translate }}
-        <dd><bs-edit entity="company" property-name="companyId" callback="companyIdChanged"></bs-edit></dd>
+        <dd><bs-edit entity="company" property-name="companyId" callback="companyIdChanged" role="ROLE_ADMIN"></bs-edit></dd>
     </dt>
     <h2>{{ 'ADDRESS.ADDRESS' | translate}}</h2>
     <dt>{{ 'ADDRESS.STREET' | translate }}
-        <dd><bs-edit entity="address" property-name="street"></bs-edit></dd>
+        <dd><bs-edit entity="address" property-name="street" role="ROLE_ADMIN"></bs-edit></dd>
     </dt>
     <dt>{{ 'ADDRESS.HOUSE_NUMBER' | translate }}
-        <dd><bs-edit entity="address" property-name="houseNumber"></bs-edit></dd>
+        <dd><bs-edit entity="address" property-name="houseNumber" role="ROLE_ADMIN"></bs-edit></dd>
     </dt>
     <dt>{{ 'ADDRESS.CITY' | translate }}
-        <dd><bs-edit entity="address" property-name="city"></bs-edit></dd>
+        <dd><bs-edit entity="address" property-name="city" role="ROLE_ADMIN"></bs-edit></dd>
     </dt>
     <dt>{{ 'ADDRESS.ZIPCODE' | translate }}
-        <dd><bs-edit entity="address" property-name="zipCode"></bs-edit></dd>
+        <dd><bs-edit entity="address" property-name="zipCode" role="ROLE_ADMIN"></bs-edit></dd>
     </dt>
     <dt>{{ 'ADDRESS.COUNTRY' | translate }}
-        <dd><bs-edit entity="address" property-name="country"></bs-edit></dd>
+        <dd><bs-edit entity="address" property-name="country" role="ROLE_ADMIN"></bs-edit></dd>
     </dt>
 </dl>
 
 <h3>{{ 'CONTACTPERSON.CONTACTPERSONS' | translate }}</h3>
 <table>
     <tr ng-repeat="contactPerson in contactPersons">
-        <td><bs-edit entity="contactPerson" property-name="salutation"></bs-edit></td>
-        <td><bs-edit entity="contactPerson" property-name="firstName"></bs-edit></td>
-        <td><bs-edit entity="contactPerson" property-name="lastName"></bs-edit></td>
-        <td><bs-edit entity="contactPerson" property-name="email"></bs-edit><!--<a href="mailto:{{contactPerson.email}}">{{contactPerson.email}}</a>--></td>
-        <td><bs-edit entity="contactPerson" property-name="phone"></bs-edit></td>
-        <td><a href ng-click="removeContactPerson(contactPerson)"><i class="glyphicon glyphicon-remove"></i></a></td>
+        <td><bs-edit entity="contactPerson" property-name="salutation" role="ROLE_SUPERVISOR"></bs-edit></td>
+        <td><bs-edit entity="contactPerson" property-name="firstName" role="ROLE_SUPERVISOR"></bs-edit></td>
+        <td><bs-edit entity="contactPerson" property-name="lastName" role="ROLE_SUPERVISOR"></bs-edit></td>
+        <td><bs-edit entity="contactPerson" property-name="email" role="ROLE_SUPERVISOR"></bs-edit><!--<a href="mailto:{{contactPerson.email}}">{{contactPerson.email}}</a>--></td>
+        <td><bs-edit entity="contactPerson" property-name="phone" role="ROLE_SUPERVISOR"></bs-edit></td>
+        <td has-authority="ROLE_SUPERVISOR"><a href ng-click="removeContactPerson(contactPerson)"><i class="glyphicon glyphicon-remove"></i></a></td>
     </tr>
 </table>
 <div has-authority="ROLE_SUPERVISOR">
