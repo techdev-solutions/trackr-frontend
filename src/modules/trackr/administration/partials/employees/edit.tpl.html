@@ -1,4 +1,4 @@
-<h1><bs-edit entity="employee" property-name="firstName"></bs-edit> <bs-edit entity="employee" property-name="lastName"></bs-edit></h1>
+<h1><bs-edit entity="employee" property-name="firstName" role="ROLE_SUPERVISOR"></bs-edit> <bs-edit entity="employee" property-name="lastName" role="ROLE_SUPERVISOR"></bs-edit></h1>
 <span ng-if="credential" ng-repeat="authority in authorities">
     <label>{{authority.screenName}}</label>
     <input type="checkbox" ng-checked="hasAuthority(credential, authority)" ng-click="updateCredentialAuthorities(credential, authority)">
@@ -6,23 +6,23 @@
 <dl>
     <dt>
         {{ 'EMPLOYEE.TITLE' | translate }}
-        <dd><bs-edit entity="employee" property-name="title"></bs-edit></dd>
+        <dd><bs-edit entity="employee" property-name="title" role="ROLE_SUPERVISOR"></bs-edit></dd>
     </dt>
     <dt>
         {{ 'EMPLOYEE.SALARY' | translate }}
-        <dd><bs-edit entity="employee" property-name="salary"></bs-edit></dd>
+        <dd><bs-edit entity="employee" property-name="salary" role="ROLE_SUPERVISOR"></bs-edit></dd>
     </dt>
     <dt>
         {{ 'EMPLOYEE.HOURLY_COST_RATE' | translate }}
-        <dd><bs-edit entity="employee" property-name="hourlyCostRate"></bs-edit></dd>
+        <dd><bs-edit entity="employee" property-name="hourlyCostRate" role="ROLE_SUPERVISOR"></bs-edit></dd>
     </dt>
     <dt>
         {{ 'EMPLOYEE.PHONE_NUMBER' | translate }}
-        <dd><bs-edit entity="employee" property-name="phoneNumber"></bs-edit></dd>
+        <dd><bs-edit entity="employee" property-name="phoneNumber" role="ROLE_SUPERVISOR"></bs-edit></dd>
     </dt>
     <dt>
         {{ 'CREDENTIAL.EMAIL' | translate }}
-        <dd><bs-edit entity="credential" property-name="email"></bs-edit></dd>
+        <dd><bs-edit entity="credential" property-name="email" role="ROLE_SUPERVISOR"></bs-edit></dd>
     </dt>
     <dt>
         {{ 'CREDENTIAL.ENABLED' | translate }}

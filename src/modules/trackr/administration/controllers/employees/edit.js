@@ -13,7 +13,9 @@ define([], function() {
             var patch = {
                 enabled: !$scope.credential.enabled
             };
-            credentialBase.patch(patch);
+            credentialBase.patch(patch).then(function(credential) {
+                $scope.credential = credential;
+            });
         };
 
         /*
