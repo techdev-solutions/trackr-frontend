@@ -5,15 +5,16 @@ define([], function() {
      *
      * Attributes:
      * * entity: Reference to a restangularified entity
-     * * propertyName: the name of the property to display/edit
+     * * property-name: the name of the property to display/edit
      * * callback: (optional) A callback that will be called <b>after</b> a successful PATCH call to the API.
      * * role: (optional) If a role is needed to edit the field.
+     * * own-submit: (optional) submit function to be called, overwrites the intern function. Gets the patch object as the parameter. Must return a promise.
      */
     return ['base.services.user', function(UserService) {
         return {
             restrict: 'E',
             templateUrl: '/src/modules/shared/partials/bsEdit.tpl.html',
-            scope: {propertyName: '@', entity: '=', callback: '=', role: '@'},
+            scope: {propertyName: '@', entity: '=', callback: '=', role: '@', ownSubmit: '='},
             link: function(scope, element) {
                 if(!scope.role || UserService.userHasAuthority(scope.role)) {
                     var oldValue;
@@ -70,17 +71,23 @@ define([], function() {
 
                 $scope.submit = function() {
                     //We only want to submit the field we changed
-                    var patchObject = {};
-                    patchObject[$scope.propertyName] = $scope.entity[$scope.propertyName];
-                    //TODO: how to find out the name of the resource? entity.resource is not correct (e.g. credential, not credentials)
-                    Restangular.oneUrl('necessary', $scope.entity._links.self.href).patch(patchObject).then(function() {
+                    function successCallback() {
                         $scope.edit = false;
                         if($scope.callback) {
                             $scope.callback();
                         }
-                    }, function(response) {
+                    }
+                    function errorCallback(response) {
                         $scope.errors = response.data;
-                    });
+                    }
+                    var patchObject = {};
+                    patchObject[$scope.propertyName] = $scope.entity[$scope.propertyName];
+                    if($scope.ownSubmit) {
+                        $scope.ownSubmit(patchObject).then(successCallback, errorCallback);
+                    } else {
+                        //TODO: how to find out the name of the resource? entity.resource is not correct (e.g. credential, not credentials)
+                        Restangular.oneUrl('necessary', $scope.entity._links.self.href).patch(patchObject).then(successCallback, errorCallback);
+                    }
                 };
             }]
         };
