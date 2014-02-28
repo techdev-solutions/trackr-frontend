@@ -1,51 +1,41 @@
-/* global document */
 define(['angular', 'jQuery', 'restangular', 'angular-ui-router', 'angular-ui', 'twitter-bootstrap', 'modules/base/base', 'modules/trackr/trackr', 'modules/example/example',
     'modules/shared/shared'
-], function (angular, $) {
+], function(angular) {
     'use strict';
     var configFn = ['ui.router', 'ui.bootstrap', 'base', 'trackr', 'restangular', 'example', 'shared'];
     var app = angular.module('app', configFn);
-    var trackrUser;
-    app.run(['base.services.user', function (UserService) {
-        UserService.setUser(trackrUser);
+
+    app.run(['base.services.user', '$http', function(UserService, $http) {
+        $http.get('/api/principal').success(function(data) {
+            UserService.setUser(data);
+        });
     }]);
 
-    /*
-     Load the current user and its authorities before the app starts.
-     After the user is loaded the trackr app gets bootstrapped manually.
-     */
-    angular.element(document).ready(function () {
-        $.get('/api/principal', function (data) {
-            trackrUser = data;
-            angular.bootstrap(document, ['app']);
-        });
-    });
-
-    app.config(['RestangularProvider', '$locationProvider', 'paginationConfig', function (RestangularProvider, $locationProvider, paginationConfig) {
+    app.config(['RestangularProvider', '$locationProvider', 'paginationConfig', function(RestangularProvider, $locationProvider, paginationConfig) {
         $locationProvider.html5Mode(false);
         RestangularProvider.setBaseUrl('/api');
         /**  Restangularify the Spring Data Rest response
          Spring Data Rest returns lists like this:
          <code>
-             {
-                "_embedded": {
-                    "companies": [
-                        ...
-                    ]
-                }
-             }
+         {
+            "_embedded": {
+                "companies": [
+                    ...
+                ]
+            }
+         }
          </code>
          **/
-        RestangularProvider.addResponseInterceptor(function (data, operation, route) {
+        RestangularProvider.addResponseInterceptor(function(data, operation, route) {
             var returnData;
-            if (operation === 'getList' && data._embedded) {
+            if(operation === 'getList' && data._embedded) {
                 returnData = data._embedded[route];
                 returnData.page = data.page;
                 //if there is pagination info make it one-based.
                 if(returnData.page) {
                     returnData.page.number = returnData.page.number + 1;
                 }
-            } else if (operation === 'getList' && !data._embedded) {
+            } else if(operation === 'getList' && !data._embedded) {
                 returnData = [];
                 returnData.page = data.page;
             } else {
@@ -55,7 +45,7 @@ define(['angular', 'jQuery', 'restangular', 'angular-ui-router', 'angular-ui', '
         });
 
         /*
-            Global pagination configuration
+         Global pagination configuration
          */
         paginationConfig.previousText = '<';
         paginationConfig.nextText = '>';
@@ -64,7 +54,7 @@ define(['angular', 'jQuery', 'restangular', 'angular-ui-router', 'angular-ui', '
     /**
      * Implement state authorization
      */
-    app.run(['$rootScope', '$log', 'base.services.user', function ($rootScope, $log, UserService) {
+    app.run(['$rootScope', '$log', 'base.services.user', function($rootScope, $log, UserService) {
         $rootScope.$on('$stateChangeStart', function(event, toState) {
             if(toState.needsAuthority) {
                 var user = UserService.getUser();
