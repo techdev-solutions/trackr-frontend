@@ -1,6 +1,6 @@
-define(['angular', 'modules/trackr/i18n', 'modules/trackr/administration/administration', 'angular-translate'], function(angular, i18n) {
+define(['angular', 'modules/trackr/i18n', 'modules/trackr/administration/administration', 'modules/trackr/employee/employee', 'angular-translate'], function(angular, i18n) {
     'use strict';
-    var configFn = ['trackr.administration', 'pascalprecht.translate'];
+    var configFn = ['trackr.administration', 'trackr.employee', 'pascalprecht.translate'];
     var trackr = angular.module('trackr', configFn);
     trackr.config(['$stateProvider', function($stateProvider) {
         $stateProvider.

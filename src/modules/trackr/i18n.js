@@ -51,12 +51,17 @@ define([], function () {
                             TITLE: 'Verwaltung',
                             TEXT_COMPANIES: 'Legen Sie neue Firmen an und editieren Sie bestehende.',
                             TEXT_EMPLOYEES: 'Verwalten Sie Angestellte in trackr.'
+                        },
+                        EMPLOYEE: {
+                            TITLE: 'Self Services',
+                            TEXT_EDIT_PROFILE: 'Editieren Sie ihr Profil'
                         }
                     },
                     ACTIONS: {
                         SAVE: 'Speichern',
                         NEW: 'Neu',
-                        CANCEL: 'Abbrechen'
+                        CANCEL: 'Abbrechen',
+                        EDIT: 'Editieren'
                     },
                     LANGUAGE: 'Sprache'
                 });
@@ -109,12 +114,17 @@ define([], function () {
                             TITLE: 'Administration',
                             TEXT_COMPANIES: 'Edit and create companies.',
                             TEXT_EMPLOYEES: 'Administrate employees in trackr.'
+                        },
+                        EMPLOYEE: {
+                            TITLE: 'Self Services',
+                            TEXT_EDIT_PROFILE: 'Editieren Sie ihr Profil'
                         }
                     },
                     ACTIONS: {
                         SAVE: 'Save',
                         NEW: 'New',
-                        CANCEL: 'Cancel'
+                        CANCEL: 'Cancel',
+                        EDIT: 'Edit'
                     },
                     LANGUAGE: 'Language'
                 });

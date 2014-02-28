@@ -1,0 +1,21 @@
+<h1><bs-edit entity="employee" property-name="firstName" own-submit="updateEmployee"></bs-edit>
+    <bs-edit entity="employee" property-name="lastName" own-submit="updateEmployee"></bs-edit>
+</h1>
+<dl>
+    <dt>
+        {{ 'EMPLOYEE.TITLE' | translate }}
+    <dd>{{employee.title}}</dd>
+    </dt>
+    <dt>
+        {{ 'EMPLOYEE.SALARY' | translate }}
+    <dd>{{employee.salary}}</dd>
+    </dt>
+    <dt>
+        {{ 'EMPLOYEE.HOURLY_COST_RATE' | translate }}
+    <dd>{{employee.hourlyCostRate}}</bs-edit></dd>
+    </dt>
+    <dt>
+        {{ 'EMPLOYEE.PHONE_NUMBER' | translate }}
+    <dd><bs-edit entity="employee" property-name="phoneNumber" own-submit="updateEmployee"></bs-edit></dd>
+    </dt>
+</dl>
