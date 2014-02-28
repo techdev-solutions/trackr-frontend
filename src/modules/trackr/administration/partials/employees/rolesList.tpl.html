@@ -8,7 +8,7 @@
         <td>
             <span ng-repeat="authority in authorities">
                 <label>{{authority.screenName}}</label>
-                <input type="checkbox" ng-checked="hasAuthority(credential, authority)" ng-click="updateCredentialAuthorities(credential, authority)">
+                <bs-checkbox checked="hasAuthority(credential, authority)" change="updateCredentialAuthorities(credential, authority)" role="ROLE_ADMIN"></bs-checkbox>
             </span>
         </td>
     </tr>

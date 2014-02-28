@@ -1,7 +1,7 @@
 <h1><bs-edit entity="employee" property-name="firstName" role="ROLE_SUPERVISOR"></bs-edit> <bs-edit entity="employee" property-name="lastName" role="ROLE_SUPERVISOR"></bs-edit></h1>
 <span ng-if="credential" ng-repeat="authority in authorities">
     <label>{{authority.screenName}}</label>
-    <input type="checkbox" ng-checked="hasAuthority(credential, authority)" ng-click="updateCredentialAuthorities(credential, authority)">
+    <bs-checkbox checked="hasAuthority(credential, authority)" change="updateCredentialAuthorities(credential, authority)" role="ROLE_ADMIN"></bs-checkbox>
 </span>
 <dl>
     <dt>
@@ -22,10 +22,12 @@
     </dt>
     <dt>
         {{ 'CREDENTIAL.EMAIL' | translate }}
-        <dd><bs-edit entity="credential" property-name="email" role="ROLE_SUPERVISOR"></bs-edit></dd>
+        <dd><bs-edit entity="credential" property-name="email" role="ROLE_ADMIN"></bs-edit></dd>
     </dt>
     <dt>
         {{ 'CREDENTIAL.ENABLED' | translate }}
-        <dd><input type="checkbox" ng-checked="credential.enabled" ng-click="changeEnabled()"/></dd>
+        <dd>
+            <bs-checkbox checked="credential.enabled" change="changeEnabled()" role="ROLE_ADMIN"></bs-checkbox>
+        </dd>
     </dt>
 </dl>
