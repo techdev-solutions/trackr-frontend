@@ -1,8 +1,8 @@
-define(['app', 'angular-mocks'], function() {
+define(['baseTestSetup'], function(baseTestSetup) {
     'use strict';
     describe('base.controllers.navigation', function () {
         var NavigationController, scope, UserService;
-        beforeEach(module('app'));
+        baseTestSetup();
         beforeEach(inject(function($rootScope, $controller) {
             scope = $rootScope.$new();
             UserService = {

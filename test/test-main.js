@@ -19,6 +19,8 @@ require.config({
         'restangular':'vendor/restangular/dist/restangular',
         'lodash': 'vendor/lodash/dist/lodash',
         'fixtures': '../test/fixtures',
+        'baseTestSetup': '../test/baseTestSetup',
+        'backendMock': '../test/backendMock',
         'angular-translate': 'vendor/angular-translate/angular-translate',
         'angular-ui': 'vendor/angular-ui-bootstrap-bower/ui-bootstrap-tpls'
     },

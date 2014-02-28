@@ -1,10 +1,9 @@
-define(['app', 'angular-mocks'], function () {
+define(['baseTestSetup'], function(baseTestSetup) {
     'use strict';
-    describe('base.services.user', function () {
+    describe('base.services.user', function() {
         var UserService;
-        beforeEach(module('app'));
-
-        beforeEach(inject(function ($injector) {
+        baseTestSetup();
+        beforeEach(inject(function($injector) {
             UserService = $injector.get('base.services.user');
         }));
 

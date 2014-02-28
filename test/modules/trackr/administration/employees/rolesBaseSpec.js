@@ -1,10 +1,8 @@
-define(['app', 'angular-mocks'], function() {
+define(['baseTestSetup'], function(baseTestSetup) {
     'use strict';
     describe('trackr.administration.controllers.employees.roles-base', function () {
         var RolesBaseController, scope;
-
-        beforeEach(module('app'));
-
+        baseTestSetup();
         beforeEach(inject(function($rootScope, $controller) {
             scope = $rootScope.$new();
             RolesBaseController = $controller('trackr.administration.controllers.employees.roles-base', {

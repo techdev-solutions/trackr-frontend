@@ -16,6 +16,8 @@ module.exports = function (config) {
             {pattern: 'src/modules/**/*.js', included: false},
             {pattern: 'test/**/*Spec.js', included: false}, //I don't have any clue why it must be *Spec. TODO: find out.
             {pattern: 'test/fixtures.js', included: false},
+            {pattern: 'test/backendMock.js', included: false},
+            {pattern: 'test/baseTestSetup.js', included: false},
             {pattern: 'src/app.js', included: false},
             {pattern: 'src/vendor/**/*.js', included: false},
             'test/test-main.js'
