@@ -4,11 +4,16 @@ define([], function () {
         var allCompanies = Restangular.all('companies');
 
         //TODO: pagination
-        function loadCompanies() {
-            allCompanies.getList().then(function (companies) {
+        function loadCompanies(page) {
+            page = page || 1;
+            allCompanies.getList({sort: 'name,asc', page: page - 1, size: 5}).then(function (companies) {
                 $scope.companies = companies;
             });
         }
+
+        $scope.setPage = function(page) {
+            loadCompanies(page);
+        };
 
         //initially load all companies
         loadCompanies();

@@ -21,7 +21,7 @@ define(['angular', 'jQuery', 'restangular', 'angular-ui-router', 'angular-ui', '
         });
     });
 
-    app.config(['RestangularProvider', '$locationProvider', function (RestangularProvider, $locationProvider) {
+    app.config(['RestangularProvider', '$locationProvider', 'paginationConfig', function (RestangularProvider, $locationProvider, paginationConfig) {
         $locationProvider.html5Mode(false);
         RestangularProvider.setBaseUrl('/api');
         /**  Restangularify the Spring Data Rest response
@@ -41,6 +41,10 @@ define(['angular', 'jQuery', 'restangular', 'angular-ui-router', 'angular-ui', '
             if (operation === 'getList' && data._embedded) {
                 returnData = data._embedded[route];
                 returnData.page = data.page;
+                //if there is pagination info make it one-based.
+                if(returnData.page) {
+                    returnData.page.number = returnData.page.number + 1;
+                }
             } else if (operation === 'getList' && !data._embedded) {
                 returnData = [];
                 returnData.page = data.page;
@@ -49,6 +53,12 @@ define(['angular', 'jQuery', 'restangular', 'angular-ui-router', 'angular-ui', '
             }
             return returnData;
         });
+
+        /*
+            Global pagination configuration
+         */
+        paginationConfig.previousText = '<';
+        paginationConfig.nextText = '>';
     }]);
 
     /**

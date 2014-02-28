@@ -5,6 +5,7 @@
             <li ng-repeat="company in companies" ui-sref-active="active">
                 <a href ui-sref="trackr.administration.companies.edit({id: company.companyId})">{{company.name}}</a>
             </li>
+            <pagination class="pagination-sm" total-items="companies.page.totalElements" page="companies.page.number" items-per-page="companies.page.size" on-select-page="setPage(page)" max-size="5"></pagination>
             <li has-authority="ROLE_ADMIN">
                 <button type="button" class="btn btn-default" ng-click="addNew()">
                     <span class="glyphicon glyphicon-plus"></span> {{ 'ACTIONS.NEW' | translate }}
