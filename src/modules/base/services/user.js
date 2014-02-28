@@ -10,6 +10,11 @@ define([], function () {
         return {
             setUser: function (_user) {
                 user = _user;
+                if(user) {
+                    user.highestAuthority = user.authorities.sort( function(a1, a2) {
+                        return a1.order > a2.order;
+                    })[0];
+                }
             },
 
             getUser: function () {
@@ -25,7 +30,7 @@ define([], function () {
                 if (user.authorities.length === 0) {
                     return false;
                 }
-                var userAuthority = user.authorities[0].authority;
+                var userAuthority = user.highestAuthority.authority;
                 return permissionLevels[userAuthority] <= permissionLevels[authority];
             }
         };

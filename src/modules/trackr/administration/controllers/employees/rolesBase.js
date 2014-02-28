@@ -34,7 +34,7 @@ define(['lodash'], function (_) {
             var credentialBase = Restangular.oneUrl('credentials', credential._links.self.href);
             if($scope.hasAuthority(credential, authority)) {
                 credentialBase.customDELETE('authorities/' + authority.id).then(function() {
-                    _.remove(credentialBase.authorities, function (a) {
+                    _.remove(credential.authorities, function (a) {
                         return a.id === authority.id;
                     });
                 });
