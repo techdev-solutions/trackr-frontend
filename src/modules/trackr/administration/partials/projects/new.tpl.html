@@ -1,0 +1,31 @@
+<div class="modal-header">
+    <h3>{{ 'PROJECT.CREATE_NEW' | translate }}</h3>
+</div>
+<div class="modal-body">
+<form class="form-horizontal" action="">
+    <bs-text property-name="identifier" translate-code="PROJECT.IDENTIFIER" path="project.identifier"></bs-text>
+    <bs-text property-name="name" translate-code="PROJECT.NAME" path="project.name"></bs-text>
+    <bs-text property-name="volume" translate-code="PROJECT.VOLUME" path="project.volume"></bs-text>
+    <bs-text property-name="hourlyRate" translate-code="PROJECT.HOURLY_RATE" path="project.hourlyRate"></bs-text>
+    <bs-text property-name="dailyRate" translate-code="PROJECT.DAILY_RATE" path="project.dailyRate"></bs-text>
+    <bs-text property-name="fixedPrice" translate-code="PROJECT.FIXED_PRICE" path="project.fixedPrice"></bs-text>
+
+    <div class="form-group">
+        <label class="form-label col-sm-4" for="company">{{ 'PROJECT.COMPANY' | translate }}</label>
+        <div ng-class="{'col-sm-6': !inline}">
+            <input type="text" class="form-control" id="company" ng-model="projectCompany" typeahead="company as company.name for company in companies | filter:{name:$viewValue}" typeahead-editable="false"/>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="form-label col-sm-4" for="debitor">{{ 'PROJECT.DEBITOR' | translate }}</label>
+        <div ng-class="{'col-sm-6': !inline}">
+            <input type="text" class="form-control" id="debitor" ng-model="projectDebitor" typeahead="company as company.name for company in companies | filter:{name:$viewValue}" typeahead-editable="false"/>
+        </div>
+    </div>
+</form>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" ng-click="cancel()">{{ 'ACTIONS.CANCEL' | translate }}</button>
+    <button type="submit" class="btn btn-primary" ng-click="saveProject(projectCompany, projectDebitor)">{{ 'ACTIONS.SAVE' | translate }}</button>
+</div>

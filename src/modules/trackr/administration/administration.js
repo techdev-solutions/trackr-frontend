@@ -24,7 +24,7 @@ define(['angular', 'modules/trackr/administration/controllers/controllers'], fun
             needsAuthority: 'ROLE_SUPERVISOR'
         })
         .state('trackr.administration.companies.edit', {
-            url: '/{id:[\\w\\.]+}',
+            url: '/{id:[\\d]+}',
             views: {
                 'company': {
                     templateUrl: '/src/modules/trackr/administration/partials/companies/edit.tpl.html',
@@ -42,7 +42,8 @@ define(['angular', 'modules/trackr/administration/controllers/controllers'], fun
                 }
             },
             needsAuthority: 'ROLE_SUPERVISOR'
-        }).state('trackr.administration.employees.edit', {
+        })
+        .state('trackr.administration.employees.edit', {
             url: '/{id:[\\d]+}',
             views: {
                 'employee': {
@@ -51,7 +52,8 @@ define(['angular', 'modules/trackr/administration/controllers/controllers'], fun
                 }
             },
             needsAuthority: 'ROLE_SUPERVISOR'
-        }).state('trackr.administration.employees.roles', {
+        })
+        .state('trackr.administration.employees.roles', {
             url: '/roles',
             views: {
                 'employee': {
@@ -60,6 +62,26 @@ define(['angular', 'modules/trackr/administration/controllers/controllers'], fun
                 }
             },
             needsAuthority: 'ROLE_ADMIN'
+        })
+        .state('trackr.administration.projects', {
+            url: '/projects',
+            views: {
+                'center@': {
+                    templateUrl: '/src/modules/trackr/administration/partials/projects/list.tpl.html',
+                    controller: 'trackr.administration.controllers.projects.list'
+                }
+            },
+            needsAuthority: 'ROLE_SUPERVISOR'
+        })
+        .state('trackr.administration.projects.edit', {
+            url: '/{id:[\\w\\.]+}',
+            views: {
+                'project': {
+                    templateUrl: '/src/modules/trackr/administration/partials/projects/edit.tpl.html',
+                    controller: 'trackr.administration.controllers.projects.edit'
+                }
+            },
+            needsAuthority: 'ROLE_SUPERVISOR'
         });
     }]);
 

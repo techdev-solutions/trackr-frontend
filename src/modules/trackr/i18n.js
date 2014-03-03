@@ -43,6 +43,18 @@ define([], function () {
                         EMAIL: 'E-Mail',
                         ENABLED: 'Aktiv'
                     },
+                    PROJECT: {
+                        PROJECTS: 'Projekte',
+                        PROJECT: 'Projekt',
+                        IDENTIFIER: 'Eindeutiger Bezeichner',
+                        NAME: 'Name',
+                        VOLUME: 'Volumen',
+                        HOURLY_RATE: 'Stundensatz',
+                        DAILY_RATE: 'Tagessatz',
+                        FIXED_PRICE: 'Festpreis',
+                        COMPANY: 'Firma',
+                        DEBITOR: 'Debitor'
+                    },
                     PAGES: {
                         HOME: {
                             WELCOME_TEXT: 'Willkommen bei trackr'
@@ -50,7 +62,8 @@ define([], function () {
                         ADMINISTRATION: {
                             TITLE: 'Verwaltung',
                             TEXT_COMPANIES: 'Legen Sie neue Firmen an und editieren Sie bestehende.',
-                            TEXT_EMPLOYEES: 'Verwalten Sie Angestellte in trackr.'
+                            TEXT_EMPLOYEES: 'Verwalten Sie Angestellte in trackr.',
+                            TEXT_PROJECTS: 'Verwalten Sie Projekte'
                         },
                         EMPLOYEE: {
                             TITLE: 'Self Services',
@@ -106,6 +119,18 @@ define([], function () {
                         EMAIL: 'E-Mail',
                         ENABLED: 'Enabled'
                     },
+                    PROJECT: {
+                        PROJECTS: 'Projects',
+                        PROJECT: 'Project',
+                        IDENTIFIER: 'Identifier',
+                        NAME: 'Name',
+                        VOLUME: 'Volume',
+                        HOURLY_RATE: 'Hourly rate',
+                        DAILY_RATE: 'Daily rate',
+                        FIXED_PRICE: 'Fixed price',
+                        COMPANY: 'Company',
+                        DEBITOR: 'Debitor'
+                    },
                     PAGES: {
                         HOME: {
                             WELCOME_TEXT: 'Welcome to trackr'
@@ -113,7 +138,8 @@ define([], function () {
                         ADMINISTRATION: {
                             TITLE: 'Administration',
                             TEXT_COMPANIES: 'Edit and create companies.',
-                            TEXT_EMPLOYEES: 'Administrate employees in trackr.'
+                            TEXT_EMPLOYEES: 'Administrate employees in trackr.',
+                            TEXT_PROJECTS: 'Administrate projects'
                         },
                         EMPLOYEE: {
                             TITLE: 'Self Services',

@@ -1,0 +1,18 @@
+<h1><bs-edit entity="project" property-name="name" role="ROLE_ADMIN"></bs-edit></h1>
+<dl>
+    <dt>{{ 'PROJECT.IDENTIFIER' | translate }}
+        <dd><bs-edit entity="project" property-name="identifier" callback="projectIdChanged" role="ROLE_ADMIN"></bs-edit></dd>
+    </dt>
+    <dt>{{ 'PROJECT.VOLUME' | translate }}
+        <dd><bs-edit entity="project" property-name="volume" role="ROLE_ADMIN"></bs-edit></dd>
+    </dt>
+    <dt>{{ 'PROJECT.HOURLY_RATE' | translate }}
+        <dd><bs-edit entity="project" property-name="hourlyRate" role="ROLE_ADMIN"></bs-edit></dd>
+    </dt>
+    <dt>{{ 'PROJECT.DAILY_RATE' | translate }}
+        <dd><bs-edit entity="project" property-name="dailyRate" role="ROLE_ADMIN"></bs-edit></dd>
+    </dt>
+    <dt>{{ 'PROJECT.FIXED_PRICE' | translate }}
+        <dd><bs-edit entity="project" property-name="fixedPrice" role="ROLE_ADMIN"></bs-edit></dd>
+    </dt>
+</dl>
