@@ -10,20 +10,21 @@ define(['baseTestSetup'], function(baseTestSetup) {
             });
         }));
 
-        it('must have an updateCredentialAuthorities function', inject(function($httpBackend) {
+        beforeEach(inject(function($httpBackend) {
             $httpBackend.flush();
+        }));
+
+        it('must have an updateCredentialAuthorities function', function() {
             expect(scope.updateCredentialAuthorities).toBeDefined();
-        }));
+        });
 
-        it('must have an hasAuthority function', inject(function($httpBackend) {
-            $httpBackend.flush();
+        it('must have an hasAuthority function', function() {
             expect(scope.hasAuthority).toBeDefined();
-        }));
+        });
 
-        it('must have authorities in the scope', inject(function($httpBackend) {
-            $httpBackend.flush();
+        it('must have authorities in the scope', function() {
             expect(scope.authorities).toBeDefined();
             expect(scope.authorities.length).toBeGreaterThan(0);
-        }));
+        });
     });
 });

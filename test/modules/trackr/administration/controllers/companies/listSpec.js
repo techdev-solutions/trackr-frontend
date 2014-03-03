@@ -10,10 +10,13 @@ define(['baseTestSetup'], function(baseTestSetup) {
             });
         }));
 
-        it('must load companies at the start', inject(function($httpBackend) {
+        beforeEach(inject(function($httpBackend) {
             $httpBackend.flush();
+        }));
+
+        it('must load companies at the start', function() {
             expect(scope.companies).toBeDefined();
             expect(scope.companies.length).toBeGreaterThan(0);
-        }));
+        });
     });
 });
