@@ -45,6 +45,20 @@ define(['fixtures'], function(fixtures) {
             return [201, data];
         });
 
+        $httpBackend.whenPOST('/api/addresses').respond(function() {
+            return [201, {
+                _links: {
+                    self: {
+                        href: '/api/addresses/0'
+                    }
+                }
+            }];
+        });
+
+        $httpBackend.whenPOST('/api/companies').respond(function(method, url ,data) {
+            return [201, data];
+        });
+
         var pattern = new RegExp('/api/companies/search/findByCompanyId\\?.*');
         $httpBackend.whenGET(pattern).respond(fixtures['/api/companies']);
     };
