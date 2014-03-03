@@ -569,6 +569,67 @@ define([], function() {
                 "totalPages": 1,
                 "number": 0
             }
+        },
+
+        "/api/addresses": {
+            "_links": {
+                "self": {
+                    "href": "http://localhost:8080/api/addresses{?page,size,sort}",
+                    "templated": true
+                }
+            },
+            "_embedded": {
+                "addresses": [
+                    {
+                        "id": 0,
+                        "version": 0,
+                        "street": "Bismarckstraße",
+                        "houseNumber": "47",
+                        "zipCode": "76133",
+                        "city": "Karlsruhe",
+                        "country": "Deutschland",
+                        "_links": {
+                            "self": {
+                                "href": "http://localhost:8080/api/addresses/0"
+                            }
+                        }
+                    },
+                    {
+                        "id": 1,
+                        "version": 0,
+                        "street": "Zur Gießerei",
+                        "houseNumber": "19a",
+                        "zipCode": "76123",
+                        "city": "Karlsruhe",
+                        "country": "Deutschland",
+                        "_links": {
+                            "self": {
+                                "href": "http://localhost:8080/api/addresses/1"
+                            }
+                        }
+                    },
+                    {
+                        "id": 2,
+                        "version": 0,
+                        "street": "Friedrichstraße",
+                        "houseNumber": "123",
+                        "zipCode": "10521",
+                        "city": "Berlin",
+                        "country": "Deutschland",
+                        "_links": {
+                            "self": {
+                                "href": "http://localhost:8080/api/addresses/2"
+                            }
+                        }
+                    }
+                ]
+            },
+            "page": {
+                "size": 20,
+                "totalElements": 3,
+                "totalPages": 1,
+                "number": 0
+            }
         }
     };
 });
