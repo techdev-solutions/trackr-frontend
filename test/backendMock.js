@@ -41,6 +41,9 @@ define(['fixtures'], function(fixtures) {
         $httpBackend.when('GET', /^\/api\/companies\/[\d]+\/contactPersons/).respond(fixtures['/api/contactPersons']);
 
         $httpBackend.whenDELETE(/^\/api\/contactPersons\/\d+/).respond([204]);
+        $httpBackend.whenPOST('/api/contactPersons').respond(function(method, url ,data) {
+            return [201, data];
+        });
 
         var pattern = new RegExp('/api/companies/search/findByCompanyId\\?.*');
         $httpBackend.whenGET(pattern).respond(fixtures['/api/companies']);
