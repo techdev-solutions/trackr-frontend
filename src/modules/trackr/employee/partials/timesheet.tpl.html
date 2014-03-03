@@ -1,0 +1,47 @@
+<form class="form form-horizontal" ng-submit="saveTime()">
+    <div class="form-group">
+        <label class="form-label col-sm-4" for="project">{{ 'WORKTIME.PROJECT' | translate }}</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" id="project" ng-model="project" typeahead="project as project.name for project in projects | filter:{name:$viewValue}" typeahead-editable="false"/>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="form-label col-sm-4" for="date">{{ 'WORKTIME.DATE' | translate }}</label>
+        <div class="col-sm-6">
+            <p class="input-group">
+                <input type="text" id="date" class="form-control" ng-model="date"
+                       datepicker-popup="yyyy-MM-dd"
+                       is-open="opened"
+                       datepicker-options="dateOptions"
+                       close-text="{{ 'ACTIONS.CLOSE' | translate }}"
+                       current-text="{{ 'DATE.TODAY' | translate }}"
+                       toggle-weeks-text="{{ 'DATE.WEEKS' | translate }}"
+                       clear-text="{{ 'ACTIONS.CLEAR' | translate }}"/>
+                <span class="input-group-btn">
+                    <button class="btn btn-default" ng-click="openDate($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                </span>
+            </p>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="form-label col-sm-4" for="startTime">{{ 'WORKTIME.START' | translate }}</label>
+        <div ng-model="startTime" id="startTime" style="display:inline-block;" class="col-sm-6">
+            <timepicker hour-step="1" minute-step="15" show-meridian="ismeridian"></timepicker>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="form-label col-sm-4" for="endTime">{{ 'WORKTIME.END' | translate }}</label>
+        <div ng-model="endTime" id="endTime" style="display:inline-block;" class="col-sm-6">
+            <timepicker hour-step="1" minute-step="15" show-meridian="ismeridian"></timepicker>
+        </div>
+    </div>
+
+    <bs-text property-name="comment" translate-code="WORKTIME.COMMENT" path="comment"></bs-text>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">{{ 'ACTIONS.SAVE' | translate }}</button>
+    </div>
+</form>

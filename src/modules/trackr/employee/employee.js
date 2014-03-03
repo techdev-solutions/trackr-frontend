@@ -20,6 +20,15 @@ define(['angular', 'modules/trackr/employee/controllers/controllers'], function(
                         controller: 'trackr.employee.controllers.self'
                     }
                 }
+            })
+            .state('trackr.employee.timesheet', {
+                url: '/timesheet',
+                views: {
+                    'center@': {
+                        templateUrl: '/src/modules/trackr/employee/partials/timesheet.tpl.html',
+                        controller: 'trackr.employee.controllers.timesheet'
+                    }
+                }
             });
     }]);
 

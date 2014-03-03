@@ -55,6 +55,13 @@ define([], function () {
                         COMPANY: 'Firma',
                         DEBITOR: 'Debitor'
                     },
+                    WORKTIME: {
+                        DATE: 'Datum',
+                        PROJECT: 'Projekt',
+                        START: 'Startzeit',
+                        END: 'Endzeit',
+                        COMMENT: 'Kommentar'
+                    },
                     PAGES: {
                         HOME: {
                             WELCOME_TEXT: 'Willkommen bei trackr'
@@ -67,14 +74,21 @@ define([], function () {
                         },
                         EMPLOYEE: {
                             TITLE: 'Self Services',
-                            TEXT_EDIT_PROFILE: 'Editieren Sie ihr Profil'
+                            TEXT_EDIT_PROFILE: 'Editieren Sie ihr Profil',
+                            TEXT_EDIT_TIMESHEET: 'Erfassen Sie Arbeitszeiten'
                         }
                     },
                     ACTIONS: {
                         SAVE: 'Speichern',
                         NEW: 'Neu',
                         CANCEL: 'Abbrechen',
-                        EDIT: 'Editieren'
+                        EDIT: 'Editieren',
+                        CLOSE: 'Schließen',
+                        CLEAR: 'Löschen'
+                    },
+                    DATE: {
+                        TODAY: 'Heute',
+                        WEEKS: 'Wochen'
                     },
                     LANGUAGE: 'Sprache'
                 });
@@ -131,6 +145,13 @@ define([], function () {
                         COMPANY: 'Company',
                         DEBITOR: 'Debitor'
                     },
+                    WORKTIME: {
+                        DATE: 'Date',
+                        PROJECT: 'Project',
+                        START: 'Start time',
+                        END: 'End time',
+                        COMMENT: 'Comment'
+                    },
                     PAGES: {
                         HOME: {
                             WELCOME_TEXT: 'Welcome to trackr'
@@ -143,14 +164,21 @@ define([], function () {
                         },
                         EMPLOYEE: {
                             TITLE: 'Self Services',
-                            TEXT_EDIT_PROFILE: 'Editieren Sie ihr Profil'
+                            TEXT_EDIT_PROFILE: 'Edit your profile',
+                            TEXT_EDIT_TIMESHEET: 'Track times'
                         }
                     },
                     ACTIONS: {
                         SAVE: 'Save',
                         NEW: 'New',
                         CANCEL: 'Cancel',
-                        EDIT: 'Edit'
+                        EDIT: 'Edit',
+                        CLOSE: 'Close',
+                        CLEAR: 'Clear'
+                    },
+                    DATE: {
+                        TODAY: 'Today',
+                        WEEKS: 'Weeks'
                     },
                     LANGUAGE: 'Language'
                 });
