@@ -16,7 +16,10 @@ define(['fixtures'], function(fixtures) {
          * @param url The URL to mock, like '/api/companies'.
          */
         function mockRoot(url) {
-            var pattern = new RegExp(url);
+            //base
+            $httpBackend.whenGET(url).respond(fixtures[url]);
+            //with query parameters
+            var pattern = new RegExp('^' + url + '\\?.*$');
             $httpBackend.whenGET(pattern).respond(fixtures[url]);
         }
 
@@ -27,11 +30,19 @@ define(['fixtures'], function(fixtures) {
         mockRoot('/api/employees');
         mockRoot('/api/companies');
 
-        $httpBackend.when('GET', /\/api\/credentials\/[\d]+/).respond(fixtures['/api/credentials']._embedded.credentials[0]);
-        $httpBackend.when('GET', /\/api\/contactPersons\/[\d]+/).respond(fixtures['/api/contactPersons']._embedded.contactPersons[0]);
-        $httpBackend.when('GET', /\/api\/authorities\/[\d]+/).respond(fixtures['/api/authorities']._embedded.authorities[0]);
-        $httpBackend.when('GET', /\/api\/projects\/[\d]+/).respond(fixtures['/api/projects']._embedded.projects[0]);
-        $httpBackend.when('GET', /\/api\/employees\/[\d]+/).respond(fixtures['/api/employees']._embedded.employees[0]);
-        $httpBackend.when('GET', /\/api\/companies\/[\d]+/).respond(fixtures['/api/companies']._embedded.companies[0]);
+        $httpBackend.when('GET', /^\/api\/credentials\/[\d]+$/).respond(fixtures['/api/credentials']._embedded.credentials[0]);
+        $httpBackend.when('GET', /^\/api\/contactPersons\/[\d]+$/).respond(fixtures['/api/contactPersons']._embedded.contactPersons[0]);
+        $httpBackend.when('GET', /^\/api\/authorities\/[\d]+$/).respond(fixtures['/api/authorities']._embedded.authorities[0]);
+        $httpBackend.when('GET', /^\/api\/projects\/[\d]+$/).respond(fixtures['/api/projects']._embedded.projects[0]);
+        $httpBackend.when('GET', /^\/api\/employees\/[\d]+$/).respond(fixtures['/api/employees']._embedded.employees[0]);
+        $httpBackend.when('GET', /^\/api\/companies\/[\d]+$/).respond(fixtures['/api/companies']._embedded.companies[0]);
+
+        $httpBackend.when('GET', /^\/api\/companies\/[\d]+\/address$/).respond(fixtures['/api/addresses']._embedded.addresses[0]);
+        $httpBackend.when('GET', /^\/api\/companies\/[\d]+\/contactPersons/).respond(fixtures['/api/contactPersons']);
+
+        $httpBackend.whenDELETE(/^\/api\/contactPersons\/\d+/).respond([204]);
+
+        var pattern = new RegExp('/api/companies/search/findByCompanyId\\?.*');
+        $httpBackend.whenGET(pattern).respond(fixtures['/api/companies']);
     };
 });
