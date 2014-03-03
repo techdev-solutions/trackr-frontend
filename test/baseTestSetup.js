@@ -6,5 +6,9 @@ define(['backendMock', 'angular-mocks', 'app'], function(backendMock) {
             backendMock($httpBackend);
             $httpBackend.flush();
         }));
+        afterEach(inject(function($httpBackend) {
+            $httpBackend.verifyNoOutstandingExpectation();
+            $httpBackend.verifyNoOutstandingRequest();
+        }));
     };
 });

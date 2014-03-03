@@ -3,7 +3,6 @@ define([], function () {
     return ['$scope', 'Restangular', '$modal', '$state', function($scope, Restangular, $modal, $state) {
         var allCompanies = Restangular.all('companies');
 
-        //TODO: pagination
         function loadCompanies(page) {
             page = page || 1;
             allCompanies.getList({sort: 'name,asc', page: page - 1, size: 5}).then(function (companies) {

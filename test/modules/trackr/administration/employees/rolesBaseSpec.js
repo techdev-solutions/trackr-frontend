@@ -10,14 +10,20 @@ define(['baseTestSetup'], function(baseTestSetup) {
             });
         }));
 
-        it('must have an updateCredentialAuthorities function', function() {
+        it('must have an updateCredentialAuthorities function', inject(function($httpBackend) {
+            $httpBackend.flush();
             expect(scope.updateCredentialAuthorities).toBeDefined();
-        });
+        }));
 
-        it('must have an hasAuthority function', function() {
+        it('must have an hasAuthority function', inject(function($httpBackend) {
+            $httpBackend.flush();
             expect(scope.hasAuthority).toBeDefined();
-        });
+        }));
 
-        //TODO: restangular tests
+        it('must have authorities in the scope', inject(function($httpBackend) {
+            $httpBackend.flush();
+            expect(scope.authorities).toBeDefined();
+            expect(scope.authorities.length).toBeGreaterThan(0);
+        }));
     });
 });
