@@ -18,7 +18,6 @@ define(['lodash'], function(_) {
             $scope.newContactPerson.company = $scope.company._links.self.href;
             Restangular.all('contactPersons').post($scope.newContactPerson).then(function(result) {
                 $scope.newContactPerson = {};
-                //TODO: reload from server? Server returns the newly created person!
                 $scope.contactPersons.push(result);
                 $scope.doShowContactPersonForm(false);
             }, function(response) {
@@ -51,7 +50,7 @@ define(['lodash'], function(_) {
         /*
             Initialization of $scope objects
          */
-        $scope.contactPersonErrors = [];
+        $scope.contactPersonErrors = {};
         $scope.newContactPerson = {};
         $scope.doShowContactPersonForm(false);
         Restangular.allUrl('companies', '/api/companies/search/findByCompanyId').getList({companyId: $stateParams.id}).then(function(companies) {

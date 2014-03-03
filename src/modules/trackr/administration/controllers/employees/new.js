@@ -1,6 +1,6 @@
 define([], function () {
     'use strict';
-    return ['$scope', 'Restangular', '$modalInstance', function($scope, Restangular, $modalInstance) {
+    return ['$scope', 'Restangular', '$modalInstance', '$log', function($scope, Restangular, $modalInstance, $log) {
         $scope.errors = {};
         $scope.credentialErrors = {};
         $scope.employee = {
@@ -31,6 +31,7 @@ define([], function () {
                 Restangular.all('employees').post($scope.employee).then(function(employee) {
                     $scope.employee = employee;
                     $scope.employee._persisted = true;
+                    $scope.errors = {};
                     saveCredentials();
                 }, function(response) {
                     $scope.errors = response.data;
@@ -45,6 +46,10 @@ define([], function () {
         };
 
         $scope.cancel = function() {
+            if($scope.employee._persisted) {
+                $log.debug('Address was saved but company creation cancelled, deleting address');
+                $scope.employee.remove();
+            }
             $modalInstance.dismiss();
         };
     }];

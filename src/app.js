@@ -1,15 +1,22 @@
+/* global document */
 define(['angular', 'jQuery', 'restangular', 'angular-ui-router', 'angular-ui', 'twitter-bootstrap', 'modules/base/base', 'modules/trackr/trackr', 'modules/example/example',
     'modules/shared/shared'
-], function(angular) {
+], function(angular, $) {
     'use strict';
     var configFn = ['ui.router', 'ui.bootstrap', 'base', 'trackr', 'restangular', 'example', 'shared'];
     var app = angular.module('app', configFn);
 
-    app.run(['base.services.user', '$http', function(UserService, $http) {
-        $http.get('/api/principal').success(function(data) {
-            UserService.setUser(data);
+    var trackrUser;
+    /*
+     Load the current user and its authorities before the app starts.
+     After the user is loaded the trackr app gets bootstrapped manually.
+     */
+    angular.element(document).ready(function () {
+        $.get('/api/principal', function (data) {
+            trackrUser = data;
+            angular.bootstrap(document, ['app']);
         });
-    }]);
+    });
 
     app.config(['RestangularProvider', '$locationProvider', 'paginationConfig', function(RestangularProvider, $locationProvider, paginationConfig) {
         $locationProvider.html5Mode(false);
@@ -54,7 +61,8 @@ define(['angular', 'jQuery', 'restangular', 'angular-ui-router', 'angular-ui', '
     /**
      * Implement state authorization
      */
-    app.run(['$rootScope', '$log', 'base.services.user', function($rootScope, $log, UserService) {
+    app.run(['$rootScope', '$log', 'base.services.user', '$http', function($rootScope, $log, UserService, $http) {
+        UserService.setUser(trackrUser);
         $rootScope.$on('$stateChangeStart', function(event, toState) {
             if(toState.needsAuthority) {
                 var user = UserService.getUser();

@@ -1,4 +1,3 @@
-/* global document */
 require.config({
     baseUrl: 'src',
     paths: {
@@ -24,7 +23,6 @@ require.config({
 });
 
 var dependencies = ['angular', 'require', 'app'];
-require(dependencies, function(angular) {
+require(dependencies, function() {
     'use strict';
-    angular.bootstrap(document, ['app']);
 });
