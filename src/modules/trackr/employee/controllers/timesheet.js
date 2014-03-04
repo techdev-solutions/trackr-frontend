@@ -48,8 +48,8 @@ define([], function() {
                 employee: employee._links.self.href,
                 project: project,
                 date: $scope.date,
-                start: formatTime($scope.startTime),
-                end: formatTime($scope.endTime),
+                startTime: formatTime($scope.startTime),
+                endTime: formatTime($scope.endTime),
                 comment: $scope.comment
             };
         }

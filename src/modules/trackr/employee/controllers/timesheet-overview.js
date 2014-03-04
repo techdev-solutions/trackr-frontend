@@ -13,7 +13,7 @@ define([], function() {
 
         $scope.showMonth = function(date) {
             var end = new Date(date.getFullYear(), date.getMonth() + 1, 0, 23, 59, 59); //last day of month
-            Restangular.allUrl('workTimes', '/api/workTimes/search/findByEmployeeAndDateBetweenOrderByDateAscStartAsc')
+            Restangular.allUrl('workTimes', '/api/workTimes/search/findByEmployeeAndDateBetweenOrderByDateAscStartTimeAsc')
                 .getList({
                     employee: UserService.getUser().id,
                     start: $filter('date')(date, 'yyyy-MM-dd'),
