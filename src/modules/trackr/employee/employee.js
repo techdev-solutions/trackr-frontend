@@ -29,6 +29,15 @@ define(['angular', 'modules/trackr/employee/controllers/controllers'], function(
                         controller: 'trackr.employee.controllers.timesheet'
                     }
                 }
+            })
+            .state('trackr.employee.timesheet.overview', {
+                url: '/overview',
+                views: {
+                    'center@': {
+                        templateUrl: '/src/modules/trackr/employee/partials/overview.tpl.html',
+                        controller: 'trackr.employee.controllers.timesheet-overview'
+                    }
+                }
             });
     }]);
 

@@ -1,0 +1,21 @@
+<span ng-repeat="month in months"><button ng-click="showMonth(month)" class="btn btn-default btn-sm">{{ month | date: 'MMMM yyyy' }}</button></span>
+<table class="table">
+    <thead>
+    <tr>
+        <th>{{ 'WORKTIME.DATE' | translate }}</th>
+        <th>{{ 'WORKTIME.START' | translate }}</th>
+        <th>{{ 'WORKTIME.END' | translate }}</th>
+        <th>{{ 'WORKTIME.PROJECT' | translate }}</th>
+        <th>{{ 'WORKTIME.COMMENT' | translate }}</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="workTime in workTimes">
+        <td>{{ workTime.date }}</td>
+        <td>{{ workTime.start }}</td>
+        <td>{{ workTime.end }}</td>
+        <td>{{ workTime.project.name }}</td>
+        <td>{{ workTime.comment }}</td>
+    </tr>
+    </tbody>
+</table>
