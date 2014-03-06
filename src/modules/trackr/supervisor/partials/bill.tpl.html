@@ -39,15 +39,13 @@
         <table class="table table-condensed table-bordered">
             <tr>
                 <th>Date</th>
-                <th>Start</th>
-                <th>End</th>
-                <th>Comment</th>
+                <th>Hours</th>
+                <th>Billable Hours</th>
             </tr>
             <tr ng-repeat="workTime in employee.workTimes">
                 <td>{{workTime.date}}</td>
-                <td>{{workTime.start}}</td>
-                <td>{{workTime.end}}</td>
-                <td>{{workTime.comment}}</td>
+                <td>{{workTime.minutes / 60}}</td>
+                <td><input type="text"/></td>
             </tr>
         </table>
     </tab>
