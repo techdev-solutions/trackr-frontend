@@ -76,6 +76,10 @@ define([], function () {
                             TITLE: 'Self Services',
                             TEXT_EDIT_PROFILE: 'Editieren Sie ihr Profil',
                             TEXT_EDIT_TIMESHEET: 'Erfassen Sie Arbeitszeiten'
+                        },
+                        SUPERVISOR: {
+                            TITLE: 'Supervisor',
+                            TEXT_BILL: 'Rechnung erstellen'
                         }
                     },
                     ACTIONS: {
@@ -166,6 +170,10 @@ define([], function () {
                             TITLE: 'Self Services',
                             TEXT_EDIT_PROFILE: 'Edit your profile',
                             TEXT_EDIT_TIMESHEET: 'Track times'
+                        },
+                        SUPERVISOR: {
+                            TITLE: 'Supervisor',
+                            TEXT_BILL: 'Create bill'
                         }
                     },
                     ACTIONS: {

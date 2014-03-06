@@ -1,17 +1,10 @@
 define([], function() {
     'use strict';
     return ['$scope', 'Restangular', 'base.services.user', function($scope, Restangular, UserService) {
-        $scope.date = new Date();
-        var startTime = new Date();
-        startTime.setSeconds(0);
-        startTime.setMinutes(0);
-        startTime.setHours(9);
-        $scope.startTime = startTime;
-        var endTime = new Date();
-        endTime.setHours(17);
-        endTime.setMinutes(30);
-        endTime.setSeconds(0);
-        $scope.endTime = endTime;
+        var today = new Date();
+        $scope.date = today;
+        $scope.startTime = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 9, 0, 0);
+        $scope.endTime = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 17, 30, 0);
 
         $scope.openDate = function($event) {
             $event.preventDefault();

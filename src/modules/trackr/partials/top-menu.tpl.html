@@ -5,6 +5,7 @@
     <div>
         <ul class="nav navbar-nav">
             <li ui-sref-active="active"><a href ui-sref="trackr.employee">{{ 'PAGES.EMPLOYEE.TITLE' | translate }}</a></li>
+            <li ui-sref-active="active" has-authority="ROLE_SUPERVISOR"><a href ui-sref="trackr.supervisor">{{ 'PAGES.SUPERVISOR.TITLE' | translate }}</a></li>
             <li ui-sref-active="active" has-authority="ROLE_SUPERVISOR"><a href ui-sref="trackr.administration">{{ 'PAGES.ADMINISTRATION.TITLE' | translate }}</a></li>
         </ul>
 

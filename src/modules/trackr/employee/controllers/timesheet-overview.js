@@ -8,9 +8,6 @@ define([], function() {
         }
         $scope.months = months;
 
-        var today = new Date();
-        today.setDate(1);
-
         $scope.showMonth = function(date) {
             var end = new Date(date.getFullYear(), date.getMonth() + 1, 0, 23, 59, 59); //last day of month
             Restangular.allUrl('workTimes', '/api/workTimes/search/findByEmployeeAndDateBetweenOrderByDateAscStartTimeAsc')
@@ -27,6 +24,8 @@ define([], function() {
                 });
         };
 
+        var today = new Date();
+        today.setDate(1);
         $scope.showMonth(today);
     }];
 });
