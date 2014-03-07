@@ -23,6 +23,16 @@ define(['fixtures'], function(fixtures) {
             $httpBackend.whenGET(pattern).respond(fixtures[url]);
         }
 
+        /**
+         * Mocks a POST to an entity root, just answers with 201 and the data inserted.
+         * @param url The url on which to mock POST.
+         */
+        function mockPost(url) {
+            $httpBackend.whenPOST(url).respond(function(method, url, data) {
+                return [201, data];
+            });
+        }
+
         mockRoot('/api/credentials');
         mockRoot('/api/contactPersons');
         mockRoot('/api/authorities');
@@ -44,9 +54,10 @@ define(['fixtures'], function(fixtures) {
             .respond(fixtures['/api/workTimes/findEmployeeMappingByProjectAndDateBetween']);
 
         $httpBackend.whenDELETE(/^\/api\/contactPersons\/\d+/).respond([204]);
-        $httpBackend.whenPOST('/api/contactPersons').respond(function(method, url ,data) {
-            return [201, data];
-        });
+
+        mockPost('/api/contactPersons');
+        mockPost('/api/billableTimes');
+        mockPost('/api/companies');
 
         $httpBackend.whenPOST('/api/addresses').respond(function() {
             return [201, {
@@ -56,10 +67,6 @@ define(['fixtures'], function(fixtures) {
                     }
                 }
             }];
-        });
-
-        $httpBackend.whenPOST('/api/companies').respond(function(method, url ,data) {
-            return [201, data];
         });
 
         var pattern = new RegExp('/api/companies/search/findByCompanyId\\?.*');

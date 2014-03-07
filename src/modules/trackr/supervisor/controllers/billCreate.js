@@ -1,19 +1,27 @@
 define(['lodash'], function(_) {
     'use strict';
     return ['$scope', 'Restangular', function($scope, Restangular) {
-        function sumUpFieldOfWorkTimes(fieldName) {
-            return _.reduce($scope.employee.workTimes, function(sum, workTime) {
-                return sum + (parseFloat(workTime[fieldName]) || 0);
-            }, 0);
-        }
+        var controller = this;
 
-        //When the user selects the date employee will get updated and we have recalculate.
+        /**
+         * Sums up a specific field of objects in a collection
+         * @param fieldName The name of the field
+         * @param collection The collection containing the objects
+         * @returns {*} The sum of the field values
+         */
+        controller.sumUpFieldsOfArray = function (fieldName, collection) {
+            return _.reduce(collection, function(sum, element) {
+                return sum + (parseFloat(element[fieldName]) || 0);
+            }, 0);
+        };
+
+        //When the user selects the date employee will get updated and we to have recalculate.
         $scope.$watch('employee', function() {
-            $scope.sumMinutes = sumUpFieldOfWorkTimes('minutes');
+            $scope.sumMinutes = controller.sumUpFieldsOfArray('minutes', $scope.employee.workTimes);
         });
 
         $scope.recalculateBillableSum = function() {
-            $scope.sumBillableHours = sumUpFieldOfWorkTimes('hours');
+            $scope.sumBillableHours = controller.sumUpFieldsOfArray('hours', $scope.employee.workTimes);
         };
 
         $scope.setBillableHoursAll = function(value) {
