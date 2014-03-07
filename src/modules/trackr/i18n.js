@@ -62,6 +62,10 @@ define([], function () {
                         END: 'Endzeit',
                         COMMENT: 'Kommentar'
                     },
+                    BILLABLE_TIME: {
+                        DATE: 'Datum',
+                        BILLABLE_HOURS: 'Rechnungsstunden'
+                    },
                     PAGES: {
                         HOME: {
                             WELCOME_TEXT: 'Willkommen bei trackr'
@@ -79,7 +83,13 @@ define([], function () {
                         },
                         SUPERVISOR: {
                             TITLE: 'Supervisor',
-                            TEXT_BILL: 'Rechnung erstellen'
+                            TEXT_BILL: 'Rechnung erstellen',
+                            BILL: {
+                                TITLE: 'Rechnungszeiten erfassen',
+                                HOURS: 'Stunden',
+                                SET_ALL: 'Alle setzen',
+                                SUM: 'Summe'
+                            }
                         }
                     },
                     ACTIONS: {
@@ -149,6 +159,10 @@ define([], function () {
                         COMPANY: 'Company',
                         DEBITOR: 'Debitor'
                     },
+                    BILLABLE_TIME: {
+                        DATE: 'Date',
+                        BILLABLE_HOURS: 'Billable hours'
+                    },
                     WORKTIME: {
                         DATE: 'Date',
                         PROJECT: 'Project',
@@ -173,7 +187,13 @@ define([], function () {
                         },
                         SUPERVISOR: {
                             TITLE: 'Supervisor',
-                            TEXT_BILL: 'Create bill'
+                            TEXT_BILL: 'Create bill',
+                            BILL: {
+                                TITLE: 'Track billable hours',
+                                HOURS: 'Hours',
+                                SET_ALL: 'Set all',
+                                SUM: 'Sum'
+                            }
                         }
                     },
                     ACTIONS: {

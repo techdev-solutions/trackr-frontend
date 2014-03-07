@@ -1,4 +1,4 @@
-<h1>bill</h1>
+<h1>{{ 'PAGES.SUPERVISOR.BILL.TITLE' | translate }}</h1>
 <input type="text" class="form-control" ng-model="project"
        typeahead-on-select="loadWorktimes()"
        typeahead="project as getProjectLabel(project) for project in filterProjectsByNameAndIdentifier($viewValue)"
@@ -38,14 +38,16 @@
     <tab ng-repeat="(id, employee) in workTimes" heading="{{employee.name}}" ng-controller="trackr.supervisor.controllers.bill-create">
         <table class="table table-condensed table-bordered">
             <tr>
-                <th>Date</th>
-                <th>Hours</th>
-                <th colspan="2">Billable hours</th>
+                <th>{{ 'BILLABLE_TIME.DATE' | translate }}</th>
+                <th>{{ 'PAGES.SUPERVISOR.BILL.HOURS' | translate }}</th>
+                <th colspan="2">{{ 'BILLABLE_TIME.BILLABLE_HOURS' | translate }}</th>
             </tr>
             <tr>
                 <td></td>
                 <td></td>
-                <td><input class="form-control input-sm" ng-change="setBillableHoursAll(billableHoursAll)" ng-model="billableHoursAll" placeholder="all"/></td>
+                <td><input class="form-control input-sm"
+                           ng-change="setBillableHoursAll(billableHoursAll)"
+                           ng-model="billableHoursAll" placeholder="{{ 'PAGES.SUPERVISOR.BILL.SET_ALL' | translate }}"/></td>
             </tr>
             <tr ng-repeat="workTime in employee.workTimes">
                 <td>{{workTime.date}}</td>
@@ -56,7 +58,7 @@
                 </td>
             </tr>
             <tr>
-                <td><b>Sum</b></td>
+                <td><b>{{ 'PAGES.SUPERVISOR.BILL.SUM' | translate }}</b></td>
                 <td>{{sumMinutes / 60}}</td>
                 <td>{{sumBillableHours}}</td>
                 <td></span></td>
