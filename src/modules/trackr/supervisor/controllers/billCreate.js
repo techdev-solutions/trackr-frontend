@@ -1,6 +1,6 @@
 define(['lodash'], function(_) {
     'use strict';
-    return ['$scope', function($scope) {
+    return ['$scope', 'Restangular', function($scope, Restangular) {
         function sumUpFieldOfWorkTimes(fieldName) {
             return _.reduce($scope.employee.workTimes, function(sum, workTime) {
                 return sum + (parseFloat(workTime[fieldName]) || 0);
@@ -13,28 +13,36 @@ define(['lodash'], function(_) {
         });
 
         $scope.recalculateBillableSum = function() {
-            $scope.sumBillableHours = sumUpFieldOfWorkTimes('billable');
+            $scope.sumBillableHours = sumUpFieldOfWorkTimes('hours');
         };
 
         $scope.setBillableHoursAll = function(value) {
             $scope.employee.workTimes.forEach(function(workTime) {
-                workTime.billable = value;
+                workTime.hours = value;
             });
             $scope.recalculateBillableSum();
         };
 
         $scope.createBill = function() {
-            var post = [];
+            var billableTimesBase = Restangular.all('billableTimes');
             $scope.employee.workTimes.forEach(function(workTime) {
-                var obj = {
-                    date: workTime.date,
-                    billable: workTime.billable,
-                    employee: $scope.employee.id,
-                    project: $scope.project.id
-                };
-                post.push(obj);
+                //Try to post if the hours are entered and the workTime has not been posted OR if there was an error
+                if(workTime.hours && !workTime.posted || (workTime.hours && workTime.error)) {
+                    var billableTime = {
+                        date: workTime.date,
+                        hours: workTime.hours,
+                        employee: $scope.employee.links[0].href,
+                        project: $scope.project._links.self.href
+                    };
+                    billableTimesBase.post(billableTime).then(function() {
+                        workTime.posted = true;
+                        workTime.error = false;
+                    }, function() {
+                        workTime.posted = true;
+                        workTime.error = true;
+                    });
+                }
             });
-            $scope.fake = 'Saved ' + $scope.sumBillableHours + ' hours for ' + $scope.employee.name + '.';
         };
     }];
 });

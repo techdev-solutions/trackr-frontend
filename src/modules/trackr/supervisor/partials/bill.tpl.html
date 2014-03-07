@@ -40,7 +40,7 @@
             <tr>
                 <th>Date</th>
                 <th>Hours</th>
-                <th>Billable hours</th>
+                <th colspan="2">Billable hours</th>
             </tr>
             <tr>
                 <td></td>
@@ -50,15 +50,18 @@
             <tr ng-repeat="workTime in employee.workTimes">
                 <td>{{workTime.date}}</td>
                 <td>{{workTime.minutes / 60}}</td>
-                <td><input class="input-sm form-control" ng-model="workTime.billable" ng-change="recalculateBillableSum()"/></td>
+                <td><input class="input-sm form-control" ng-model="workTime.hours" ng-change="recalculateBillableSum()"/></td>
+                <td>
+                    <span ng-if="workTime.posted" class="glyphicon" ng-class="{'glyphicon-warning-sign': workTime.error, 'glyphicon-ok-sign': !workTime.error}"></span>
+                </td>
             </tr>
             <tr>
                 <td><b>Sum</b></td>
                 <td>{{sumMinutes / 60}}</td>
                 <td>{{sumBillableHours}}</td>
+                <td></span></td>
             </tr>
         </table>
         <button type="button" class="btn btn-default" ng-click="createBill()">{{ 'ACTIONS.SAVE' | translate }}</button>
-        <span ng-if="fake" class="alert alert-success">{{fake}}</span>
     </tab>
 </tabset>
