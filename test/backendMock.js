@@ -69,6 +69,10 @@ define(['fixtures'], function(fixtures) {
             }];
         });
 
+        $httpBackend.whenPATCH(/^\/api\/employees\/\d+\/self$/).respond(function(method, url ,data) {
+            return [200, data];
+        });
+
         var pattern = new RegExp('/api/companies/search/findByCompanyId\\?.*');
         $httpBackend.whenGET(pattern).respond(fixtures['/api/companies']);
     };
