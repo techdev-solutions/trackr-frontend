@@ -1,5 +1,5 @@
 /* jshint quotmark: double */
-define([], function() {
+define([], function () {
     "use strict";
     return {
         "/api": {
@@ -630,6 +630,29 @@ define([], function() {
                 "totalPages": 1,
                 "number": 0
             }
+        },
+
+        "/api/workTimes/findEmployeeMappingByProjectAndDateBetween": {
+            "1": {"name": "Moritz Schulze", "workTimes": [
+                {"date": "2014-03-03", "minutes": 495},
+                {"date": "2014-03-04", "minutes": 480},
+                {"date": "2014-03-05", "minutes": 240},
+                {"date": "2014-03-06", "minutes": 480},
+                {"date": "2014-03-07", "minutes": 480}
+            ], "links": [
+                {"rel": "self", "href": "http://localhost:8080/api/employees/1"}
+            ]},
+            "2": {"name": "Viktor Widiker", "workTimes": [
+                {"date": "2014-03-03", "minutes": 480}
+            ], "links": [
+                {"rel": "self", "href": "http://localhost:8080/api/employees/2"}
+            ]},
+            "4": {"name": "Adrian Krion", "workTimes": [
+                {"date": "2014-03-03", "minutes": 180},
+                {"date": "2014-03-04", "minutes": 180}
+            ], "links": [
+                {"rel": "self", "href": "http://localhost:8080/api/employees/4"}
+            ]}
         }
     };
 });

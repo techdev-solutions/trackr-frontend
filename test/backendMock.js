@@ -40,6 +40,9 @@ define(['fixtures'], function(fixtures) {
         $httpBackend.when('GET', /^\/api\/companies\/[\d]+\/address$/).respond(fixtures['/api/addresses']._embedded.addresses[0]);
         $httpBackend.when('GET', /^\/api\/companies\/[\d]+\/contactPersons/).respond(fixtures['/api/contactPersons']);
 
+        $httpBackend.whenGET(/\/api\/workTimes\/findEmployeeMappingByProjectAndDateBetween\?.*/)
+            .respond(fixtures['/api/workTimes/findEmployeeMappingByProjectAndDateBetween']);
+
         $httpBackend.whenDELETE(/^\/api\/contactPersons\/\d+/).respond([204]);
         $httpBackend.whenPOST('/api/contactPersons').respond(function(method, url ,data) {
             return [201, data];
