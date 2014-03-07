@@ -35,18 +35,30 @@
 </div>
 
 <tabset>
-    <tab ng-repeat="(id, employee) in workTimes" heading="{{employee.name}}">
+    <tab ng-repeat="(id, employee) in workTimes" heading="{{employee.name}}" ng-controller="trackr.supervisor.controllers.bill-create">
         <table class="table table-condensed table-bordered">
             <tr>
                 <th>Date</th>
                 <th>Hours</th>
-                <th>Billable Hours</th>
+                <th>Billable hours</th>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td><input class="form-control input-sm" ng-change="setBillableHoursAll(billableHoursAll)" ng-model="billableHoursAll" placeholder="all"/></td>
             </tr>
             <tr ng-repeat="workTime in employee.workTimes">
                 <td>{{workTime.date}}</td>
                 <td>{{workTime.minutes / 60}}</td>
-                <td><input type="text"/></td>
+                <td><input class="input-sm form-control" ng-model="workTime.billable" ng-change="recalculateBillableSum()"/></td>
+            </tr>
+            <tr>
+                <td><b>Sum</b></td>
+                <td>{{sumMinutes / 60}}</td>
+                <td>{{sumBillableHours}}</td>
             </tr>
         </table>
+        <button type="button" class="btn btn-default" ng-click="createBill()">{{ 'ACTIONS.SAVE' | translate }}</button>
+        <span ng-if="fake" class="alert alert-success">{{fake}}</span>
     </tab>
 </tabset>
