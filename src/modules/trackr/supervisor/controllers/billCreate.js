@@ -17,7 +17,7 @@ define(['lodash'], function(_) {
 
         //When the user selects the date employee will get updated and we to have recalculate.
         $scope.$watch('employee', function() {
-            $scope.sumMinutes = controller.sumUpFieldsOfArray('minutes', $scope.employee.workTimes);
+            $scope.sumMinutes = controller.sumUpFieldsOfArray('enteredMinutes', $scope.employee.workTimes);
         });
 
         $scope.recalculateBillableSum = function() {
@@ -51,15 +51,13 @@ define(['lodash'], function(_) {
                         project: $scope.project._links.self.href
                     };
                     if(workTime.billedTimeId) {
-                        if(billableTime.minutes !== workTime.billedMinutes) {
-                            updateBillableTime(workTime.billedTimeId, {minutes: billableTime.minutes}).then(function() {
-                                workTime.error = false;
-                                workTime.posted = true;
-                            }, function() {
-                                workTime.error = true;
-                                workTime.posted = true;
-                            });
-                        }
+                        updateBillableTime(workTime.billedTimeId, {minutes: billableTime.minutes}).then(function() {
+                            workTime.error = false;
+                            workTime.posted = true;
+                        }, function() {
+                            workTime.error = true;
+                            workTime.posted = true;
+                        });
                     } else {
                         createNewBillableTime(billableTime).then(function(data) {
                             workTime.error = false;

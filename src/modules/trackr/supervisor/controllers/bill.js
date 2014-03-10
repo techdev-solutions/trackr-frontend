@@ -12,18 +12,6 @@ define([], function() {
             $scope[whichDate] = true;
         };
 
-        function setHoursOnWorktimesIfAlreadySaved(employeeMapping) {
-            for (var employeeId in employeeMapping) {
-                var employee = employeeMapping[employeeId].workTimes;
-                for (var i = 0; i < employee.length; i++) {
-                    var workTimes = employee[i];
-                    if(workTimes.billedTimeId) {
-                        workTimes.hours = workTimes.billedMinutes / 60;
-                    }
-                }
-            }
-        }
-
         $scope.loadWorktimes = function() {
             if($scope.project) {
                 //Load this via http as it does not return standard items (custom DTOs without links) and Restangular would not be usefule.
@@ -35,7 +23,6 @@ define([], function() {
                     }
                 }).then(function(response) {
                     $scope.employeeMapping = response.data;
-                    setHoursOnWorktimesIfAlreadySaved($scope.employeeMapping);
                 });
             }
         };
