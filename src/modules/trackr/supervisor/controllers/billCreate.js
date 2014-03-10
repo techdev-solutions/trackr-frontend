@@ -38,7 +38,7 @@ define(['lodash'], function(_) {
                 if(workTime.hours && !workTime.posted || (workTime.hours && workTime.error)) {
                     var billableTime = {
                         date: workTime.date,
-                        hours: workTime.hours,
+                        minutes: workTime.hours * 60,
                         employee: $scope.employee.links[0].href,
                         project: $scope.project._links.self.href
                     };
