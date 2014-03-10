@@ -23,8 +23,8 @@ define([], function () {
             $modalInstance.dismiss();
         };
 
-        Restangular.all('companies').getList().then(function(companies) {
-            $scope.companies = companies;
-        });
+        $scope.getCompanies = function(searchString) {
+            return Restangular.allUrl('companies', '/api/companies/search/findByNameLikeOrderByNameAsc').getList({name: '%' + searchString + '%'});
+        };
     }];
 });

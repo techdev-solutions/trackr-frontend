@@ -13,14 +13,22 @@
     <div class="form-group">
         <label class="form-label col-sm-4" for="company">{{ 'PROJECT.COMPANY' | translate }}</label>
         <div class="col-sm-6">
-            <input type="text" class="form-control" id="company" ng-model="projectCompany" typeahead="company as company.name for company in companies | filter:{name:$viewValue}" typeahead-editable="false"/>
+            <input type="text" class="form-control" id="company"
+                   ng-model="projectCompany"
+                   typeahead="company as company.name for company in getCompanies($viewValue)"
+                   typeahead-editable="false"
+                   typeahead-min-length="2" />
         </div>
     </div>
 
     <div class="form-group">
         <label class="form-label col-sm-4" for="debitor">{{ 'PROJECT.DEBITOR' | translate }}</label>
         <div ng-class="{'col-sm-6': !inline}">
-            <input type="text" class="form-control" id="debitor" ng-model="projectDebitor" typeahead="company as company.name for company in companies | filter:{name:$viewValue}" typeahead-editable="false"/>
+            <input type="text" class="form-control" id="debitor"
+                   ng-model="projectDebitor"
+                   typeahead="company as company.name for company in getCompanies($viewValue)"
+                   typeahead-editable="false"
+                   typeahead-min-length="2" />
         </div>
     </div>
 </form>
