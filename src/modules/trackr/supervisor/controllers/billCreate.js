@@ -74,7 +74,12 @@ define(['lodash'], function(_) {
                         });
                     }
                 } else if(workTime.billedTimeId) {//delete
-                    Restangular.one('billableTimes', workTime.billedTimeId).remove();
+                    Restangular.one('billableTimes', workTime.billedTimeId).remove().then(function() {
+                        workTime.billedTimeId = undefined;
+                        workTime.billedMinutes = undefined;
+                        workTime.error = false;
+                        workTime.posted = false;
+                    });
                 }
             });
         };
