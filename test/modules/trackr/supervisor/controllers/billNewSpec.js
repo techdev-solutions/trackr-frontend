@@ -7,7 +7,7 @@ define(['baseTestSetup'], function(baseTestSetup) {
         beforeEach(inject(function($rootScope, $controller) {
             scope = $rootScope.$new();
             scope.employee = {
-                workTimes: [{minutes: 10}, {minutes: 20}]
+                workTimes: [{enteredMinutes: 10}, {enteredMinutes: 20}]
             };
             BillCreateController = $controller('trackr.supervisor.controllers.bill-create', {
                 $scope: scope
