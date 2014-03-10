@@ -1,7 +1,14 @@
 define(['baseTestSetup'], function(baseTestSetup) {
     'use strict';
+
     describe('trackr.supervisor.controllers.bill-create', function() {
         var BillCreateController, scope;
+
+        function setWorkTimeHoursToValue(value) {
+            scope.employee.workTimes.forEach(function(workTime) {
+                workTime.hours = value;
+            });
+        }
 
         baseTestSetup();
         beforeEach(inject(function($rootScope, $controller) {
@@ -51,9 +58,7 @@ define(['baseTestSetup'], function(baseTestSetup) {
         it('createBill should POST to the server', inject(function($httpBackend) {
             scope.employee.links = [{href: 'employee'}];
             scope.project = { _links: { self: { href: 'project'}}};
-            scope.employee.workTimes.forEach(function(workTime) {
-                workTime.hours = 1;
-            });
+            setWorkTimeHoursToValue(1);
             scope.createBill();
             $httpBackend.expectPOST('/api/billableTimes');
             $httpBackend.flush();
@@ -62,5 +67,13 @@ define(['baseTestSetup'], function(baseTestSetup) {
                 expect(workTime.error).toBe(false);
             });
         }));
+
+        it('must reset the hours to undefined if the resetHours is called', function() {
+            setWorkTimeHoursToValue(1);
+            scope.resetHours();
+            scope.employee.workTimes.forEach(function(workTime) {
+                expect(workTime.hours).not.toBeDefined();
+            });
+        });
     });
 });

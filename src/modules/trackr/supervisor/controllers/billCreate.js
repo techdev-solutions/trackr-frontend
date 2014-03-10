@@ -33,6 +33,10 @@ define(['lodash'], function(_) {
             $scope.recalculateBillableSum();
         };
 
+        $scope.resetHours = function() {
+            $scope.setBillableHoursAll(undefined);
+        };
+
         $scope.createBill = function() {
             function createNewBillableTime(billableTime) {
                 return Restangular.all('billableTimes').post(billableTime);

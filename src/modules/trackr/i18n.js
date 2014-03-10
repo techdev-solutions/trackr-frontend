@@ -98,7 +98,8 @@ define([], function () {
                         CANCEL: 'Abbrechen',
                         EDIT: 'Editieren',
                         CLOSE: 'Schließen',
-                        CLEAR: 'Löschen'
+                        CLEAR: 'Löschen',
+                        RESET: 'Zurücksetzen'
                     },
                     DATE: {
                         TODAY: 'Heute',
@@ -202,7 +203,8 @@ define([], function () {
                         CANCEL: 'Cancel',
                         EDIT: 'Edit',
                         CLOSE: 'Close',
-                        CLEAR: 'Clear'
+                        CLEAR: 'Clear',
+                        RESET: 'Reset'
                     },
                     DATE: {
                         TODAY: 'Today',
