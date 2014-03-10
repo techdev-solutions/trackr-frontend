@@ -66,8 +66,8 @@ define(['baseTestSetup', 'angular'], function(baseTestSetup, angular) {
         function expectWorkTimeLoad($httpBackend) {
             $httpBackend.expectGET(/\/api\/workTimes\/findEmployeeMappingByProjectAndDateBetween\?.*/);
             $httpBackend.flush();
-            expect(scope.workTimes).toBeDefined();
-            expect(scope.workTimes[1]).toBeDefined();
+            expect(scope.employeeMapping).toBeDefined();
+            expect(scope.employeeMapping[1]).toBeDefined();
         }
 
         it('should load the mapping data from the server on call to loadWorktimes', inject(function($httpBackend) {

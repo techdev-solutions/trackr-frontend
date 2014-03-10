@@ -24,6 +24,8 @@ define(['lodash'], function(_) {
             $scope.sumBillableHours = controller.sumUpFieldsOfArray('hours', $scope.employee.workTimes);
         };
 
+        $scope.recalculateBillableSum();
+
         $scope.setBillableHoursAll = function(value) {
             $scope.employee.workTimes.forEach(function(workTime) {
                 workTime.hours = value;
@@ -32,23 +34,45 @@ define(['lodash'], function(_) {
         };
 
         $scope.createBill = function() {
-            var billableTimesBase = Restangular.all('billableTimes');
+            function createNewBillableTime(billableTime) {
+                return Restangular.all('billableTimes').post(billableTime);
+            }
+
+            function updateBillableTime(billedTimeId, patchObject) {
+                return Restangular.one('billableTimes', billedTimeId).patch(patchObject);
+            }
+
             $scope.employee.workTimes.forEach(function(workTime) {
-                //Try to post if the hours are entered and the workTime has not been posted OR if there was an error
-                if(workTime.hours && !workTime.posted || (workTime.hours && workTime.error)) {
+                if(workTime.hours) {
                     var billableTime = {
                         date: workTime.date,
-                        minutes: workTime.hours * 60,
+                        minutes: isNaN(workTime.hours) ? workTime.hours : workTime.hours * 60,
                         employee: $scope.employee.links[0].href,
                         project: $scope.project._links.self.href
                     };
-                    billableTimesBase.post(billableTime).then(function() {
-                        workTime.posted = true;
-                        workTime.error = false;
-                    }, function() {
-                        workTime.posted = true;
-                        workTime.error = true;
-                    });
+                    if(workTime.billedTimeId) {
+                        if(billableTime.minutes !== workTime.billedMinutes) {
+                            updateBillableTime(workTime.billedTimeId, {minutes: billableTime.minutes}).then(function() {
+                                workTime.error = false;
+                                workTime.posted = true;
+                            }, function() {
+                                workTime.error = true;
+                                workTime.posted = true;
+                            });
+                        }
+                    } else {
+                        createNewBillableTime(billableTime).then(function(data) {
+                            workTime.error = false;
+                            workTime.posted = true;
+                            workTime.billedTimeId = data.id;
+                            workTime.billedMinutes = data.minutes;
+                        }, function() {
+                            workTime.error = true;
+                            workTime.posted = true;
+                        });
+                    }
+                } else if(workTime.billedTimeId) {//delete
+                    Restangular.one('billableTimes', workTime.billedTimeId).remove();
                 }
             });
         };
