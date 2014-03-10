@@ -28,17 +28,11 @@ define(['baseTestSetup', 'angular'], function(baseTestSetup, angular) {
             expect(scope.projects.length).toBeGreaterThan(0);
         });
 
-        it('should filter projects by name', function() {
-            var project = scope.projects[0];
-            var projects = scope.filterProjectsByNameAndIdentifier(project.name.substr(0, 2));
-            expect(projects.length).toBeGreaterThan(0);
-        });
-
-        it('should filter projects by identifier', function() {
-            var project = scope.projects[0];
-            var projects = scope.filterProjectsByNameAndIdentifier(project.identifier.substr(0, 2));
-            expect(projects.length).toBeGreaterThan(0);
-        });
+        it('load projects with getProjects', inject(function($httpBackend) {
+            scope.getProjects('abc');
+            $httpBackend.expectGET(/\/api\/projects\/search\/findByNameLikeOrIdentifierLikeOrderByNameAsc\?.*/);
+            $httpBackend.flush();
+        }));
 
         it('should switch the open date variables to true with openDate', function() {
             var event = {

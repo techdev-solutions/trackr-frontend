@@ -1,8 +1,9 @@
 <h1>{{ 'PAGES.SUPERVISOR.BILL.TITLE' | translate }}</h1>
 <input type="text" class="form-control" ng-model="project"
        typeahead-on-select="loadWorktimes()"
-       typeahead="project as getProjectLabel(project) for project in filterProjectsByNameAndIdentifier($viewValue)"
-       typeahead-editable="false"/>
+       typeahead="project as getProjectLabel(project) for project in getProjects($viewValue)"
+       typeahead-editable="false"
+       typahead-min-length="2"/>
 
 <div class="col-md-6">
     <p class="input-group">

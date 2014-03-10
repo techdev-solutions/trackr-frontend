@@ -19,9 +19,10 @@ define([], function() {
 
         $scope.errors = {};
 
-        Restangular.all('projects').getList().then(function(projects) {
-            $scope.projects = projects;
-        });
+        $scope.getProjects = function(searchString) {
+            var search = '%' + searchString + '%';
+            return Restangular.allUrl('projects', '/api/projects/search/findByNameLikeOrIdentifierLikeOrderByNameAsc').getList({name: search, identifier: search});
+        };
 
         var employee;
         Restangular.one('employees', UserService.getUser().id).get().then(function(_employee) {

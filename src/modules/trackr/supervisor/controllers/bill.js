@@ -35,10 +35,9 @@ define([], function() {
             }
         };
 
-        $scope.filterProjectsByNameAndIdentifier = function(viewValue) {
-            return $scope.projects.filter(function(project) {
-                return project.name.indexOf(viewValue) > -1 || project.identifier.indexOf(viewValue) > -1;
-            });
+        $scope.getProjects = function(searchString) {
+            var search = '%' + searchString + '%';
+            return Restangular.allUrl('projects', '/api/projects/search/findByNameLikeOrIdentifierLikeOrderByNameAsc').getList({name: search, identifier: search});
         };
 
         var today = new Date();

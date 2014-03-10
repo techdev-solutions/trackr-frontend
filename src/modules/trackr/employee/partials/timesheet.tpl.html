@@ -2,7 +2,12 @@
     <div class="form-group">
         <label class="form-label col-sm-4" for="project">{{ 'WORKTIME.PROJECT' | translate }}</label>
         <div class="col-sm-6">
-            <input type="text" class="form-control" id="project" ng-model="project" typeahead="project as project.name for project in projects | filter:{name:$viewValue}" typeahead-editable="false"/>
+            <input type="text" class="form-control" id="project"
+                   ng-model="project"
+                   autocomplete="false"
+                   typeahead="project as project.name for project in getProjects($viewValue)"
+                   typeahead-editable="false"
+                   typeahead-min-length="2" />
         </div>
     </div>
 
