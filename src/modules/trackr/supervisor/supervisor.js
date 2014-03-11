@@ -20,6 +20,15 @@ define(['angular', 'modules/trackr/supervisor/controllers/controllers'], functio
                         controller: 'trackr.supervisor.controllers.bill'
                     }
                 }
+            })
+            .state('trackr.supervisor.bill.report', {
+                url: '/report',
+                views: {
+                    'center@': {
+                        templateUrl: '/src/modules/trackr/supervisor/partials/bill-report.tpl.html',
+                        controller: 'trackr.supervisor.controllers.bill-report'
+                    }
+                }
             });
     }]);
 
