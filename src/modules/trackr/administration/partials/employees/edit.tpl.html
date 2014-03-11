@@ -30,4 +30,12 @@
             <bs-checkbox checked="credential.enabled" change="changeEnabled()" role="ROLE_ADMIN"></bs-checkbox>
         </dd>
     </dt>
+    <dt>
+        {{ 'EMPLOYEE.JOIN_DATE' | translate }}
+    <dd>
+        <div class="well well-sm" ng-model="employee.joinDate">
+            <datepicker></datepicker>
+        </div>
+    </dd>
+    </dt>
 </dl>
