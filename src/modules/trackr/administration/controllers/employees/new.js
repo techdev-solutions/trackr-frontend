@@ -1,6 +1,6 @@
 define([], function () {
     'use strict';
-    return ['$scope', 'Restangular', '$modalInstance', '$log', function($scope, Restangular, $modalInstance, $log) {
+    return ['$scope', 'Restangular', '$modalInstance', function($scope, Restangular, $modalInstance) {
         $scope.errors = {};
         $scope.employee = {};
         $scope.credential = {};
@@ -17,10 +17,6 @@ define([], function () {
         };
 
         $scope.cancel = function() {
-            if($scope.employee._persisted) {
-                $log.debug('Address was saved but company creation cancelled, deleting address');
-                $scope.employee.remove();
-            }
             $modalInstance.dismiss();
         };
     }];
