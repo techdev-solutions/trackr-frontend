@@ -60,17 +60,7 @@ define(['fixtures'], function(fixtures) {
 
         mockPost('/api/contactPersons');
         mockPost('/api/billableTimes');
-        mockPost('/api/companies');
-
-        $httpBackend.whenPOST('/api/addresses').respond(function() {
-            return [201, {
-                _links: {
-                    self: {
-                        href: '/api/addresses/0'
-                    }
-                }
-            }];
-        });
+        mockPost('/api/companies/createWithAddress');
 
         $httpBackend.whenPATCH(/^\/api\/employees\/\d+\/self$/).respond(function(method, url ,data) {
             return [200, data];

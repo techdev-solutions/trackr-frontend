@@ -25,10 +25,6 @@ define(['baseTestSetup'], function(baseTestSetup) {
             expect(scope.errors).toBeDefined();
         });
 
-        it('must have an address errors object', function() {
-            expect(scope.addressErrors).toBeDefined();
-        });
-
         it('must have a new company object', function() {
             expect(scope.company).toBeDefined();
         });
@@ -39,10 +35,8 @@ define(['baseTestSetup'], function(baseTestSetup) {
 
         it('must save the company and address', inject(function($httpBackend) {
             scope.saveCompany();
-            $httpBackend.expectPOST('/api/addresses');
-            $httpBackend.expectPOST('/api/companies');
+            $httpBackend.expectPOST('/api/companies/createWithAddress');
             $httpBackend.flush();
-            expect(scope.address._persisted).toBe(true);
         }));
     });
 });
