@@ -84,12 +84,20 @@ define([], function () {
                         },
                         SUPERVISOR: {
                             TITLE: 'Supervisor',
-                            TEXT_BILL: 'Rechnung erstellen',
+                            TEXT_BILL: 'Rechnungszeiten erfassen',
+                            TEXT_BILL_CREATE: 'Rechnung erstellen',
                             BILL: {
                                 TITLE: 'Rechnungszeiten erfassen',
                                 HOURS: 'Stunden',
                                 SET_ALL: 'Alle setzen',
                                 SUM: 'Summe'
+                            },
+                            BILL_CREATE: {
+                                TITLE: 'Rechnung erstellen',
+                                HOURS: 'Stunden',
+                                MAN_DAYS: 'Manntage',
+                                NET_PRICE: 'Netto',
+                                GROSS_PRICE: 'Brutto'
                             }
                         }
                     },
@@ -190,12 +198,20 @@ define([], function () {
                         },
                         SUPERVISOR: {
                             TITLE: 'Supervisor',
-                            TEXT_BILL: 'Create bill',
+                            TEXT_BILL: 'Enter billable hours',
+                            TEXT_BILL_CREATE: 'Create bill',
                             BILL: {
                                 TITLE: 'Track billable hours',
                                 HOURS: 'Hours',
                                 SET_ALL: 'Set all',
                                 SUM: 'Sum'
+                            },
+                            BILL_CREATE: {
+                                TITLE: 'Create bill',
+                                HOURS: 'Hours',
+                                MAN_DAYS: 'Man days',
+                                NET_PRICE: 'Net price',
+                                GROSS_PRICE: 'Gross price'
                             }
                         }
                     },

@@ -1,4 +1,4 @@
-<h1>Bill report</h1>
+<h1>{{ 'PAGES.SUPERVISOR.BILL_CREATE.TITLE' | translate }}</h1>
 <input type="text" class="form-control" ng-model="company"
        typeahead-on-select="loadProjects(company)"
        typeahead="company as company.name for company in getCompanies($viewValue)"
@@ -40,3 +40,28 @@
             </span>
     </p>
 </div>
+
+<div ng-if="project">
+    <h2>{{project.name}} ({{project.identifier}})</h2>
+    <table class="table table-bordered">
+        <tr>
+            <td>{{ 'PROJECT.DEBITOR' | translate}}</td>
+            <td>{{project.debitor.name}} ({{project.debitor.companyId}})</td>
+        </tr>
+        <tr>
+            <td>{{ 'PROJECT.HOURLY_RATE' | translate}}</td>
+            <td>{{project.hourlyRate}} €</td>
+        </tr>
+    </table>
+</div>
+
+<tabset>
+    <tab ng-repeat="(employee, minutes) in employeeMapping" heading="{{employee}}">
+        <table class="table table-condensed table-bordered">
+            <tr><td>{{ 'PAGES.SUPERVISOR.BILL_CREATE.HOURS' | translate }}</td><td>{{minutes / 60}} h</td></tr>
+            <tr><td>{{ 'PAGES.SUPERVISOR.BILL_CREATE.MAN_DAYS' | translate }}</td><td>{{(minutes / 60) / 8}} d</td></tr>
+            <tr><td>{{ 'PAGES.SUPERVISOR.BILL_CREATE.NET_PRICE' | translate }}</td><td>{{(minutes / 60) * project.hourlyRate}} €</td></tr>
+            <tr><td>{{ 'PAGES.SUPERVISOR.BILL_CREATE.GROSS_PRICE' | translate }}</td><td>{{(minutes / 60) * project.hourlyRate * 1.19}} €</td></tr>
+        </table>
+    </tab>
+</tabset>

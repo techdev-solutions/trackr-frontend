@@ -1,6 +1,6 @@
 define(['modules/trackr/supervisor/controllers/timeIntervalSetup'], function(timeIntervalSetup) {
     'use strict';
-    return ['$scope', 'Restangular', '$filter', function($scope, Restangular, $filter) {
+    return ['$scope', 'Restangular', '$filter', '$http', function($scope, Restangular, $filter, $http) {
         $scope.getCompanies = function(searchString) {
             return Restangular.allUrl('companies', '/api/companies/search/findByNameLikeOrderByNameAsc').getList({name: '%' + searchString + '%'});
         };
@@ -12,17 +12,26 @@ define(['modules/trackr/supervisor/controllers/timeIntervalSetup'], function(tim
         };
 
         $scope.loadProjectData = function() {
+            Restangular.oneUrl('companies', $scope.project._links.debitor.href).get().then(function(response) {
+                $scope.project.debitor = response;
+            });
+            $scope.loadBillData();
+        };
+
+        $scope.loadBillData = function() {
             if($scope.project) {//only if the user has selected a project
-                Restangular.allUrl('billableTimes', '/api/billableTimes/search/findByProjectAndDateBetweenOrderByDateAsc').getList({
-                    project: $scope.project.id,
-                    start: $filter('date')($scope.start, 'yyyy-MM-dd'),
-                    end: $filter('date')($scope.end, 'yyyy-MM-dd')
+                $http.get('/api/billableTimes/findEmployeeMappingByProjectAndDateBetween', {
+                    params: {
+                        project: $scope.project.id,
+                        start: $filter('date')($scope.start, 'yyyy-MM-dd'),
+                        end: $filter('date')($scope.end, 'yyyy-MM-dd')
+                    }
                 }).then(function(result) {
-                    console.log(result);
+                    $scope.employeeMapping = result.data;
                 });
             }
         };
 
-        timeIntervalSetup($scope, $scope.loadProjectData);
+        timeIntervalSetup($scope, $scope.loadBillData);
     }];
 });
