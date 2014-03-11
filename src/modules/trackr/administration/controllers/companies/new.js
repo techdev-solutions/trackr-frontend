@@ -2,7 +2,9 @@ define([], function () {
     'use strict';
     return ['$scope', 'Restangular', '$modalInstance', function($scope, Restangular, $modalInstance) {
         $scope.errors = {};
-        $scope.company = {};
+        $scope.company = {
+            address: {} //address may not be null. Won't be used in the controller.
+        };
         $scope.address = {};
 
         $scope.saveCompany = function() {
