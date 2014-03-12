@@ -45,6 +45,14 @@ define([], function() {
         watchDateOnEmployeeAndPatchOnChange('joinDate');
         watchDateOnEmployeeAndPatchOnChange('leaveDate');
 
+        $scope.$watch('employee.federalState.name', function(newValue, oldValue) {
+            if(oldValue !== undefined) {
+                var patch = {
+                    federalState: newValue
+                };
+                employeeBase.patch(patch);
+            }
+        });
         /*
          Initial load of employee and associated data.
          */
@@ -57,6 +65,10 @@ define([], function() {
                     $scope.credential.authorities = authorities;
                 });
             });
+        });
+
+        Restangular.one('federalStates').get().then(function(states) {
+            $scope.states = states;
         });
     }];
 });

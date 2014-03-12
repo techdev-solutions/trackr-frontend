@@ -21,6 +21,12 @@
         <dd><bs-edit entity="employee" property-name="phoneNumber" role="ROLE_SUPERVISOR"></bs-edit></dd>
     </dt>
     <dt>
+        {{ 'EMPLOYEE.FEDERAL_STATE' | translate }}
+        <dd>
+            <select ng-model="employee.federalState.name" ng-options="s.name as s.state for s in states"></select>
+        </dd>
+    </dt>
+    <dt>
         {{ 'CREDENTIAL.EMAIL' | translate }}
         <dd><bs-edit entity="credential" property-name="email" role="ROLE_ADMIN"></bs-edit></dd>
     </dt>

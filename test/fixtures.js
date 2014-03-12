@@ -1,5 +1,5 @@
 /* jshint quotmark: double */
-define([], function () {
+define([], function() {
     "use strict";
     return {
         "/api": {
@@ -355,6 +355,7 @@ define([], function () {
                         "hourlyCostRate": 0.00,
                         "joinDate": null,
                         "leaveDate": null,
+                        "federalState": { name: null },
                         "_links": {
                             "self": {
                                 "href": "http://localhost:8080/api/employees/0"
@@ -375,6 +376,7 @@ define([], function () {
                         "hourlyCostRate": 0.25,
                         "joinDate": null,
                         "leaveDate": null,
+                        "federalState": { name: null },
                         "_links": {
                             "self": {
                                 "href": "http://localhost:8080/api/employees/1"
@@ -395,6 +397,7 @@ define([], function () {
                         "hourlyCostRate": 123.00,
                         "joinDate": null,
                         "leaveDate": null,
+                        "federalState": { name: null },
                         "_links": {
                             "self": {
                                 "href": "http://localhost:8080/api/employees/2"
@@ -415,6 +418,7 @@ define([], function () {
                         "hourlyCostRate": 321.00,
                         "joinDate": null,
                         "leaveDate": null,
+                        "federalState": { name: null },
                         "_links": {
                             "self": {
                                 "href": "http://localhost:8080/api/employees/3"
@@ -435,6 +439,7 @@ define([], function () {
                         "hourlyCostRate": 6854.00,
                         "joinDate": null,
                         "leaveDate": null,
+                        "federalState": { name: null },
                         "_links": {
                             "self": {
                                 "href": "http://localhost:8080/api/employees/4"
@@ -455,6 +460,7 @@ define([], function () {
                         "hourlyCostRate": 900.10,
                         "joinDate": null,
                         "leaveDate": null,
+                        "federalState": { name: null },
                         "_links": {
                             "self": {
                                 "href": "http://localhost:8080/api/employees/5"
@@ -475,6 +481,7 @@ define([], function () {
                         "hourlyCostRate": 100.50,
                         "joinDate": null,
                         "leaveDate": null,
+                        "federalState": { name: null },
                         "_links": {
                             "self": {
                                 "href": "http://localhost:8080/api/employees/6"
@@ -667,6 +674,25 @@ define([], function () {
             ], "links": [
                 {"rel": "self", "href": "http://localhost:8080/api/employees/4"}
             ]}
-        }
+        },
+
+        "/api/federalStates": [
+            {"name": "BADEN_WUERTTEMBERG", "state": "Baden-Württemberg"},
+            {"name": "BAYERN", "state": "Bayern"},
+            {"name": "BERLIN", "state": "Berlin"},
+            {"name": "BRANDENBURG", "state": "Brandenburg"},
+            {"name": "BREMEN", "state": "Bremen"},
+            {"name": "HAMBURG", "state": "Hamburg"},
+            {"name": "HESSEN", "state": "Hessen"},
+            {"name": "MECKLENBURG_VORPOMMERN", "state": "Mecklenburg-Vorpommern"},
+            {"name": "NIEDERSACHSEN", "state": "Niedersachsen"},
+            {"name": "NORDRHEIN_WESTFALEN", "state": "Nordrhein-Westfalen"},
+            {"name": "RHEINLAND_PFALZ", "state": "Rheinland-Pfalz"},
+            {"name": "SAARLAND", "state": "Saarland"},
+            {"name": "SACHSEN", "state": "Sachsen"},
+            {"name": "SACHSEN_ANHALT", "state": "Sachsen-Anhalt"},
+            {"name": "SCHLESWIG_HOLSTEINT", "state": "Schleswig-Holstein"},
+            {"name": "THUERINGEN", "state": "Thüringen"}
+        ]
     };
 });

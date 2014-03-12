@@ -29,6 +29,10 @@ define(['baseTestSetup'], function(baseTestSetup) {
             expect(scope.credential.authorities).toBeDefined();
         });
 
+        it('must have the federal states in scioe', function() {
+            expect(scope.states).toBeDefined();
+        });
+
         it('changeEnabled must sent a patch', inject(function($httpBackend) {
             scope.changeEnabled();
             $httpBackend.expectPATCH(/^\/api\/credentials\/\d+$/);
@@ -37,6 +41,12 @@ define(['baseTestSetup'], function(baseTestSetup) {
 
         it('if the joinDate is changed a patch must be sent', inject(function($httpBackend) {
             scope.employee.joinDate = '2013-01-01';
+            $httpBackend.expectPATCH(/^\/api\/employees\/\d+$/);
+            $httpBackend.flush();
+        }));
+
+        it('if the state is changed a patch must be sent', inject(function($httpBackend) {
+            scope.employee.federalState.name = 'test';
             $httpBackend.expectPATCH(/^\/api\/employees\/\d+$/);
             $httpBackend.flush();
         }));

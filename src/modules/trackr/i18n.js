@@ -39,7 +39,8 @@ define([], function () {
                         HOURLY_COST_RATE: 'Stundensatz',
                         ADMINISTRATE_ROLES: 'Alle Rollen',
                         JOIN_DATE: 'Eintrittsdatum',
-                        LEAVE_DATE: 'Austrittsdatum'
+                        LEAVE_DATE: 'Austrittsdatum',
+                        FEDERAL_STATE: 'Bundesland'
                     },
                     CREDENTIAL: {
                         EMAIL: 'E-Mail',
@@ -154,7 +155,8 @@ define([], function () {
                         HOURLY_COST_RATE: 'Hourly cost rate',
                         ADMINISTRATE_ROLES: 'All roles',
                         JOIN_DATE: 'Join date',
-                        LEAVE_DATE: 'Leave date'
+                        LEAVE_DATE: 'Leave date',
+                        FEDERAL_STATE: 'Federal state'
                     },
                     CREDENTIAL: {
                         EMAIL: 'E-Mail',

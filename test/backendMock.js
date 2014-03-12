@@ -39,6 +39,7 @@ define(['fixtures'], function(fixtures) {
         mockRoot('/api/projects');
         mockRoot('/api/employees');
         mockRoot('/api/companies');
+        mockRoot('/api/federalStates');
 
         $httpBackend.when('GET', /^\/api\/credentials\/[\d]+$/).respond(fixtures['/api/credentials']._embedded.credentials[0]);
         $httpBackend.when('GET', /^\/api\/credentials\/[\d]+\/authorities$/).respond(fixtures['/api/authorities']._embedded.authorities);
