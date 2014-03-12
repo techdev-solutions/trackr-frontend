@@ -40,7 +40,8 @@ define([], function () {
                         ADMINISTRATE_ROLES: 'Alle Rollen',
                         JOIN_DATE: 'Eintrittsdatum',
                         LEAVE_DATE: 'Austrittsdatum',
-                        FEDERAL_STATE: 'Bundesland'
+                        FEDERAL_STATE: 'Bundesland',
+                        VACATION_ENTITLEMENT: 'Urlaubsanspruch'
                     },
                     CREDENTIAL: {
                         EMAIL: 'E-Mail',
@@ -156,7 +157,8 @@ define([], function () {
                         ADMINISTRATE_ROLES: 'All roles',
                         JOIN_DATE: 'Join date',
                         LEAVE_DATE: 'Leave date',
-                        FEDERAL_STATE: 'Federal state'
+                        FEDERAL_STATE: 'Federal state',
+                        VACATION_ENTITLEMENT: 'Vacation entitlement'
                     },
                     CREDENTIAL: {
                         EMAIL: 'E-Mail',
