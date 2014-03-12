@@ -353,6 +353,8 @@ define([], function () {
                         "title": "",
                         "salary": 0.00,
                         "hourlyCostRate": 0.00,
+                        "joinDate": null,
+                        "leaveDate": null,
                         "_links": {
                             "self": {
                                 "href": "http://localhost:8080/api/employees/0"
@@ -371,6 +373,8 @@ define([], function () {
                         "title": "Hausmeister",
                         "salary": 40.00,
                         "hourlyCostRate": 0.25,
+                        "joinDate": null,
+                        "leaveDate": null,
                         "_links": {
                             "self": {
                                 "href": "http://localhost:8080/api/employees/1"
@@ -389,6 +393,8 @@ define([], function () {
                         "title": "Software Consultant",
                         "salary": 456.00,
                         "hourlyCostRate": 123.00,
+                        "joinDate": null,
+                        "leaveDate": null,
                         "_links": {
                             "self": {
                                 "href": "http://localhost:8080/api/employees/2"
@@ -407,6 +413,8 @@ define([], function () {
                         "title": "Praktikant",
                         "salary": 654.32,
                         "hourlyCostRate": 321.00,
+                        "joinDate": null,
+                        "leaveDate": null,
                         "_links": {
                             "self": {
                                 "href": "http://localhost:8080/api/employees/3"
@@ -425,6 +433,8 @@ define([], function () {
                         "title": "Sekretär",
                         "salary": 123455.00,
                         "hourlyCostRate": 6854.00,
+                        "joinDate": null,
+                        "leaveDate": null,
                         "_links": {
                             "self": {
                                 "href": "http://localhost:8080/api/employees/4"
@@ -443,6 +453,8 @@ define([], function () {
                         "title": "Entertainerin",
                         "salary": 500000.00,
                         "hourlyCostRate": 900.10,
+                        "joinDate": null,
+                        "leaveDate": null,
                         "_links": {
                             "self": {
                                 "href": "http://localhost:8080/api/employees/5"
@@ -461,6 +473,8 @@ define([], function () {
                         "title": "Empfang",
                         "salary": 123.40,
                         "hourlyCostRate": 100.50,
+                        "joinDate": null,
+                        "leaveDate": null,
                         "_links": {
                             "self": {
                                 "href": "http://localhost:8080/api/employees/6"

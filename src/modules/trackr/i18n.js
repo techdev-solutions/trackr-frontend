@@ -38,7 +38,8 @@ define([], function () {
                         PHONE_NUMBER: 'Telefon',
                         HOURLY_COST_RATE: 'Stundensatz',
                         ADMINISTRATE_ROLES: 'Alle Rollen',
-                        JOIN_DATE: 'Eintrittsdatum'
+                        JOIN_DATE: 'Eintrittsdatum',
+                        LEAVE_DATE: 'Austrittsdatum'
                     },
                     CREDENTIAL: {
                         EMAIL: 'E-Mail',
@@ -152,7 +153,8 @@ define([], function () {
                         PHONE_NUMBER: 'Phone number',
                         HOURLY_COST_RATE: 'Hourly cost rate',
                         ADMINISTRATE_ROLES: 'All roles',
-                        JOIN_DATE: 'Join date'
+                        JOIN_DATE: 'Join date',
+                        LEAVE_DATE: 'Leave date'
                     },
                     CREDENTIAL: {
                         EMAIL: 'E-Mail',

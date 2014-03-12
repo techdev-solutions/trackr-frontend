@@ -41,12 +41,13 @@ define(['fixtures'], function(fixtures) {
         mockRoot('/api/companies');
 
         $httpBackend.when('GET', /^\/api\/credentials\/[\d]+$/).respond(fixtures['/api/credentials']._embedded.credentials[0]);
+        $httpBackend.when('GET', /^\/api\/credentials\/[\d]+\/authorities$/).respond(fixtures['/api/authorities']._embedded.authorities);
         $httpBackend.when('GET', /^\/api\/contactPersons\/[\d]+$/).respond(fixtures['/api/contactPersons']._embedded.contactPersons[0]);
         $httpBackend.when('GET', /^\/api\/authorities\/[\d]+$/).respond(fixtures['/api/authorities']._embedded.authorities[0]);
         $httpBackend.when('GET', /^\/api\/projects\/[\d]+$/).respond(fixtures['/api/projects']._embedded.projects[0]);
         $httpBackend.when('GET', /^\/api\/employees\/[\d]+$/).respond(fixtures['/api/employees']._embedded.employees[0]);
+        $httpBackend.when('GET', /^\/api\/employees\/[\d]+\/credential$/).respond(fixtures['/api/credentials']._embedded.credentials[0]);
         $httpBackend.when('GET', /^\/api\/companies\/[\d]+$/).respond(fixtures['/api/companies']._embedded.companies[0]);
-
         $httpBackend.when('GET', /^\/api\/companies\/[\d]+\/address$/).respond(fixtures['/api/addresses']._embedded.addresses[0]);
         $httpBackend.when('GET', /^\/api\/companies\/[\d]+\/contactPersons/).respond(fixtures['/api/contactPersons']);
 
@@ -62,6 +63,13 @@ define(['fixtures'], function(fixtures) {
         mockPost('/api/billableTimes');
         mockPost('/api/companies/createWithAddress');
 
+        $httpBackend.whenPATCH(/^\/api\/credentials\/\d+$/).respond(function(method, url ,data) {
+            return [200, data];
+        });
+
+        $httpBackend.whenPATCH(/^\/api\/employees\/\d+$/).respond(function(method, url ,data) {
+            return [200, data];
+        });
         $httpBackend.whenPATCH(/^\/api\/employees\/\d+\/self$/).respond(function(method, url ,data) {
             return [200, data];
         });

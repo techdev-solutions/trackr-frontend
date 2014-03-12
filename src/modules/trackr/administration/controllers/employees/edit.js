@@ -19,14 +19,29 @@ define([], function() {
             });
         };
 
-        $scope.$watch('employee.joinDate', function(newDate, oldDate) {
-            if(oldDate) {
-                var patch = {
-                    joinDate: newDate
-                };
-                employeeBase.patch(patch);
-            }
-        });
+        function watchDateOnEmployeeAndPatchOnChange(name) {
+            $scope.$watch('employee.' + name, function(newDate, oldDate) {
+                /*
+                When the employee is loaded this will be triggered, with oldDate = undefined and newDate = null/actual date.
+                We only want to patch if the date has actually changed, so the oldDate came from the request and is not initial (i.e. undefined).
+                 */
+                if(oldDate !== undefined) {
+                    var patch = {};
+                    patch[name] = newDate;
+                    employeeBase.patch(patch).then(function() {
+                        //If the leaveDate has changed the employee may have been deactivated.
+                        if(name === 'leaveDate') {
+                            credentialBase.get().then(function(credential) {
+                                $scope.credential = credential;
+                            });
+                        }
+                    });
+                }
+            });
+        }
+
+        watchDateOnEmployeeAndPatchOnChange('joinDate');
+        watchDateOnEmployeeAndPatchOnChange('leaveDate');
 
         /*
          Initial load of employee and associated data.
