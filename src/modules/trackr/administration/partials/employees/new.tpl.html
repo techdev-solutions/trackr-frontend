@@ -11,6 +11,14 @@
         <bs-text property-name="employee.hourlyCostRate" translate-code="EMPLOYEE.HOURLY_COST_RATE" path="employee.hourlyCostRate"></bs-text>
         <bs-text property-name="credential.email" translate-code="CREDENTIAL.EMAIL" path="credential.email"></bs-text>
 
+        <div class="form-group" ng-class="{'has-error': errors['employee.federalState']}">
+            <label class="form-label col-sm-4" for="federalState">{{ 'EMPLOYEE.FEDERAL_STATE' | translate }}</label>
+            <div class="col-sm-6">
+                <select ng-model="employee.federalState" id="federalState" ng-options="s.name as s.state for s in states"></select>
+                <span ng-show="errors['employee.federalState']" class="help-block">{{errors['employee.federalState'].defaultMessage}}</span>
+            </div>
+        </div>
+
         <div class="form-group">
             <label class="form-label col-sm-4" for="joinDate">{{ 'EMPLOYEE.JOIN_DATE' | translate }}</label>
             <div class="col-sm-6">

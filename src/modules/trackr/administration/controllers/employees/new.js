@@ -19,5 +19,9 @@ define([], function () {
         $scope.cancel = function() {
             $modalInstance.dismiss();
         };
+
+        Restangular.one('federalStates').get().then(function(states) {
+            $scope.states = states;
+        });
     }];
 });
