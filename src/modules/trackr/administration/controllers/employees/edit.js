@@ -30,9 +30,11 @@ define([], function() {
                     patch[name] = newDate;
                     employeeBase.patch(patch).then(function() {
                         //If the leaveDate has changed the employee may have been deactivated.
+                        var authorities = $scope.credential.authorities;
                         if(name === 'leaveDate') {
                             credentialBase.get().then(function(credential) {
                                 $scope.credential = credential;
+                                $scope.credential.authorities = authorities;
                             });
                         }
                     });
