@@ -9,12 +9,13 @@ define([], function() {
      * * callback: (optional) A callback that will be called <b>after</b> a successful PATCH call to the API.
      * * role: (optional) If a role is needed to edit the field.
      * * own-submit: (optional) submit function to be called, overwrites the intern function. Gets the patch object as the parameter. Must return a promise.
+     * * errorCallback: (optional) A function that gets called with the HTTP response in case of an error.
      */
     return ['base.services.user', function(UserService) {
         return {
             restrict: 'E',
             templateUrl: '/src/modules/shared/partials/bsEdit.tpl.html',
-            scope: {propertyName: '@', entity: '=', callback: '=', role: '@', ownSubmit: '='},
+            scope: {propertyName: '@', entity: '=', callback: '=', role: '@', ownSubmit: '=', errorCallback: '='},
             link: function(scope, element) {
                 if(!scope.role || UserService.userHasAuthority(scope.role)) {
                     var oldValue;
@@ -78,6 +79,9 @@ define([], function() {
                         }
                     }
                     function errorCallback(response) {
+                        if($scope.errorCallback) {
+                            $scope.errorCallback(response);
+                        }
                         $scope.errors = response.data;
                     }
                     var patchObject = {};

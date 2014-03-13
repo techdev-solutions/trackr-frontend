@@ -8,7 +8,8 @@ define([], function () {
                         CREATE_NEW: 'Neue Firma anlegen',
                         COMPANIES: 'Firmen',
                         COMPANY_ID: 'Eindeutiger Bezeichner',
-                        NAME: 'Name'
+                        NAME: 'Name',
+                        COMPANY_ID_CONFLICT: 'Bezeichner bereits vergeben!'
                     },
                     ADDRESS: {
                         ADDRESS: 'Adresse',
@@ -125,7 +126,8 @@ define([], function () {
                         CREATE_NEW: 'Create new company',
                         COMPANIES: 'Companies',
                         COMPANY_ID: 'Unique identifier',
-                        NAME: 'Name'
+                        NAME: 'Name',
+                        COMPANY_ID_CONFLICT: 'Identifier already in use.'
                     },
                     ADDRESS: {
                         ADDRESS: 'Address',

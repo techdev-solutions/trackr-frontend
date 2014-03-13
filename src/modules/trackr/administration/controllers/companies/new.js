@@ -1,6 +1,6 @@
 define([], function () {
     'use strict';
-    return ['$scope', 'Restangular', '$modalInstance', function($scope, Restangular, $modalInstance) {
+    return ['$scope', 'Restangular', '$modalInstance', '$filter', function($scope, Restangular, $modalInstance, $filter) {
         $scope.errors = {};
         $scope.company = {
             address: {} //address may not be null. Won't be used in the controller.
@@ -14,7 +14,15 @@ define([], function () {
             }).then(function(company) {
                 $modalInstance.close(company);
             }, function(response) {
-                $scope.errors = response.data;
+                if(response.status === 409) {
+                    $scope.errors = {
+                        'company.companyId': {
+                            defaultMessage: $filter('translate')('COMPANY.COMPANY_ID_CONFLICT')
+                        }
+                    };
+                } else {
+                    $scope.errors = response.data;
+                }
             });
         };
 

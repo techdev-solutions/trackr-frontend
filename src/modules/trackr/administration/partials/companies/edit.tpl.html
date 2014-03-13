@@ -1,7 +1,10 @@
 <h1><bs-edit entity="company" property-name="name" role="ROLE_ADMIN"></bs-edit></h1>
 <dl>
     <dt>{{ 'COMPANY.COMPANY_ID' | translate }}
-        <dd><bs-edit entity="company" property-name="companyId" callback="companyIdChanged" role="ROLE_ADMIN"></bs-edit></dd>
+        <dd>
+            <bs-edit entity="company" property-name="companyId" callback="companyIdChanged" error-callback="companyIdError" role="ROLE_ADMIN"></bs-edit>
+            <span ng-if="companyIdErrorText">{{companyIdErrorText}}</span>
+        </dd>
     </dt>
     <h2>{{ 'ADDRESS.ADDRESS' | translate}}</h2>
     <dt>{{ 'ADDRESS.STREET' | translate }}

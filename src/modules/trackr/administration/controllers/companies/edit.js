@@ -1,6 +1,6 @@
 define(['lodash'], function(_) {
     'use strict';
-    return ['$stateParams', '$scope', 'Restangular', '$log', '$state', function($stateParams, $scope, Restangular, $log, $state) {
+    return ['$stateParams', '$scope', 'Restangular', '$state', '$filter', function($stateParams, $scope, Restangular, $state, $filter) {
         /**
          * Show or hide the form for a new contact person for this company
          * @param show true/false = show/hide
@@ -31,15 +31,13 @@ define(['lodash'], function(_) {
          */
         $scope.removeContactPerson = function(contactPerson) {
             /*
-                We cant use the contactPerson object directly because it is tied to the company.
-                Restangular would execute DELETE '/api/companies/0/contactPersons/0' which is not what we want
+             We cant use the contactPerson object directly because it is tied to the company.
+             Restangular would execute DELETE '/api/companies/0/contactPersons/0' which is not what we want
              */
             Restangular.one('contactPersons', contactPerson.id).remove().then(function() {
                 _.remove($scope.contactPersons, function(cP) {
                     return cP.id === contactPerson.id;
                 });
-            }, function(response) {
-                $log.error(response);
             });
         };
 
@@ -47,8 +45,14 @@ define(['lodash'], function(_) {
             $state.go('trackr.administration.companies.edit', {id: $scope.company.companyId});
         };
 
+        $scope.companyIdError = function(response) {
+            if(response.status === 409) {
+                $scope.companyIdErrorText =  $filter('translate')('COMPANY.COMPANY_ID_CONFLICT');
+            }
+        };
+
         /*
-            Initialization of $scope objects
+         Initialization of $scope objects
          */
         $scope.contactPersonErrors = {};
         $scope.newContactPerson = {};
