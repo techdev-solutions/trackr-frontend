@@ -50,8 +50,8 @@ define([], function() {
 
         $scope.saveTime = function() {
             var workTimeObject = createWorkTimeEntity();
-            Restangular.all('workTimes').post(workTimeObject).then(function() {
-
+            Restangular.all('workTimes').post(workTimeObject).then(function() {}, function(response) {
+                $scope.errors = response.data;
             });
         };
     }];
