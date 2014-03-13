@@ -9,7 +9,7 @@ define([], function () {
                         COMPANIES: 'Firmen',
                         COMPANY_ID: 'Eindeutiger Bezeichner',
                         NAME: 'Name',
-                        COMPANY_ID_CONFLICT: 'Bezeichner bereits vergeben!'
+                        COMPANY_ID_CONFLICT: 'Bezeichner bereits vergeben.'
                     },
                     ADDRESS: {
                         ADDRESS: 'Adresse',
@@ -46,7 +46,8 @@ define([], function () {
                     },
                     CREDENTIAL: {
                         EMAIL: 'E-Mail',
-                        ENABLED: 'Aktiv'
+                        ENABLED: 'Aktiv',
+                        EMAIL_CONFLICT: 'Email bereits in Benutzung.'
                     },
                     PROJECT: {
                         PROJECTS: 'Projekte',
@@ -164,7 +165,8 @@ define([], function () {
                     },
                     CREDENTIAL: {
                         EMAIL: 'E-Mail',
-                        ENABLED: 'Enabled'
+                        ENABLED: 'Enabled',
+                        EMAIL_CONFLICT: 'Email already in use.'
                     },
                     PROJECT: {
                         PROJECTS: 'Projects',

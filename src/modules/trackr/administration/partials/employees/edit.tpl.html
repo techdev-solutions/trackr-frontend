@@ -32,7 +32,10 @@
     </dt>
     <dt>
         {{ 'CREDENTIAL.EMAIL' | translate }}
-        <dd><bs-edit entity="credential" property-name="email" role="ROLE_ADMIN"></bs-edit></dd>
+        <dd>
+            <bs-edit entity="credential" property-name="email" role="ROLE_ADMIN" error-callback="emailError" callback="emailOk"></bs-edit>
+            <span ng-if="emailErrorText">{{emailErrorText}}</span>
+        </dd>
     </dt>
     <dt>
         {{ 'CREDENTIAL.ENABLED' | translate }}

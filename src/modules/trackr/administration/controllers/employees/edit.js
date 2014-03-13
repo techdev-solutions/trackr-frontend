@@ -1,6 +1,6 @@
 define([], function() {
     'use strict';
-    return ['Restangular', '$scope', '$stateParams', '$controller', function(Restangular, $scope, $stateParams, $controller) {
+    return ['Restangular', '$scope', '$stateParams', '$controller', '$filter', function(Restangular, $scope, $stateParams, $controller, $filter) {
         $controller('trackr.administration.controllers.employees.roles-base', {$scope: $scope});
 
         //Contains the restangularified credential base object (i.e. URL = /api/credentials/xy not /api/employees/x/credential)
@@ -17,6 +17,23 @@ define([], function() {
             credentialBase.patch(patch).then(function(credential) {
                 $scope.credential = credential;
             });
+        };
+
+        /**
+         * Called if there was an error updating the email address
+         * @param response The HTTP response object
+         */
+        $scope.emailError = function(response) {
+            if(response.status === 409) {
+                $scope.emailErrorText = $filter('translate')('CREDENTIAL.EMAIL_CONFLICT');
+            }
+        };
+
+        /**
+         * Called if the email address was updated correctly.
+         */
+        $scope.emailOk = function() {
+            $scope.emailErrorText = undefined;
         };
 
         function watchDateOnEmployeeAndPatchOnChange(name) {

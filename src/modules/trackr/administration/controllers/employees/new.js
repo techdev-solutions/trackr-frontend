@@ -1,6 +1,6 @@
-define([], function () {
+define([], function() {
     'use strict';
-    return ['$scope', 'Restangular', '$modalInstance', function($scope, Restangular, $modalInstance) {
+    return ['$scope', 'Restangular', '$modalInstance', '$filter', function($scope, Restangular, $modalInstance, $filter) {
         $scope.errors = {};
         $scope.employee = {};
         $scope.credential = {};
@@ -12,7 +12,15 @@ define([], function () {
             }).then(function(employee) {
                 $modalInstance.close(employee);
             }, function(response) {
-                $scope.errors = response.data;
+                if(response.status === 409) {
+                    $scope.errors = {
+                        'credential.email': {
+                            defaultMessage: $filter('translate')('CREDENTIAL.EMAIL_CONFLICT')
+                        }
+                    };
+                } else {
+                    $scope.errors = response.data;
+                }
             });
         };
 
