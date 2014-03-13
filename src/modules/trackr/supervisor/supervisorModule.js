@@ -1,4 +1,4 @@
-define(['angular', 'modules/trackr/supervisor/controllers/controllers'], function(angular, controllers) {
+define(['angular', 'modules/trackr/supervisor/controllers'], function(angular, controllers) {
     'use strict';
     var supervisor = angular.module('trackr.supervisor', []);
 
@@ -8,7 +8,7 @@ define(['angular', 'modules/trackr/supervisor/controllers/controllers'], functio
                 url: '/supervisor',
                 views: {
                     'center@': {
-                        templateUrl: '/src/modules/trackr/supervisor/partials/supervisor.tpl.html'
+                        templateUrl: '/src/modules/trackr/supervisor/supervisor.tpl.html'
                     }
                 }
             })
@@ -16,7 +16,7 @@ define(['angular', 'modules/trackr/supervisor/controllers/controllers'], functio
                 url: '/bill',
                 views: {
                     'center@': {
-                        templateUrl: '/src/modules/trackr/supervisor/partials/bill.tpl.html',
+                        templateUrl: '/src/modules/trackr/supervisor/bill.tpl.html',
                         controller: 'trackr.supervisor.controllers.bill'
                     }
                 }
@@ -25,7 +25,7 @@ define(['angular', 'modules/trackr/supervisor/controllers/controllers'], functio
                 url: '/report',
                 views: {
                     'center@': {
-                        templateUrl: '/src/modules/trackr/supervisor/partials/bill-report.tpl.html',
+                        templateUrl: '/src/modules/trackr/supervisor/billReport.tpl.html',
                         controller: 'trackr.supervisor.controllers.bill-report'
                     }
                 }

@@ -2,7 +2,7 @@ define(['angular',
     'modules/trackr/i18n',
     'modules/trackr/administration/administrationModule',
     'modules/trackr/employee/employeeModule',
-    'modules/trackr/supervisor/supervisor',
+    'modules/trackr/supervisor/supervisorModule',
     'angular-translate'],
     function(angular, i18n) {
         'use strict';

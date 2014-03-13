@@ -1,4 +1,4 @@
-define(['modules/trackr/supervisor/controllers/timeIntervalSetup'], function(timeIntervalSetup) {
+define(['modules/trackr/supervisor/timeIntervalSetup'], function(timeIntervalSetup) {
     'use strict';
     return ['$scope', 'Restangular', '$filter', '$http', function($scope, Restangular, $filter, $http) {
         $scope.getCompanies = function(searchString) {
