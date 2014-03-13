@@ -1,4 +1,4 @@
-define(['angular', 'modules/trackr/employee/controllers/controllers'], function(angular, controllers) {
+define(['angular', 'modules/trackr/employee/controllers'], function(angular, controllers) {
     'use strict';
     var employee = angular.module('trackr.employee', []);
 
@@ -8,7 +8,7 @@ define(['angular', 'modules/trackr/employee/controllers/controllers'], function(
                 url: '/employee',
                 views: {
                     'center@': {
-                        templateUrl: '/src/modules/trackr/employee/partials/employee.tpl.html'
+                        templateUrl: '/src/modules/trackr/employee/employee.tpl.html'
                     }
                 }
             })
@@ -16,7 +16,7 @@ define(['angular', 'modules/trackr/employee/controllers/controllers'], function(
                 url: '/self',
                 views: {
                     'center@': {
-                        templateUrl: '/src/modules/trackr/employee/partials/self.tpl.html',
+                        templateUrl: '/src/modules/trackr/employee/self.tpl.html',
                         controller: 'trackr.employee.controllers.self'
                     }
                 }
@@ -25,7 +25,7 @@ define(['angular', 'modules/trackr/employee/controllers/controllers'], function(
                 url: '/timesheet',
                 views: {
                     'center@': {
-                        templateUrl: '/src/modules/trackr/employee/partials/timesheet.tpl.html',
+                        templateUrl: '/src/modules/trackr/employee/timesheet.tpl.html',
                         controller: 'trackr.employee.controllers.timesheet'
                     }
                 }
@@ -34,7 +34,7 @@ define(['angular', 'modules/trackr/employee/controllers/controllers'], function(
                 url: '/overview',
                 views: {
                     'center@': {
-                        templateUrl: '/src/modules/trackr/employee/partials/overview.tpl.html',
+                        templateUrl: '/src/modules/trackr/employee/timesheetOverview.tpl.html',
                         controller: 'trackr.employee.controllers.timesheet-overview'
                     }
                 }

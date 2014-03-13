@@ -1,8 +1,8 @@
 define(
     [
-        'modules/trackr/employee/controllers/self',
-        'modules/trackr/employee/controllers/timesheet',
-        'modules/trackr/employee/controllers/timesheet-overview'
+        'modules/trackr/employee/selfController',
+        'modules/trackr/employee/timesheetController',
+        'modules/trackr/employee/timesheetOverviewController'
     ],
     function(SelfController, TimeSheetController, TimesheetOverviewController) {
         'use strict';
