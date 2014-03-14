@@ -1,11 +1,11 @@
 define(['baseTestSetup', 'angular'], function(baseTestSetup, angular) {
     'use strict';
-    describe('trackr.administration.controllers.companies.new', function() {
+    describe('trackr.administration.controllers.projects.new', function() {
         var NewController, scope;
         baseTestSetup();
         beforeEach(inject(function($controller, $rootScope) {
             scope = $rootScope.$new();
-            NewController = $controller('trackr.administration.controllers.companies.new', {
+            NewController = $controller('trackr.administration.controllers.projects.new', {
                 $scope: scope,
                 //for now mocked here
                 //TODO: find out why the provider is not available
@@ -21,16 +21,12 @@ define(['baseTestSetup', 'angular'], function(baseTestSetup, angular) {
         });
 
         it('must have a new company object', function() {
-            expect(scope.company).toBeDefined();
-        });
-
-        it('must have a new address object', function() {
-            expect(scope.address).toBeDefined();
+            expect(scope.project).toBeDefined();
         });
 
         it('must save the company and address', inject(function($httpBackend) {
-            scope.saveCompany();
-            $httpBackend.expectPOST('/api/companies/createWithAddress');
+            scope.saveProject();
+            $httpBackend.expectPOST('/api/projects');
             $httpBackend.flush();
         }));
     });
