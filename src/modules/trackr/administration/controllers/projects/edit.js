@@ -2,7 +2,7 @@ define([], function() {
     'use strict';
     return ['$stateParams', '$scope', 'Restangular', '$state', function($stateParams, $scope, Restangular, $state) {
         $scope.projectIdChanged = function() {
-            $state.go('trackr.administration.companies.edit', {id: $scope.project.companyId});
+            $state.go('trackr.administration.projects.edit', {id: $scope.project.identifier});
         };
 
         /*
