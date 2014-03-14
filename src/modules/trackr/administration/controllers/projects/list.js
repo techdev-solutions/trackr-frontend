@@ -27,6 +27,7 @@ define([], function () {
                 loadProjects();
                 $state.go('trackr.administration.projects.edit', {id: project.identifier});
             });
+            return modalInstance;
         };
     }];
 });
