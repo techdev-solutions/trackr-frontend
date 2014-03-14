@@ -77,5 +77,14 @@ define(['fixtures'], function(fixtures) {
 
         var pattern = new RegExp('/api/companies/search/findByCompanyId\\?.*');
         $httpBackend.whenGET(pattern).respond(fixtures['/api/companies']);
+
+
+        /* ############################ TEMPLATES ########################### */
+        /*
+        Just return an empty template.
+         */
+        $httpBackend.whenGET(/^.*\.tpl\.html$/).respond(
+            [200, '<div></div>']
+        );
     };
 });

@@ -1,11 +1,11 @@
-define([], function () {
+define([], function() {
     'use strict';
     return ['$scope', 'Restangular', '$modal', '$state', function($scope, Restangular, $modal, $state) {
         var allCompanies = Restangular.all('companies');
 
         function loadCompanies(page) {
             page = page || 1;
-            allCompanies.getList({sort: 'name,asc', page: page - 1, size: 5}).then(function (companies) {
+            allCompanies.getList({sort: 'name,asc', page: page - 1, size: 5}).then(function(companies) {
                 $scope.companies = companies;
             });
         }
@@ -27,6 +27,7 @@ define([], function () {
                 loadCompanies();
                 $state.go('trackr.administration.companies.edit', {id: company.companyId});
             });
+            return modalInstance;
         };
     }];
 });
