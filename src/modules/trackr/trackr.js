@@ -1,8 +1,8 @@
 define(['angular',
     'modules/trackr/i18n',
-    'modules/trackr/administration/administration',
-    'modules/trackr/employee/employee',
-    'modules/trackr/supervisor/supervisor',
+    'modules/trackr/administration/administrationModule',
+    'modules/trackr/employee/employeeModule',
+    'modules/trackr/supervisor/supervisorModule',
     'angular-translate'],
     function(angular, i18n) {
         'use strict';
@@ -15,7 +15,7 @@ define(['angular',
                     abstract: true,
                     views: {
                         'top-menu@': {
-                            templateUrl: '/src/modules/trackr/partials/top-menu.tpl.html',
+                            templateUrl: '/src/modules/trackr/top-menu.tpl.html',
                             controller: 'base.controllers.navigation'
                         }
                     }
@@ -24,7 +24,7 @@ define(['angular',
                     url: '',
                     views: {
                         'center@': {
-                            templateUrl: '/src/modules/trackr/partials/welcome.tpl.html'
+                            templateUrl: '/src/modules/trackr/welcome.tpl.html'
                         }
                     }
                 });

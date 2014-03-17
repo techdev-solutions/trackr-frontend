@@ -1,8 +1,8 @@
 define(
     [
-        'modules/trackr/supervisor/controllers/bill',
-        'modules/trackr/supervisor/controllers/billCreate',
-        'modules/trackr/supervisor/controllers/billReport'
+        'modules/trackr/supervisor/billController',
+        'modules/trackr/supervisor/billCreateController',
+        'modules/trackr/supervisor/billReportController'
     ],
     function(BillController, BillCreateController, BillReportController) {
         'use strict';
