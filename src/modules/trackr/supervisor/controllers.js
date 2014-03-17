@@ -1,15 +1,15 @@
 define(
     [
-        'modules/trackr/supervisor/billController',
-        'modules/trackr/supervisor/billCreateController',
+        'modules/trackr/supervisor/fileBillableHoursController',
+        'modules/trackr/supervisor/fileBillableHoursSaveController',
         'modules/trackr/supervisor/billReportController'
     ],
-    function(BillController, BillCreateController, BillReportController) {
+    function(FileBillableHoursController, FileBillableHoursSaveController, BillReportController) {
         'use strict';
         return {
             init: function(module) {
-                module.controller('trackr.supervisor.controllers.bill', BillController);
-                module.controller('trackr.supervisor.controllers.bill-create', BillCreateController);
+                module.controller('trackr.supervisor.controllers.file-billable-hours', FileBillableHoursController);
+                module.controller('trackr.supervisor.controllers.save-billable-hours', FileBillableHoursSaveController);
                 module.controller('trackr.supervisor.controllers.bill-report', BillReportController);
             }
         };

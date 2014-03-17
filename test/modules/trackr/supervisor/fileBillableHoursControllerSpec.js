@@ -1,12 +1,12 @@
 define(['baseTestSetup', 'angular'], function(baseTestSetup, angular) {
     'use strict';
-    describe('trackr.supervisor.controllers.bill', function() {
+    describe('trackr.supervisor.controllers.file-billable-hours', function() {
         var BillController, scope;
 
         baseTestSetup();
         beforeEach(inject(function($rootScope, $controller) {
             scope = $rootScope.$new();
-            BillController = $controller('trackr.supervisor.controllers.bill', {
+            BillController = $controller('trackr.supervisor.controllers.file-billable-hours', {
                 $scope: scope
             });
         }));

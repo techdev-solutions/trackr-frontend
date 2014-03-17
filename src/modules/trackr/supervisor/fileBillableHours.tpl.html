@@ -36,7 +36,7 @@
 </div>
 
 <tabset>
-    <tab ng-repeat="(id, employee) in employeeMapping" heading="{{employee.name}}" ng-controller="trackr.supervisor.controllers.bill-create">
+    <tab ng-repeat="(id, employee) in employeeMapping" heading="{{employee.name}}" ng-controller="trackr.supervisor.controllers.save-billable-hours">
         <table class="table table-condensed table-bordered">
             <tr>
                 <th>{{ 'BILLABLE_TIME.DATE' | translate }}</th>

@@ -16,8 +16,8 @@ define(['angular', 'modules/trackr/supervisor/controllers'], function(angular, c
                 url: '/bill',
                 views: {
                     'center@': {
-                        templateUrl: '/src/modules/trackr/supervisor/bill.tpl.html',
-                        controller: 'trackr.supervisor.controllers.bill'
+                        templateUrl: '/src/modules/trackr/supervisor/fileBillableHours.tpl.html',
+                        controller: 'trackr.supervisor.controllers.file-billable-hours'
                     }
                 }
             })

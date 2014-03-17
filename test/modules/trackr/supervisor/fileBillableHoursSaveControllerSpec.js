@@ -1,7 +1,7 @@
 define(['baseTestSetup'], function(baseTestSetup) {
     'use strict';
 
-    describe('trackr.supervisor.controllers.bill-create', function() {
+    describe('trackr.supervisor.controllers.save-billable-hours', function() {
         var BillCreateController, scope;
 
         function setWorkTimeHoursToValue(value) {
@@ -16,7 +16,7 @@ define(['baseTestSetup'], function(baseTestSetup) {
             scope.employee = {
                 workTimes: [{enteredMinutes: 10}, {enteredMinutes: 20}]
             };
-            BillCreateController = $controller('trackr.supervisor.controllers.bill-create', {
+            BillCreateController = $controller('trackr.supervisor.controllers.save-billable-hours', {
                 $scope: scope
             });
         }));
