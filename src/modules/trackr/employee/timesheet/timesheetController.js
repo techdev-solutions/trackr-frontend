@@ -1,6 +1,6 @@
 define([], function() {
     'use strict';
-    return ['$scope', 'Restangular', 'base.services.user', function($scope, Restangular, UserService) {
+    return ['$scope', 'Restangular', 'trackr.services.employee', function($scope, Restangular, EmployeeService) {
         var today = new Date();
         $scope.date = today;
         $scope.startTime = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 9, 0, 0);
@@ -24,11 +24,6 @@ define([], function() {
             return Restangular.allUrl('projects', '/api/projects/search/findByNameLikeOrIdentifierLikeOrderByNameAsc').getList({name: search, identifier: search});
         };
 
-        var employee;
-        Restangular.one('employees', UserService.getUser().id).get().then(function(_employee) {
-            employee = _employee;
-        });
-
         function formatTime(date) {
             return date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
         }
@@ -39,7 +34,7 @@ define([], function() {
                 project = $scope.project._links.self.href;
             }
             return {
-                employee: employee._links.self.href,
+                employee: EmployeeService.getEmployeeHref(),
                 project: project,
                 date: $scope.date,
                 startTime: formatTime($scope.startTime),
