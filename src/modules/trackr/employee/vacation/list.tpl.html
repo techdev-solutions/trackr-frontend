@@ -1,0 +1,33 @@
+<div ui-view="new">
+</div>
+<p>
+    <b>{{ 'EMPLOYEE.VACATION_ENTITLEMENT' | translate }}</b>: {{employee.vacationEntitlement}}
+</p>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <td>{{ 'VACATION_REQUEST.START_DATE' | translate }}</td>
+        <td>{{ 'VACATION_REQUEST.END_DATE' | translate }}</td>
+        <td>{{ 'VACATION_REQUEST.NUMBER_OF_DAYS' | translate }}</td>
+        <td>{{ 'VACATION_REQUEST.APPROVED' | translate }}</td>
+        <td>{{ 'VACATION_REQUEST.APPROVER' | translate }}</td>
+        <td>{{ 'VACATION_REQUEST.APPROVAL_DATE' | translate }}</td>
+        <td>{{ 'ACTIONS.ACTIONS' | translate }}</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="vacationRequest in vacationRequests">
+        <td>{{vacationRequest.startDate}}</td>
+        <td>{{vacationRequest.endDate}}</td>
+        <td>{{vacationRequest.numberOfDays}}</td>
+        <td>{{vacationRequest.approved}}</td>
+        <td>tbd</td>
+        <td>{{vacationRequest.approvalDate}}</td>
+        <td>
+            <a href ng-show="!vacationRequest.approved" ng-click="cancelVacationRequest(vacationRequest)">
+                <span class="glyphicon glyphicon-remove"></span>
+            </a>
+        </td>
+    </tr>
+    </tbody>
+</table>

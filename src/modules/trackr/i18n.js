@@ -72,6 +72,14 @@ define([], function () {
                         DATE: 'Datum',
                         BILLABLE_HOURS: 'Rechnungsstunden'
                     },
+                    VACATION_REQUEST: {
+                        START_DATE: 'Start',
+                        END_DATE: 'Ende',
+                        NUMBER_OF_DAYS: 'Tage',
+                        APPROVED: 'Genehmigt',
+                        APPROVER: 'Genehmigt von',
+                        APPROVAL_DATE: 'Genehmigt am'
+                    },
                     PAGES: {
                         HOME: {
                             WELCOME_TEXT: 'Willkommen bei trackr'
@@ -85,7 +93,8 @@ define([], function () {
                         EMPLOYEE: {
                             TITLE: 'Self Services',
                             TEXT_EDIT_PROFILE: 'Editieren Sie ihr Profil',
-                            TEXT_EDIT_TIMESHEET: 'Erfassen Sie Arbeitszeiten'
+                            TEXT_EDIT_TIMESHEET: 'Erfassen Sie Arbeitszeiten',
+                            TEXT_VACATION: 'Urlaubsanträge'
                         },
                         SUPERVISOR: {
                             TITLE: 'Supervisor',
@@ -107,6 +116,7 @@ define([], function () {
                         }
                     },
                     ACTIONS: {
+                        ACTIONS: 'Aktionen',
                         SAVE: 'Speichern',
                         NEW: 'Neu',
                         CANCEL: 'Abbrechen',
@@ -184,6 +194,14 @@ define([], function () {
                         DATE: 'Date',
                         BILLABLE_HOURS: 'Billable hours'
                     },
+                    VACATION_REQUEST: {
+                        START_DATE: 'Start date',
+                        END_DATE: 'End date',
+                        NUMBER_OF_DAYS: 'Number of days',
+                        APPROVED: 'Approved',
+                        APPROVER: 'Approved by',
+                        APPROVAL_DATE: 'Approval date'
+                    },
                     WORKTIME: {
                         DATE: 'Date',
                         PROJECT: 'Project',
@@ -204,7 +222,8 @@ define([], function () {
                         EMPLOYEE: {
                             TITLE: 'Self Services',
                             TEXT_EDIT_PROFILE: 'Edit your profile',
-                            TEXT_EDIT_TIMESHEET: 'Track times'
+                            TEXT_EDIT_TIMESHEET: 'Track times',
+                            TEXT_VACATION: 'Vacation request'
                         },
                         SUPERVISOR: {
                             TITLE: 'Supervisor',
@@ -226,6 +245,7 @@ define([], function () {
                         }
                     },
                     ACTIONS: {
+                        ACTIONS: 'Actions',
                         SAVE: 'Save',
                         NEW: 'New',
                         CANCEL: 'Cancel',

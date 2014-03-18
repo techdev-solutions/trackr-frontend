@@ -1,0 +1,19 @@
+<form action="" ng-submit="submitVacationRequest(vacationRequest)">
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="well well-sm" ng-model="vacationRequest.startDate">
+                <datepicker></datepicker>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="well well-sm" ng-model="vacationRequest.endDate">
+                <datepicker></datepicker>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <button type="submit" class="btn btn-primary">{{ 'ACTIONS.SAVE' | translate }}</button>
+        </div>
+    </div>
+</form>

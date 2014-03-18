@@ -38,6 +38,19 @@ define(['angular', 'modules/trackr/employee/controllers'], function(angular, con
                         controller: 'trackr.employee.controllers.timesheet-overview'
                     }
                 }
+            })
+            .state('trackr.employee.vacation', {
+                url: '/vacation',
+                views: {
+                    'center@': {
+                        templateUrl: '/src/modules/trackr/employee/vacation/list.tpl.html',
+                        controller: 'trackr.employee.controllers.vacation-list'
+                    },
+                    'new@trackr.employee.vacation': {
+                        templateUrl: '/src/modules/trackr/employee/vacation/new.tpl.html',
+                        controller: 'trackr.employee.controllers.vacation-new'
+                    }
+                }
             });
     }]);
 
