@@ -50,7 +50,7 @@
                            ng-model="billableHoursAll" placeholder="{{ 'PAGES.SUPERVISOR.BILL.SET_ALL' | translate }}"/></td>
             </tr>
             <tr ng-repeat="workTime in employee.workTimes">
-                <td>{{workTime.date}}</td>
+                <td>{{workTime.date | date:'dd.MM.yyyy'}}</td>
                 <td>{{workTime.enteredMinutes / 60}}</td>
                 <td><input class="input-sm form-control" ng-model="workTime.hours" ng-change="recalculateBillableSum()"/></td>
                 <td>

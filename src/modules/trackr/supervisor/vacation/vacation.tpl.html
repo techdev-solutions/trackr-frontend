@@ -8,7 +8,7 @@
         <th colspan="2"></th>
     </tr>
     <tr ng-repeat="request in pendingRequests">
-        <td>{{request.startDate}} - {{request.endDate}}</td>
+        <td>{{request.startDate | date:'dd.MM.yyyy' }} - {{request.endDate | date:'dd.MM.yyyy'}}</td>
         <td>{{request.numberOfDays}}</td>
         <td>{{request.submissionTime | date:'dd.MM.yyyy HH:mm:ss'}}</td>
         <td>{{request.employee.firstName}} {{request.employee.lastName}}</td>
@@ -29,7 +29,7 @@
                 <th>{{ 'VACATION_REQUEST.APPROVER' | translate }}</th>
             </tr>
             <tr ng-repeat="request in approvedRequests">
-                <td>{{request.startDate}} - {{request.endDate}}</td>
+                <td>{{request.startDate | date:'dd.MM.yyyy' }} - {{request.endDate | date:'dd.MM.yyyy'}}</td>
                 <td>{{request.numberOfDays}}</td>
                 <td>{{request.submissionTime | date:'dd.MM.yyyy HH:mm:ss'}}</td>
                 <td>{{request.approvalDate | date:'dd.MM.yyyy'}}</td>
@@ -49,7 +49,7 @@
                 <th>{{ 'VACATION_REQUEST.APPROVER' | translate }}</th>
             </tr>
             <tr ng-repeat="request in rejectedRequests">
-                <td>{{request.startDate}} - {{request.endDate}}</td>
+                <td>{{request.startDate | date:'dd.MM.yyyy' }} - {{request.endDate | date:'dd.MM.yyyy'}}</td>
                 <td>{{request.numberOfDays}}</td>
                 <td>{{request.submissionTime | date:'dd.MM.yyyy HH:mm:ss'}}</td>
                 <td>{{request.approvalDate | date:'dd.MM.yyyy'}}</td>

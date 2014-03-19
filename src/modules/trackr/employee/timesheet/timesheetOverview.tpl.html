@@ -11,7 +11,7 @@
     </thead>
     <tbody>
     <tr ng-repeat="workTime in workTimes">
-        <td>{{ workTime.date }}</td>
+        <td>{{ workTime.date | date:'dd.MM.yyyy' }}</td>
         <td>{{ workTime.startTime }}</td>
         <td>{{ workTime.endTime }}</td>
         <td>{{ workTime.project.name }}</td>
