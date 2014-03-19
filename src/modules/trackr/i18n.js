@@ -76,9 +76,12 @@ define([], function () {
                         START_DATE: 'Start',
                         END_DATE: 'Ende',
                         NUMBER_OF_DAYS: 'Tage',
-                        APPROVED: 'Genehmigt',
+                        STATUS: 'Status',
                         APPROVER: 'Genehmigt von',
-                        APPROVAL_DATE: 'Genehmigt am'
+                        APPROVAL_DATE: 'Genehmigt am',
+                        PENDING: 'Wartet',
+                        APPROVED: 'Genehmigt',
+                        REJECTED: 'Abgelehnt'
                     },
                     PAGES: {
                         HOME: {
@@ -198,9 +201,12 @@ define([], function () {
                         START_DATE: 'Start date',
                         END_DATE: 'End date',
                         NUMBER_OF_DAYS: 'Number of days',
-                        APPROVED: 'Approved',
+                        STATUS: 'Status',
                         APPROVER: 'Approved by',
-                        APPROVAL_DATE: 'Approval date'
+                        APPROVAL_DATE: 'Approval date',
+                        PENDING: 'Pending',
+                        APPROVED: 'Approved',
+                        REJECTED: 'Rejected'
                     },
                     WORKTIME: {
                         DATE: 'Date',
