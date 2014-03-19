@@ -81,7 +81,10 @@ define([], function () {
                         APPROVAL_DATE: 'Genehmigt am',
                         PENDING: 'Wartet',
                         APPROVED: 'Genehmigt',
-                        REJECTED: 'Abgelehnt'
+                        REJECTED: 'Abgelehnt',
+                        INTERVAL: 'Zeitraum',
+                        EMPLOYEE: 'Angestellter',
+                        SUBMITTED: 'Eingereicht am'
                     },
                     PAGES: {
                         HOME: {
@@ -109,6 +112,9 @@ define([], function () {
                                 SET_ALL: 'Alle setzen',
                                 SUM: 'Summe'
                             },
+                            VACATION: {
+                                TITLE: 'Urlaubsanträge'
+                            },
                             BILL_CREATE: {
                                 TITLE: 'Rechnung erstellen',
                                 HOURS: 'Stunden',
@@ -126,7 +132,9 @@ define([], function () {
                         EDIT: 'Editieren',
                         CLOSE: 'Schließen',
                         CLEAR: 'Löschen',
-                        RESET: 'Zurücksetzen'
+                        RESET: 'Zurücksetzen',
+                        APPROVE: 'Genehmigen',
+                        REJECT: 'Ablehnen'
                     },
                     DATE: {
                         TODAY: 'Heute',
@@ -206,7 +214,10 @@ define([], function () {
                         APPROVAL_DATE: 'Approval date',
                         PENDING: 'Pending',
                         APPROVED: 'Approved',
-                        REJECTED: 'Rejected'
+                        REJECTED: 'Rejected',
+                        INTERVAL: 'Interval',
+                        EMPLOYEE: 'Employee',
+                        SUBMITTED: 'Submitted'
                     },
                     WORKTIME: {
                         DATE: 'Date',
@@ -247,6 +258,9 @@ define([], function () {
                                 MAN_DAYS: 'Man days',
                                 NET_PRICE: 'Net price',
                                 GROSS_PRICE: 'Gross price'
+                            },
+                            VACATION: {
+                                TITLE: 'Vacation requests'
                             }
                         }
                     },
@@ -258,7 +272,9 @@ define([], function () {
                         EDIT: 'Edit',
                         CLOSE: 'Close',
                         CLEAR: 'Clear',
-                        RESET: 'Reset'
+                        RESET: 'Reset',
+                        APPROVE: 'Approve',
+                        REJECT: 'Reject'
                     },
                     DATE: {
                         TODAY: 'Today',

@@ -24,7 +24,7 @@
         <td>tbd</td>
         <td>{{vacationRequest.approvalDate}}</td>
         <td>
-            <a href ng-show="!vacationRequest.approved" ng-click="cancelVacationRequest(vacationRequest)">
+            <a href ng-show="vacationRequest.status === 'PENDING'" ng-click="cancelVacationRequest(vacationRequest)">
                 <span class="glyphicon glyphicon-remove"></span>
             </a>
         </td>

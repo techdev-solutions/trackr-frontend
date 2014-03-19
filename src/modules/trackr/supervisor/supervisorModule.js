@@ -29,6 +29,15 @@ define(['angular', 'modules/trackr/supervisor/controllers'], function(angular, c
                         controller: 'trackr.supervisor.controllers.bill-report'
                     }
                 }
+            })
+            .state('trackr.supervisor.vacation', {
+                url: '/vacation',
+                views: {
+                    'center@': {
+                        templateUrl: '/src/modules/trackr/supervisor/vacation/vacation.tpl.html',
+                        controller: 'trackr.supervisor.controllers.vacation'
+                    }
+                }
             });
     }]);
 
