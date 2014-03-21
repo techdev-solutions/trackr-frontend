@@ -54,7 +54,7 @@ define(['lodash'], function(_) {
         /*
          Initialization of $scope objects
          */
-        $scope.contactPersonErrors = {};
+        $scope.contactPersonErrors = [];
         $scope.newContactPerson = {};
         $scope.doShowContactPersonForm(false);
         Restangular.allUrl('companies', '/api/companies/search/findByCompanyId').getList({companyId: $stateParams.id}).then(function(companies) {

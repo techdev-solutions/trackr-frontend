@@ -1,7 +1,7 @@
 define([], function() {
     'use strict';
     return ['$scope', 'Restangular', '$modalInstance', '$filter', function($scope, Restangular, $modalInstance, $filter) {
-        $scope.errors = {};
+        $scope.errors = [];
         $scope.employee = {};
         $scope.credential = {};
 
@@ -19,7 +19,7 @@ define([], function() {
                         }
                     };
                 } else {
-                    $scope.errors = response.data;
+                    $scope.errors = response.data.errors;
                 }
             });
         };

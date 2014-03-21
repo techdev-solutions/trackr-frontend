@@ -1,7 +1,7 @@
 define([], function () {
     'use strict';
     return ['$scope', 'Restangular', '$modalInstance', function($scope, Restangular, $modalInstance) {
-        $scope.errors = {};
+        $scope.errors = [];
         $scope.project = {};
 
         //TODO: why do we need to pass the company?
@@ -15,7 +15,7 @@ define([], function () {
             Restangular.all('projects').post($scope.project).then(function(project) {
                 $modalInstance.close(project);
             }, function(response) {
-                $scope.errors = response.data;
+                $scope.errors = response.data.errors;
             });
         };
 

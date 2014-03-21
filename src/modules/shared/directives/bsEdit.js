@@ -56,15 +56,24 @@ define([], function() {
                 //Flag if the display form is showed
                 $scope.edit = false;
                 //Validation errors
-                $scope.errors = {};
+                $scope.errors = [];
 
                 $scope.hasError = function (property) {
-                    return $scope.errors[property] !== undefined;
+                    for (var i = 0; i < $scope.errors.length; i++) {
+                        if($scope.errors[i].property === property) {
+                            return true;
+                        }
+                    }
+                    return false;
                 };
 
                 $scope.errorText = function(property) {
                     if($scope.hasError(property)) {
-                        return $scope.errors[property].defaultMessage;
+                        for (var i = 0; i < $scope.errors.length; i++) {
+                            if($scope.errors[i].property === property) {
+                                return $scope.errors[i].message;
+                            }
+                        }
                     } else {
                         return '';
                     }
@@ -82,7 +91,7 @@ define([], function() {
                         if($scope.errorCallback) {
                             $scope.errorCallback(response);
                         }
-                        $scope.errors = response.data;
+                        $scope.errors = response.data.errors;
                     }
                     var patchObject = {};
                     patchObject[$scope.propertyName] = $scope.entity[$scope.propertyName];

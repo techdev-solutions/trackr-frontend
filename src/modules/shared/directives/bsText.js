@@ -28,12 +28,21 @@ define([], function() {
                 }
 
                 $scope.hasError = function (property) {
-                    return errorArray()[property] !== undefined;
+                    for (var i = 0; i < errorArray().length; i++) {
+                        if(errorArray()[i].property === property) {
+                            return true;
+                        }
+                    }
+                    return false;
                 };
 
                 $scope.errorText = function(property) {
                     if($scope.hasError(property)) {
-                        return errorArray()[property].defaultMessage;
+                        for (var i = 0; i < errorArray().length; i++) {
+                            if(errorArray()[i].property === property) {
+                                return errorArray()[i].message;
+                            }
+                        }
                     } else {
                         return '';
                     }

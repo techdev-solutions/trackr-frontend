@@ -17,7 +17,7 @@ define([], function() {
             'starting-day': 1
         };
 
-        $scope.errors = {};
+        $scope.errors = [];
 
         $scope.getProjects = function(searchString) {
             var search = '%' + searchString + '%';
@@ -46,9 +46,9 @@ define([], function() {
         $scope.saveTime = function() {
             var workTimeObject = createWorkTimeEntity();
             Restangular.all('workTimes').post(workTimeObject).then(function() {
-                $scope.errors = {};
+                $scope.errors = [];
             }, function(response) {
-                $scope.errors = response.data;
+                $scope.errors = response.data.errors;
             });
         };
     }];
