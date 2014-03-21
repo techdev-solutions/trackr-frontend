@@ -8,6 +8,7 @@ require.config({
         'restangular': 'vendor/restangular/dist/restangular',
         'lodash': 'vendor/lodash/dist/lodash',
         'angular-translate': 'vendor/angular-translate/angular-translate',
+        'angular-translate-loader-url': 'vendor/angular-translate-loader-url/angular-translate-loader-url',
         'angular-ui': 'vendor/angular-ui-bootstrap-bower/ui-bootstrap-tpls'
     },
     shim: {
@@ -18,6 +19,7 @@ require.config({
         'restangular': { deps: ['angular', 'lodash']},
         'lodash': { exports: '_'},
         'angular-translate': { deps: ['angular'] },
+        'angular-translate-loader-url': { deps: ['angular-translate'] },
         'angular-ui': { deps: ['angular'] }
     }
 });

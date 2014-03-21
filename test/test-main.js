@@ -20,6 +20,7 @@ require.config({
         'baseTestSetup': '../test/baseTestSetup',
         'backendMock': '../test/backendMock',
         'angular-translate': 'vendor/angular-translate/angular-translate',
+        'angular-translate-loader-url': 'vendor/angular-translate-loader-url/angular-translate-loader-url',
         'angular-ui': 'vendor/angular-ui-bootstrap-bower/ui-bootstrap-tpls'
     },
     shim: {
@@ -30,6 +31,7 @@ require.config({
         'restangular': {deps: ['angular', 'lodash']},
         'angular-mocks': { deps: ['angular']},
         'angular-translate': { deps: ['angular'] },
+        'angular-translate-loader-url': { deps: ['angular-translate'] },
         'angular-ui': { deps: ['angular'] }
     },
     deps: tests,

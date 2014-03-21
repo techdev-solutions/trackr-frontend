@@ -1,11 +1,11 @@
 define(['angular',
-    'modules/trackr/i18n',
     'modules/trackr/services/services',
     'modules/trackr/administration/administrationModule',
     'modules/trackr/employee/employeeModule',
     'modules/trackr/supervisor/supervisorModule',
-    'angular-translate'],
-    function(angular, i18n, services) {
+    'angular-translate',
+    'angular-translate-loader-url'],
+    function(angular, services) {
         'use strict';
         var configFn = ['trackr.administration', 'trackr.employee', 'trackr.supervisor', 'pascalprecht.translate'];
         var trackr = angular.module('trackr', configFn);
@@ -37,7 +37,6 @@ define(['angular',
                 });
         }]);
 
-        i18n.init(trackr);
         services.init(trackr);
         return trackr;
     });

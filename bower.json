@@ -26,7 +26,8 @@
     "angular-ui-router": "0.2.10",
     "jquery": "git://github.com/jquery/jquery.git#2.1.0",
     "angular-translate": "~2.0.1",
-    "angular-ui-bootstrap-bower": "~0.10.0"
+    "angular-ui-bootstrap-bower": "~0.10.0",
+    "angular-translate-loader-url": "~2.0.0"
   },
   "devDependencies": {
     "angular-mocks": "1.2.14"

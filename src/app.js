@@ -1,7 +1,7 @@
 /* global document */
-define(['angular', 'jQuery', 'restangular', 'angular-ui-router', 'angular-ui', 'twitter-bootstrap', 'modules/base/base', 'modules/trackr/trackr', 'modules/example/example',
+define(['angular', 'jQuery', 'i18n', 'restangular', 'angular-ui-router', 'angular-ui', 'twitter-bootstrap', 'modules/base/base', 'modules/trackr/trackr', 'modules/example/example',
     'modules/shared/shared'
-], function(angular, $) {
+], function(angular, $, i18n) {
     'use strict';
     var configFn = ['ui.router', 'ui.bootstrap', 'base', 'trackr', 'restangular', 'example', 'shared'];
     var app = angular.module('app', configFn);
@@ -14,9 +14,12 @@ define(['angular', 'jQuery', 'restangular', 'angular-ui-router', 'angular-ui', '
     angular.element(document).ready(function () {
         $.get('/api/principal', function (data) {
             trackrUser = data;
+            i18n.init(app, trackrUser);
             angular.bootstrap(document, ['app']);
         });
     });
+
+
 
     app.config(['RestangularProvider', '$locationProvider', 'paginationConfig', function(RestangularProvider, $locationProvider, paginationConfig) {
         $locationProvider.html5Mode(false);
@@ -76,5 +79,6 @@ define(['angular', 'jQuery', 'restangular', 'angular-ui-router', 'angular-ui', '
             }
         });
     }]);
+
     return app;
 });
