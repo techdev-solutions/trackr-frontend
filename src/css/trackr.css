@@ -1,3 +1,14 @@
 body {
-    padding-top: 70px;
+}
+
+.navbar-header {
+	width: 100px;
+}
+
+ul.pagination {
+	margin: 0;
+}
+
+.navbar-inverse .navbar-nav>li>a { /* Haader font color */
+	color: #cccccc;
 }

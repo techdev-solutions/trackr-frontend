@@ -1,62 +1,88 @@
-<h1><bs-edit entity="employee" property-name="firstName" role="ROLE_SUPERVISOR"></bs-edit> <bs-edit entity="employee" property-name="lastName" role="ROLE_SUPERVISOR"></bs-edit></h1>
-<span ng-if="credential" ng-repeat="authority in authorities">
-    <label>{{authority.screenName}}</label>
-    <bs-checkbox checked="hasAuthority(credential, authority)" change="updateCredentialAuthorities(credential, authority)" role="ROLE_ADMIN"></bs-checkbox>
-</span>
-<dl>
-    <dt>
-        {{ 'EMPLOYEE.TITLE' | translate }}
-        <dd><bs-edit entity="employee" property-name="title" role="ROLE_SUPERVISOR"></bs-edit></dd>
-    </dt>
-    <dt>
-        {{ 'EMPLOYEE.SALARY' | translate }}
-        <dd><bs-edit entity="employee" property-name="salary" role="ROLE_SUPERVISOR"></bs-edit></dd>
-    </dt>
-    <dt>
-        {{ 'EMPLOYEE.HOURLY_COST_RATE' | translate }}
-        <dd><bs-edit entity="employee" property-name="hourlyCostRate" role="ROLE_SUPERVISOR"></bs-edit></dd>
-    </dt>
-    <dt>
-        {{ 'EMPLOYEE.VACATION_ENTITLEMENT' | translate }}
-        <dd><bs-edit entity="employee" property-name="vacationEntitlement" role="ROLE_SUPERVISOR"></bs-edit></dd>
-    </dt>
-    <dt>
-        {{ 'EMPLOYEE.PHONE_NUMBER' | translate }}
-        <dd><bs-edit entity="employee" property-name="phoneNumber" role="ROLE_SUPERVISOR"></bs-edit></dd>
-    </dt>
-    <dt>
-        {{ 'EMPLOYEE.FEDERAL_STATE' | translate }}
-        <dd>
-            <select ng-model="employee.federalState.name" ng-options="s.name as s.state for s in states"></select>
-        </dd>
-    </dt>
-    <dt>
-        {{ 'CREDENTIAL.EMAIL' | translate }}
-        <dd>
-            <bs-edit entity="credential" property-name="email" role="ROLE_ADMIN" error-callback="emailError" callback="emailOk"></bs-edit>
-            <span ng-if="emailErrorText">{{emailErrorText}}</span>
-        </dd>
-    </dt>
-    <dt>
-        {{ 'CREDENTIAL.ENABLED' | translate }}
-        <dd>
-            <bs-checkbox checked="credential.enabled" change="changeEnabled()" role="ROLE_ADMIN"></bs-checkbox>
-        </dd>
-    </dt>
-    <dt>
-        {{ 'EMPLOYEE.JOIN_DATE' | translate }}
-    <dd>
-        <div class="well well-sm" ng-model="employee.joinDate">
-            <datepicker></datepicker>
-        </div>
-    </dd>
-    </dt>
-    <dt>
-        {{ 'EMPLOYEE.LEAVE_DATE' | translate }}
-    <dd>
-        <div class="well well-sm" ng-model="employee.leaveDate">
-            <datepicker></datepicker>
-        </div>
-    </dd>
-    </dt>
-</dl>
+<h1>
+	<bs-edit entity="employee" property-name="firstName" role="ROLE_SUPERVISOR"></bs-edit> 
+	<bs-edit entity="employee" property-name="lastName" role="ROLE_SUPERVISOR"></bs-edit>
+</h1>
+
+<form class="form-horizontal" role="form">
+	<div class="form-group">
+		<label class="col-sm-2 control-label">{{ 'EMPLOYEE.TITLE' | translate }}</label>
+		<div class="col-sm-8">
+			<span ng-if="credential" ng-repeat="authority in authorities">
+    			<label>
+					<bs-checkbox checked="hasAuthority(credential, authority)" change="updateCredentialAuthorities(credential, authority)" role="ROLE_ADMIN"></bs-checkbox>
+					{{authority.screenName}}
+				</label>
+				<br/>
+			</span>
+			<!--
+			<div class="btn-group" ng-if="credential">
+				<button ng-repeat="authority in authorities" onclick="updateCredentialAuthorities(credential, authority)" ng-class="{active: hasAuthority(credential, authority)}" role="ROLE_ADMIN" type="button" class="btn btn-default">{{authority.screenName}}</button>
+			</div>
+			-->
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-sm-2 control-label">{{ 'EMPLOYEE.TITLE' | translate }}</label>
+		<div class="col-sm-8">
+			<bs-edit entity="employee" property-name="title" role="ROLE_SUPERVISOR"></bs-edit>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-sm-2 control-label">{{ 'EMPLOYEE.SALARY' | translate }}</label>
+		<div class="col-sm-8">
+			<bs-edit entity="employee" property-name="salary" role="ROLE_SUPERVISOR"></bs-edit>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-sm-2 control-label">{{ 'EMPLOYEE.HOURLY_COST_RATE' | translate }}</label>
+		<div class="col-sm-8">
+			<bs-edit entity="employee" property-name="hourlyCostRate" role="ROLE_SUPERVISOR"></bs-edit>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-sm-2 control-label">{{ 'EMPLOYEE.VACATION_ENTITLEMENT' | translate }}</label>
+		<div class="col-sm-8">
+			<bs-edit entity="employee" property-name="vacationEntitlement" role="ROLE_SUPERVISOR"></bs-edit>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-sm-2 control-label">{{ 'EMPLOYEE.PHONE_NUMBER' | translate }}</label>
+		<div class="col-sm-3">
+			<bs-edit entity="employee" property-name="phoneNumber" role="ROLE_SUPERVISOR"></bs-edit>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-sm-2 control-label">{{ 'EMPLOYEE.FEDERAL_STATE' | translate }}</label>
+		<div class="col-sm-3">
+			<select ng-model="employee.federalState.name" ng-options="s.name as s.state for s in states"></select>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-sm-2 control-label">{{ 'CREDENTIAL.EMAIL' | translate }}</label>
+		<div class="col-sm-8">
+			<bs-edit entity="credential" property-name="email" role="ROLE_ADMIN"></bs-edit>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-sm-2 control-label">{{ 'CREDENTIAL.ENABLED' | translate }}</label>
+		<div class="col-sm-8">
+			<bs-checkbox checked="credential.enabled" change="changeEnabled()" role="ROLE_ADMIN"></bs-checkbox>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-sm-2 control-label">{{ 'EMPLOYEE.JOIN_DATE' | translate }}</label>
+		<div class="col-sm-8">
+			<div class="well well-sm" ng-model="employee.joinDate">
+				<datepicker></datepicker>
+			</div>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-sm-2 control-label">{{ 'EMPLOYEE.LEAVE_DATE' | translate }}</label>
+		<div class="col-sm-8">
+			<div class="well well-sm" ng-model="employee.leaveDate">
+				<datepicker></datepicker>
+			</div>
+		</div>
+	</div>
+</form>

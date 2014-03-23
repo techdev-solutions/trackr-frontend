@@ -1,22 +1,44 @@
 <div class="row">
-    <div class="col-lg-3">
-        <ul class="nav nav-pills nav-stacked">
-            <li><h3>{{ 'EMPLOYEE.EMPLOYEES' | translate }}</h3></li>
-            <li ng-repeat="employee in employees" ui-sref-active="active">
-                <a href ui-sref="trackr.administration.employees.edit({id: employee.id})">{{employee.firstName}} <b>{{employee.lastName}}</b></a>
-            </li>
-            <pagination class="pagination-sm" total-items="employees.page.totalElements" page="employees.page.number" items-per-page="employees.page.size" on-select-page="setPage(page)" max-size="5"></pagination>
-            <li has-authority="ROLE_ADMIN">
-                <button type="button" class="btn btn-default" ng-click="addNew()">
-                    <span class="glyphicon glyphicon-plus"></span> {{ 'ACTIONS.NEW' | translate }}
-                </button>
-            </li>
-            <li has-authority="ROLE_ADMIN" ui-sref-active="active">
-                <a ui-sref="trackr.administration.employees.roles" href>{{ 'EMPLOYEE.ADMINISTRATE_ROLES' | translate }}</a>
-            </li>
-        </ul>
-    </div>
-    <div class="col-lg-9">
-        <ui-view name="employee"/>
-    </div>
+	<div class="col-lg-3">
+
+		<div class="text-center">
+			<pagination class="pagination-sm" total-items="employees.page.totalElements" page="employees.page.number" items-per-page="employees.page.size" on-select-page="setPage(page)" max-size="5"></pagination>
+		</div>
+
+		<div class="table-responsive">
+			<table class="table table-hover tablesorter">
+				<thead>
+				<tr>
+					<th class="header">Name <i class="fa fa-sort"></i></th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr ng-repeat="employee in employees" ui-sref-active="active">
+					<td>
+						<a href ui-sref="trackr.administration.employees.edit({id: employee.id})">{{employee.firstName}} <b>{{employee.lastName}}</b></a>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<div class="row" has-authority="ROLE_ADMIN">
+			<div class="col-lg-12">
+				<button type="button" class="btn btn-default" ng-click="addNew()">
+					<span class="glyphicon glyphicon-plus"></span> {{ 'ACTIONS.NEW' | translate }}
+				</button>
+			</div>
+		</div>
+		<div class="row" has-authority="ROLE_ADMIN" ui-sref-active="active">
+			<div class="col-lg-12">
+				<a ui-sref="trackr.administration.employees.roles" href>{{ 'EMPLOYEE.ADMINISTRATE_ROLES' | translate }}</a>
+			</div>
+		</div>
+	</div>
+
+	<!-- Employee Details -->
+	<div class="col-lg-9">
+		<ui-view name="employee"/>
+	</div>
+	<!-- Employee Details END -->
 </div>
