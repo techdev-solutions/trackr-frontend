@@ -3,6 +3,7 @@ define([], function() {
     return ['$scope', 'Restangular', 'trackr.services.employee', '$filter', function($scope, Restangular, EmployeeService, $filter) {
         var controller = this;
         $scope.vacationRequest = {};
+        $scope.errors = [];
 
         controller.formatDate = function(date) {
             return $filter('date')(date, 'yyyy-MM-dd');
@@ -20,6 +21,9 @@ define([], function() {
             vacationRequest.endDate = controller.formatDate(vacationRequest.endDate);
             Restangular.all('vacationRequests').post(vacationRequest).then(function(response) {
                 controller.emitSavedVacationRequest(response);
+                $scope.errors = [];
+            }, function(response) {
+                $scope.errors = response.data.errors;
             });
         };
     }];

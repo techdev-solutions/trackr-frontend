@@ -11,15 +11,13 @@ define(['angular', 'jQuery', 'i18n', 'restangular', 'angular-ui-router', 'angula
      Load the current user and its authorities before the app starts.
      After the user is loaded the trackr app gets bootstrapped manually.
      */
-    angular.element(document).ready(function () {
-        $.get('/api/principal', function (data) {
+    angular.element(document).ready(function() {
+        $.get('/api/principal', function(data) {
             trackrUser = data;
             i18n.init(app, trackrUser);
             angular.bootstrap(document, ['app']);
         });
     });
-
-
 
     app.config(['RestangularProvider', '$locationProvider', 'paginationConfig', function(RestangularProvider, $locationProvider, paginationConfig) {
         $locationProvider.html5Mode(false);
@@ -52,6 +50,25 @@ define(['angular', 'jQuery', 'i18n', 'restangular', 'angular-ui-router', 'angula
                 returnData = data;
             }
             return returnData;
+        });
+
+        /**
+         * Add entity validation errors to the globalMessages property of the error array.
+         *
+         * This is used for cross validation messages, e.g. start date not after end date.
+         */
+        RestangularProvider.setErrorInterceptor(function(response) {
+            if(response.status === 400) {
+                if(response.data.errors && response.data.errors.length) {
+                    response.data.errors.globalMessages = [];
+                    for (var i = 0; i < response.data.errors.length; i++) {
+                        var obj = response.data.errors[i];
+                        if(obj.property === '') {
+                            response.data.errors.globalMessages.push(obj);
+                        }
+                    }
+                }
+            }
         });
 
         /*
