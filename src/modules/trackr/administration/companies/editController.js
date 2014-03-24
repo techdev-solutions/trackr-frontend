@@ -21,7 +21,7 @@ define(['lodash'], function(_) {
                 $scope.contactPersons.push(result);
                 $scope.doShowContactPersonForm(false);
             }, function(response) {
-                $scope.contactPersonErrors = response.data;
+                $scope.contactPersonErrors = response.data.errors;
             });
         };
 
