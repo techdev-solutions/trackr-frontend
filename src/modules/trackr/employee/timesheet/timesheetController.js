@@ -1,6 +1,7 @@
-define([], function() {
+define(['modules/shared/addErrorHandlers'], function(addErrorHandlers) {
     'use strict';
     return ['$scope', 'Restangular', 'trackr.services.employee', function($scope, Restangular, EmployeeService) {
+        addErrorHandlers($scope);
         var today = new Date();
         $scope.date = today;
         $scope.startTime = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 9, 0, 0);

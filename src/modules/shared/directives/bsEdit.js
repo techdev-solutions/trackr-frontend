@@ -1,4 +1,4 @@
-define([], function() {
+define(['modules/shared/addErrorHandlers'], function(addErrorHandlers) {
     'use strict';
     /**
      * Directive for a click-to-edit textfield
@@ -53,31 +53,11 @@ define([], function() {
                 }
             },
             controller: ['$scope', 'Restangular', function($scope, Restangular) {
+                addErrorHandlers($scope);
                 //Flag if the display form is showed
                 $scope.edit = false;
                 //Validation errors
                 $scope.errors = [];
-
-                $scope.hasError = function (property) {
-                    for (var i = 0; i < $scope.errors.length; i++) {
-                        if($scope.errors[i].property === property) {
-                            return true;
-                        }
-                    }
-                    return false;
-                };
-
-                $scope.errorText = function(property) {
-                    if($scope.hasError(property)) {
-                        for (var i = 0; i < $scope.errors.length; i++) {
-                            if($scope.errors[i].property === property) {
-                                return $scope.errors[i].message;
-                            }
-                        }
-                    } else {
-                        return '';
-                    }
-                };
 
                 $scope.submit = function() {
                     //We only want to submit the field we changed

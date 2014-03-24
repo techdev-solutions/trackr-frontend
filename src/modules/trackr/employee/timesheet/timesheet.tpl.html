@@ -1,5 +1,6 @@
+<span ng-repeat="globalError in errors.globalMessages" class="alert alert-danger">{{globalError.message}}</span>
 <form class="form form-horizontal" ng-submit="saveTime()">
-    <div class="form-group" ng-class="{'has-error': errors['project']}">
+    <div class="form-group" ng-class="{'has-error': hasError('project')}">
         <label class="form-label col-sm-4" for="project">{{ 'WORKTIME.PROJECT' | translate }}</label>
         <div class="col-sm-6">
             <input type="text" class="form-control" id="project"
@@ -8,7 +9,7 @@
                    typeahead="project as project.name for project in getProjects($viewValue)"
                    typeahead-editable="false"
                    typeahead-min-length="2" />
-            <span ng-show="errors['project']" class="help-block">{{errors['project'].defaultMessage}}</span>
+            <span class="help-block">{{errorText('project')}}</span>
         </div>
     </div>
 
