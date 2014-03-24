@@ -1,6 +1,10 @@
 define(['modules/trackr/supervisor/timeIntervalSetup'], function(timeIntervalSetup) {
     'use strict';
     return ['$scope', 'Restangular', '$filter', '$http', function($scope, Restangular, $filter, $http) {
+        $scope.dateOptions = {
+            'starting-day': '1'
+        };
+
         $scope.getCompanies = function(searchString) {
             return Restangular.allUrl('companies', '/api/companies/search/findByNameLikeOrderByNameAsc').getList({name: '%' + searchString + '%'});
         };

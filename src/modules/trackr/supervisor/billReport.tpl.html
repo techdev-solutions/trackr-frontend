@@ -15,6 +15,7 @@
     <p class="input-group">
         <input type="text" class="form-control" ng-model="start"
                datepicker-popup="yyyy-MM-dd"
+               datepicker-options="dateOptions"
                is-open="startOpened"
                close-text="{{ 'ACTIONS.CLOSE' | translate }}"
                current-text="{{ 'DATE.TODAY' | translate }}"
@@ -31,6 +32,7 @@
         <input type="text" class="form-control" ng-model="end"
                datepicker-popup="yyyy-MM-dd"
                is-open="stopOpened"
+               datepicker-options="dateOptions"
                close-text="{{ 'ACTIONS.CLOSE' | translate }}"
                current-text="{{ 'DATE.TODAY' | translate }}"
                toggle-weeks-text="{{ 'DATE.WEEKS' | translate }}"

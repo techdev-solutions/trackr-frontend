@@ -1,6 +1,10 @@
 define(['modules/trackr/supervisor/timeIntervalSetup'], function(timeIntervalSetup) {
     'use strict';
     return ['$scope', 'Restangular', '$filter', '$http', function($scope, Restangular, $filter, $http) {
+        $scope.dateOptions = {
+            'starting-day': '1'
+        };
+
         $scope.loadWorktimes = function() {
             if($scope.project) {
                 //Load this via http as it does not return standard items (custom DTOs without links) and Restangular would not be usefule.
