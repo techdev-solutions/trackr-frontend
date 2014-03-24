@@ -6,7 +6,7 @@ define(['fixtures'], function(fixtures) {
             email: 'admin@techdev.de',
             enabled: true,
             authorities: [
-                {authority: 'ROLE_ADMIN', order: 0, id: 0, screenName: 'Admin'}
+                {authority: 'ROLE_ADMIN', order: 0, id: 0}
             ]
         });
 

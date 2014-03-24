@@ -234,7 +234,6 @@ define([], function() {
                     {
                         "id": 0,
                         "authority": "ROLE_ADMIN",
-                        "screenName": "Administrator",
                         "order": 0,
                         "_links": {
                             "self": {
@@ -245,7 +244,6 @@ define([], function() {
                     {
                         "id": 1,
                         "authority": "ROLE_SUPERVISOR",
-                        "screenName": "Supervisor",
                         "order": 1,
                         "_links": {
                             "self": {
@@ -256,7 +254,6 @@ define([], function() {
                     {
                         "id": 2,
                         "authority": "ROLE_EMPLOYEE",
-                        "screenName": "Angestellter",
                         "order": 2,
                         "_links": {
                             "self": {

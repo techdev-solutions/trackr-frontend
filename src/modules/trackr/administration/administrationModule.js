@@ -57,7 +57,7 @@ define(['angular', 'modules/trackr/administration/controllers'], function(angula
             url: '/roles',
             views: {
                 'employee': {
-                    templateUrl: '/src/modules/trackr/administration/partials/rolesList.tpl.html',
+                    templateUrl: '/src/modules/trackr/administration/employees/rolesList.tpl.html',
                     controller: 'trackr.administration.controllers.employees.roles-list'
                 }
             },

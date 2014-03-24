@@ -10,15 +10,10 @@
 			<span ng-if="credential" ng-repeat="authority in authorities">
     			<label>
 					<bs-checkbox checked="hasAuthority(credential, authority)" change="updateCredentialAuthorities(credential, authority)" role="ROLE_ADMIN"></bs-checkbox>
-					{{authority.screenName}}
+					{{ 'AUTHORITY.' + authority.authority | translate }}
 				</label>
 				<br/>
 			</span>
-			<!--
-			<div class="btn-group" ng-if="credential">
-				<button ng-repeat="authority in authorities" onclick="updateCredentialAuthorities(credential, authority)" ng-class="{active: hasAuthority(credential, authority)}" role="ROLE_ADMIN" type="button" class="btn btn-default">{{authority.screenName}}</button>
-			</div>
-			-->
 		</div>
 	</div>
 	<div class="form-group">
