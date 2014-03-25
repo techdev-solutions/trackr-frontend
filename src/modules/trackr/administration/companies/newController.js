@@ -8,7 +8,7 @@ define([], function () {
         $scope.address = {};
 
         $scope.saveCompany = function() {
-            Restangular.allUrl('companies', '/api/companies/createWithAddress').post({
+            Restangular.allUrl('companies', 'api/companies/createWithAddress').post({
                 company: $scope.company,
                 address: $scope.address
             }).then(function(company) {

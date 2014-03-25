@@ -14,7 +14,7 @@ define([], function() {
         return {
             restrict: 'E',
             transclude: true,
-            templateUrl: '/src/modules/shared/partials/bsText.tpl.html',
+            templateUrl: 'src/modules/shared/partials/bsText.tpl.html',
             scope: {propertyName: '@', translateCode: '@', path: '=', inline: '@', errors: '='},
             controller: ['$scope', function($scope) {
                 $scope.inline = $scope.inline || false;

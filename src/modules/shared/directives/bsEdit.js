@@ -14,7 +14,7 @@ define(['modules/shared/addErrorHandlers'], function(addErrorHandlers) {
     return ['base.services.user', function(UserService) {
         return {
             restrict: 'E',
-            templateUrl: '/src/modules/shared/partials/bsEdit.tpl.html',
+            templateUrl: 'src/modules/shared/partials/bsEdit.tpl.html',
             scope: {propertyName: '@', entity: '=', callback: '=', role: '@', ownSubmit: '=', errorCallback: '='},
             link: function(scope, element) {
                 if(!scope.role || UserService.userHasAuthority(scope.role)) {

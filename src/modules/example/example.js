@@ -10,7 +10,7 @@ define(['angular', 'modules/example/controllers/controllers'], function(angular,
                 abstract: true,
                 views: {
                     'top-menu@': {
-                        templateUrl: '/src/modules/example/partials/top-menu.tpl.html',
+                        templateUrl: 'src/modules/example/partials/top-menu.tpl.html',
                         controller: 'base.controllers.navigation'
                     }
                 }
@@ -19,7 +19,7 @@ define(['angular', 'modules/example/controllers/controllers'], function(angular,
                 url: '',
                 views: {
                     'center@': {
-                        templateUrl: '/src/modules/example/partials/welcome.tpl.html'
+                        templateUrl: 'src/modules/example/partials/welcome.tpl.html'
                     }
                 }
             }).
@@ -27,7 +27,7 @@ define(['angular', 'modules/example/controllers/controllers'], function(angular,
                 url: '/page1',
                 views: {
                     'center@': {
-                        templateUrl: '/src/modules/example/partials/page1.tpl.html',
+                        templateUrl: 'src/modules/example/partials/page1.tpl.html',
                         controller: 'example.controllers.example'
                     }
                 }
@@ -36,7 +36,7 @@ define(['angular', 'modules/example/controllers/controllers'], function(angular,
                 url: '/page2',
                 views: {
                     'center@': {
-                        templateUrl: '/src/modules/example/partials/page2.tpl.html',
+                        templateUrl: 'src/modules/example/partials/page2.tpl.html',
                         controller: 'example.controllers.example'
                     }
                 }

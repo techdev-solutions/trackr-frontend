@@ -2,7 +2,7 @@ define(['lodash'], function(_) {
     'use strict';
     return ['$scope', 'Restangular', '$http', function($scope, Restangular, $http) {
         var controller = this;
-        var findRequestsByStatusBase = Restangular.allUrl('vacationRequests', '/api/vacationRequests/search/findByStatusOrderBySubmissionTimeAsc');
+        var findRequestsByStatusBase = Restangular.allUrl('vacationRequests', 'api/vacationRequests/search/findByStatusOrderBySubmissionTimeAsc');
 
         /**
          * Load vacation requests with a specific status.
@@ -42,7 +42,7 @@ define(['lodash'], function(_) {
          * @param resultArray The array in which the vacation request should be pushed when the action is successful.
          */
         function actionOnRequest(vacationRequest, type, resultArray) {
-            $http.put('/api/vacationRequests/' + vacationRequest.id + '/' + type).then(function(response) {
+            $http.put('api/vacationRequests/' + vacationRequest.id + '/' + type).then(function(response) {
                 _.remove($scope.pendingRequests, function(vR) {
                     return vR.id === vacationRequest.id;
                 });

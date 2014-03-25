@@ -8,7 +8,7 @@ define(['angular', 'modules/trackr/employee/controllers'], function(angular, con
                 url: '/employee',
                 views: {
                     'center@': {
-                        templateUrl: '/src/modules/trackr/employee/employee.tpl.html'
+                        templateUrl: 'src/modules/trackr/employee/employee.tpl.html'
                     }
                 }
             })
@@ -16,7 +16,7 @@ define(['angular', 'modules/trackr/employee/controllers'], function(angular, con
                 url: '/self',
                 views: {
                     'center@': {
-                        templateUrl: '/src/modules/trackr/employee/self.tpl.html',
+                        templateUrl: 'src/modules/trackr/employee/self.tpl.html',
                         controller: 'trackr.employee.controllers.self'
                     }
                 }
@@ -25,7 +25,7 @@ define(['angular', 'modules/trackr/employee/controllers'], function(angular, con
                 url: '/timesheet',
                 views: {
                     'center@': {
-                        templateUrl: '/src/modules/trackr/employee/timesheet/timesheet.tpl.html',
+                        templateUrl: 'src/modules/trackr/employee/timesheet/timesheet.tpl.html',
                         controller: 'trackr.employee.controllers.timesheet'
                     }
                 }
@@ -34,7 +34,7 @@ define(['angular', 'modules/trackr/employee/controllers'], function(angular, con
                 url: '/overview',
                 views: {
                     'center@': {
-                        templateUrl: '/src/modules/trackr/employee/timesheet/timesheetOverview.tpl.html',
+                        templateUrl: 'src/modules/trackr/employee/timesheet/timesheetOverview.tpl.html',
                         controller: 'trackr.employee.controllers.timesheet-overview'
                     }
                 }
@@ -43,11 +43,11 @@ define(['angular', 'modules/trackr/employee/controllers'], function(angular, con
                 url: '/vacation',
                 views: {
                     'center@': {
-                        templateUrl: '/src/modules/trackr/employee/vacation/list.tpl.html',
+                        templateUrl: 'src/modules/trackr/employee/vacation/list.tpl.html',
                         controller: 'trackr.employee.controllers.vacation-list'
                     },
                     'new@trackr.employee.vacation': {
-                        templateUrl: '/src/modules/trackr/employee/vacation/new.tpl.html',
+                        templateUrl: 'src/modules/trackr/employee/vacation/new.tpl.html',
                         controller: 'trackr.employee.controllers.vacation-new'
                     }
                 }

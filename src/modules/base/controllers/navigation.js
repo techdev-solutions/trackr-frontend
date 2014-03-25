@@ -4,7 +4,7 @@ define([], function () {
         $scope.user = UserService.getUser();
 
         $scope.changeLanguage = function (languageCode) {
-            $http.put('/api/translations', {}, {params: {locale: languageCode}}).then(function() {
+            $http.put('api/translations', {}, {params: {locale: languageCode}}).then(function() {
                 $translate.use(languageCode);
             });
         };

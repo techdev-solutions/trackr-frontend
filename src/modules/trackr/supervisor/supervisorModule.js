@@ -8,7 +8,7 @@ define(['angular', 'modules/trackr/supervisor/controllers'], function(angular, c
                 url: '/supervisor',
                 views: {
                     'center@': {
-                        templateUrl: '/src/modules/trackr/supervisor/supervisor.tpl.html'
+                        templateUrl: 'src/modules/trackr/supervisor/supervisor.tpl.html'
                     }
                 }
             })
@@ -16,7 +16,7 @@ define(['angular', 'modules/trackr/supervisor/controllers'], function(angular, c
                 url: '/bill',
                 views: {
                     'center@': {
-                        templateUrl: '/src/modules/trackr/supervisor/fileBillableHours.tpl.html',
+                        templateUrl: 'src/modules/trackr/supervisor/fileBillableHours.tpl.html',
                         controller: 'trackr.supervisor.controllers.file-billable-hours'
                     }
                 }
@@ -25,7 +25,7 @@ define(['angular', 'modules/trackr/supervisor/controllers'], function(angular, c
                 url: '/report',
                 views: {
                     'center@': {
-                        templateUrl: '/src/modules/trackr/supervisor/billReport.tpl.html',
+                        templateUrl: 'src/modules/trackr/supervisor/billReport.tpl.html',
                         controller: 'trackr.supervisor.controllers.bill-report'
                     }
                 }
@@ -34,7 +34,7 @@ define(['angular', 'modules/trackr/supervisor/controllers'], function(angular, c
                 url: '/vacation',
                 views: {
                     'center@': {
-                        templateUrl: '/src/modules/trackr/supervisor/vacation/vacation.tpl.html',
+                        templateUrl: 'src/modules/trackr/supervisor/vacation/vacation.tpl.html',
                         controller: 'trackr.supervisor.controllers.vacation'
                     }
                 }

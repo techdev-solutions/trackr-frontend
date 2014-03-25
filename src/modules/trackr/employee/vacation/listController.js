@@ -4,7 +4,7 @@ define(['lodash'], function(_) {
         $scope.value = 'list';
         $scope.employee = EmployeeService.getEmployee();
 
-        Restangular.allUrl('vacationRequests', '/api/vacationRequests/search/findByEmployeeOrderByStartDateAsc')
+        Restangular.allUrl('vacationRequests', 'api/vacationRequests/search/findByEmployeeOrderByStartDateAsc')
             .getList({employee: $scope.employee.id}).then(function(vacationRequests) {
                 $scope.vacationRequests = vacationRequests;
             });

@@ -38,7 +38,7 @@ define(['baseTestSetup'], function(baseTestSetup) {
         it('Calling removeContactPerson must delete a contact person', inject(function($httpBackend) {
             var contactPerson = scope.contactPersons[0];
             scope.removeContactPerson(contactPerson);
-            $httpBackend.expectDELETE('/api/contactPersons/' + contactPerson.id);
+            $httpBackend.expectDELETE('api/contactPersons/' + contactPerson.id);
             $httpBackend.flush();
         }));
 
@@ -53,7 +53,7 @@ define(['baseTestSetup'], function(baseTestSetup) {
             var numberOfContactPersons = scope.contactPersons.length;
             scope.newContactPerson = scope.contactPersons[0];
             scope.saveNewContactPerson();
-            $httpBackend.expectPOST('/api/contactPersons');
+            $httpBackend.expectPOST('api/contactPersons');
             $httpBackend.flush();
             expect(scope.contactPersons.length).toBe(numberOfContactPersons + 1);
         }));

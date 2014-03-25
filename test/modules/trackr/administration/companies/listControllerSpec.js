@@ -29,7 +29,7 @@ define(['baseTestSetup', 'angular'], function(baseTestSetup, angular) {
             expect(modalInstance).toBeDefined();
             $httpBackend.flush();
             modalInstance.close({id: 0});
-            $httpBackend.expectGET(/^\/api\/companies\?.*$/);
+            $httpBackend.expectGET(/^\api\/companies\?.*$/);
             $httpBackend.flush();
             expect(state.go).toHaveBeenCalled();
         }));

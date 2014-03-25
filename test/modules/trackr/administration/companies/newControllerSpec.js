@@ -30,7 +30,7 @@ define(['baseTestSetup', 'angular'], function(baseTestSetup, angular) {
 
         it('must save the company and address', inject(function($httpBackend) {
             scope.saveCompany();
-            $httpBackend.expectPOST('/api/companies/createWithAddress');
+            $httpBackend.expectPOST('api/companies/createWithAddress');
             $httpBackend.flush();
         }));
     });

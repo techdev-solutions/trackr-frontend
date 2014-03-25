@@ -30,7 +30,7 @@ define(['baseTestSetup', 'angular'], function(baseTestSetup, angular) {
 
         it('load projects with getProjects', inject(function($httpBackend) {
             scope.getProjects('abc');
-            $httpBackend.expectGET(/\/api\/projects\/search\/findByNameLikeOrIdentifierLikeOrderByNameAsc\?.*/);
+            $httpBackend.expectGET(/\api\/projects\/search\/findByNameLikeOrIdentifierLikeOrderByNameAsc\?.*/);
             $httpBackend.flush();
         }));
 
@@ -58,7 +58,7 @@ define(['baseTestSetup', 'angular'], function(baseTestSetup, angular) {
         });
 
         function expectWorkTimeLoad($httpBackend) {
-            $httpBackend.expectGET(/\/api\/workTimes\/findEmployeeMappingByProjectAndDateBetween\?.*/);
+            $httpBackend.expectGET(/\api\/workTimes\/findEmployeeMappingByProjectAndDateBetween\?.*/);
             $httpBackend.flush();
             expect(scope.employeeMapping).toBeDefined();
             expect(scope.employeeMapping[1]).toBeDefined();

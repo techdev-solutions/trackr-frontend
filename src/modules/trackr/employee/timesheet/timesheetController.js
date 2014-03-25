@@ -22,7 +22,7 @@ define(['modules/shared/addErrorHandlers'], function(addErrorHandlers) {
 
         $scope.getProjects = function(searchString) {
             var search = '%' + searchString + '%';
-            return Restangular.allUrl('projects', '/api/projects/search/findByNameLikeOrIdentifierLikeOrderByNameAsc').getList({name: search, identifier: search});
+            return Restangular.allUrl('projects', 'api/projects/search/findByNameLikeOrIdentifierLikeOrderByNameAsc').getList({name: search, identifier: search});
         };
 
         function formatTime(date) {

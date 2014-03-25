@@ -60,7 +60,7 @@ define(['baseTestSetup'], function(baseTestSetup) {
             scope.project = { _links: { self: { href: 'project'}}};
             setWorkTimeHoursToValue(1);
             scope.createBill();
-            $httpBackend.expectPOST('/api/billableTimes');
+            $httpBackend.expectPOST('api/billableTimes');
             $httpBackend.flush();
             scope.employee.workTimes.forEach(function(workTime) {
                 expect(workTime.posted).toBe(true);

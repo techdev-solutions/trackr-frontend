@@ -35,26 +35,26 @@ define(['baseTestSetup'], function(baseTestSetup) {
 
         it('changeEnabled must sent a patch', inject(function($httpBackend) {
             scope.changeEnabled();
-            $httpBackend.expectPATCH(/^\/api\/credentials\/\d+$/);
+            $httpBackend.expectPATCH(/^\api\/credentials\/\d+$/);
             $httpBackend.flush();
         }));
 
         it('if the joinDate is changed a patch must be sent', inject(function($httpBackend) {
             scope.employee.joinDate = '2013-01-01';
-            $httpBackend.expectPATCH(/^\/api\/employees\/\d+$/);
+            $httpBackend.expectPATCH(/^\api\/employees\/\d+$/);
             $httpBackend.flush();
         }));
 
         it('if the state is changed a patch must be sent', inject(function($httpBackend) {
             scope.employee.federalState.name = 'test';
-            $httpBackend.expectPATCH(/^\/api\/employees\/\d+$/);
+            $httpBackend.expectPATCH(/^\api\/employees\/\d+$/);
             $httpBackend.flush();
         }));
 
         it('if the leaveDate is changed a patch must be sent and credentials must be reloaded', inject(function($httpBackend) {
             scope.employee.leaveDate = '2013-01-01';
-            $httpBackend.expectPATCH(/^\/api\/employees\/\d+$/);
-            $httpBackend.expectGET(/^\/api\/credentials\/\d+$/);
+            $httpBackend.expectPATCH(/^\api\/employees\/\d+$/);
+            $httpBackend.expectGET(/^\api\/credentials\/\d+$/);
             $httpBackend.flush();
         }));
     });

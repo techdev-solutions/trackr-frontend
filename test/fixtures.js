@@ -2,7 +2,7 @@
 define([], function() {
     "use strict";
     return {
-        "/api": {
+        "api": {
             "_links": {
                 "credentials": {
                     "href": "http://localhost:8080/api/credentials{?page,size,sort}",
@@ -35,7 +35,7 @@ define([], function() {
             }
         },
 
-        "/api/credentials": {
+        "api/credentials": {
             "_links": {
                 "self": {
                     "href": "http://localhost:8080/api/credentials{?page,size,sort}",
@@ -169,7 +169,7 @@ define([], function() {
             }
         },
 
-        "/api/contactPersons": {
+        "api/contactPersons": {
             "_links": {
                 "self": {
                     "href": "http://localhost:8080/api/contactPersons{?page,size,sort}",
@@ -222,7 +222,7 @@ define([], function() {
             }
         },
 
-        "/api/authorities": {
+        "api/authorities": {
             "_links": {
                 "self": {
                     "href": "http://localhost:8080/api/authorities{?page,size,sort}",
@@ -271,7 +271,7 @@ define([], function() {
             }
         },
 
-        "/api/projects": {
+        "api/projects": {
             "_links": {
                 "self": {
                     "href": "http://localhost:8080/api/projects{?page,size,sort}",
@@ -332,7 +332,7 @@ define([], function() {
             }
         },
 
-        "/api/employees": {
+        "api/employees": {
             "_links": {
                 "self": {
                     "href": "http://localhost:8080/api/employees{?page,size,sort}",
@@ -498,7 +498,7 @@ define([], function() {
             }
         },
 
-        "/api/companies": {
+        "api/companies": {
             "_links": {
                 "self": {
                     "href": "http://localhost:8080/api/companies{?page,size,sort}",
@@ -589,7 +589,7 @@ define([], function() {
             }
         },
 
-        "/api/addresses": {
+        "api/addresses": {
             "_links": {
                 "self": {
                     "href": "http://localhost:8080/api/addresses{?page,size,sort}",
@@ -650,7 +650,7 @@ define([], function() {
             }
         },
 
-        "/api/workTimes/findEmployeeMappingByProjectAndDateBetween": {
+        "api/workTimes/findEmployeeMappingByProjectAndDateBetween": {
             "1": {"name": "Moritz Schulze", "workTimes": [
                 {"date": "2014-03-03", "minutes": 495},
                 {"date": "2014-03-04", "minutes": 480},
@@ -673,7 +673,7 @@ define([], function() {
             ]}
         },
 
-        "/api/federalStates": [
+        "api/federalStates": [
             {"name": "BADEN_WUERTTEMBERG", "state": "Baden-Württemberg"},
             {"name": "BAYERN", "state": "Bayern"},
             {"name": "BERLIN", "state": "Berlin"},

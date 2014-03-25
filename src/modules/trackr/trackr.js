@@ -22,7 +22,7 @@ define(['angular',
                     abstract: true,
                     views: {
                         'top-menu@': {
-                            templateUrl: '/src/modules/trackr/top-menu.tpl.html',
+                            templateUrl: 'src/modules/trackr/top-menu.tpl.html',
                             controller: 'base.controllers.navigation'
                         }
                     }
@@ -31,7 +31,7 @@ define(['angular',
                     url: '',
                     views: {
                         'center@': {
-                            templateUrl: '/src/modules/trackr/welcome.tpl.html'
+                            templateUrl: 'src/modules/trackr/welcome.tpl.html'
                         }
                     }
                 });

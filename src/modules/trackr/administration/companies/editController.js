@@ -57,7 +57,7 @@ define(['lodash'], function(_) {
         $scope.contactPersonErrors = [];
         $scope.newContactPerson = {};
         $scope.doShowContactPersonForm(false);
-        Restangular.allUrl('companies', '/api/companies/search/findByCompanyId').getList({companyId: $stateParams.id}).then(function(companies) {
+        Restangular.allUrl('companies', 'api/companies/search/findByCompanyId').getList({companyId: $stateParams.id}).then(function(companies) {
             //TODO: why does spring return an array? The method signature is a single entity.
             var company = companies[0];
 

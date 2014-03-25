@@ -6,7 +6,7 @@ define(['modules/trackr/supervisor/timeIntervalSetup'], function(timeIntervalSet
         };
 
         $scope.getCompanies = function(searchString) {
-            return Restangular.allUrl('companies', '/api/companies/search/findByNameLikeOrderByNameAsc').getList({name: '%' + searchString + '%'});
+            return Restangular.allUrl('companies', 'api/companies/search/findByNameLikeOrderByNameAsc').getList({name: '%' + searchString + '%'});
         };
 
         $scope.loadProjects = function(company) {
@@ -24,7 +24,7 @@ define(['modules/trackr/supervisor/timeIntervalSetup'], function(timeIntervalSet
 
         $scope.loadBillData = function() {
             if($scope.project) {//only if the user has selected a project
-                $http.get('/api/billableTimes/findEmployeeMappingByProjectAndDateBetween', {
+                $http.get('api/billableTimes/findEmployeeMappingByProjectAndDateBetween', {
                     params: {
                         project: $scope.project.id,
                         start: $filter('date')($scope.start, 'yyyy-MM-dd'),

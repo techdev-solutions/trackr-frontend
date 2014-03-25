@@ -6,7 +6,7 @@ define([], function() {
         $scope.credential = {};
 
         $scope.saveEmployee = function() {
-            Restangular.allUrl('employees', '/api/employees/createWithCredential').post({
+            Restangular.allUrl('employees', 'api/employees/createWithCredential').post({
                 employee: $scope.employee,
                 credential: $scope.credential
             }).then(function(employee) {

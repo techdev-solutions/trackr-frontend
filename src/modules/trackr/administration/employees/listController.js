@@ -19,7 +19,7 @@ define([], function () {
 
         $scope.addNew = function() {
             var modalInstance = $modal.open({
-                templateUrl: '/src/modules/trackr/administration/employees/new.tpl.html',
+                templateUrl: 'src/modules/trackr/administration/employees/new.tpl.html',
                 controller: 'trackr.administration.controllers.employees.new'
             });
             modalInstance.result.then(function(employee) {

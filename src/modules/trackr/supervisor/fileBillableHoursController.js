@@ -8,7 +8,7 @@ define(['modules/trackr/supervisor/timeIntervalSetup'], function(timeIntervalSet
         $scope.loadWorktimes = function() {
             if($scope.project) {
                 //Load this via http as it does not return standard items (custom DTOs without links) and Restangular would not be usefule.
-                $http.get('/api/workTimes/findEmployeeMappingByProjectAndDateBetween', {
+                $http.get('api/workTimes/findEmployeeMappingByProjectAndDateBetween', {
                     params: {
                         project: $scope.project.id,
                         start: $filter('date')($scope.start, 'yyyy-MM-dd'),
@@ -30,7 +30,7 @@ define(['modules/trackr/supervisor/timeIntervalSetup'], function(timeIntervalSet
 
         $scope.getProjects = function(searchString) {
             var search = '%' + searchString + '%';
-            return Restangular.allUrl('projects', '/api/projects/search/findByNameLikeOrIdentifierLikeOrderByNameAsc').getList({name: search, identifier: search});
+            return Restangular.allUrl('projects', 'api/projects/search/findByNameLikeOrIdentifierLikeOrderByNameAsc').getList({name: search, identifier: search});
         };
 
         Restangular.all('projects').getList({sort: 'identifier,asc'}).then(function(projects) {

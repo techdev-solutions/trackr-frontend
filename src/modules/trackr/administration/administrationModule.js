@@ -8,7 +8,7 @@ define(['angular', 'modules/trackr/administration/controllers'], function(angula
             url: '/administration',
             views: {
                 'center@': {
-                    templateUrl: '/src/modules/trackr/administration/administration.tpl.html'
+                    templateUrl: 'src/modules/trackr/administration/administration.tpl.html'
                 }
             },
             needsAuthority: 'ROLE_SUPERVISOR'
@@ -17,7 +17,7 @@ define(['angular', 'modules/trackr/administration/controllers'], function(angula
             url: '/companies',
             views: {
                 'center@': {
-                    templateUrl: '/src/modules/trackr/administration/companies/list.tpl.html',
+                    templateUrl: 'src/modules/trackr/administration/companies/list.tpl.html',
                     controller: 'trackr.administration.controllers.companies.list'
                 }
             },
@@ -27,7 +27,7 @@ define(['angular', 'modules/trackr/administration/controllers'], function(angula
             url: '/{id:[\\d]+}',
             views: {
                 'company': {
-                    templateUrl: '/src/modules/trackr/administration/companies/edit.tpl.html',
+                    templateUrl: 'src/modules/trackr/administration/companies/edit.tpl.html',
                     controller: 'trackr.administration.controllers.companies.edit'
                 }
             },
@@ -37,7 +37,7 @@ define(['angular', 'modules/trackr/administration/controllers'], function(angula
             url: '/employees',
             views: {
                 'center@': {
-                    templateUrl: '/src/modules/trackr/administration/employees/list.tpl.html',
+                    templateUrl: 'src/modules/trackr/administration/employees/list.tpl.html',
                     controller: 'trackr.administration.controllers.employees.list'
                 }
             },
@@ -47,7 +47,7 @@ define(['angular', 'modules/trackr/administration/controllers'], function(angula
             url: '/{id:[\\d]+}',
             views: {
                 'employee': {
-                    templateUrl: '/src/modules/trackr/administration/employees/edit.tpl.html',
+                    templateUrl: 'src/modules/trackr/administration/employees/edit.tpl.html',
                     controller: 'trackr.administration.controllers.employees.edit'
                 }
             },
@@ -57,7 +57,7 @@ define(['angular', 'modules/trackr/administration/controllers'], function(angula
             url: '/roles',
             views: {
                 'employee': {
-                    templateUrl: '/src/modules/trackr/administration/employees/rolesList.tpl.html',
+                    templateUrl: 'src/modules/trackr/administration/employees/rolesList.tpl.html',
                     controller: 'trackr.administration.controllers.employees.roles-list'
                 }
             },
@@ -67,7 +67,7 @@ define(['angular', 'modules/trackr/administration/controllers'], function(angula
             url: '/projects',
             views: {
                 'center@': {
-                    templateUrl: '/src/modules/trackr/administration/projects/list.tpl.html',
+                    templateUrl: 'src/modules/trackr/administration/projects/list.tpl.html',
                     controller: 'trackr.administration.controllers.projects.list'
                 }
             },
@@ -77,7 +77,7 @@ define(['angular', 'modules/trackr/administration/controllers'], function(angula
             url: '/{id:[\\w\\.]+}',
             views: {
                 'project': {
-                    templateUrl: '/src/modules/trackr/administration/projects/edit.tpl.html',
+                    templateUrl: 'src/modules/trackr/administration/projects/edit.tpl.html',
                     controller: 'trackr.administration.controllers.projects.edit'
                 }
             },

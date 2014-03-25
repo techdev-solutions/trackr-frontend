@@ -7,7 +7,7 @@ define([], function() {
         });
 
         $scope.updateEmployee = function(patch) {
-            return Restangular.oneUrl('employees', '/api/employees/' + user.id + '/self').patch(patch);
+            return Restangular.oneUrl('employees', 'api/employees/' + user.id + '/self').patch(patch);
         };
     }];
 });

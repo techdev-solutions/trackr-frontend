@@ -26,7 +26,7 @@ define(['baseTestSetup', 'angular'], function(baseTestSetup, angular) {
 
         it('must save the company and address', inject(function($httpBackend) {
             scope.saveProject();
-            $httpBackend.expectPOST('/api/projects');
+            $httpBackend.expectPOST('api/projects');
             $httpBackend.flush();
         }));
     });

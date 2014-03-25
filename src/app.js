@@ -12,7 +12,7 @@ define(['angular', 'jQuery', 'i18n', 'restangular', 'angular-ui-router', 'angula
      After the user is loaded the trackr app gets bootstrapped manually.
      */
     angular.element(document).ready(function() {
-        $.get('/api/principal', function(data) {
+        $.get('api/principal', function(data) {
             trackrUser = data;
             i18n.init(app, trackrUser);
             angular.bootstrap(document, ['app']);
@@ -21,7 +21,7 @@ define(['angular', 'jQuery', 'i18n', 'restangular', 'angular-ui-router', 'angula
 
     app.config(['RestangularProvider', '$locationProvider', 'paginationConfig', function(RestangularProvider, $locationProvider, paginationConfig) {
         $locationProvider.html5Mode(false);
-        RestangularProvider.setBaseUrl('/api');
+        RestangularProvider.setBaseUrl('api');
         /**  Restangularify the Spring Data Rest response
          Spring Data Rest returns lists like this:
          <code>
