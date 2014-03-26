@@ -7,6 +7,12 @@ define([], function() {
         var credentialBase;
         var employeeBase = Restangular.one('employees', $stateParams.id);
 
+        function loadAuthorities() {
+            credentialBase.all('authorities').getList().then(function(authorities) {
+                $scope.credential.authorities = authorities;
+            });
+        }
+
         /**
          * Switch the enabled flag in the credentials via a PATCH call to the API.
          */
@@ -16,6 +22,7 @@ define([], function() {
             };
             credentialBase.patch(patch).then(function(credential) {
                 $scope.credential = credential;
+                loadAuthorities();
             });
         };
 
@@ -81,9 +88,7 @@ define([], function() {
             employee.one('credential').get().then(function(credential) {
                 $scope.credential = credential;
                 credentialBase = Restangular.one('credentials', credential.id);
-                credentialBase.all('authorities').getList().then(function(authorities) {
-                    $scope.credential.authorities = authorities;
-                });
+                loadAuthorities();
             });
         });
 
