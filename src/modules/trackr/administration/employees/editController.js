@@ -54,6 +54,9 @@ define([], function() {
                                 $scope.credential.authorities = authorities;
                             });
                         }
+                        $scope.errors = [];
+                    }, function(response) {
+                        $scope.errors = response.data.errors;
                     });
                 }
             });
