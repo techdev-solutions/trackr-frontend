@@ -1,21 +1,31 @@
-<h1><bs-edit entity="employee" property-name="firstName" own-submit="updateEmployee"></bs-edit>
-    <bs-edit entity="employee" property-name="lastName" own-submit="updateEmployee"></bs-edit>
+<h1>
+	<bs-edit entity="employee" property-name="firstName" own-submit="updateEmployee"></bs-edit>
+	<bs-edit entity="employee" property-name="lastName" own-submit="updateEmployee"></bs-edit>
 </h1>
-<dl>
-    <dt>
-        {{ 'EMPLOYEE.TITLE' | translate }}
-    <dd>{{employee.title}}</dd>
-    </dt>
-    <dt>
-        {{ 'EMPLOYEE.SALARY' | translate }}
-    <dd>{{employee.salary}}</dd>
-    </dt>
-    <dt>
-        {{ 'EMPLOYEE.HOURLY_COST_RATE' | translate }}
-    <dd>{{employee.hourlyCostRate}}</bs-edit></dd>
-    </dt>
-    <dt>
-        {{ 'EMPLOYEE.PHONE_NUMBER' | translate }}
-    <dd><bs-edit entity="employee" property-name="phoneNumber" own-submit="updateEmployee"></bs-edit></dd>
-    </dt>
-</dl>
+
+<form class="form-horizontal" role="form">
+	<div class="form-group">
+		<label class="col-sm-2 control-label">{{ 'EMPLOYEE.TITLE' | translate }}</label>
+		<div class="col-sm-8">
+			{{employee.title}}
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-sm-2 control-label">{{ 'EMPLOYEE.SALARY' | translate }}</label>
+		<div class="col-sm-8">
+			{{employee.salary}}
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-sm-2 control-label">{{ 'EMPLOYEE.HOURLY_COST_RATE' | translate }}</label>
+		<div class="col-sm-8">
+			{{employee.hourlyCostRate}}
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-sm-2 control-label">{{ 'EMPLOYEE.PHONE_NUMBER' | translate }}</label>
+		<div class="col-sm-8">
+			<bs-edit entity="employee" property-name="phoneNumber" own-submit="updateEmployee"></bs-edit>
+		</div>
+	</div>
+</form>

@@ -1,5 +1,5 @@
 <div class="form-group" ng-class="{'has-error': hasError(propertyName)}">
-    <label ng-class="{'sr-only': inline, 'form-label col-sm-4': !inline}" for="{{propertyName}}">{{ translateCode | translate }}</label>
+    <label ng-class="{'sr-only': inline, 'form-label col-sm-2': !inline}" for="{{propertyName}}">{{ translateCode | translate }}</label>
     <div ng-class="{'col-sm-6': !inline}">
         <input type="text" class="form-control" id="{{propertyName}}" placeholder="{{ translateCode | translate }}" ng-model="path"/>
         <span class="help-block">{{errorText(propertyName)}}</span>

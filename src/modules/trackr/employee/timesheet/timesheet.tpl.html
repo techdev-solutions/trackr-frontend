@@ -1,54 +1,64 @@
-<span ng-repeat="globalError in errors.globalMessages" class="alert alert-danger">{{globalError.message}}</span>
-<form class="form form-horizontal" ng-submit="saveTime()">
-    <div class="form-group" ng-class="{'has-error': hasError('project')}">
-        <label class="form-label col-sm-4" for="project">{{ 'WORKTIME.PROJECT' | translate }}</label>
-        <div class="col-sm-6">
-            <input type="text" class="form-control" id="project"
-                   ng-model="project"
-                   autocomplete="false"
-                   typeahead="project as project.name for project in getProjects($viewValue)"
-                   typeahead-editable="false"
-                   typeahead-min-length="2" />
-            <span class="help-block">{{errorText('project')}}</span>
-        </div>
-    </div>
+<div class="row">
+	<div class="col-lg-12">
 
-    <div class="form-group">
-        <label class="form-label col-sm-4" for="date">{{ 'WORKTIME.DATE' | translate }}</label>
-        <div class="col-sm-6">
-            <p class="input-group">
-                <input type="text" id="date" class="form-control" ng-model="date"
-                       datepicker-popup="yyyy-MM-dd"
-                       is-open="opened"
-                       datepicker-options="dateOptions"
-                       close-text="{{ 'ACTIONS.CLOSE' | translate }}"
-                       current-text="{{ 'DATE.TODAY' | translate }}"
-                       toggle-weeks-text="{{ 'DATE.WEEKS' | translate }}"
-                       clear-text="{{ 'ACTIONS.CLEAR' | translate }}"/>
-                <span class="input-group-btn">
-                    <button class="btn btn-default" ng-click="openDate($event)"><i class="glyphicon glyphicon-calendar"></i></button>
-                </span>
-            </p>
-        </div>
-    </div>
+		<span ng-repeat="globalError in errors.globalMessages" class="alert alert-danger">{{globalError.message}}</span>
 
-    <div class="form-group">
-        <label class="form-label col-sm-4" for="startTime">{{ 'WORKTIME.START' | translate }}</label>
-        <div ng-model="startTime" id="startTime" style="display:inline-block;" class="col-sm-6">
-            <timepicker hour-step="1" minute-step="15" show-meridian="ismeridian"></timepicker>
-        </div>
-    </div>
+		<form class="form-horizontal" ng-submit="saveTime()">
 
-    <div class="form-group">
-        <label class="form-label col-sm-4" for="endTime">{{ 'WORKTIME.END' | translate }}</label>
-        <div ng-model="endTime" id="endTime" style="display:inline-block;" class="col-sm-6">
-            <timepicker hour-step="1" minute-step="15" show-meridian="ismeridian"></timepicker>
-        </div>
-    </div>
+			<div class="form-group" ng-class="{'has-error': hasError('project')}">
+				<label class="form-label col-sm-2" for="project">{{ 'WORKTIME.PROJECT' | translate }}</label>
+				<div class="col-sm-2">
+					<input type="text" class="form-control" id="project"
+						   ng-model="project"
+						   autocomplete="false"
+						   typeahead="project as project.name for project in getProjects($viewValue)"
+						   typeahead-editable="false"
+						   typeahead-min-length="2" />
+					<span class="help-block">{{errorText('project')}}</span>
+				</div>
+			</div>
 
-    <bs-text property-name="comment" translate-code="WORKTIME.COMMENT" path="comment"></bs-text>
+			<div class="form-group">
+				<label class="form-label col-sm-2" for="date">{{ 'WORKTIME.DATE' | translate }}</label>
+				<div class="col-sm-2">
+					<p class="input-group">
+						<input type="text" id="date" class="form-control" ng-model="date"
+							   datepicker-popup="yyyy-MM-dd"
+							   is-open="opened"
+							   datepicker-options="dateOptions"
+							   close-text="{{ 'ACTIONS.CLOSE' | translate }}"
+							   current-text="{{ 'DATE.TODAY' | translate }}"
+							   toggle-weeks-text="{{ 'DATE.WEEKS' | translate }}"
+							   clear-text="{{ 'ACTIONS.CLEAR' | translate }}"/>
+						<span class="input-group-btn">
+							<button class="btn btn-default" ng-click="openDate($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+						</span>
+					</p>
+				</div>
+			</div>
 
-    <div class="form-group">
-        <button type="submit" class="btn btn-primary">{{ 'ACTIONS.SAVE' | translate }}</button>
-    </div>
-</form>
+			<div class="form-group">
+				<label class="form-label col-sm-2" for="startTime">{{ 'WORKTIME.START' | translate }}</label>
+				<div ng-model="startTime" id="startTime" style="display:inline-block;" class="col-sm-6">
+					<timepicker hour-step="1" minute-step="15" show-meridian="ismeridian"></timepicker>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="form-label col-sm-2" for="endTime">{{ 'WORKTIME.END' | translate }}</label>
+				<div ng-model="endTime" id="endTime" style="display:inline-block;" class="col-sm-6">
+					<timepicker hour-step="1" minute-step="15" show-meridian="ismeridian"></timepicker>
+				</div>
+			</div>
+
+			<bs-text property-name="comment" translate-code="WORKTIME.COMMENT" path="comment"></bs-text>
+
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-6">
+					<button type="submit" class="btn btn-primary">{{ 'ACTIONS.SAVE' | translate }}</button>
+				</div>
+			</div>
+		</form>
+
+	</div>
+</div>

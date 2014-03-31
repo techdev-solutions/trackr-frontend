@@ -1,33 +1,39 @@
-<div ui-view="new">
+<div class="row">
+	<div class="col-lg-12">
+
+		<div ui-view="new"></div>
+
+		<p>
+			<b>{{ 'EMPLOYEE.VACATION_ENTITLEMENT' | translate }}</b>: {{employee.vacationEntitlement}}
+		</p>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>{{ 'VACATION_REQUEST.START_DATE' | translate }}</th>
+					<th>{{ 'VACATION_REQUEST.END_DATE' | translate }}</th>
+					<th>{{ 'VACATION_REQUEST.NUMBER_OF_DAYS' | translate }}</th>
+					<th>{{ 'VACATION_REQUEST.STATUS' | translate }}</th>
+					<th>{{ 'VACATION_REQUEST.APPROVER' | translate }}</th>
+					<th>{{ 'VACATION_REQUEST.APPROVAL_DATE' | translate }}</th>
+					<th>{{ 'ACTIONS.ACTIONS' | translate }}</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="vacationRequest in vacationRequests">
+					<td>{{vacationRequest.startDate | date:'dd.MM.yyyy' }}</td>
+					<td>{{vacationRequest.endDate | date:'dd.MM.yyyy' }}</td>
+					<td>{{vacationRequest.numberOfDays}}</td>
+					<td>{{ 'VACATION_REQUEST.' + vacationRequest.status | translate}}</td>
+					<td>tbd</td>
+					<td>{{vacationRequest.approvalDate}}</td>
+					<td>
+						<a href ng-show="vacationRequest.status === 'PENDING'" ng-click="cancelVacationRequest(vacationRequest)">
+							<span class="glyphicon glyphicon-remove"></span>
+						</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+
+	</div>
 </div>
-<p>
-    <b>{{ 'EMPLOYEE.VACATION_ENTITLEMENT' | translate }}</b>: {{employee.vacationEntitlement}}
-</p>
-<table class="table table-striped">
-    <thead>
-    <tr>
-        <td>{{ 'VACATION_REQUEST.START_DATE' | translate }}</td>
-        <td>{{ 'VACATION_REQUEST.END_DATE' | translate }}</td>
-        <td>{{ 'VACATION_REQUEST.NUMBER_OF_DAYS' | translate }}</td>
-        <td>{{ 'VACATION_REQUEST.STATUS' | translate }}</td>
-        <td>{{ 'VACATION_REQUEST.APPROVER' | translate }}</td>
-        <td>{{ 'VACATION_REQUEST.APPROVAL_DATE' | translate }}</td>
-        <td>{{ 'ACTIONS.ACTIONS' | translate }}</td>
-    </tr>
-    </thead>
-    <tbody>
-    <tr ng-repeat="vacationRequest in vacationRequests">
-        <td>{{vacationRequest.startDate | date:'dd.MM.yyyy' }}</td>
-        <td>{{vacationRequest.endDate | date:'dd.MM.yyyy' }}</td>
-        <td>{{vacationRequest.numberOfDays}}</td>
-        <td>{{ 'VACATION_REQUEST.' + vacationRequest.status | translate}}</td>
-        <td>tbd</td>
-        <td>{{vacationRequest.approvalDate}}</td>
-        <td>
-            <a href ng-show="vacationRequest.status === 'PENDING'" ng-click="cancelVacationRequest(vacationRequest)">
-                <span class="glyphicon glyphicon-remove"></span>
-            </a>
-        </td>
-    </tr>
-    </tbody>
-</table>

@@ -1,72 +1,86 @@
-<h1>{{ 'PAGES.SUPERVISOR.BILL.TITLE' | translate }}</h1>
-<input type="text" class="form-control" ng-model="project"
-       typeahead-on-select="loadWorktimes()"
-       typeahead="project as getProjectLabel(project) for project in getProjects($viewValue)"
-       typeahead-editable="false"
-       typahead-min-length="2"/>
+<div class="row">
+	<div class="col-lg-12">
+		<h1>{{ 'PAGES.SUPERVISOR.BILL.TITLE' | translate }}</h1>
+	</div>
 
-<div class="col-md-6">
-    <p class="input-group">
-        <input type="text" class="form-control" ng-model="start"
-               datepicker-popup="yyyy-MM-dd"
-               is-open="startOpened"
-               datepicker-options="dateOptions"
-               close-text="{{ 'ACTIONS.CLOSE' | translate }}"
-               current-text="{{ 'DATE.TODAY' | translate }}"
-               toggle-weeks-text="{{ 'DATE.WEEKS' | translate }}"
-               clear-text="{{ 'ACTIONS.CLEAR' | translate }}"/>
-        <span class="input-group-btn">
-            <button class="btn btn-default" ng-click="openDate($event, 'startOpened')"><i class="glyphicon glyphicon-calendar"></i></button>
-        </span>
-    </p>
+	<div class="form-group col-lg-4">
+		<input type="text"
+			   class="form-control"
+			   ng-model="project"
+			   typeahead-on-select="loadWorktimes()"
+			   typeahead="project as getProjectLabel(project) for project in getProjects($viewValue)"
+			   typeahead-editable="false"
+			   typeahead-min-length="1"/>
+	</div>
+	<div class="form-group col-lg-2">
+		<div class="input-group">
+			<input type="text"
+				   class="form-control"
+				   ng-model="start"
+				   datepicker-popup="yyyy-MM-dd"
+				   is-open="startOpened"
+				   datepicker-options="dateOptions"
+				   close-text="{{ 'ACTIONS.CLOSE' | translate }}"
+				   current-text="{{ 'DATE.TODAY' | translate }}"
+				   toggle-weeks-text="{{ 'DATE.WEEKS' | translate }}"
+				   clear-text="{{ 'ACTIONS.CLEAR' | translate }}"/>
+			<span class="input-group-btn">
+				<button class="btn btn-default" ng-click="openDate($event, 'startOpened')"><i class="glyphicon glyphicon-calendar"></i></button>
+			</span>
+		</div>
+	</div>
+	<div class="form-group col-lg-2">
+		<div class="input-group">
+			<input type="text"
+				   class="form-control"
+				   ng-model="end"
+				   datepicker-popup="yyyy-MM-dd"
+				   is-open="stopOpened"
+				   datepicker-options="dateOptions"
+				   close-text="{{ 'ACTIONS.CLOSE' | translate }}"
+				   current-text="{{ 'DATE.TODAY' | translate }}"
+				   toggle-weeks-text="{{ 'DATE.WEEKS' | translate }}"
+				   clear-text="{{ 'ACTIONS.CLEAR' | translate }}"/>
+			<span class="input-group-btn">
+				<button class="btn btn-default" ng-click="openDate($event, 'stopOpened')"><i class="glyphicon glyphicon-calendar"></i></button>
+			</span>
+		</div>
+	</div>
+
+	<div class="col-lg-12">
+		<tabset>
+			<tab ng-repeat="(id, employee) in employeeMapping" heading="{{employee.name}}" ng-controller="trackr.supervisor.controllers.save-billable-hours">
+				<table class="table table-condensed table-bordered">
+					<tr>
+						<th>{{ 'BILLABLE_TIME.DATE' | translate }}</th>
+						<th>{{ 'PAGES.SUPERVISOR.BILL.HOURS' | translate }}</th>
+						<th colspan="2">{{ 'BILLABLE_TIME.BILLABLE_HOURS' | translate }}</th>
+					</tr>
+					<tr>
+						<td colspan="2"></td>
+						<td><input class="form-control input-sm"
+								   ng-change="setBillableHoursAll(billableHoursAll)"
+								   ng-model="billableHoursAll" placeholder="{{ 'PAGES.SUPERVISOR.BILL.SET_ALL' | translate }}"/></td>
+					</tr>
+					<tr ng-repeat="workTime in employee.workTimes">
+						<td>{{workTime.date | date:'dd.MM.yyyy'}}</td>
+						<td>{{workTime.enteredMinutes / 60}}</td>
+						<td><input class="input-sm form-control" ng-model="workTime.hours" ng-change="recalculateBillableSum()"/></td>
+						<td>
+							<span ng-if="workTime.posted" class="glyphicon" ng-class="{'glyphicon-warning-sign': workTime.error, 'glyphicon-ok-sign': !workTime.error}"></span>
+						</td>
+					</tr>
+					<tr>
+						<td><b>{{ 'PAGES.SUPERVISOR.BILL.SUM' | translate }}</b></td>
+						<td>{{sumMinutes / 60}}</td>
+						<td>{{sumBillableHours}}</td>
+						<td></td>
+					</tr>
+				</table>
+				<button type="button" class="btn btn-default" ng-click="createBill()">{{ 'ACTIONS.SAVE' | translate }}</button>
+				<button type="button" class="btn btn-warning" ng-click="resetHours()">{{ 'ACTIONS.RESET' | translate }}</button>
+			</tab>
+		</tabset>
+
+	</div>
 </div>
-
-<div class="col-md-6">
-    <p class="input-group">
-        <input type="text" class="form-control" ng-model="end"
-               datepicker-popup="yyyy-MM-dd"
-               is-open="stopOpened"
-               datepicker-options="dateOptions"
-               close-text="{{ 'ACTIONS.CLOSE' | translate }}"
-               current-text="{{ 'DATE.TODAY' | translate }}"
-               toggle-weeks-text="{{ 'DATE.WEEKS' | translate }}"
-               clear-text="{{ 'ACTIONS.CLEAR' | translate }}"/>
-            <span class="input-group-btn">
-                <button class="btn btn-default" ng-click="openDate($event, 'stopOpened')"><i class="glyphicon glyphicon-calendar"></i></button>
-            </span>
-    </p>
-</div>
-
-<tabset>
-    <tab ng-repeat="(id, employee) in employeeMapping" heading="{{employee.name}}" ng-controller="trackr.supervisor.controllers.save-billable-hours">
-        <table class="table table-condensed table-bordered">
-            <tr>
-                <th>{{ 'BILLABLE_TIME.DATE' | translate }}</th>
-                <th>{{ 'PAGES.SUPERVISOR.BILL.HOURS' | translate }}</th>
-                <th colspan="2">{{ 'BILLABLE_TIME.BILLABLE_HOURS' | translate }}</th>
-            </tr>
-            <tr>
-                <td colspan="2"></td>
-                <td><input class="form-control input-sm"
-                           ng-change="setBillableHoursAll(billableHoursAll)"
-                           ng-model="billableHoursAll" placeholder="{{ 'PAGES.SUPERVISOR.BILL.SET_ALL' | translate }}"/></td>
-            </tr>
-            <tr ng-repeat="workTime in employee.workTimes">
-                <td>{{workTime.date | date:'dd.MM.yyyy'}}</td>
-                <td>{{workTime.enteredMinutes / 60}}</td>
-                <td><input class="input-sm form-control" ng-model="workTime.hours" ng-change="recalculateBillableSum()"/></td>
-                <td>
-                    <span ng-if="workTime.posted" class="glyphicon" ng-class="{'glyphicon-warning-sign': workTime.error, 'glyphicon-ok-sign': !workTime.error}"></span>
-                </td>
-            </tr>
-            <tr>
-                <td><b>{{ 'PAGES.SUPERVISOR.BILL.SUM' | translate }}</b></td>
-                <td>{{sumMinutes / 60}}</td>
-                <td>{{sumBillableHours}}</td>
-                <td></td>
-            </tr>
-        </table>
-        <button type="button" class="btn btn-default" ng-click="createBill()">{{ 'ACTIONS.SAVE' | translate }}</button>
-        <button type="button" class="btn btn-warning" ng-click="resetHours()">{{ 'ACTIONS.RESET' | translate }}</button>
-    </tab>
-</tabset>
