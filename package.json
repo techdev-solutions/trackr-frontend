@@ -22,6 +22,7 @@
     "grunt-contrib-htmlmin": "0.1.x",
     "grunt-processhtml": "0.2.x",
     "grunt-karma": "0.6.x",
-    "grunt-contrib-requirejs": "~0.4.1"
+    "grunt-contrib-requirejs": "~0.4.1",
+    "karma-junit-reporter": "^0.2.1"
   }
 }
