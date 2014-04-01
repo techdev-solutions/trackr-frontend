@@ -1,7 +1,7 @@
 <div class="row">
 	<div class="col-lg-12">
 		<h1>{{ 'PAGES.HOME.WELCOME_TEXT' | translate }}</h1>
-		<a ui-sref="trackr.administration" class="btn btn-lg btn-primary">{{ 'PAGES.ADMINISTRATION.TITLE' | translate }}</a>
+		<a ui-sref="trackr.administration" class="btn btn-lg btn-primary" has-authority="ROLE_SUPERVISOR">{{ 'PAGES.ADMINISTRATION.TITLE' | translate }}</a>
 		<a ui-sref="trackr.employee" class="btn btn-lg btn-primary">{{ 'PAGES.EMPLOYEE.TITLE' | translate }}</a>
 	</div>
 </div>
