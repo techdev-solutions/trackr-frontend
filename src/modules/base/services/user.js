@@ -1,6 +1,6 @@
-define([], function () {
+define([], function() {
     'use strict';
-    return [function () {
+    return [function() {
         var user;
         var permissionLevels = {//TODO load this from the server
             ROLE_ADMIN: 0,
@@ -8,16 +8,16 @@ define([], function () {
             ROLE_EMPLOYEE: 2
         };
         return {
-            setUser: function (_user) {
+            setUser: function(_user) {
                 user = _user;
                 if(user) {
-                    user.highestAuthority = user.authorities.sort( function(a1, a2) {
-                        return a1.order > a2.order;
+                    user.highestAuthority = user.authorities.sort(function(a1, a2) {
+                        return a1.order - a2.order;
                     })[0];
                 }
             },
 
-            getUser: function () {
+            getUser: function() {
                 return user;
             },
 
@@ -26,8 +26,8 @@ define([], function () {
              * @param authority The authority to check for
              * @returns {boolean} True if the user authority is higher, e.g. the user is ROLE_SUPERVISOR and the argument is ROLE_EMPLOYEE.
              */
-            userHasAuthority: function (authority) {
-                if (user.authorities.length === 0) {
+            userHasAuthority: function(authority) {
+                if(user.authorities.length === 0) {
                     return false;
                 }
                 var userAuthority = user.highestAuthority.authority;
