@@ -17,5 +17,11 @@ define(['baseTestSetup'], function(baseTestSetup) {
             expect(UserService.getUser).toHaveBeenCalled();
             expect(scope.user).toBeDefined();
         });
+
+        it('changeLanguage should perform a put request on the API', inject(function($httpBackend) {
+            scope.changeLanguage('en');
+            $httpBackend.expectPUT(/^api\/translations\?.*/);
+            $httpBackend.flush();
+        }));
     });
 });
