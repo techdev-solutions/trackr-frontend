@@ -54,6 +54,9 @@ define(['fixtures'], function(fixtures) {
 
         $httpBackend.whenGET(/api\/workTimes\/findEmployeeMappingByProjectAndDateBetween\?.*/)
             .respond(fixtures['api/workTimes/findEmployeeMappingByProjectAndDateBetween']);
+        $httpBackend.whenGET(/api\/workTimes\/search\/findByEmployeeAndDateBetweenOrderByDateAscStartTimeAsc\?.*/)
+            .respond(fixtures['api/workTimes']);
+        $httpBackend.whenGET(/api\/workTimes\/\d+\/project/).respond(fixtures['api/projects']._embedded.projects[0]);
 
         $httpBackend.whenGET(/api\/projects\/search\/findByNameLikeOrIdentifierLikeOrderByNameAsc\?.*/)
             .respond(fixtures['api/projects']);
@@ -69,14 +72,14 @@ define(['fixtures'], function(fixtures) {
         mockPost('api/employees/createWithCredential');
         mockPost('api/projects');
 
-        $httpBackend.whenPATCH(/^api\/credentials\/\d+$/).respond(function(method, url ,data) {
+        $httpBackend.whenPATCH(/^api\/credentials\/\d+$/).respond(function(method, url, data) {
             return [200, data];
         });
 
-        $httpBackend.whenPATCH(/^api\/employees\/\d+$/).respond(function(method, url ,data) {
+        $httpBackend.whenPATCH(/^api\/employees\/\d+$/).respond(function(method, url, data) {
             return [200, data];
         });
-        $httpBackend.whenPATCH(/^api\/employees\/\d+\/self$/).respond(function(method, url ,data) {
+        $httpBackend.whenPATCH(/^api\/employees\/\d+\/self$/).respond(function(method, url, data) {
             return [200, data];
         });
 
@@ -89,7 +92,7 @@ define(['fixtures'], function(fixtures) {
 
         /* ############################ TEMPLATES ########################### */
         /*
-        Just return an empty template.
+         Just return an empty template.
          */
         $httpBackend.whenGET(/^.*\.tpl\.html$/).respond(
             [200, '<div></div>']

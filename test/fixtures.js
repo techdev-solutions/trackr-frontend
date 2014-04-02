@@ -650,6 +650,189 @@ define([], function() {
             }
         },
 
+        "api/workTimes": {
+            "_links": {
+                "search": {
+                    "href": "http://localhost:8080/api/workTimes/search"
+                }
+            },
+            "_embedded": {
+                "workTimes": [
+                    {
+                        "id": 0,
+                        "version": 0,
+                        "date": "2014-03-03",
+                        "startTime": "09:00:00",
+                        "endTime": "17:15:00",
+                        "comment": "Kommentar 1",
+                        "_links": {
+                            "self": {
+                                "href": "http://localhost:8080/api/workTimes/0"
+                            },
+                            "employee": {
+                                "href": "http://localhost:8080/api/workTimes/0/employee"
+                            },
+                            "project": {
+                                "href": "http://localhost:8080/api/workTimes/0/project"
+                            }
+                        }
+                    },
+                    {
+                        "id": 6,
+                        "version": 0,
+                        "date": "2014-03-03",
+                        "startTime": "09:00:00",
+                        "endTime": "17:00:00",
+                        "comment": "Kommentar 123",
+                        "_links": {
+                            "self": {
+                                "href": "http://localhost:8080/api/workTimes/6"
+                            },
+                            "employee": {
+                                "href": "http://localhost:8080/api/workTimes/6/employee"
+                            },
+                            "project": {
+                                "href": "http://localhost:8080/api/workTimes/6/project"
+                            }
+                        }
+                    },
+                    {
+                        "id": 7,
+                        "version": 0,
+                        "date": "2014-03-03",
+                        "startTime": "09:00:00",
+                        "endTime": "12:00:00",
+                        "comment": "Kommentar 46",
+                        "_links": {
+                            "self": {
+                                "href": "http://localhost:8080/api/workTimes/7"
+                            },
+                            "employee": {
+                                "href": "http://localhost:8080/api/workTimes/7/employee"
+                            },
+                            "project": {
+                                "href": "http://localhost:8080/api/workTimes/7/project"
+                            }
+                        }
+                    },
+                    {
+                        "id": 8,
+                        "version": 0,
+                        "date": "2014-03-04",
+                        "startTime": "12:00:00",
+                        "endTime": "15:00:00",
+                        "comment": "Kommentar 789",
+                        "_links": {
+                            "self": {
+                                "href": "http://localhost:8080/api/workTimes/8"
+                            },
+                            "employee": {
+                                "href": "http://localhost:8080/api/workTimes/8/employee"
+                            },
+                            "project": {
+                                "href": "http://localhost:8080/api/workTimes/8/project"
+                            }
+                        }
+                    },
+                    {
+                        "id": 1,
+                        "version": 0,
+                        "date": "2014-03-04",
+                        "startTime": "09:00:00",
+                        "endTime": "17:00:00",
+                        "comment": "Kommentar 2",
+                        "_links": {
+                            "self": {
+                                "href": "http://localhost:8080/api/workTimes/1"
+                            },
+                            "employee": {
+                                "href": "http://localhost:8080/api/workTimes/1/employee"
+                            },
+                            "project": {
+                                "href": "http://localhost:8080/api/workTimes/1/project"
+                            }
+                        }
+                    },
+                    {
+                        "id": 2,
+                        "version": 0,
+                        "date": "2014-03-05",
+                        "startTime": "09:00:00",
+                        "endTime": "12:00:00",
+                        "comment": "Kommentar 3",
+                        "_links": {
+                            "self": {
+                                "href": "http://localhost:8080/api/workTimes/2"
+                            },
+                            "employee": {
+                                "href": "http://localhost:8080/api/workTimes/2/employee"
+                            },
+                            "project": {
+                                "href": "http://localhost:8080/api/workTimes/2/project"
+                            }
+                        }
+                    },
+                    {
+                        "id": 3,
+                        "version": 0,
+                        "date": "2014-03-05",
+                        "startTime": "13:00:00",
+                        "endTime": "17:00:00",
+                        "comment": "Kommentar 4",
+                        "_links": {
+                            "self": {
+                                "href": "http://localhost:8080/api/workTimes/3"
+                            },
+                            "employee": {
+                                "href": "http://localhost:8080/api/workTimes/3/employee"
+                            },
+                            "project": {
+                                "href": "http://localhost:8080/api/workTimes/3/project"
+                            }
+                        }
+                    },
+                    {
+                        "id": 4,
+                        "version": 0,
+                        "date": "2014-03-06",
+                        "startTime": "09:00:00",
+                        "endTime": "17:00:00",
+                        "comment": "Kommentar 5",
+                        "_links": {
+                            "self": {
+                                "href": "http://localhost:8080/api/workTimes/4"
+                            },
+                            "employee": {
+                                "href": "http://localhost:8080/api/workTimes/4/employee"
+                            },
+                            "project": {
+                                "href": "http://localhost:8080/api/workTimes/4/project"
+                            }
+                        }
+                    },
+                    {
+                        "id": 5,
+                        "version": 0,
+                        "date": "2014-03-07",
+                        "startTime": "09:00:00",
+                        "endTime": "17:00:00",
+                        "comment": "Kommentar 6",
+                        "_links": {
+                            "self": {
+                                "href": "http://localhost:8080/api/workTimes/5"
+                            },
+                            "employee": {
+                                "href": "http://localhost:8080/api/workTimes/5/employee"
+                            },
+                            "project": {
+                                "href": "http://localhost:8080/api/workTimes/5/project"
+                            }
+                        }
+                    }
+                ]
+            }
+        },
+
         "api/workTimes/findEmployeeMappingByProjectAndDateBetween": {
             "1": {"name": "Moritz Schulze", "workTimes": [
                 {"date": "2014-03-03", "minutes": 495},
