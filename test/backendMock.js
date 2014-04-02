@@ -52,6 +52,8 @@ define(['fixtures'], function(fixtures) {
         $httpBackend.when('GET', /^api\/companies\/[\d]+\/address$/).respond(fixtures['api/addresses']._embedded.addresses[0]);
         $httpBackend.when('GET', /^api\/companies\/[\d]+\/contactPersons/).respond(fixtures['api/contactPersons']);
         $httpBackend.when('GET', /^api\/companies\/[\d]+\/projects/).respond(fixtures['api/projects']);
+        $httpBackend.whenGET(/^api\/vacationRequests\/\d+\/employee/).respond(fixtures['api/employees']._embedded.employees[0]);
+        $httpBackend.whenGET(/^api\/vacationRequests\/\d+\/approver/).respond(fixtures['api/employees']._embedded.employees[1]);
 
         $httpBackend.whenGET(/api\/workTimes\/findEmployeeMappingByProjectAndDateBetween\?.*/)
             .respond(fixtures['api/workTimes/findEmployeeMappingByProjectAndDateBetween']);
@@ -68,6 +70,7 @@ define(['fixtures'], function(fixtures) {
         $httpBackend.whenGET(/api\/projects\/search\/findByIdentifier\?.*/).respond(fixtures['api/projects']);
 
         $httpBackend.whenGET(/^api\/vacationRequests\/search\/findByEmployeeOrderByStartDateAsc\?.*/).respond(fixtures['api/vacationRequests']);
+        $httpBackend.whenGET(/^api\/vacationRequests\/search\/findByStatusOrderBySubmissionTimeAsc\?.*/).respond(fixtures['api/vacationRequests']);
 
         $httpBackend.whenDELETE(/^api\/vacationRequests\/\d+/).respond([204]);
 
@@ -93,6 +96,21 @@ define(['fixtures'], function(fixtures) {
         });
 
         $httpBackend.whenPUT(/^api\/translations\?.*/).respond({});
+
+        $httpBackend.whenPUT(/^api\/vacationRequests\/\d+\/approve/).respond(function() {
+            return [200, {
+                approver: 'api/employees/0',
+                status: 'APPROVED',
+                approvalDate: new Date()
+            }];
+        });
+        $httpBackend.whenPUT(/^api\/vacationRequests\/\d+\/reject/).respond(function() {
+            return [200, {
+                approver: 'api/employees/0',
+                status: 'REJECTED',
+                approvalDate: new Date()
+            }];
+        });
 
         $httpBackend.whenGET(/^api\/companies\/search\/findByCompanyId\?.*/).respond(fixtures['api/companies']);
         $httpBackend.whenGET(/^api\/companies\/search\/findByNameLikeOrderByNameAsc\?.*/).respond(fixtures['api/companies']);
