@@ -1,6 +1,6 @@
 define(['modules/shared/addErrorHandlers'], function(addErrorHandlers) {
     'use strict';
-    return ['$scope', 'Restangular', 'trackr.services.employee', function($scope, Restangular, EmployeeService) {
+    return ['$scope', 'Restangular', 'trackr.services.employee', '$filter', function($scope, Restangular, EmployeeService, $filter) {
         var controller = this;
         addErrorHandlers($scope);
         var today = new Date();
@@ -27,7 +27,7 @@ define(['modules/shared/addErrorHandlers'], function(addErrorHandlers) {
         };
 
         controller.formatTime = function(date) {
-            return date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
+            return $filter('date')(date, 'HH:mm:ss');
         };
 
         controller.createWorkTimeEntity = function() {
