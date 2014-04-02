@@ -110,6 +110,12 @@ module.exports = function (grunt) {
                 configFile: 'karma.conf.js',
                 singleRun: true,
                 browsers: ['PhantomJS']
+            },
+            cover: {
+                configFile: 'karma.conf.js',
+                singleRun: true,
+                browsers: ['PhantomJS'],
+                reporters: ['progress', 'coverage']
             }
         }
     });

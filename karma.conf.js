@@ -11,6 +11,10 @@ module.exports = function (config) {
         // frameworks to use
         frameworks: ['jasmine', 'requirejs'],
 
+        preprocessors: {
+            'src/modules/**/*.js': 'coverage'
+        },
+
         // list of files / patterns to load in the browser
         files: [
             {pattern: 'src/modules/**/*.js', included: false},
@@ -60,6 +64,11 @@ module.exports = function (config) {
 
         // Continuous Integration mode
         // if true, it capture browsers, run tests and exit
-        singleRun: false
+        singleRun: false,
+
+        coverageReporter: {
+            type : 'html',
+            dir : '../../../../../build/coverage'
+        }
     });
 };
