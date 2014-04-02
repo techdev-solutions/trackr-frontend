@@ -65,6 +65,7 @@ define(['fixtures'], function(fixtures) {
         mockPost('api/contactPersons');
         mockPost('api/billableTimes');
         mockPost('api/companies/createWithAddress');
+        mockPost('api/employees/createWithCredential');
         mockPost('api/projects');
 
         $httpBackend.whenPATCH(/^api\/credentials\/\d+$/).respond(function(method, url ,data) {
