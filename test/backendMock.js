@@ -51,12 +51,16 @@ define(['fixtures'], function(fixtures) {
         $httpBackend.when('GET', /^api\/companies\/[\d]+$/).respond(fixtures['api/companies']._embedded.companies[0]);
         $httpBackend.when('GET', /^api\/companies\/[\d]+\/address$/).respond(fixtures['api/addresses']._embedded.addresses[0]);
         $httpBackend.when('GET', /^api\/companies\/[\d]+\/contactPersons/).respond(fixtures['api/contactPersons']);
+        $httpBackend.when('GET', /^api\/companies\/[\d]+\/projects/).respond(fixtures['api/projects']);
 
         $httpBackend.whenGET(/api\/workTimes\/findEmployeeMappingByProjectAndDateBetween\?.*/)
             .respond(fixtures['api/workTimes/findEmployeeMappingByProjectAndDateBetween']);
         $httpBackend.whenGET(/api\/workTimes\/search\/findByEmployeeAndDateBetweenOrderByDateAscStartTimeAsc\?.*/)
             .respond(fixtures['api/workTimes']);
         $httpBackend.whenGET(/api\/workTimes\/\d+\/project/).respond(fixtures['api/projects']._embedded.projects[0]);
+
+        $httpBackend.whenGET(/^api\/billableTimes\/findEmployeeMappingByProjectAndDateBetween\?.*/)
+            .respond(fixtures['api/billableTimes']);
 
         $httpBackend.whenGET(/api\/projects\/search\/findByNameLikeOrIdentifierLikeOrderByNameAsc\?.*/)
             .respond(fixtures['api/projects']);
@@ -91,6 +95,7 @@ define(['fixtures'], function(fixtures) {
         $httpBackend.whenPUT(/^api\/translations\?.*/).respond({});
 
         $httpBackend.whenGET(/^api\/companies\/search\/findByCompanyId\?.*/).respond(fixtures['api/companies']);
+        $httpBackend.whenGET(/^api\/companies\/search\/findByNameLikeOrderByNameAsc\?.*/).respond(fixtures['api/companies']);
 
         $httpBackend.whenDELETE(/^api\/credentials\/\d+\/authorities\/\d+/).respond([204]);
         $httpBackend.whenPATCH(/^api\/credentials\/\d+\/authorities/).respond([204]);

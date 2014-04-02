@@ -969,6 +969,69 @@ define([], function() {
                     }
                 ]
             }
+        },
+
+        "api/billableTimes": {
+            "_links": {
+                "search": {
+                    "href": "http://localhost:8080/api/billableTimes/search"
+                }
+            },
+            "_embedded": {
+                "billableTimes": [
+                    {
+                        "id": 0,
+                        "version": 0,
+                        "date": "2014-03-03",
+                        "minutes": 480,
+                        "_links": {
+                            "self": {
+                                "href": "http://localhost:8080/api/billableTimes/0"
+                            },
+                            "project": {
+                                "href": "http://localhost:8080/api/billableTimes/0/project"
+                            },
+                            "employee": {
+                                "href": "http://localhost:8080/api/billableTimes/0/employee"
+                            }
+                        }
+                    },
+                    {
+                        "id": 1,
+                        "version": 0,
+                        "date": "2014-03-04",
+                        "minutes": 480,
+                        "_links": {
+                            "self": {
+                                "href": "http://localhost:8080/api/billableTimes/1"
+                            },
+                            "project": {
+                                "href": "http://localhost:8080/api/billableTimes/1/project"
+                            },
+                            "employee": {
+                                "href": "http://localhost:8080/api/billableTimes/1/employee"
+                            }
+                        }
+                    },
+                    {
+                        "id": 2,
+                        "version": 0,
+                        "date": "2014-03-03",
+                        "minutes": 375,
+                        "_links": {
+                            "self": {
+                                "href": "http://localhost:8080/api/billableTimes/2"
+                            },
+                            "project": {
+                                "href": "http://localhost:8080/api/billableTimes/2/project"
+                            },
+                            "employee": {
+                                "href": "http://localhost:8080/api/billableTimes/2/employee"
+                            }
+                        }
+                    }
+                ]
+            }
         }
     };
 });
