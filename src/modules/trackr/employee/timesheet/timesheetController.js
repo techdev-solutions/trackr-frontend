@@ -1,6 +1,7 @@
 define(['modules/shared/addErrorHandlers'], function(addErrorHandlers) {
     'use strict';
     return ['$scope', 'Restangular', 'trackr.services.employee', function($scope, Restangular, EmployeeService) {
+        var controller = this;
         addErrorHandlers($scope);
         var today = new Date();
         $scope.date = today;
@@ -25,11 +26,11 @@ define(['modules/shared/addErrorHandlers'], function(addErrorHandlers) {
             return Restangular.allUrl('projects', 'api/projects/search/findByNameLikeOrIdentifierLikeOrderByNameAsc').getList({name: search, identifier: search});
         };
 
-        function formatTime(date) {
+        controller.formatTime = function(date) {
             return date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
-        }
+        };
 
-        function createWorkTimeEntity() {
+        controller.createWorkTimeEntity = function() {
             var project;
             if($scope.project) {
                 project = $scope.project._links.self.href;
@@ -38,14 +39,14 @@ define(['modules/shared/addErrorHandlers'], function(addErrorHandlers) {
                 employee: EmployeeService.getEmployeeHref(),
                 project: project,
                 date: $scope.date,
-                startTime: formatTime($scope.startTime),
-                endTime: formatTime($scope.endTime),
+                startTime: controller.formatTime($scope.startTime),
+                endTime: controller.formatTime($scope.endTime),
                 comment: $scope.comment
             };
-        }
+        };
 
         $scope.saveTime = function() {
-            var workTimeObject = createWorkTimeEntity();
+            var workTimeObject = controller.createWorkTimeEntity();
             Restangular.all('workTimes').post(workTimeObject).then(function() {
                 $scope.errors = [];
             }, function(response) {

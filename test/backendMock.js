@@ -64,6 +64,7 @@ define(['fixtures'], function(fixtures) {
 
         mockPost('api/contactPersons');
         mockPost('api/billableTimes');
+        mockPost('api/workTimes');
         mockPost('api/companies/createWithAddress');
         mockPost('api/employees/createWithCredential');
         mockPost('api/projects');
