@@ -63,6 +63,10 @@ define(['fixtures'], function(fixtures) {
 
         $httpBackend.whenGET(/api\/projects\/search\/findByIdentifier\?.*/).respond(fixtures['api/projects']);
 
+        $httpBackend.whenGET(/^api\/vacationRequests\/search\/findByEmployeeOrderByStartDateAsc\?.*/).respond(fixtures['api/vacationRequests']);
+
+        $httpBackend.whenDELETE(/^api\/vacationRequests\/\d+/).respond([204]);
+
         $httpBackend.whenDELETE(/^api\/contactPersons\/\d+/).respond([204]);
 
         mockPost('api/contactPersons');

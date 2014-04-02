@@ -8,6 +8,9 @@ define(['lodash'], function(_) {
                 $scope.vacationRequests = vacationRequests;
             });
 
+        /*
+        This will be fired by the vacation-new controller.
+         */
         $scope.$on('newVacationRequest', function(event, data) {
             $scope.vacationRequests.push(data);
         });

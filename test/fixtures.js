@@ -873,6 +873,102 @@ define([], function() {
             {"name": "SACHSEN_ANHALT", "state": "Sachsen-Anhalt"},
             {"name": "SCHLESWIG_HOLSTEINT", "state": "Schleswig-Holstein"},
             {"name": "THUERINGEN", "state": "Thüringen"}
-        ]
+        ],
+
+        "api/vacationRequests": {
+            "_links": {
+                "search": {
+                    "href": "http://localhost:8080/api/vacationRequests/search"
+                }
+            },
+            "_embedded": {
+                "vacationRequests": [
+                    {
+                        "id": 0,
+                        "version": 0,
+                        "startDate": "2014-03-01",
+                        "endDate": "2014-03-08",
+                        "numberOfDays": 5,
+                        "status": "PENDING",
+                        "approvalDate": null,
+                        "submissionTime": 1388570400000,
+                        "_links": {
+                            "self": {
+                                "href": "http://localhost:8080/api/vacationRequests/0"
+                            },
+                            "employee": {
+                                "href": "http://localhost:8080/api/vacationRequests/0/employee"
+                            },
+                            "approver": {
+                                "href": "http://localhost:8080/api/vacationRequests/0/approver"
+                            }
+                        }
+                    },
+                    {
+                        "id": 3,
+                        "version": 0,
+                        "startDate": "2014-12-10",
+                        "endDate": "2014-12-24",
+                        "numberOfDays": 5,
+                        "status": "PENDING",
+                        "approvalDate": null,
+                        "submissionTime": 1388743200000,
+                        "_links": {
+                            "self": {
+                                "href": "http://localhost:8080/api/vacationRequests/3"
+                            },
+                            "employee": {
+                                "href": "http://localhost:8080/api/vacationRequests/3/employee"
+                            },
+                            "approver": {
+                                "href": "http://localhost:8080/api/vacationRequests/3/approver"
+                            }
+                        }
+                    },
+                    {
+                        "id": 1,
+                        "version": 0,
+                        "startDate": "2014-03-09",
+                        "endDate": "2014-03-16",
+                        "numberOfDays": 5,
+                        "status": "APPROVED",
+                        "approvalDate": "2014-03-25",
+                        "submissionTime": 1388566800000,
+                        "_links": {
+                            "self": {
+                                "href": "http://localhost:8080/api/vacationRequests/1"
+                            },
+                            "employee": {
+                                "href": "http://localhost:8080/api/vacationRequests/1/employee"
+                            },
+                            "approver": {
+                                "href": "http://localhost:8080/api/vacationRequests/1/approver"
+                            }
+                        }
+                    },
+                    {
+                        "id": 2,
+                        "version": 0,
+                        "startDate": "2014-03-17",
+                        "endDate": "2014-03-24",
+                        "numberOfDays": 5,
+                        "status": "REJECTED",
+                        "approvalDate": "2014-03-25",
+                        "submissionTime": 1388588400000,
+                        "_links": {
+                            "self": {
+                                "href": "http://localhost:8080/api/vacationRequests/2"
+                            },
+                            "employee": {
+                                "href": "http://localhost:8080/api/vacationRequests/2/employee"
+                            },
+                            "approver": {
+                                "href": "http://localhost:8080/api/vacationRequests/2/approver"
+                            }
+                        }
+                    }
+                ]
+            }
+        }
     };
 });
