@@ -83,6 +83,8 @@ define(['fixtures'], function(fixtures) {
 
         $httpBackend.whenGET(/^api\/companies\/search\/findByCompanyId\?.*/).respond(fixtures['api/companies']);
 
+        $httpBackend.whenDELETE(/^api\/credentials\/\d+\/authorities\/\d+/).respond([204]);
+        $httpBackend.whenPATCH(/^api\/credentials\/\d+\/authorities/).respond([204]);
 
         /* ############################ TEMPLATES ########################### */
         /*
