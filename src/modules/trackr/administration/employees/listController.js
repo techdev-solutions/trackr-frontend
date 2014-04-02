@@ -26,6 +26,7 @@ define([], function () {
                 loadEmployees();
                 $state.go('trackr.administration.employees.edit', {id: employee.id});
             });
+            return modalInstance;
         };
     }];
 });
