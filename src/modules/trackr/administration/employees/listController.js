@@ -1,21 +1,14 @@
-define([], function () {
+define(['modules/shared/PaginationLoader'], function (PaginationLoader) {
     'use strict';
     return ['$scope', 'Restangular', '$modal', '$state', function($scope, Restangular, $modal, $state) {
-        var allUsers = Restangular.all('employees');
-
-        function loadEmployees(page) {
-            page = page || 1;
-            allUsers.getList({sort: 'lastName', page: page - 1, size: 5}).then(function (employees) {
-                $scope.employees = employees;
-            });
-        }
+        var paginationLoader = new PaginationLoader(Restangular.all('employees'), 'employees', 'lastName', $scope, 10);
 
         $scope.setPage = function(page) {
-            loadEmployees(page);
+            paginationLoader.loadPage(page);
         };
 
         //initially load all employees
-        loadEmployees();
+        paginationLoader.loadPage();
 
         $scope.addNew = function() {
             var modalInstance = $modal.open({
@@ -23,7 +16,7 @@ define([], function () {
                 controller: 'trackr.administration.controllers.employees.new'
             });
             modalInstance.result.then(function(employee) {
-                loadEmployees();
+                paginationLoader.loadPage();
                 $state.go('trackr.administration.employees.edit', {id: employee.id});
             });
             return modalInstance;

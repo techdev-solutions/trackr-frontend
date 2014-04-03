@@ -1,21 +1,14 @@
-define([], function () {
+define(['modules/shared/PaginationLoader'], function(PaginationLoader) {
     'use strict';
     return ['$scope', 'Restangular', '$modal', '$state', function($scope, Restangular, $modal, $state) {
-        var allProjects = Restangular.all('projects');
-
-        function loadProjects(page) {
-            page = page || 1;
-            allProjects.getList({sort: 'name,asc', page: page - 1, size: 5}).then(function (projects) {
-                $scope.projects = projects;
-            });
-        }
+        var paginationLoader = new PaginationLoader(Restangular.all('projects'), 'projects', 'name,asc', $scope);
 
         $scope.setPage = function(page) {
-            loadProjects(page);
+            paginationLoader.loadPage(page);
         };
 
         //initially load all companies
-        loadProjects();
+        paginationLoader.loadPage();
 
         $scope.addNew = function() {
             var modalInstance = $modal.open({
@@ -24,7 +17,7 @@ define([], function () {
                 controller: 'trackr.administration.controllers.projects.new'
             });
             modalInstance.result.then(function(project) {
-                loadProjects();
+                paginationLoader.loadPage();
                 $state.go('trackr.administration.projects.edit', {id: project.identifier});
             });
             return modalInstance;
