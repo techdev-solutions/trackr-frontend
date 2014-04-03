@@ -35,7 +35,7 @@ define(['baseTestSetup'], function(baseTestSetup) {
             };
             scope.loadProjectData();
             $httpBackend.expectGET('api/companies/0');
-            $httpBackend.expectGET(/^api\/billableTimes\/findEmployeeMappingByProjectAndDateBetween\?.*/)
+            $httpBackend.expectGET(/^api\/billableTimes\/findEmployeeMappingByProjectAndDateBetween\?.*/);
             $httpBackend.flush();
         }));
     });
