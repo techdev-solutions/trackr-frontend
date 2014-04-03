@@ -24,9 +24,16 @@ define(['baseTestSetup', 'angular'], function(baseTestSetup, angular) {
             expect(scope.project).toBeDefined();
         });
 
-        it('must save the company and address', inject(function($httpBackend) {
-            scope.saveProject();
+        it('Must save the project.', inject(function($httpBackend) {
+            var company = {_links: {self: {href: 'api/companies/0'}}};
+            scope.saveProject(company, company);
             $httpBackend.expectPOST('api/projects');
+            $httpBackend.flush();
+        }));
+
+        it('Must search for companies in the backend', inject(function($httpBackend) {
+            scope.getCompanies('test');
+            $httpBackend.expectGET(/api\/companies\/search\/findByNameLikeOrderByNameAsc\?.*/);
             $httpBackend.flush();
         }));
     });
