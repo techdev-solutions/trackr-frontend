@@ -51,6 +51,24 @@ define(['angular', 'modules/trackr/employee/controllers'], function(angular, con
                         controller: 'trackr.employee.controllers.vacation-new'
                     }
                 }
+            })
+            .state('trackr.employee.expenses', {
+                url: '/expenses',
+                views: {
+                    'center@': {
+                        templateUrl: 'src/modules/trackr/employee/expenses/list.tpl.html',
+                        controller: 'trackr.employee.controllers.expenses-list'
+                    }
+                }
+            })
+            .state('trackr.employee.expenses.edit', {
+                url: '/{id:\\d+}',
+                views: {
+                    'center@': {
+                        templateUrl: 'src/modules/trackr/employee/expenses/edit.tpl.html',
+                        controller: 'trackr.employee.controllers.expenses-edit'
+                    }
+                }
             });
     }]);
 
