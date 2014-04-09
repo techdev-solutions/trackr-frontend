@@ -1,4 +1,3 @@
-<span ng-repeat="globalError in errors.globalMessages" class="alert alert-danger">{{globalError.message}}</span>
 <h1>
 	<bs-edit entity="employee" property-name="firstName" role="ROLE_SUPERVISOR"></bs-edit> 
 	<bs-edit entity="employee" property-name="lastName" role="ROLE_SUPERVISOR"></bs-edit>
@@ -65,7 +64,7 @@
 			<bs-checkbox checked="credential.enabled" change="changeEnabled()" role="ROLE_ADMIN"></bs-checkbox>
 		</div>
 	</div>
-	<div class="form-group">
+	<div class="form-group" error-display="joinDate">
 		<label class="col-sm-2 control-label">{{ 'EMPLOYEE.JOIN_DATE' | translate }}</label>
 		<div class="col-sm-8">
 			<div class="well well-sm" ng-model="employee.joinDate">
@@ -73,7 +72,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="form-group">
+	<div class="form-group" error-display="leaveDate">
 		<label class="col-sm-2 control-label">{{ 'EMPLOYEE.LEAVE_DATE' | translate }}</label>
 		<div class="col-sm-8">
 			<div class="well well-sm" ng-model="employee.leaveDate">

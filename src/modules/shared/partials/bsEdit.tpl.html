@@ -4,10 +4,9 @@
 </div>
 <div ng-if="edit">
     <form action="" class="form-inline" ng-submit="submit()">
-        <div class="form-group" ng-class="{'has-error': hasError(propertyName)}">
+        <div class="form-group" error-display="{{propertyName}}">
             <div>
                 <input autosize type="text" class="form-control input-sm" ng-model="entity[propertyName]"/>
-                <span ng-show="hasError(propertyName)" class="help-block">{{errorText(propertyName)}}</span>
             </div>
         </div>
     </form>

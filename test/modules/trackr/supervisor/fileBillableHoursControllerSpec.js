@@ -1,4 +1,4 @@
-define(['baseTestSetup', 'angular'], function(baseTestSetup, angular) {
+define(['baseTestSetup'], function(baseTestSetup) {
     'use strict';
     describe('trackr.supervisor.controllers.file-billable-hours', function() {
         var BillController, scope;
@@ -33,20 +33,6 @@ define(['baseTestSetup', 'angular'], function(baseTestSetup, angular) {
             $httpBackend.expectGET(/\api\/projects\/search\/findByNameLikeOrIdentifierLikeOrderByNameAsc\?.*/);
             $httpBackend.flush();
         }));
-
-        it('should switch the open date variables to true with openDate', function() {
-            var event = {
-                preventDefault: angular.noop,
-                stopPropagation: angular.noop
-            };
-            spyOn(event, 'preventDefault').andCallThrough();
-            spyOn(event, 'stopPropagation').andCallThrough();
-            scope.openStart = false;
-            scope.openDate(event, 'openStart');
-            expect(scope.openStart).toBe(true);
-            expect(event.preventDefault).toHaveBeenCalled();
-            expect(event.stopPropagation).toHaveBeenCalled();
-        });
 
         it('should return a properly formatted project label with getProjectLabel', function() {
             var project = {

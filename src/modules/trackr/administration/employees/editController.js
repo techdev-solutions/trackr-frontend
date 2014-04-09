@@ -2,7 +2,7 @@ define([], function() {
     'use strict';
     return ['Restangular', '$scope', '$stateParams', '$controller', '$filter', function(Restangular, $scope, $stateParams, $controller, $filter) {
         $controller('trackr.administration.controllers.employees.roles-base', {$scope: $scope});
-
+        $scope.errors = [];
         //Contains the restangularified credential base object (i.e. URL = /api/credentials/xy not /api/employees/x/credential)
         var credentialBase;
         var employeeBase = Restangular.one('employees', $stateParams.id);

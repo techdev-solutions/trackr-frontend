@@ -59,25 +59,6 @@ define(['angular', 'jQuery', 'i18n', 'restangular', 'angular-ui-router', 'angula
             return returnData;
         });
 
-        /**
-         * Add entity validation errors to the globalMessages property of the error array.
-         *
-         * This is used for cross validation messages, e.g. start date not after end date.
-         */
-        RestangularProvider.setErrorInterceptor(function(response) {
-            if(response.status === 400) {
-                if(response.data.errors && response.data.errors.length) {
-                    response.data.errors.globalMessages = [];
-                    for (var i = 0; i < response.data.errors.length; i++) {
-                        var obj = response.data.errors[i];
-                        if(obj.property === '') {
-                            response.data.errors.globalMessages.push(obj);
-                        }
-                    }
-                }
-            }
-        });
-
         /*
          Global pagination configuration
          */
