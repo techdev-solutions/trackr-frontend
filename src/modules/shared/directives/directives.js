@@ -2,8 +2,9 @@ define([
     'modules/shared/directives/bsText',
     'modules/shared/directives/bsEdit',
     'modules/shared/directives/bsCheckbox',
-    'modules/shared/directives/autosize'
-], function(bsText, bsEdit, bsCheckbox, autosize) {
+    'modules/shared/directives/autosize',
+    'modules/shared/directives/inlineDatepicker'
+], function(bsText, bsEdit, bsCheckbox, autosize, inlineDatepicker) {
     'use strict';
     return {
         init: function(module) {
@@ -11,6 +12,7 @@ define([
             module.directive('bsEdit', bsEdit);
             module.directive('bsCheckbox', bsCheckbox);
             module.directive('autosize', autosize);
+            module.directive('inlineDatepicker', inlineDatepicker);
         }
     };
 });

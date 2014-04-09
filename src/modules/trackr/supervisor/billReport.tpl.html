@@ -3,7 +3,6 @@
 		<h1>{{ 'PAGES.SUPERVISOR.BILL_CREATE.TITLE' | translate }}</h1>
 	</div>
 
-
 	<div class="form-group col-lg-4">
 		<input type="text"
 			   class="form-control"
@@ -22,37 +21,13 @@
 			   typeahead-editable="false"
 			   typahead-min-length="1"/>
 	</div>
+
 	<div class="form-group col-lg-2">
-		<div class="input-group">
-			<input type="text" class="form-control" ng-model="start"
-				   datepicker-popup="yyyy-MM-dd"
-				   datepicker-options="dateOptions"
-				   is-open="startOpened"
-				   close-text="{{ 'ACTIONS.CLOSE' | translate }}"
-				   current-text="{{ 'DATE.TODAY' | translate }}"
-				   toggle-weeks-text="{{ 'DATE.WEEKS' | translate }}"
-				   clear-text="{{ 'ACTIONS.CLEAR' | translate }}"/>
-        <span class="input-group-btn">
-            <button class="btn btn-default" ng-click="openDate($event, 'startOpened')"><i class="glyphicon glyphicon-calendar"></i></button>
-        </span>
-		</div>
-	</div>
-	<div class="form-group col-lg-2">
-		<div class="input-group">
-			<input type="text"
-				   class="form-control"
-				   ng-model="end"
-				   datepicker-popup="yyyy-MM-dd"
-				   is-open="stopOpened"
-				   datepicker-options="dateOptions"
-				   close-text="{{ 'ACTIONS.CLOSE' | translate }}"
-				   current-text="{{ 'DATE.TODAY' | translate }}"
-				   toggle-weeks-text="{{ 'DATE.WEEKS' | translate }}"
-				   clear-text="{{ 'ACTIONS.CLEAR' | translate }}"/>
-            <span class="input-group-btn">
-                <button class="btn btn-default" ng-click="openDate($event, 'stopOpened')"><i class="glyphicon glyphicon-calendar"></i></button>
-            </span>
-		</div>
+        <inline-datepicker model="start"></inline-datepicker>
+    </div>
+
+    <div class="form-group col-lg-2">
+        <inline-datepicker model="end"></inline-datepicker>
 	</div>
 
 	<div ng-if="project" class="col-lg-12">
