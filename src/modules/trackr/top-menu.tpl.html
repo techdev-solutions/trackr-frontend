@@ -1,6 +1,35 @@
+<!-- Logo -->
+<div class="logo">
+	<a href="#/">
+		<span>Flatify</span>
+	</a>
+</div>
+
+<div class="top-nav">
+	<ul class="nav-left list-unstyled">
+		<li ui-sref-active="active"><a href ui-sref="trackr.employee">{{ 'PAGES.EMPLOYEE.TITLE' | translate }}</a></li>
+		<li ui-sref-active="active" has-authority="ROLE_SUPERVISOR"><a href ui-sref="trackr.supervisor">{{ 'PAGES.SUPERVISOR.TITLE' | translate }}</a></li>
+		<li ui-sref-active="active" has-authority="ROLE_SUPERVISOR"><a href ui-sref="trackr.administration">{{ 'PAGES.ADMINISTRATION.TITLE' | translate }}</a></li>
+	</ul>
+
+	<ul class="nav-right list-unstyled pull-right">
+		<li><a href ui-sref="trackr.employee.self">{{user.email}}</a></li>
+		<li><a href="logout">Logout</a></li>
+		<li class="dropdown">
+			<a class="dropdown-toggle" data-toggle="dropdown" href="">{{ 'LANGUAGE' | translate }}</a>
+			<ul class="dropdown-menu">
+				<li><a href ng-click="changeLanguage('en')">English</a></li>
+				<li><a href ng-click="changeLanguage('de')">Deutsch</a></li>
+			</ul>
+		</li>
+	</ul>
+</div>
+
+<!--
 <div class="navbar-header">
     <a class="navbar-brand" ui-sref="trackr.home">trackr</a>
 </div>
+
 <nav class="collapse navbar-collapse">
     <div>
         <ul class="nav navbar-nav">
@@ -22,3 +51,4 @@
         </ul>
     </div>
 </nav>
+-->

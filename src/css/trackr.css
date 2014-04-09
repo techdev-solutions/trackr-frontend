@@ -1,3 +1,4 @@
+/*
 body {
 }
 
@@ -9,6 +10,20 @@ ul.pagination {
 	margin: 0;
 }
 
-.navbar-inverse .navbar-nav>li>a { /* Haader font color */
+.navbar-inverse .navbar-nav>li>a { /* Haader font color *
 	color: #cccccc;
+}
+*/
+
+#page-wrapper {
+	margin-left: 20px;
+}
+
+.top-header .logo {
+	text-align: left;
+	padding-left: 48px;
+}
+
+.top-header .toggle-min {
+	left: 17px;
 }
