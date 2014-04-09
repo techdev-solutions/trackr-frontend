@@ -13,7 +13,7 @@ define([], function() {
                 $scope.report = report;
             });
         });
-        $http.get('/api/travelExpenses/types').then(function(response) {
+        $http.get('api/travelExpenses/types').then(function(response) {
             $scope.types = response.data;
         });
 
