@@ -18,24 +18,12 @@
 				</div>
 			</div>
 
-			<div class="form-group">
-				<label class="form-label col-sm-2" for="date">{{ 'WORKTIME.DATE' | translate }}</label>
-				<div class="col-sm-2">
-					<p class="input-group">
-						<input type="text" id="date" class="form-control" ng-model="date"
-							   datepicker-popup="yyyy-MM-dd"
-							   is-open="opened"
-							   datepicker-options="dateOptions"
-							   close-text="{{ 'ACTIONS.CLOSE' | translate }}"
-							   current-text="{{ 'DATE.TODAY' | translate }}"
-							   toggle-weeks-text="{{ 'DATE.WEEKS' | translate }}"
-							   clear-text="{{ 'ACTIONS.CLEAR' | translate }}"/>
-						<span class="input-group-btn">
-							<button class="btn btn-default" ng-click="openDate($event)"><i class="glyphicon glyphicon-calendar"></i></button>
-						</span>
-					</p>
-				</div>
-			</div>
+            <div class="form-group">
+                <label class="form-label col-sm-2" for="date">{{ 'WORKTIME.DATE' | translate }}</label>
+                <div class="col-sm-3">
+                    <inline-datepicker id="date" model="date"></inline-datepicker>
+                </div>
+            </div>
 
 			<div class="form-group">
 				<label class="form-label col-sm-2" for="startTime">{{ 'WORKTIME.START' | translate }}</label>

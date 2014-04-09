@@ -8,17 +8,6 @@ define(['modules/shared/addErrorHandlers'], function(addErrorHandlers) {
         $scope.startTime = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 9, 0, 0);
         $scope.endTime = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 17, 30, 0);
 
-        $scope.openDate = function($event) {
-            $event.preventDefault();
-            $event.stopPropagation();
-            $scope.opened = true;
-        };
-
-        $scope.dateOptions = {
-            'year-format': '\'yyyy\'',
-            'starting-day': 1
-        };
-
         $scope.errors = [];
 
         $scope.getProjects = function(searchString) {
