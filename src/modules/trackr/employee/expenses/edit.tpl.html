@@ -1,4 +1,5 @@
-<h2>Expense report #{{report.id}}</h2>
+<h2>{{ 'TRAVEL_EXPENSE_REPORT.TRAVEL_EXPENSE_REPORT' | translate }} #{{report.id}}</h2>
+<p>{{ 'TRAVEL_EXPENSE_REPORT.TOTAL' | translate }}: {{totalCost}} €</p>
 <table class="table table-striped">
     <tr>
         <th>{{ 'TRAVEL_EXPENSE.TYPE' | translate }}</th>
@@ -19,3 +20,20 @@
         <td></td>
     </tr>
 </table>
+
+<form action="" class="form-inline" ng-submit="addNew()">
+    <div class="form-group" error-display="fromDate">
+        <inline-datepicker model="expense.fromDate"></inline-datepicker>
+    </div>
+    <div class="form-group" error-display="toDate">
+        <inline-datepicker model="expense.toDate"></inline-datepicker>
+    </div>
+
+    <div class="form-group" error-display="type">
+        <select ng-model="expense.type" ng-options="t for t in types"></select>
+    </div>
+
+    <bs-text property-name="cost" translate-code="TRAVEL_EXPENSE.COST" path="expense.cost" inline="true"></bs-text>
+    <bs-text property-name="vat" translate-code="TRAVEL_EXPENSE.VAT" path="expense.vat" inline="true"></bs-text>
+    <button type="submit" class="btn btn-primary">{{ 'ACTIONS.SAVE' | translate }}</button>
+</form>

@@ -1,5 +1,10 @@
 define(['angular'], function(angular) {
     'use strict';
+    /**
+     * This directive is used on form-group elements. It watches the scope.errors array and adds the has-error class to the form group element
+     * if an error for the given property is found. The property is passed by name into the directive. It also adds an help-block
+     * span element that contains the error text.
+     */
     return ['$compile', function($compile) {
         return {
             restrict: 'A',
