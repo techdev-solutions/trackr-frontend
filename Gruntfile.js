@@ -48,7 +48,8 @@ module.exports = function (grunt) {
                         src: [
                             'index.html',
                             'src/modules/**/*.tpl.html',
-                            'src/vendor/**'
+                            'src/vendor/**',
+							'src/flatify/**'
                         ]
                     }
                 ]
@@ -72,7 +73,8 @@ module.exports = function (grunt) {
                         'restangular':'vendor/restangular/dist/restangular.min',
                         'lodash': 'vendor/lodash/dist/lodash.min',
                         'angular-translate': 'vendor/angular-translate/angular-translate.min',
-                        'angular-ui': 'vendor/angular-ui-bootstrap-bower/ui-bootstrap-tpls.min'
+                        'angular-ui': 'vendor/angular-ui-bootstrap-bower/ui-bootstrap-tpls.min',
+						'flatify': 'flatify/scripts/app'
                     }
                 }
             }

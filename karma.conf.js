@@ -25,6 +25,7 @@ module.exports = function (config) {
             {pattern: 'src/i18n.js', included: false},
             {pattern: 'src/app.js', included: false},
             {pattern: 'src/vendor/**/*.js', included: false},
+			{pattern: 'src/flatify/**/*.js', included: false},
             'test/test-main.js'
         ],
 

@@ -5,21 +5,15 @@
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
 
     <link rel="stylesheet" type="text/css" href="src/vendor/bootstrap/dist/css/bootstrap.min.css"/>
+
     <!-- build:css(.) css/trackr.css -->
-
-	<!--
-    <link type="text/css" href="src/css/sb-admin.css" rel="stylesheet" media="screen"/>
-    <link type="text/css" href="src/css/trackr.css" rel="stylesheet" media="screen"/>
-    -->
-
+	<link rel="stylesheet" href="src/flatify/css/ui.css"/>
+	<link rel="stylesheet" href="src/flatify/css/main.css">
+	<link type="text/css" href="src/css/trackr.css" rel="stylesheet" media="screen"/>
     <!-- endbuild -->
 
 	<link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic" rel="stylesheet" type="text/css" />
 	<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet" />
-	<link rel="stylesheet" href="src/css/ui.css"/>
-	<link rel="stylesheet" href="src/css/main.css">
-
-	<link type="text/css" href="src/css/trackr.css" rel="stylesheet" media="screen"/>
 
     <!-- process:js trackr.js -->
     <script type="text/javascript" data-main="./bootstrap" src="src/vendor/requirejs/require.js"></script>
@@ -39,51 +33,6 @@
 					<!-- Header menu !-->
 					<div ui-view="top-menu"/>
 
-					<!--
-					<div class="top-nav">
-						<ul class="nav-left list-unstyled">
-							<li class="dropdown">
-								<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
-									<i class="fa fa-comment-o"></i>
-									<span class="badge badge-success">2</span>
-								</a>
-								<div class="dropdown-menu with-arrow panel panel-default">
-									<div class="panel-heading">
-										You have 2 messages.
-									</div>
-									<ul class="list-group">
-										<li class="list-group-item">
-											<a href="javascript:;" class="media">
-                                <span class="pull-left media-icon">
-                                    <span class="round-icon sm bg-info"><i class="fa fa-comment-o"></i></span>
-                                </span>
-												<div class="media-body">
-													<span class="block">Jane sent you a message</span>
-													<span class="text-muted">3 hours ago</span>
-												</div>
-											</a>
-										</li>
-										<li class="list-group-item">
-											<a href="javascript:;" class="media">
-                                <span class="pull-left media-icon">
-                                    <span class="round-icon sm bg-danger"><i class="fa fa-comment-o"></i></span>
-                                </span>
-												<div class="media-body">
-													<span class="block">Lynda sent you a mail</span>
-													<span class="text-muted">9 hours ago</span>
-												</div>
-											</a>
-										</li>
-									</ul>
-									<div class="panel-footer">
-										<a href="javascript:;">Show all messages.</a>
-									</div>
-								</div>
-							</li>
-						</ul>
-					</div>
-					-->
-
 				</header>
 			</section>
 
@@ -92,73 +41,10 @@
 				<div id="nav-wrapper">
 					<ul id="nav"
 						data-collapse-nav
-						data-slim-scroll
 						data-highlight-active>
-						<li><a href="#/dashboard"> <i class="fa fa-dashboard"><span class="icon-bg bg-danger"></span></i><span data-i18n="Dashboard">Dashboard</span> </a></li>
-						<li>
-							<a href="#/ui"><i class="fa fa-magic"><span class="icon-bg bg-orange"></span></i><span data-i18n="UI Kit">UI Kit</span></a>
-							<ul>
-								<li><a href="#/ui/buttons"><i class="fa fa-caret-right"></i><span data-i18n="Buttons">Buttons</span></a></li>
-								<li><a href="#/ui/typography"><i class="fa fa-caret-right"></i><span data-i18n="Typography">Typography</span></a></li>
-								<li><a href="#/ui/widgets"><i class="fa fa-caret-right"></i><span data-i18n="Widgets">Widgets</span> <span class="badge badge-success">12</span></a></li>
-								<li><a href="#/ui/grids"><i class="fa fa-caret-right"></i><span data-i18n="Grids">Grids</span></a></li>
-								<li><a href="#/ui/icons"><i class="fa fa-caret-right"></i><span data-i18n="Icons">Icons</span></a></li>
-								<li><a href="#/ui/components"><i class="fa fa-caret-right"></i><span data-i18n="Components">Components</span> <span class="badge badge-info">14</span></a></li>
-								<li><a href="#/ui/timeline"><i class="fa fa-caret-right"></i><span data-i18n="Timeline">Timeline</span></a></li>
-							</ul>
-						</li>
-						<li>
-							<a href="#/table"><i class="fa fa-table"><span class="icon-bg bg-warning"></span></i><span data-i18n="Tables">Tables</span></a>
-							<ul>
-								<li><a href="#/tables/static"><i class="fa fa-caret-right"></i><span data-i18n="Static Tables"></span></a></li>
-								<li><a href="#/tables/responsive"><i class="fa fa-caret-right"></i><span data-i18n="Responsive Tables"></span></a></li>
-								<li><a href="#/tables/dynamic"><i class="fa fa-caret-right"></i><span data-i18n="Dynamic Tables"></span></a></li>
-							</ul>
-						</li>
-						<li>
-							<a href="#/form"><i class="fa fa-pencil"><span class="icon-bg bg-success"></span></i><span data-i18n="Forms">Forms</span></a>
-							<ul class="sub-nav">
-								<li><a href="#/forms/elements"><i class="fa fa-caret-right"></i><span data-i18n="Form Elements"></span> <span class="badge badge-warning">13</span></a></li>
-								<li><a href="#/forms/validation"><i class="fa fa-caret-right"></i><span data-i18n="Form Validation"></span></a></li>
-								<li><a href="#/forms/wizard"><i class="fa fa-caret-right"></i><span data-i18n="Form Wizard"></span></a></li>
-								<li><a href="#/forms/layouts"><i class="fa fa-caret-right"></i><span data-i18n="Form Layouts"></span></a></li>
-							</ul>
-						</li>
-						<li class="nav-task">
-							<a href="#/tasks">
-								<i class="fa fa-tasks"><span class="icon-bg bg-info"></span></i><span data-i18n="Tasks">Tasks</span>
-                				<span class="badge badge-danger main-badge">3</span>
-							</a>
-						</li>
-						<li>
-							<a href="#/charts"><i class="fa fa-bar-chart-o"><span class="icon-bg bg-primary-light"></span></i><span data-i18n="Charts">Charts</span></a>
-							<ul>
-								<li><a href="#/charts/morris"><i class="fa fa-caret-right"></i>Morris <span data-i18n="Charts"></span></a></li>
-								<li><a href="#/charts/flot"><i class="fa fa-caret-right"></i>Flot <span data-i18n="Charts"></span></a></li>
-								<li><a href="#/charts/others"><i class="fa fa-caret-right"></i>Other <span data-i18n="Charts"></span></a></li>
-							</ul>
-						</li>
-						<li>
-							<a href="#/mail"><i class="fa fa-envelope-o"><span class="icon-bg bg-primary"></span></i><span data-i18n="Mail">Mail</span></a>
-							<ul>
-								<li><a href="#/mail/inbox"><i class="fa fa-caret-right"></i><span data-i18n="Inbox"></span></a></li>
-								<li><a href="#/mail/compose"><i class="fa fa-caret-right"></i><span data-i18n="Compose"></span></a></li>
-								<li><a href="#/mail/single"><i class="fa fa-caret-right"></i><span data-i18n="Single Mail"></span></a></li>
-							</ul>
-						</li>
-						<li>
-							<a href="#/pages"><i class="fa fa-file-text-o"><span class="icon-bg bg-violet"></span></i><span data-i18n="Pages">Pages</span></a>
-							<ul>
-								<li><a href="#/pages/signin"><i class="fa fa-caret-right"></i><span data-i18n="Sign in"></span></a></li>
-								<li><a href="#/pages/signup"><i class="fa fa-caret-right"></i><span data-i18n="Sign Up"></span></a></li>
-								<li><a href="#/pages/lock-screen"><i class="fa fa-caret-right"></i><span data-i18n="Lock Screen"></span></a></li>
-								<li><a href="#/pages/profile"><i class="fa fa-caret-right"></i><span data-i18n="User Profile"></span></a></li>
-								<li><a href="#/pages/404"><i class="fa fa-caret-right"></i>404 <span data-i18n="Error"></span></a></li>
-								<li><a href="#/pages/500"><i class="fa fa-caret-right"></i>500 <span data-i18n="Error"></span></a></li>
-								<li><a href="#/pages/blank"><i class="fa fa-caret-right"></i><span data-i18n="Blank Page"></span></a></li>
-								<!-- <li><a href="#/pages/invoice"><i class="fa fa-caret-right"></i><span data-i18n="Invoice"></span></a></li> -->
-							</ul>
-						</li>
+
+						<li><a ui-sref="trackr.home" href> <i class="fa fa-bar-chart-o"><span class="icon-bg bg-primary"></span></i><span>trackr</span> </a></li>
+						<li><a ui-sref="example.home" href> <i class="fa fa-file-text-o"><span class="icon-bg bg-success"></span></i><span>Example</span> </a></li>
 					</ul>
 				</div>
 
