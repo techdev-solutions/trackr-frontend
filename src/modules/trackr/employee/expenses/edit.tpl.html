@@ -21,7 +21,7 @@
     </tr>
 </table>
 
-<form action="" class="form-inline" ng-submit="addNew()">
+<form ng-if="report.status !== 'ACCEPTED'" action="" class="form-inline" ng-submit="addNew()">
     <div class="form-group" error-display="fromDate">
         <inline-datepicker model="expense.fromDate"></inline-datepicker>
     </div>
