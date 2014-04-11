@@ -13,40 +13,13 @@ define([], function() {
     return [function() {
         return {
             restrict: 'E',
-            transclude: true,
             templateUrl: 'src/modules/shared/partials/bsText.tpl.html',
-            scope: {propertyName: '@', translateCode: '@', path: '=', inline: '@', errors: '='},
+            scope: {propertyName: '@', translateCode: '@', path: '=', inline: '@'},
             controller: ['$scope', function($scope) {
                 $scope.inline = $scope.inline || false;
-
-                function errorArray() {
-                    if($scope.errors) {
-                        return $scope.errors;
-                    } else {
-                        return $scope.$parent.errors;
-                    }
-                }
-
-                $scope.hasError = function (property) {
-                    for (var i = 0; i < errorArray().length; i++) {
-                        if(errorArray()[i].property === property) {
-                            return true;
-                        }
-                    }
-                    return false;
-                };
-
-                $scope.errorText = function(property) {
-                    if($scope.hasError(property)) {
-                        for (var i = 0; i < errorArray().length; i++) {
-                            if(errorArray()[i].property === property) {
-                                return errorArray()[i].message;
-                            }
-                        }
-                    } else {
-                        return '';
-                    }
-                };
+                $scope.$parent.$watch('errors', function() {
+                    $scope.errors = $scope.$parent.errors;
+                });
             }]
         };
     }];

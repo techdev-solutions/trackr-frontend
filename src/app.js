@@ -38,9 +38,16 @@ define(['angular', 'jQuery', 'i18n', 'restangular', 'angular-ui-router', 'angula
             var returnData;
             if(operation === 'getList' && data._embedded) {
                 returnData = data._embedded[route];
-                returnData.page = data.page;
+                /*
+                Fallback: if the returned data does not contain the route key take the first one.
+                Example: data = { _embedded: { travelExpenses: [] } } but route = 'expenses'.
+                 */
+                if(!returnData) {
+                    returnData = data._embedded[Object.keys(data._embedded)[0]];
+                }
                 //if there is pagination info make it one-based.
-                if(returnData.page) {
+                if(data.page) {
+                    returnData.page = data.page;
                     returnData.page.number = returnData.page.number + 1;
                 }
             } else if(operation === 'getList' && !data._embedded) {
@@ -50,25 +57,6 @@ define(['angular', 'jQuery', 'i18n', 'restangular', 'angular-ui-router', 'angula
                 returnData = data;
             }
             return returnData;
-        });
-
-        /**
-         * Add entity validation errors to the globalMessages property of the error array.
-         *
-         * This is used for cross validation messages, e.g. start date not after end date.
-         */
-        RestangularProvider.setErrorInterceptor(function(response) {
-            if(response.status === 400) {
-                if(response.data.errors && response.data.errors.length) {
-                    response.data.errors.globalMessages = [];
-                    for (var i = 0; i < response.data.errors.length; i++) {
-                        var obj = response.data.errors[i];
-                        if(obj.property === '') {
-                            response.data.errors.globalMessages.push(obj);
-                        }
-                    }
-                }
-            }
         });
 
         /*

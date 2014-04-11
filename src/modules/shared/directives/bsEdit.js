@@ -1,4 +1,4 @@
-define(['modules/shared/addErrorHandlers'], function(addErrorHandlers) {
+define([], function() {
     'use strict';
     /**
      * Directive for a click-to-edit textfield
@@ -53,7 +53,6 @@ define(['modules/shared/addErrorHandlers'], function(addErrorHandlers) {
                 }
             },
             controller: ['$scope', 'Restangular', function($scope, Restangular) {
-                addErrorHandlers($scope);
                 //Flag if the display form is showed
                 $scope.edit = false;
                 //Validation errors

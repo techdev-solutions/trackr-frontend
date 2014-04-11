@@ -1,12 +1,11 @@
-<span ng-repeat="globalError in errors.globalMessages" class="alert alert-danger">{{globalError.message}}</span>
 <form action="" ng-submit="submitVacationRequest(vacationRequest)">
-    <div class="row">
+    <div class="row" error-display="startDate">
         <div class="col-sm-4">
             <div class="well well-sm" ng-model="vacationRequest.startDate">
                 <datepicker starting-day="1"></datepicker>
             </div>
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-4" error-display="endDate">
             <div class="well well-sm" ng-model="vacationRequest.endDate">
                 <datepicker starting-day="1"></datepicker>
             </div>
