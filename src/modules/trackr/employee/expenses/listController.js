@@ -1,7 +1,7 @@
 define([], function() {
     'use strict';
     return ['$scope', 'Restangular', 'trackr.services.employee', '$state', function($scope, Restangular, EmployeeService, $state) {
-        Restangular.allUrl('travelExpenseReports', '/api/travelExpenseReports/search/findByEmployeeOrderByStatusAsc')
+        Restangular.allUrl('travelExpenseReports', 'api/travelExpenseReports/search/findByEmployeeOrderByStatusAsc')
             .getList({employee: EmployeeService.getEmployee().id}).then(function(reports) {
                 $scope.reports = reports;
             });
