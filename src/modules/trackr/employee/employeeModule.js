@@ -57,16 +57,21 @@ define(['angular', 'modules/trackr/employee/controllers'], function(angular, con
                 views: {
                     'center@': {
                         templateUrl: 'src/modules/trackr/employee/expenses/list.tpl.html',
-                        controller: 'trackr.employee.controllers.expenses-list'
+                        controller: 'trackr.employee.controllers.expenseReport-list'
                     }
                 }
             })
             .state('trackr.employee.expenses.edit', {
                 url: '/{id:\\d+}',
+                resolve: {
+                    report: ['Restangular', '$stateParams', function(Restangular, $stateParams) {
+                        return Restangular.one('travelExpenseReports', $stateParams.id).get();
+                    }]
+                },
                 views: {
                     'center@': {
                         templateUrl: 'src/modules/trackr/employee/expenses/edit.tpl.html',
-                        controller: 'trackr.employee.controllers.expenses-edit'
+                        controller: 'trackr.employee.controllers.expenseReport-edit'
                     }
                 }
             });

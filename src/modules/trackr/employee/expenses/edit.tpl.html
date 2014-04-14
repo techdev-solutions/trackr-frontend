@@ -1,4 +1,5 @@
 <h2>{{ 'TRAVEL_EXPENSE_REPORT.TRAVEL_EXPENSE_REPORT' | translate }} #{{report.id}}</h2>
+<h4>{{ 'TRAVEL_EXPENSE_REPORT.' + report.status | translate }}</h4>
 <p>{{ 'TRAVEL_EXPENSE_REPORT.TOTAL' | translate }}: {{totalCost}} €</p>
 <table class="table table-striped">
     <tr>
@@ -10,7 +11,7 @@
         <th>{{ 'TRAVEL_EXPENSE.SUBMITTED' | translate }}</th>
         <th>{{ 'ACTIONS.ACTIONS' | translate }}</th>
     </tr>
-    <tr ng-repeat="expense in report.expenses">
+    <tr ng-if="!editable(report)" ng-repeat="expense in report.expenses">
         <td>{{ expense.type | translate }}</td>
         <td>{{ expense.fromDate | date:'dd.MM.yyyy'}}</td>
         <td>{{ expense.toDate | date:'dd.MM.yyyy'}}</td>
@@ -19,11 +20,38 @@
         <td>{{ expense.submissionDate | date:'dd.MM.yyyy HH:mm:ss' }}</td>
         <td></td>
     </tr>
+    <tr ng-if="editable(report)" ng-repeat="expense in report.expenses" ng-controller="trackr.employee.controllers.expense-edit">
+        <td>
+            <div class="form-group" error-display="type">
+                <div class="col-sm-2">
+                    <select ng-model="expense.type" ng-options="t for t in types"></select>
+                </div>
+            </div>
+        </td>
+        <td>
+            <div class="form-group" error-display="fromDate">
+                <div class="col-sm-2">
+                    <inline-datepicker model="expense.fromDate"></inline-datepicker>
+                </div>
+            </div>
+        </td>
+        <td>
+            <div class="form-group" error-display="toDate">
+                <div class="col-sm-2">
+                    <inline-datepicker model="expense.toDate"></inline-datepicker>
+                </div>
+            </div>
+        </td>
+        <td><bs-edit entity="expense" property-name="vat"></bs-edit> %</td>
+        <td><bs-edit entity="expense" property-name="cost" callback="costEdited"></bs-edit> €</td>
+        <td>{{ expense.submissionDate | date:'dd.MM.yyyy HH:mm:ss' }}</td>
+        <td><a href ng-click="removeExpense(expense)">{{ 'ACTIONS.REMOVE' | translate }}</a></td>
+    </tr>
 </table>
 
 <button ng-if="editable(report)" type="button" ng-click="submitReport(report)" class="btn btn-primary">{{ 'ACTIONS.SUBMIT' | translate }}</button>
 
-<form ng-if="editable(report)" action="" class="form-inline" ng-submit="addNewExpense(expense)">
+<form ng-if="editable(report)" action="" class="form-inline" ng-submit="addNewExpense(expense, report)">
     <div class="form-group" error-display="fromDate">
         <inline-datepicker model="expense.fromDate"></inline-datepicker>
     </div>
@@ -37,5 +65,5 @@
 
     <bs-text property-name="cost" translate-code="TRAVEL_EXPENSE.COST" path="expense.cost" inline="true"></bs-text>
     <bs-text property-name="vat" translate-code="TRAVEL_EXPENSE.VAT" path="expense.vat" inline="true"></bs-text>
-    <button type="submit" class="btn btn-primary">{{ 'ACTIONS.SAVE' | translate }}</button>
+    <button type="submit" class="btn btn-primary">{{ 'ACTIONS.ADD' | translate }}</button>
 </form>
