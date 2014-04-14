@@ -6,8 +6,10 @@ define([], function() {
                 $scope.reports = reports;
             });
 
-        $scope.acceptedAndRejected = function(travelExpense) {
-            return travelExpense.status === 'REJECTED' || travelExpense.status === 'ACCEPTED';
+        $scope.acceptedSubmittedAndRejected = function(travelExpenseReport) {
+            return travelExpenseReport.status === 'REJECTED' ||
+                travelExpenseReport.status === 'ACCEPTED' ||
+                travelExpenseReport.status === 'SUBMITTED';
         };
 
         /**

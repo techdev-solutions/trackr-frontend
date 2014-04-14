@@ -21,7 +21,9 @@
     </tr>
 </table>
 
-<form ng-if="report.status !== 'ACCEPTED'" action="" class="form-inline" ng-submit="addNew()">
+<button ng-if="editable(report)" type="button" ng-click="submitReport(report)" class="btn btn-primary">{{ 'ACTIONS.SUBMIT' | translate }}</button>
+
+<form ng-if="editable(report)" action="" class="form-inline" ng-submit="addNewExpense(expense)">
     <div class="form-group" error-display="fromDate">
         <inline-datepicker model="expense.fromDate"></inline-datepicker>
     </div>

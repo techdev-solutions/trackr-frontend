@@ -2,7 +2,7 @@
     <li ng-repeat="report in reports | filter:{ status: 'PENDING'}">
         <a ui-sref="trackr.employee.expenses.edit({id: report.id})">Report #{{report.id}} - {{ 'TRAVEL_EXPENSE_REPORT.' + report.status | translate }}</a>
     </li>
-    <li ng-repeat="report in reports | filter:acceptedAndRejected">
+    <li ng-repeat="report in reports | filter:acceptedSubmittedAndRejected">
         <a ui-sref="trackr.employee.expenses.edit({id: report.id})">Report #{{report.id}} - {{ 'TRAVEL_EXPENSE_REPORT.' + report.status | translate }}</a>
     </li>
 </ul>
