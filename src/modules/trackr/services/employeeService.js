@@ -6,6 +6,7 @@ define([], function() {
             loadEmployee: function () {
                 return Restangular.one('employees', UserService.getUser().id).get().then(function(_employee) {
                     employee = _employee;
+                    return employee;
                 });
             },
             getEmployee: function() {

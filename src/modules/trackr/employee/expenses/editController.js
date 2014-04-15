@@ -1,10 +1,7 @@
 define(['lodash'], function(_) {
     'use strict';
-    return ['$scope', 'Restangular', 'trackr.services.travelExpense', 'trackr.services.travelExpenseReport', 'report',
-        function($scope, Restangular, TravelExpenseService, TravelExpenseReportService, report) {
-            $scope.totalCost = 0;
-            $scope.report = report;
-
+    return ['$scope', 'Restangular', 'trackr.services.travelExpenseReport', 'report', 'expenses', 'expenseTypes',
+        function($scope, Restangular, TravelExpenseReportService, report, expenses, expenseTypes) {
             /**
              * Recalculate the sum of the cost of the expenses
              * @param  expenses An array of expenses, each must have the properyt "cost".
@@ -16,21 +13,17 @@ define(['lodash'], function(_) {
                 }, 0);
             }
 
-            /**
-             * Add the expenses to the report.
-             */
-            report.one('expenses').getList().then(function(expenses) {
-                report.expenses = expenses;
-                $scope.totalCost = recalculateTotal(expenses);
-            });
-
-            TravelExpenseService.getTypes().then(function(response) {
-                $scope.types = response.data;
-            });
-
+            $scope.report = report;
+            $scope.expenseTypes = expenseTypes;
+            $scope.totalCost = recalculateTotal(expenses);
             $scope.expense = {};
             $scope.errors = [];
 
+            /**
+             * Report is editable if report.status == PENDING || REJECTED
+             * @param report The report to check
+             * @returns {boolean} If the report is editable
+             */
             $scope.editable = function(report) {
                 return report.status === 'PENDING' || report.status === 'REJECTED';
             };
@@ -40,7 +33,7 @@ define(['lodash'], function(_) {
              * @param expense The expense to remove.
              */
             $scope.removeExpense = function(expense) {
-                Restangular.oneUrl('travelExpenses/' + expense.id).remove().then(function() {
+                Restangular.oneUrl('travelExpenses', expense._links.self.href).remove().then(function() {
                     _.remove($scope.report.expenses, function(e) {
                         return e.id == expense.id;
                     });

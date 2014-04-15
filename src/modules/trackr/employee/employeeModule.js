@@ -54,6 +54,12 @@ define(['angular', 'modules/trackr/employee/controllers'], function(angular, con
             })
             .state('trackr.employee.expenses', {
                 url: '/expenses',
+                resolve: {
+                    reports: ['Restangular', 'trackr.services.employee', 'employee', function(Restangular, EmployeeService) {
+                        return Restangular.allUrl('travelExpenseReports', 'api/travelExpenseReports/search/findByEmployeeOrderByStatusAsc')
+                            .getList({employee: EmployeeService.getEmployee().id});
+                    }]
+                },
                 views: {
                     'center@': {
                         templateUrl: 'src/modules/trackr/employee/expenses/list.tpl.html',
@@ -66,6 +72,15 @@ define(['angular', 'modules/trackr/employee/controllers'], function(angular, con
                 resolve: {
                     report: ['Restangular', '$stateParams', function(Restangular, $stateParams) {
                         return Restangular.one('travelExpenseReports', $stateParams.id).get();
+                    }],
+                    expenses: ['report', function(report) {
+                        return report.one('expenses').getList().then(function(expenses) {
+                            report.expenses = expenses;
+                            return expenses;
+                        });
+                    }],
+                    expenseTypes: ['trackr.services.travelExpense', function(TravelExpenseService) {
+                        return TravelExpenseService.getTypes();
                     }]
                 },
                 views: {

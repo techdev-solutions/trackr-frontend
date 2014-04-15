@@ -1,10 +1,7 @@
 define([], function() {
     'use strict';
-    return ['$scope', 'Restangular', 'trackr.services.employee', '$state', function($scope, Restangular, EmployeeService, $state) {
-        Restangular.allUrl('travelExpenseReports', 'api/travelExpenseReports/search/findByEmployeeOrderByStatusAsc')
-            .getList({employee: EmployeeService.getEmployee().id}).then(function(reports) {
-                $scope.reports = reports;
-            });
+    return ['$scope', 'Restangular', '$state', 'trackr.services.employee', 'reports', function($scope, Restangular, $state, EmployeeService, reports) {
+        $scope.reports = reports;
 
         $scope.acceptedSubmittedAndRejected = function(travelExpenseReport) {
             return travelExpenseReport.status === 'REJECTED' ||
