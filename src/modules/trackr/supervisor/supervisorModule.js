@@ -38,6 +38,49 @@ define(['angular', 'modules/trackr/supervisor/controllers'], function(angular, c
                         controller: 'trackr.supervisor.controllers.vacation'
                     }
                 }
+            })
+            .state('trackr.supervisor.expenses', {
+                url: '/expenses',
+                resolve: {
+                    reports: ['Restangular', function(Restangular) {
+                        return Restangular.allUrl('travelExpenseReports', 'api/travelExpenseReports/search/findByStatusOrderByEmployee_LastNameAsc').getList({
+                            status: 'SUBMITTED'
+                        }).then(function(reports) {
+                            reports.forEach(function(report) {
+                                Restangular.oneUrl('travelExpenseReports', report._links.self.href).one('employee').get().then(function(employee) {
+                                    report.employee = employee;
+                                });
+                            });
+                            return reports;
+                        });
+                    }]
+                },
+                views: {
+                    'center@': {
+                        templateUrl: 'src/modules/trackr/supervisor/expenses/list.tpl.html',
+                        controller: 'trackr.supervisor.controllers.expenseReport-list'
+                    }
+                }
+            })
+            .state('trackr.supervisor.expenses.edit', {
+                url: '/{id:\\d+}',
+                resolve: {
+                    report: ['Restangular', '$stateParams', function(Restangular, $stateParams) {
+                        return Restangular.one('travelExpenseReports', $stateParams.id).get();
+                    }],
+                    expenses: ['report', function(report) {
+                        return report.one('expenses').getList().then(function(expenses) {
+                            report.expenses = expenses;
+                            return expenses;
+                        });
+                    }]
+                },
+                views: {
+                    'center@': {
+                        templateUrl: 'src/modules/trackr/supervisor/expenses/edit.tpl.html',
+                        controller: 'trackr.supervisor.controllers.expenseReport-edit'
+                    }
+                }
             });
     }]);
 

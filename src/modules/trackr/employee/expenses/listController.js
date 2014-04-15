@@ -5,7 +5,7 @@ define([], function() {
 
         $scope.acceptedSubmittedAndRejected = function(travelExpenseReport) {
             return travelExpenseReport.status === 'REJECTED' ||
-                travelExpenseReport.status === 'ACCEPTED' ||
+                travelExpenseReport.status === 'APPROVED' ||
                 travelExpenseReport.status === 'SUBMITTED';
         };
 

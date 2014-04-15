@@ -4,7 +4,7 @@ define(['lodash'], function(_) {
         function($scope, Restangular, TravelExpenseReportService, report, expenses, expenseTypes) {
             /**
              * Recalculate the sum of the cost of the expenses
-             * @param  expenses An array of expenses, each must have the properyt "cost".
+             * @param  expenses An array of expenses, each must have the property "cost".
              * @return The sum of all costs.
              */
             function recalculateTotal(expenses) {

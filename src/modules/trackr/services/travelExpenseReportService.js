@@ -2,8 +2,8 @@ define([], function() {
     'use strict';
     return ['$http', function($http) {
         return {
-            accept: function(travelExpenseReport) {
-                return $http.put('api/travelExpenseReports/' + travelExpenseReport.id + '/accept');
+            approve: function(travelExpenseReport) {
+                return $http.put('api/travelExpenseReports/' + travelExpenseReport.id + '/approve');
             },
 
             reject: function(travelExpenseReport) {
