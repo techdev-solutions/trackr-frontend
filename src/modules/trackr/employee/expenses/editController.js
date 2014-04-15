@@ -2,20 +2,21 @@ define(['lodash'], function(_) {
     'use strict';
     return ['$scope', 'Restangular', 'trackr.services.travelExpenseReport', 'report', 'expenses', 'expenseTypes',
         function($scope, Restangular, TravelExpenseReportService, report, expenses, expenseTypes) {
+            var controller = this;
             /**
              * Recalculate the sum of the cost of the expenses
              * @param  expenses An array of expenses, each must have the property "cost".
              * @return The sum of all costs.
              */
-            function recalculateTotal(expenses) {
+            controller.recalculateTotal = function(expenses) {
                 return expenses.reduce(function(prev, expense) {
                     return prev + parseFloat(expense.cost);
                 }, 0);
-            }
+            };
 
             $scope.report = report;
             $scope.expenseTypes = expenseTypes;
-            $scope.totalCost = recalculateTotal(expenses);
+            $scope.totalCost = controller.recalculateTotal(expenses);
             $scope.expense = {};
             $scope.errors = [];
 
@@ -33,11 +34,11 @@ define(['lodash'], function(_) {
              * @param expense The expense to remove.
              */
             $scope.removeExpense = function(expense) {
-                Restangular.oneUrl('travelExpenses', expense._links.self.href).remove().then(function() {
+                Restangular.one('travelExpenses', expense.id).remove().then(function() {
                     _.remove($scope.report.expenses, function(e) {
                         return e.id == expense.id;
                     });
-                    $scope.totalCost = recalculateTotal($scope.report.expenses);
+                    $scope.totalCost = controller.recalculateTotal($scope.report.expenses);
                 });
             };
 
@@ -45,7 +46,7 @@ define(['lodash'], function(_) {
              * Callback for when one of the expenses has its cost edited.
              */
             $scope.costEdited = function() {
-                $scope.totalCost = recalculateTotal($scope.report.expenses);
+                $scope.totalCost = controller.recalculateTotal($scope.report.expenses);
             };
 
             /**

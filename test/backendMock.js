@@ -83,6 +83,7 @@ define(['fixtures'], function(fixtures) {
         mockPost('api/employees/createWithCredential');
         mockPost('api/projects');
         mockPost('api/vacationRequests');
+        mockPost('api/travelExpenses');
 
         $httpBackend.whenPATCH(/^api\/credentials\/\d+$/).respond(function(method, url, data) {
             return [200, data];
@@ -117,6 +118,12 @@ define(['fixtures'], function(fixtures) {
 
         $httpBackend.whenDELETE(/^api\/credentials\/\d+\/authorities\/\d+/).respond([204]);
         $httpBackend.whenPATCH(/^api\/credentials\/\d+\/authorities/).respond([204]);
+
+        $httpBackend.whenDELETE(/^api\/travelExpenses\/\d+/).respond([204]);
+
+        $httpBackend.whenPUT(/^api\/travelExpenseReports\/\d+\/submit/).respond([204]);
+        $httpBackend.whenPUT(/^api\/travelExpenseReports\/\d+\/approve/).respond([204]);
+        $httpBackend.whenPUT(/^api\/travelExpenseReports\/\d+\/reject/).respond([204]);
 
         /* ############################ TEMPLATES ########################### */
         /*

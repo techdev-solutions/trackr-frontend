@@ -1032,6 +1032,233 @@ define([], function() {
                     }
                 ]
             }
-        }
+        },
+
+        "api/travelExpenses": {
+            "_embedded": {
+                "travelExpenses": [
+                    {
+                        "id": 0,
+                        "version": 0,
+                        "type": "TAXI",
+                        "cost": 130.49,
+                        "vat": 19.00,
+                        "fromDate": "2014-04-01",
+                        "toDate": "2014-04-10",
+                        "submissionDate": 1397289630000,
+                        "_links": {
+                            "self": {
+                                "href": "http://localhost:8080/api/travelExpenses/0"
+                            },
+                            "report": {
+                                "href": "http://localhost:8080/api/travelExpenses/0/report"
+                            }
+                        }
+                    },
+                    {
+                        "id": 1,
+                        "version": 0,
+                        "type": "HOTEL",
+                        "cost": 100000.00,
+                        "vat": 19.00,
+                        "fromDate": "2014-04-01",
+                        "toDate": "2014-04-10",
+                        "submissionDate": 1397289630000,
+                        "_links": {
+                            "self": {
+                                "href": "http://localhost:8080/api/travelExpenses/1"
+                            },
+                            "report": {
+                                "href": "http://localhost:8080/api/travelExpenses/1/report"
+                            }
+                        }
+                    },
+                    {
+                        "id": 2,
+                        "version": 0,
+                        "type": "HOTEL",
+                        "cost": 100000000.00,
+                        "vat": 25.00,
+                        "fromDate": "2014-04-01",
+                        "toDate": "2014-04-10",
+                        "submissionDate": 1397289630000,
+                        "_links": {
+                            "self": {
+                                "href": "http://localhost:8080/api/travelExpenses/2"
+                            },
+                            "report": {
+                                "href": "http://localhost:8080/api/travelExpenses/2/report"
+                            }
+                        }
+                    },
+                    {
+                        "id": 3,
+                        "version": 0,
+                        "type": "TAXI",
+                        "cost": 130.49,
+                        "vat": 19.00,
+                        "fromDate": "2014-04-01",
+                        "toDate": "2014-04-10",
+                        "submissionDate": 1397289630000,
+                        "_links": {
+                            "self": {
+                                "href": "http://localhost:8080/api/travelExpenses/3"
+                            },
+                            "report": {
+                                "href": "http://localhost:8080/api/travelExpenses/3/report"
+                            }
+                        }
+                    },
+                    {
+                        "id": 4,
+                        "version": 0,
+                        "type": "HOTEL",
+                        "cost": 200.13,
+                        "vat": 18.00,
+                        "fromDate": "2014-04-05",
+                        "toDate": "2014-04-07",
+                        "submissionDate": 1397289630000,
+                        "_links": {
+                            "self": {
+                                "href": "http://localhost:8080/api/travelExpenses/4"
+                            },
+                            "report": {
+                                "href": "http://localhost:8080/api/travelExpenses/4/report"
+                            }
+                        }
+                    },
+                    {
+                        "id": 5,
+                        "version": 0,
+                        "type": "TAXI",
+                        "cost": 130.49,
+                        "vat": 19.00,
+                        "fromDate": "2014-04-01",
+                        "toDate": "2014-04-10",
+                        "submissionDate": 1397289630000,
+                        "_links": {
+                            "self": {
+                                "href": "http://localhost:8080/api/travelExpenses/5"
+                            },
+                            "report": {
+                                "href": "http://localhost:8080/api/travelExpenses/5/report"
+                            }
+                        }
+                    },
+                    {
+                        "id": 6,
+                        "version": 0,
+                        "type": "HOTEL",
+                        "cost": 200.13,
+                        "vat": 18.00,
+                        "fromDate": "2014-04-05",
+                        "toDate": "2014-04-07",
+                        "submissionDate": 1397289630000,
+                        "_links": {
+                            "self": {
+                                "href": "http://localhost:8080/api/travelExpenses/6"
+                            },
+                            "report": {
+                                "href": "http://localhost:8080/api/travelExpenses/6/report"
+                            }
+                        }
+                    }
+                ]
+            }
+        },
+
+        "api/travelExpenseReports": {
+            "_links": {
+                "search": {
+                    "href": "http://localhost:8080/api/travelExpenseReports/search"
+                }
+            },
+            "_embedded": {
+                "travelExpenseReports": [
+                    {
+                        "id": 0,
+                        "version": 0,
+                        "status": "PENDING",
+                        "_links": {
+                            "self": {
+                                "href": "http://localhost:8080/api/travelExpenseReports/0"
+                            },
+                            "employee": {
+                                "href": "http://localhost:8080/api/travelExpenseReports/0/employee"
+                            },
+                            "expenses": {
+                                "href": "http://localhost:8080/api/travelExpenseReports/0/expenses"
+                            }
+                        }
+                    },
+                    {
+                        "id": 1,
+                        "version": 0,
+                        "status": "APPROVED",
+                        "_links": {
+                            "self": {
+                                "href": "http://localhost:8080/api/travelExpenseReports/1"
+                            },
+                            "employee": {
+                                "href": "http://localhost:8080/api/travelExpenseReports/1/employee"
+                            },
+                            "expenses": {
+                                "href": "http://localhost:8080/api/travelExpenseReports/1/expenses"
+                            }
+                        }
+                    },
+                    {
+                        "id": 2,
+                        "version": 0,
+                        "status": "REJECTED",
+                        "_links": {
+                            "self": {
+                                "href": "http://localhost:8080/api/travelExpenseReports/2"
+                            },
+                            "employee": {
+                                "href": "http://localhost:8080/api/travelExpenseReports/2/employee"
+                            },
+                            "expenses": {
+                                "href": "http://localhost:8080/api/travelExpenseReports/2/expenses"
+                            }
+                        }
+                    },
+                    {
+                        "id": 3,
+                        "version": 0,
+                        "status": "PENDING",
+                        "_links": {
+                            "self": {
+                                "href": "http://localhost:8080/api/travelExpenseReports/3"
+                            },
+                            "employee": {
+                                "href": "http://localhost:8080/api/travelExpenseReports/3/employee"
+                            },
+                            "expenses": {
+                                "href": "http://localhost:8080/api/travelExpenseReports/3/expenses"
+                            }
+                        }
+                    },
+                    {
+                        "id": 4,
+                        "version": 0,
+                        "status": "SUBMITTED",
+                        "_links": {
+                            "self": {
+                                "href": "http://localhost:8080/api/travelExpenseReports/4"
+                            },
+                            "employee": {
+                                "href": "http://localhost:8080/api/travelExpenseReports/4/employee"
+                            },
+                            "expenses": {
+                                "href": "http://localhost:8080/api/travelExpenseReports/4/expenses"
+                            }
+                        }
+                    }
+                ]
+            }
+        },
+
+        "api/travelExpenses/types": ["HOTEL", "TAXI"]
     };
 });
