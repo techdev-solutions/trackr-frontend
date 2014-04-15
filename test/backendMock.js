@@ -120,6 +120,9 @@ define(['fixtures'], function(fixtures) {
         $httpBackend.whenPATCH(/^api\/credentials\/\d+\/authorities/).respond([204]);
 
         $httpBackend.whenDELETE(/^api\/travelExpenses\/\d+/).respond([204]);
+        $httpBackend.whenPATCH((/^api\/travelExpenses\/\d+/)).respond(function(method, url, data) {
+            return [200, data];
+        });
 
         $httpBackend.whenPUT(/^api\/travelExpenseReports\/\d+\/submit/).respond([204]);
         $httpBackend.whenPUT(/^api\/travelExpenseReports\/\d+\/approve/).respond([204]);

@@ -5,7 +5,7 @@ define([], function() {
      */
     return ['$scope', 'Restangular', function($scope, Restangular) {
         function patch(patchObj) {
-            Restangular.oneUrl('travelExpenses', $scope.expense._links.self.href).patch(patchObj).then(function() {
+            Restangular.one('travelExpenses', $scope.expense.id).patch(patchObj).then(function() {
                 $scope.errors = [];
             }, function(response) {
                 $scope.errors = response.data.errors;
