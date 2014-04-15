@@ -8,12 +8,17 @@ define(['baseTestSetup', 'fixtures'], function(baseTestSetup, fixtures) {
             var reports = fixtures['api/travelExpenseReports']._embedded.travelExpenseReports;
             ListController = $controller('trackr.supervisor.controllers.expenseReport-list', {
                 $scope: scope,
-                reports: reports
+                reports: reports,
+                approvedReports: reports
             });
         }));
 
         it('must put the reports in the scope', function() {
             expect(scope.reports).toBeDefined();
+        });
+
+        it('must put the approved reports in the scope', function() {
+            expect(scope.approvedReports).toBeDefined();
         });
     });
 });

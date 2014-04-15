@@ -42,17 +42,11 @@ define(['angular', 'modules/trackr/supervisor/controllers'], function(angular, c
             .state('trackr.supervisor.expenses', {
                 url: '/expenses',
                 resolve: {
-                    reports: ['Restangular', function(Restangular) {
-                        return Restangular.allUrl('travelExpenseReports', 'api/travelExpenseReports/search/findByStatusOrderByEmployee_LastNameAsc').getList({
-                            status: 'SUBMITTED'
-                        }).then(function(reports) {
-                            reports.forEach(function(report) {
-                                Restangular.oneUrl('travelExpenseReports', report._links.self.href).one('employee').get().then(function(employee) {
-                                    report.employee = employee;
-                                });
-                            });
-                            return reports;
-                        });
+                    reports: ['trackr.services.travelExpenseReport', function(TravelExpenseReportService) {
+                        return TravelExpenseReportService.findByStatusWithEmployee('SUBMITTED');
+                    }],
+                    approvedReports: ['trackr.services.travelExpenseReport', function(TravelExpenseReportService) {
+                        return TravelExpenseReportService.findByStatusWithEmployee('APPROVED');
                     }]
                 },
                 views: {
