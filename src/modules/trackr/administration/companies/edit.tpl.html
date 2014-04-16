@@ -1,70 +1,86 @@
-<h1>
-	<bs-edit entity="company" property-name="name" role="ROLE_ADMIN"></bs-edit>
-</h1>
+<section class="panel panel-default">
 
-<form class="form-horizontal" role="form">
-	<div class="form-group">
-		<label class="col-sm-2 control-label">{{ 'COMPANY.COMPANY_ID' | translate }}</label>
-		<div class="col-sm-8">
-			<bs-edit entity="company" property-name="companyId" callback="companyIdChanged" error-callback="companyIdError" role="ROLE_ADMIN"></bs-edit>
-			<span ng-if="companyIdErrorText">{{companyIdErrorText}}</span>
+	<div class="panel-body">
+
+		<span ng-repeat="globalError in errors.globalMessages" class="alert alert-danger">{{globalError.message}}</span>
+
+		<form class="form-horizontal">
+			<div class="form-group">
+				<div class="col-sm-7 col-sm-offset-3">
+					<h1>
+						<bs-edit entity="company" property-name="name" role="ROLE_ADMIN" class="like-h1"></bs-edit>
+					</h1>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-3 control-label">{{ 'COMPANY.COMPANY_ID' | translate }}</label>
+				<div class="col-sm-7">
+					<bs-edit entity="company" property-name="companyId" callback="companyIdChanged" error-callback="companyIdError" role="ROLE_ADMIN"></bs-edit>
+					<span ng-if="companyIdErrorText">{{companyIdErrorText}}</span>
+				</div>
+			</div>
+
+			<h2>{{ 'ADDRESS.ADDRESS' | translate}}</h2>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">{{ 'ADDRESS.STREET' | translate }}</label>
+				<div class="col-sm-7">
+					<bs-edit entity="address" property-name="street" role="ROLE_ADMIN"></bs-edit>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">{{ 'ADDRESS.HOUSE_NUMBER' | translate }}</label>
+				<div class="col-sm-7">
+					<bs-edit entity="address" property-name="houseNumber" role="ROLE_ADMIN"></bs-edit>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">{{ 'ADDRESS.CITY' | translate }}</label>
+				<div class="col-sm-7">
+					<bs-edit entity="address" property-name="city" role="ROLE_ADMIN"></bs-edit>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">{{ 'ADDRESS.ZIPCODE' | translate }}</label>
+				<div class="col-sm-7">
+					<bs-edit entity="address" property-name="zipCode" role="ROLE_ADMIN"></bs-edit>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">{{ 'ADDRESS.COUNTRY' | translate }}</label>
+				<div class="col-sm-7">
+					<bs-edit entity="address" property-name="country" role="ROLE_ADMIN"></bs-edit>
+				</div>
+			</div>
+		</form>
+
+		<!-- Contact Persons BEGIN -->
+		<h3>{{ 'CONTACTPERSON.CONTACTPERSONS' | translate }}</h3>
+		<table>
+			<tr ng-repeat="contactPerson in contactPersons">
+				<td><bs-edit entity="contactPerson" property-name="salutation" role="ROLE_SUPERVISOR"></bs-edit></td>
+				<td><bs-edit entity="contactPerson" property-name="firstName" role="ROLE_SUPERVISOR"></bs-edit></td>
+				<td><bs-edit entity="contactPerson" property-name="lastName" role="ROLE_SUPERVISOR"></bs-edit></td>
+				<td><bs-edit entity="contactPerson" property-name="email" role="ROLE_SUPERVISOR"></bs-edit><!--<a href="mailto:{{contactPerson.email}}">{{contactPerson.email}}</a>--></td>
+				<td><bs-edit entity="contactPerson" property-name="phone" role="ROLE_SUPERVISOR"></bs-edit></td>
+				<td has-authority="ROLE_SUPERVISOR"><a href ng-click="removeContactPerson(contactPerson)"><i class="glyphicon glyphicon-remove"></i></a></td>
+			</tr>
+		</table>
+		<div has-authority="ROLE_SUPERVISOR">
+			<button class="btn btn-sm btn-default" ng-click="doShowContactPersonForm(true)">
+				<i class="glyphicon glyphicon-plus"/>
+			</button>
+			<form ng-show="showContactPersonForm" class="form-inline" role="form" ng-submit="saveNewContactPerson()">
+				<bs-text path="newContactPerson.salutation" translate-code="CONTACTPERSON.SALUTATION" property-name="salutation" inline="true" errors="contactPersonErrors"></bs-text>
+				<bs-text path="newContactPerson.firstName" translate-code="CONTACTPERSON.FIRST_NAME" property-name="firstName" inline="true" errors="contactPersonErrors"></bs-text>
+				<bs-text path="newContactPerson.lastName" translate-code="CONTACTPERSON.LAST_NAME" property-name="lastName" inline="true" errors="contactPersonErrors"></bs-text>
+				<bs-text path="newContactPerson.email" translate-code="CONTACTPERSON.EMAIL" property-name="email" inline="true" errors="contactPersonErrors"></bs-text>
+				<bs-text path="newContactPerson.phone" translate-code="CONTACTPERSON.PHONE" property-name="phone" inline="true" errors="contactPersonErrors"></bs-text>
+				<button type="submit" class="btn btn-success">{{ 'ACTIONS.SAVE' | translate }}</button>
+			</form>
 		</div>
+		<!-- Contact Persons END -->
+
 	</div>
 
-	<h2>{{ 'ADDRESS.ADDRESS' | translate}}</h2>
-	<div class="form-group">
-		<label class="col-sm-2 control-label">{{ 'ADDRESS.STREET' | translate }}</label>
-		<div class="col-sm-8">
-			<bs-edit entity="address" property-name="street" role="ROLE_ADMIN"></bs-edit>
-		</div>
-	</div>
-	<div class="form-group">
-		<label class="col-sm-2 control-label">{{ 'ADDRESS.HOUSE_NUMBER' | translate }}</label>
-		<div class="col-sm-8">
-			<bs-edit entity="address" property-name="houseNumber" role="ROLE_ADMIN"></bs-edit>
-		</div>
-	</div>
-	<div class="form-group">
-		<label class="col-sm-2 control-label">{{ 'ADDRESS.CITY' | translate }}</label>
-		<div class="col-sm-8">
-			<bs-edit entity="address" property-name="city" role="ROLE_ADMIN"></bs-edit>
-		</div>
-	</div>
-	<div class="form-group">
-		<label class="col-sm-2 control-label">{{ 'ADDRESS.ZIPCODE' | translate }}</label>
-		<div class="col-sm-3">
-			<bs-edit entity="address" property-name="zipCode" role="ROLE_ADMIN"></bs-edit>
-		</div>
-	</div>
-	<div class="form-group">
-		<label class="col-sm-2 control-label">{{ 'ADDRESS.COUNTRY' | translate }}</label>
-		<div class="col-sm-3">
-			<bs-edit entity="address" property-name="country" role="ROLE_ADMIN"></bs-edit>
-		</div>
-	</div>
-</form>
-
-<h3>{{ 'CONTACTPERSON.CONTACTPERSONS' | translate }}</h3>
-<table>
-    <tr ng-repeat="contactPerson in contactPersons">
-        <td><bs-edit entity="contactPerson" property-name="salutation" role="ROLE_SUPERVISOR"></bs-edit></td>
-        <td><bs-edit entity="contactPerson" property-name="firstName" role="ROLE_SUPERVISOR"></bs-edit></td>
-        <td><bs-edit entity="contactPerson" property-name="lastName" role="ROLE_SUPERVISOR"></bs-edit></td>
-        <td><bs-edit entity="contactPerson" property-name="email" role="ROLE_SUPERVISOR"></bs-edit><!--<a href="mailto:{{contactPerson.email}}">{{contactPerson.email}}</a>--></td>
-        <td><bs-edit entity="contactPerson" property-name="phone" role="ROLE_SUPERVISOR"></bs-edit></td>
-        <td has-authority="ROLE_SUPERVISOR"><a href ng-click="removeContactPerson(contactPerson)"><i class="glyphicon glyphicon-remove"></i></a></td>
-    </tr>
-</table>
-<div has-authority="ROLE_SUPERVISOR">
-    <button class="btn btn-sm btn-default" ng-click="doShowContactPersonForm(true)">
-        <i class="glyphicon glyphicon-plus"/>
-    </button>
-    <form ng-show="showContactPersonForm" class="form-inline" role="form" ng-submit="saveNewContactPerson()">
-        <bs-text path="newContactPerson.salutation" translate-code="CONTACTPERSON.SALUTATION" property-name="salutation" inline="true" errors="contactPersonErrors"></bs-text>
-        <bs-text path="newContactPerson.firstName" translate-code="CONTACTPERSON.FIRST_NAME" property-name="firstName" inline="true" errors="contactPersonErrors"></bs-text>
-        <bs-text path="newContactPerson.lastName" translate-code="CONTACTPERSON.LAST_NAME" property-name="lastName" inline="true" errors="contactPersonErrors"></bs-text>
-        <bs-text path="newContactPerson.email" translate-code="CONTACTPERSON.EMAIL" property-name="email" inline="true" errors="contactPersonErrors"></bs-text>
-        <bs-text path="newContactPerson.phone" translate-code="CONTACTPERSON.PHONE" property-name="phone" inline="true" errors="contactPersonErrors"></bs-text>
-        <button type="submit" class="btn btn-success">{{ 'ACTIONS.SAVE' | translate }}</button>
-    </form>
-</div>
+</section>

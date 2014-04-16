@@ -78,3 +78,9 @@ inline-datepicker .input-group .form-control {
 inline-datepicker .input-group .input-group-btn button {
   height: 34px;
 }
+.form-group .help-block {
+  display: none;
+}
+.form-group.has-error .help-block {
+  display: block;
+}
