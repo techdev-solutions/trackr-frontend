@@ -47,6 +47,7 @@ module.exports = function (grunt) {
                         dest: '<%= config.distFolder %>',
                         src: [
                             'index.html',
+                            'bootstrap.prod.js',
                             'src/modules/**/*.tpl.html',
                             'src/vendor/**',
 							'src/flatify/**'
@@ -61,20 +62,20 @@ module.exports = function (grunt) {
                 options: {
                     baseUrl: 'src',
                     mainConfigFile: 'bootstrap.js',
-                    name: 'vendor/almond/almond',
                     include: ['app'],
                     insertRequire: ['app'],
                     out: '<%= config.distFolder %>/trackr.js',
                     paths: {
-                        'jQuery': 'vendor/jquery/dist/jquery.min',
-                        'twitter-bootstrap': 'vendor/bootstrap/dist/js/bootstrap.min',
-                        'angular': 'vendor/angular/angular.min',
-                        'angular-ui-router': 'vendor/angular-ui-router/release/angular-ui-router.min',
-                        'restangular':'vendor/restangular/dist/restangular.min',
-                        'lodash': 'vendor/lodash/dist/lodash.min',
-                        'angular-translate': 'vendor/angular-translate/angular-translate.min',
-                        'angular-ui': 'vendor/angular-ui-bootstrap-bower/ui-bootstrap-tpls.min',
-						'flatify': 'flatify/scripts/app'
+                        'jQuery': 'empty:',
+                        'twitter-bootstrap': 'empty:',
+                        'angular': 'empty:',
+                        'angular-ui-router': 'empty:',
+                        'restangular':'empty:',
+                        'lodash': 'empty:',
+                        'angular-translate': 'empty:',
+                        'angular-translate-loader-url': 'empty:',
+                        'angular-ui': 'empty:',
+                        'flatify': 'empty:'
                     }
                 }
             }
@@ -91,7 +92,6 @@ module.exports = function (grunt) {
 
         clean: ['<%= config.distFolder %>'],
 
-        /* Replace JS vendor libs with minified versions */
         processhtml: {
             options: {
                 commentMarker: 'process'
