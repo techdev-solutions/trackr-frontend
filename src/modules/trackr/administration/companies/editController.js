@@ -1,6 +1,7 @@
 define(['lodash'], function(_) {
     'use strict';
     return ['$stateParams', '$scope', 'Restangular', '$state', '$filter', function($stateParams, $scope, Restangular, $state, $filter) {
+        $scope.errors = [];
         /**
          * Show or hide the form for a new contact person for this company
          * @param show true/false = show/hide
@@ -42,6 +43,10 @@ define(['lodash'], function(_) {
         };
 
         $scope.companyIdChanged = function() {
+            //Change the company id in the list in the parent controller
+            var companyInList = _.find($scope.$parent.companies, {id: $scope.company.id});
+            companyInList.companyId = $scope.company.companyId;
+            //reload so the url is correct
             $state.go('trackr.administration.companies.edit', {id: $scope.company.companyId});
         };
 

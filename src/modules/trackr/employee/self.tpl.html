@@ -1,31 +1,31 @@
 <h1>
-	<bs-edit entity="employee" property-name="firstName" own-submit="updateEmployee"></bs-edit>
-	<bs-edit entity="employee" property-name="lastName" own-submit="updateEmployee"></bs-edit>
+    <bs-edit entity="employee" property-name="firstName" own-submit="updateEmployee"></bs-edit>
+    <bs-edit entity="employee" property-name="lastName" own-submit="updateEmployee"></bs-edit>
 </h1>
 
 <form class="form-horizontal" role="form">
-	<div class="form-group">
-		<label class="col-sm-2 control-label">{{ 'EMPLOYEE.TITLE' | translate }}</label>
-		<div class="col-sm-8">
-			{{employee.title}}
-		</div>
-	</div>
-	<div class="form-group">
-		<label class="col-sm-2 control-label">{{ 'EMPLOYEE.SALARY' | translate }}</label>
-		<div class="col-sm-8">
-			{{employee.salary}}
-		</div>
-	</div>
-	<div class="form-group">
-		<label class="col-sm-2 control-label">{{ 'EMPLOYEE.HOURLY_COST_RATE' | translate }}</label>
-		<div class="col-sm-8">
-			{{employee.hourlyCostRate}}
-		</div>
-	</div>
-	<div class="form-group">
-		<label class="col-sm-2 control-label">{{ 'EMPLOYEE.PHONE_NUMBER' | translate }}</label>
-		<div class="col-sm-8">
-			<bs-edit entity="employee" property-name="phoneNumber" own-submit="updateEmployee"></bs-edit>
-		</div>
-	</div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">{{ 'EMPLOYEE.TITLE' | translate }}</label>
+        <div class="col-sm-8">
+            {{employee.title}}
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">{{ 'EMPLOYEE.SALARY' | translate }}</label>
+        <div class="col-sm-8">
+            {{employee.salary}}
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">{{ 'EMPLOYEE.HOURLY_COST_RATE' | translate }}</label>
+        <div class="col-sm-8">
+            {{employee.hourlyCostRate}}
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">{{ 'EMPLOYEE.PHONE_NUMBER' | translate }}</label>
+        <div class="col-sm-8">
+            <bs-edit entity="employee" property-name="phoneNumber" own-submit="updateEmployee"></bs-edit>
+        </div>
+    </div>
 </form>

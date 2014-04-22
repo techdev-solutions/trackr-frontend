@@ -1,49 +1,49 @@
 <section class="panel panel-default">
 
-	<div class="panel-body">
+    <div class="panel-body">
 
-		<span ng-repeat="globalError in errors.globalMessages" class="alert alert-danger">{{globalError.message}}</span>
+        <span ng-repeat="globalError in errors.globalMessages" class="alert alert-danger">{{globalError.message}}</span>
 
-		<form class="form-horizontal">
-			<div class="form-group">
-				<div class="col-sm-7 col-sm-offset-3">
-					<h1>
-						<bs-edit entity="project" property-name="name" role="ROLE_ADMIN" class="like-h1"></bs-edit>
-					</h1>
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-3 control-label">{{ 'PROJECT.IDENTIFIER' | translate }}</label>
-				<div class="col-sm-7">
-					<bs-edit entity="project" property-name="identifier" callback="projectIdChanged" role="ROLE_ADMIN"></bs-edit>
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-3 control-label">{{ 'PROJECT.VOLUME' | translate }}</label>
-				<div class="col-sm-7">
-					<bs-edit entity="project" property-name="volume" role="ROLE_ADMIN"></bs-edit>
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-3 control-label">{{ 'PROJECT.HOURLY_RATE' | translate }}</label>
-				<div class="col-sm-7">
-					<bs-edit entity="project" property-name="hourlyRate" role="ROLE_ADMIN"></bs-edit>
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-3 control-label">{{ 'PROJECT.DAILY_RATE' | translate }}</label>
-				<div class="col-sm-7">
-					<bs-edit entity="project" property-name="dailyRate" role="ROLE_ADMIN"></bs-edit>
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-3 control-label">{{ 'PROJECT.FIXED_PRICE' | translate }}</label>
-				<div class="col-sm-3">
-					<bs-edit entity="project" property-name="fixedPrice" role="ROLE_ADMIN"></bs-edit>
-				</div>
-			</div>
-		</form>
+        <form class="form-horizontal">
+            <div class="form-group">
+                <div class="col-sm-7 col-sm-offset-3">
+                    <h1>
+                        <bs-edit entity="project" property-name="name" role="ROLE_ADMIN" class="like-h1"></bs-edit>
+                    </h1>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">{{ 'PROJECT.IDENTIFIER' | translate }}</label>
+                <div class="col-sm-7">
+                    <bs-edit entity="project" property-name="identifier" callback="projectIdChanged" role="ROLE_ADMIN"></bs-edit>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">{{ 'PROJECT.VOLUME' | translate }}</label>
+                <div class="col-sm-7">
+                    <bs-edit entity="project" property-name="volume" role="ROLE_ADMIN"></bs-edit>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">{{ 'PROJECT.HOURLY_RATE' | translate }}</label>
+                <div class="col-sm-7">
+                    <bs-edit entity="project" property-name="hourlyRate" role="ROLE_ADMIN"></bs-edit>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">{{ 'PROJECT.DAILY_RATE' | translate }}</label>
+                <div class="col-sm-7">
+                    <bs-edit entity="project" property-name="dailyRate" role="ROLE_ADMIN"></bs-edit>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">{{ 'PROJECT.FIXED_PRICE' | translate }}</label>
+                <div class="col-sm-3">
+                    <bs-edit entity="project" property-name="fixedPrice" role="ROLE_ADMIN"></bs-edit>
+                </div>
+            </div>
+        </form>
 
-	</div>
+    </div>
 
 </section>

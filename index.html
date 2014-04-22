@@ -7,14 +7,14 @@
     <link rel="stylesheet" type="text/css" href="src/vendor/bootstrap/dist/css/bootstrap.min.css"/>
 
     <!-- build:css(.) src/css/trackr.css -->
-	<link rel="stylesheet" href="src/flatify/ui.css"/>
-	<link rel="stylesheet" href="src/flatify/main.css">
+    <link rel="stylesheet" href="src/flatify/ui.css"/>
+    <link rel="stylesheet" href="src/flatify/main.css">
     <link rel="stylesheet" href="src/css/notification.css" type="text/css"/>
-	<link type="text/css" href="src/css/trackr.css" rel="stylesheet" media="screen"/>
+    <link type="text/css" href="src/css/trackr.css" rel="stylesheet" media="screen"/>
     <!-- endbuild -->
 
-	<link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic" rel="stylesheet" type="text/css" />
-	<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet" />
+    <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic" rel="stylesheet" type="text/css" />
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet" />
 
     <!-- process:js trackr.js -->
     <script type="text/javascript" data-main="./bootstrap" src="src/vendor/requirejs/require.js"></script>
@@ -24,54 +24,54 @@
 
 <div id="wrapper">
 
-	<div>
-		<div>
-			<section id="header" class="top-header">
-				<header class="clearfix">
+    <div>
+        <div>
+            <section id="header" class="top-header">
+                <header class="clearfix">
 
-					<a href="#/" data-toggle-min-nav class="toggle-min"><i class="fa fa-bars"></i></a>
+                    <a href="#/" data-toggle-min-nav class="toggle-min"><i class="fa fa-bars"></i></a>
 
-					<!-- Header menu !-->
-					<div ui-view="top-menu"/>
+                    <!-- Header menu !-->
+                    <div ui-view="top-menu"/>
 
-				</header>
-			</section>
+                </header>
+            </section>
 
-			<aside id="nav-container">
+            <aside id="nav-container">
 
-				<div id="nav-wrapper">
-					<ul id="nav"
-						data-collapse-nav
-						data-highlight-active>
+                <div id="nav-wrapper">
+                    <ul id="nav"
+                        data-collapse-nav
+                        data-highlight-active>
 
-						<li><a ui-sref="trackr.home" href> <i class="fa fa-bar-chart-o"><span class="icon-bg bg-primary"></span></i><span>trackr</span> </a></li>
-						<li><a ui-sref="example.home" href> <i class="fa fa-file-text-o"><span class="icon-bg bg-success"></span></i><span>Example</span> </a></li>
-					</ul>
-				</div>
+                        <li><a ui-sref="trackr.home" href> <i class="fa fa-bar-chart-o"><span class="icon-bg bg-primary"></span></i><span>trackr</span> </a></li>
+                        <li><a ui-sref="example.home" href> <i class="fa fa-file-text-o"><span class="icon-bg bg-success"></span></i><span>Example</span> </a></li>
+                    </ul>
+                </div>
 
-			</aside>
+            </aside>
 
-			<div class="view-container">
-				<section data-ng-view="" id="content" class="animate-fade-up">
+            <div class="view-container">
+                <section data-ng-view="" id="content" class="animate-fade-up">
 
-					<!-- Page Content -->
-					<div id="page-wrapper">
+                    <!-- Page Content -->
+                    <div id="page-wrapper">
 
-						<div class="row">
-							<!-- main content -->
-							<div class="col-lg-12">
-								<div ui-view="center"/>
-							</div>
-						</div>
+                        <div class="row">
+                            <!-- main content -->
+                            <div class="col-lg-12">
+                                <div ui-view="center"/>
+                            </div>
+                        </div>
 
-					</div>
-					<!-- Page Content END -->
+                    </div>
+                    <!-- Page Content END -->
 
-				</section>
-			</div>
-		</div>
+                </section>
+            </div>
+        </div>
 
-	</div>
+    </div>
 
 </div>
 <div id="notification-container">

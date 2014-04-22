@@ -6,6 +6,7 @@ define([], function() {
         $scope.credential = {};
 
         $scope.saveEmployee = function() {
+            $scope.credential.locale = 'en';
             Restangular.allUrl('employees', 'api/employees/createWithCredential').post({
                 employee: $scope.employee,
                 credential: $scope.credential
