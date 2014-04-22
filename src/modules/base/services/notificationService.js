@@ -1,7 +1,7 @@
 define([], function() {
     'use strict';
     return [function() {
-        var callback = callback;
+        var callback;
         function displayNotification(text, level, duration) {
             var _duration = duration || 5000;
             var notification =  {
@@ -9,7 +9,9 @@ define([], function() {
                 duration: _duration,
                 level: level
             };
-            callback(notification);
+            if(callback) {
+                callback(notification);
+            }
         }
         return {
             onNotification: function(_callback) {
