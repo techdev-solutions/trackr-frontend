@@ -1,19 +1,19 @@
 <div class="row">
-	<div class="col-lg-12">
+    <div class="col-lg-12">
 
-		<form class="form-horizontal" ng-submit="saveTime()">
+        <form class="form-horizontal" ng-submit="saveTime()">
 
-			<div class="form-group" error-display="project">
-				<label class="form-label col-sm-2" for="project">{{ 'WORKTIME.PROJECT' | translate }}</label>
-				<div class="col-sm-2">
-					<input type="text" class="form-control" id="project"
-						   ng-model="project"
-						   autocomplete="false"
-						   typeahead="project as project.name for project in getProjects($viewValue)"
-						   typeahead-editable="false"
-						   typeahead-min-length="1" />
-				</div>
-			</div>
+            <div class="form-group" error-display="project">
+                <label class="form-label col-sm-2" for="project">{{ 'WORKTIME.PROJECT' | translate }}</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" id="project"
+                           ng-model="project"
+                           autocomplete="false"
+                           typeahead="project as project.name for project in getProjects($viewValue)"
+                           typeahead-editable="false"
+                           typeahead-min-length="1" />
+                </div>
+            </div>
 
             <div class="form-group" error-display="date">
                 <label class="form-label col-sm-2" for="date">{{ 'WORKTIME.DATE' | translate }}</label>
@@ -22,28 +22,28 @@
                 </div>
             </div>
 
-			<div class="form-group">
-				<label class="form-label col-sm-2" for="startTime">{{ 'WORKTIME.START' | translate }}</label>
-				<div ng-model="startTime" id="startTime" style="display:inline-block;" class="col-sm-6">
-					<timepicker hour-step="1" minute-step="15" show-meridian="ismeridian"></timepicker>
-				</div>
-			</div>
+            <div class="form-group">
+                <label class="form-label col-sm-2" for="startTime">{{ 'WORKTIME.START' | translate }}</label>
+                <div ng-model="startTime" id="startTime" style="display:inline-block;" class="col-sm-6">
+                    <timepicker hour-step="1" minute-step="15" show-meridian="ismeridian"></timepicker>
+                </div>
+            </div>
 
-			<div class="form-group">
-				<label class="form-label col-sm-2" for="endTime">{{ 'WORKTIME.END' | translate }}</label>
-				<div ng-model="endTime" id="endTime" style="display:inline-block;" class="col-sm-6">
-					<timepicker hour-step="1" minute-step="15" show-meridian="ismeridian"></timepicker>
-				</div>
-			</div>
+            <div class="form-group">
+                <label class="form-label col-sm-2" for="endTime">{{ 'WORKTIME.END' | translate }}</label>
+                <div ng-model="endTime" id="endTime" style="display:inline-block;" class="col-sm-6">
+                    <timepicker hour-step="1" minute-step="15" show-meridian="ismeridian"></timepicker>
+                </div>
+            </div>
 
-			<bs-text property-name="comment" translate-code="WORKTIME.COMMENT" path="comment"></bs-text>
+            <bs-text property-name="comment" translate-code="WORKTIME.COMMENT" path="comment"></bs-text>
 
-			<div class="form-group">
-				<div class="col-sm-offset-2 col-sm-6">
-					<button type="submit" class="btn btn-primary">{{ 'ACTIONS.SAVE' | translate }}</button>
-				</div>
-			</div>
-		</form>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-6">
+                    <button type="submit" class="btn btn-primary">{{ 'ACTIONS.SAVE' | translate }}</button>
+                </div>
+            </div>
+        </form>
 
-	</div>
+    </div>
 </div>

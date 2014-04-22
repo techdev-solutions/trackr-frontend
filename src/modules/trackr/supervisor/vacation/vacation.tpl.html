@@ -1,84 +1,84 @@
 <div class="row">
-	<div class="col-sm-12">
-		<h1>{{ 'PAGES.SUPERVISOR.VACATION.TITLE' | translate }}</h1>
-	</div>
+    <div class="col-sm-12">
+        <h1>{{ 'PAGES.SUPERVISOR.VACATION.TITLE' | translate }}</h1>
+    </div>
 
-	<div class="col-sm-12">
+    <div class="col-sm-12">
 
-		<table class="table">
-			<thead>
-				<tr>
-					<th>{{ 'VACATION_REQUEST.INTERVAL' | translate }}</th>
-					<th>{{ 'VACATION_REQUEST.NUMBER_OF_DAYS' | translate }}</th>
-					<th>{{ 'VACATION_REQUEST.SUBMITTED' | translate }}</th>
-					<th>{{ 'VACATION_REQUEST.EMPLOYEE' | translate }}</th>
-					<th></th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr ng-repeat="request in pendingRequests">
-					<td>{{request.startDate | date:'dd.MM.yyyy' }} - {{request.endDate | date:'dd.MM.yyyy'}}</td>
-					<td>{{request.numberOfDays}}</td>
-					<td>{{request.submissionTime | date:'dd.MM.yyyy HH:mm:ss'}}</td>
-					<td>{{request.employee.firstName}} {{request.employee.lastName}}</td>
-					<td>
-						<button type="button" ng-click="approve(request)" class="btn btn-xs btn-primary">{{ 'ACTIONS.APPROVE' | translate }}</button>
-						<button type="button" ng-click="reject(request)" class="btn btn-xs btn-warning">{{ 'ACTIONS.REJECT' | translate }}</button>
-					</td>
-				</tr>
-			</tbody>
-		</table>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>{{ 'VACATION_REQUEST.INTERVAL' | translate }}</th>
+                    <th>{{ 'VACATION_REQUEST.NUMBER_OF_DAYS' | translate }}</th>
+                    <th>{{ 'VACATION_REQUEST.SUBMITTED' | translate }}</th>
+                    <th>{{ 'VACATION_REQUEST.EMPLOYEE' | translate }}</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="request in pendingRequests">
+                    <td>{{request.startDate | date:'dd.MM.yyyy' }} - {{request.endDate | date:'dd.MM.yyyy'}}</td>
+                    <td>{{request.numberOfDays}}</td>
+                    <td>{{request.submissionTime | date:'dd.MM.yyyy HH:mm:ss'}}</td>
+                    <td>{{request.employee.firstName}} {{request.employee.lastName}}</td>
+                    <td>
+                        <button type="button" ng-click="approve(request)" class="btn btn-xs btn-primary">{{ 'ACTIONS.APPROVE' | translate }}</button>
+                        <button type="button" ng-click="reject(request)" class="btn btn-xs btn-warning">{{ 'ACTIONS.REJECT' | translate }}</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
 
-		<tabset>
-			<tab heading="{{ 'VACATION_REQUEST.APPROVED' | translate }}">
-				<table class="table-bordered table table-condensed">
-					<thead>
-						<tr>
-							<th>{{ 'VACATION_REQUEST.INTERVAL' | translate }}</th>
-							<th>{{ 'VACATION_REQUEST.NUMBER_OF_DAYS' | translate }}</th>
-							<th>{{ 'VACATION_REQUEST.SUBMITTED' | translate }}</th>
-							<th>{{ 'VACATION_REQUEST.APPROVAL_DATE' | translate }}</th>
-							<th>{{ 'VACATION_REQUEST.EMPLOYEE' | translate }}</th>
-							<th>{{ 'VACATION_REQUEST.APPROVER' | translate }}</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr ng-repeat="request in approvedRequests">
-							<td>{{request.startDate | date:'dd.MM.yyyy' }} - {{request.endDate | date:'dd.MM.yyyy'}}</td>
-							<td>{{request.numberOfDays}}</td>
-							<td>{{request.submissionTime | date:'dd.MM.yyyy HH:mm:ss'}}</td>
-							<td>{{request.approvalDate | date:'dd.MM.yyyy'}}</td>
-							<td>{{request.employee.firstName}} {{request.employee.lastName}}</td>
-							<td>{{request.approver.firstName}} {{request.approver.lastName}}</td>
-						</tr>
-					</tbody>
-				</table>
-			</tab>
-			<tab heading="{{ 'VACATION_REQUEST.REJECTED' | translate }}">
-				<table class="table-bordered table table-condensed">
-					<thead>
-						<tr>
-							<th>{{ 'VACATION_REQUEST.INTERVAL' | translate }}</th>
-							<th>{{ 'VACATION_REQUEST.NUMBER_OF_DAYS' | translate }}</th>
-							<th>{{ 'VACATION_REQUEST.SUBMITTED' | translate }}</th>
-							<th>{{ 'VACATION_REQUEST.APPROVAL_DATE' | translate }}</th>
-							<th>{{ 'VACATION_REQUEST.EMPLOYEE' | translate }}</th>
-							<th>{{ 'VACATION_REQUEST.APPROVER' | translate }}</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr ng-repeat="request in rejectedRequests">
-							<td>{{request.startDate | date:'dd.MM.yyyy' }} - {{request.endDate | date:'dd.MM.yyyy'}}</td>
-							<td>{{request.numberOfDays}}</td>
-							<td>{{request.submissionTime | date:'dd.MM.yyyy HH:mm:ss'}}</td>
-							<td>{{request.approvalDate | date:'dd.MM.yyyy'}}</td>
-							<td>{{request.employee.firstName}} {{request.employee.lastName}}</td>
-							<td>{{request.approver.firstName}} {{request.approver.lastName}}</td>
-						</tr>
-					</tbody>
-				</table>
-			</tab>
-		</tabset>
+        <tabset>
+            <tab heading="{{ 'VACATION_REQUEST.APPROVED' | translate }}">
+                <table class="table-bordered table table-condensed">
+                    <thead>
+                        <tr>
+                            <th>{{ 'VACATION_REQUEST.INTERVAL' | translate }}</th>
+                            <th>{{ 'VACATION_REQUEST.NUMBER_OF_DAYS' | translate }}</th>
+                            <th>{{ 'VACATION_REQUEST.SUBMITTED' | translate }}</th>
+                            <th>{{ 'VACATION_REQUEST.APPROVAL_DATE' | translate }}</th>
+                            <th>{{ 'VACATION_REQUEST.EMPLOYEE' | translate }}</th>
+                            <th>{{ 'VACATION_REQUEST.APPROVER' | translate }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="request in approvedRequests">
+                            <td>{{request.startDate | date:'dd.MM.yyyy' }} - {{request.endDate | date:'dd.MM.yyyy'}}</td>
+                            <td>{{request.numberOfDays}}</td>
+                            <td>{{request.submissionTime | date:'dd.MM.yyyy HH:mm:ss'}}</td>
+                            <td>{{request.approvalDate | date:'dd.MM.yyyy'}}</td>
+                            <td>{{request.employee.firstName}} {{request.employee.lastName}}</td>
+                            <td>{{request.approver.firstName}} {{request.approver.lastName}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </tab>
+            <tab heading="{{ 'VACATION_REQUEST.REJECTED' | translate }}">
+                <table class="table-bordered table table-condensed">
+                    <thead>
+                        <tr>
+                            <th>{{ 'VACATION_REQUEST.INTERVAL' | translate }}</th>
+                            <th>{{ 'VACATION_REQUEST.NUMBER_OF_DAYS' | translate }}</th>
+                            <th>{{ 'VACATION_REQUEST.SUBMITTED' | translate }}</th>
+                            <th>{{ 'VACATION_REQUEST.APPROVAL_DATE' | translate }}</th>
+                            <th>{{ 'VACATION_REQUEST.EMPLOYEE' | translate }}</th>
+                            <th>{{ 'VACATION_REQUEST.APPROVER' | translate }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="request in rejectedRequests">
+                            <td>{{request.startDate | date:'dd.MM.yyyy' }} - {{request.endDate | date:'dd.MM.yyyy'}}</td>
+                            <td>{{request.numberOfDays}}</td>
+                            <td>{{request.submissionTime | date:'dd.MM.yyyy HH:mm:ss'}}</td>
+                            <td>{{request.approvalDate | date:'dd.MM.yyyy'}}</td>
+                            <td>{{request.employee.firstName}} {{request.employee.lastName}}</td>
+                            <td>{{request.approver.firstName}} {{request.approver.lastName}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </tab>
+        </tabset>
 
-	</div>
+    </div>
 </div>
