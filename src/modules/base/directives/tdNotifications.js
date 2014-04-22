@@ -3,11 +3,11 @@ define(['angular'], function(angular) {
     /**
      * Container for notifications. Appends notifications to itself on the event "td.notifiy".
      */
-    return ['$compile', function($compile) {
+    return ['$compile', 'base.services.notification', function($compile, NotificationService) {
         return {
             restrict: 'A',
             link: function(scope, element) {
-                scope.$on('td.notify', function(event, notification) {
+                NotificationService.onNotification(function(notification) {
                     var $notification = angular.element('<li td-notification></li>');
                     var childScope = scope.$new();
                     childScope.notification = notification;
