@@ -1,9 +1,9 @@
 /* global document */
-define(['angular', 'jQuery', 'i18n', 'restangular', 'angular-ui-router', 'angular-ui', 'twitter-bootstrap', 'modules/base/base', 'modules/trackr/trackr', 'modules/example/example',
+define(['angular', 'jQuery', 'i18n', 'restangular', 'angular-ui-router', 'angular-ui', 'twitter-bootstrap', 'modules/base/base', 'modules/trackr/trackr', 'modules/invoices/invoicesModule',
     'modules/shared/shared', 'flatify'
 ], function(angular, $, i18n) {
     'use strict';
-    var configFn = ['ui.router', 'ui.bootstrap', 'base', 'trackr', 'restangular', 'example', 'shared', 'app.directives'];
+    var configFn = ['ui.router', 'ui.bootstrap', 'base', 'trackr', 'restangular', 'invoices', 'shared', 'app.directives'];
     var app = angular.module('app', configFn);
 
     var trackrUser;

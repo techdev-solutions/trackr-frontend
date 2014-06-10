@@ -1,0 +1,42 @@
+<div class="modal-header">
+    <h3>{{ 'INVOICE.CREATE_NEW' | translate }}</h3>
+</div>
+<div class="modal-body">
+    <form class="form-horizontal" action="">
+        <bs-text property-name="identifier" translate-code="INVOICE.IDENTIFIER" path="invoice.identifier"></bs-text>
+        <bs-text property-name="invoiceTotal" translate-code="INVOICE.INVOICE_TOTAL" path="invoice.invoiceTotal"></bs-text>
+
+        <div class="form-group">
+            <label class="form-label col-sm-2" for="debitor">{{ 'INVOICE.DEBITOR' | translate }}</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" id="debitor"
+                       ng-model="invoiceDebitor"
+                       typeahead="company as company.name for company in getCompanies($viewValue)"
+                       typeahead-editable="false"
+                       typeahead-min-length="1" />
+            </div>
+        </div>
+
+        <div class="form-group" error-display="creationDate">
+            <label class="form-label col-sm-4" for="creationDate">{{ 'INVOICE.CREATION_DATE' | translate }}</label>
+            <div class="col-sm-6">
+                <div class="well well-sm" id="creationDate" ng-model="invoice.creationDate">
+                    <datepicker starting-day="1"></datepicker>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label col-sm-4" for="dueDate">{{ 'INVOICE.DUE_DATE' | translate }}</label>
+            <div class="col-sm-6">
+                <div class="well well-sm" id="dueDate" ng-model="invoice.dueDate">
+                    <datepicker starting-day="1"></datepicker>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" ng-click="cancel()">{{ 'ACTIONS.CANCEL' | translate }}</button>
+    <button type="submit" class="btn btn-primary" ng-click="saveInvoice(invoice, invoiceDebitor)">{{ 'ACTIONS.SAVE' | translate }}</button>
+</div>

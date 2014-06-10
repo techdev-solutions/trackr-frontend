@@ -1,4 +1,4 @@
-define([], function() {
+define(['lodash'], function(_) {
     'use strict';
     /**
      * A helper object that loads paginated objects and puts them into a scope.
@@ -20,11 +20,16 @@ define([], function() {
     /**
      * Load the given page from the server and put the fetched objects in the scope.
      * @param page (Optional) The page to load, 1-based.
+     * @param otherParams (Optional) Other params to be passed to Restangular.getList().
      */
-    PaginationLoader.prototype.loadPage = function(page) {
+    PaginationLoader.prototype.loadPage = function(page, otherParams) {
         page = page || 1;
         var myThis = this;
-        this.base.getList({sort: this.sort, page: page - 1, size: this.size}).then(function(objects) {
+        var parameters = {sort: this.sort, page: page - 1, size: this.size};
+        if(otherParams) {
+            _.merge(parameters, otherParams);
+        }
+        this.base.getList(parameters).then(function(objects) {
             myThis.$scope[myThis.name] = objects;
         });
     };

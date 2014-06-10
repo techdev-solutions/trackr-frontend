@@ -1,0 +1,36 @@
+<button type="button" class="btn btn-default" ng-click="addNew()">
+    <span class="glyphicon glyphicon-plus"></span> {{ 'ACTIONS.NEW' | translate }}
+</button>
+
+<tabset>
+    <tab ng-repeat="state in ['OVERDUE', 'OUTSTANDING', 'PAID']" heading="{{ 'INVOICE.' + state | translate }}" select="switchTab(state)">
+        <table class="table table-bordered">
+            <tr>
+                <th>{{ 'INVOICE.IDENTIFIER' | translate }}</th>
+                <th>{{ 'INVOICE.CREATION_DATE' | translate }}</th>
+                <th>{{ 'INVOICE.INVOICE_TOTAL' | translate }}</th>
+                <th>{{ 'INVOICE.DEBITOR' | translate }}</th>
+                <th>{{ 'INVOICE.DUE_DATE' | translate }}</th>
+                <th>{{ 'INVOICE.STATE' | translate }}</th>
+                <th>{{ 'ACTIONS.ACTIONS' | translate }}</th>
+            </tr>
+            <tr ng-repeat="invoice in invoices">
+                <td>{{invoice.identifier}}</td>
+                <td>{{invoice.invoiceTotal}}</td>
+                <td>{{invoice.creationDate}}</td>
+                <td>TODO</td>
+                <td>{{invoice.dueDate}}</td>
+                <td>{{ 'INVOICE.' + invoice.invoiceState | translate }}</td>
+                <td>
+                    <button type="button" class="btn btn-default btn-xs">
+                        <span class="glyphicon glyphicon-ok"></span>
+                    </button>
+                    <button type="button" class="btn btn-default btn-xs">
+                        <span class="glyphicon glyphicon-trash"></span>
+                    </button>
+                </td>
+            </tr>
+        </table>
+        <pagination class="pagination-sm" total-items="invoices.page.totalElements" page="invoices.page.number" items-per-page="invoices.page.size" on-select-page="setPage(page, state)" max-size="5"></pagination>
+    </tab>
+</tabset>
