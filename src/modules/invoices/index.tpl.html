@@ -31,6 +31,6 @@
                 </td>
             </tr>
         </table>
-        <pagination class="pagination-sm" total-items="invoices.page.totalElements" page="invoices.page.number" items-per-page="invoices.page.size" on-select-page="setPage(page, state)" max-size="5"></pagination>
+        <pagination class="pagination-sm" total-items="invoices.page.totalElements" ng-model="invoices.page.number" items-per-page="invoices.page.size" on-select-page="setPage(page, state)" max-size="5"></pagination>
     </tab>
 </tabset>
