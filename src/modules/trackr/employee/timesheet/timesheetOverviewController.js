@@ -1,12 +1,14 @@
 define([], function() {
     'use strict';
     return ['$scope', 'Restangular', '$filter', 'base.services.user', function($scope, Restangular, $filter, UserService) {
-        //TODO: remove this as soon as datepicker supports a month-only selection
-        var months = [];
-        for (var month = 0; month < 12; month++) {
-            months.push(new Date(2014, month, 1));
-        }
-        $scope.months = months;
+        $scope.month = new Date();
+        //This needs to be a scope variable because the datepicker changes it, so a constant is not useable in the template.
+        $scope.datepickerMode = 'month';
+        $scope.$watch('month', function(newMonth) {
+            if (newMonth) {
+                $scope.showMonth(newMonth);
+            }
+        });
 
         $scope.showMonth = function(date) {
             var end = new Date(date.getFullYear(), date.getMonth() + 1, 0, 23, 59, 59); //last day of month
@@ -24,8 +26,6 @@ define([], function() {
                 });
         };
 
-        var today = new Date();
-        today.setDate(1);
-        $scope.showMonth(today);
+        $scope.showMonth($scope.month);
     }];
 });
