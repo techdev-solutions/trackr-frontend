@@ -16,10 +16,10 @@
             </tr>
             <tr ng-repeat="invoice in invoices">
                 <td>{{invoice.identifier}}</td>
+                <td>{{ invoice.creationDate | date:'dd.MM.yyyy' }}</td>
                 <td>{{invoice.invoiceTotal}}</td>
-                <td>{{invoice.creationDate}}</td>
                 <td>TODO</td>
-                <td>{{invoice.dueDate}}</td>
+                <td>{{ invoice.dueDate | date:'dd.MM.yyyy' }}</td>
                 <td>{{ 'INVOICE.' + invoice.invoiceState | translate }}</td>
                 <td>
                     <button type="button" class="btn btn-default btn-xs">
