@@ -15,11 +15,11 @@ define([], function () {
                 $modalInstance.close(company);
             }, function(response) {
                 if(response.status === 409) {
-                    $scope.errors = {
-                        'company.companyId': {
-                            defaultMessage: $filter('translate')('COMPANY.COMPANY_ID_CONFLICT')
-                        }
-                    };
+                    $scope.errors = [{
+                        entity: 'company',
+                        message: $filter('translate')('COMPANY.COMPANY_ID_CONFLICT'),
+                        property: 'company.companyId'
+                    }];
                 } else {
                     $scope.errors = response.data.errors;
                 }
