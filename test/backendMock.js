@@ -40,6 +40,7 @@ define(['fixtures'], function(fixtures) {
         mockRoot('api/employees');
         mockRoot('api/companies');
         mockRoot('api/federalStates');
+        mockRoot('api/invoices');
 
         $httpBackend.when('GET', /^api\/credentials\/[\d]+$/).respond(fixtures['api/credentials']._embedded.credentials[0]);
         $httpBackend.when('GET', /^api\/credentials\/[\d]+\/authorities$/).respond(fixtures['api/authorities']._embedded.authorities);
@@ -71,6 +72,8 @@ define(['fixtures'], function(fixtures) {
 
         $httpBackend.whenGET(/^api\/vacationRequests\/search\/findByEmployeeOrderByStartDateAsc\?.*/).respond(fixtures['api/vacationRequests']);
         $httpBackend.whenGET(/^api\/vacationRequests\/search\/findByStatusOrderBySubmissionTimeAsc\?.*/).respond(fixtures['api/vacationRequests']);
+
+        $httpBackend.whenGET(/^api\/invoices\/search\/findByInvoiceState\?page=\d+&size=\d+&sort=creationDate&state=\w+/).respond(fixtures['api/invoices']);
 
         $httpBackend.whenDELETE(/^api\/vacationRequests\/\d+/).respond([204]);
 
@@ -128,6 +131,8 @@ define(['fixtures'], function(fixtures) {
         $httpBackend.whenPUT(/^api\/travelExpenseReports\/\d+\/submit/).respond([204]);
         $httpBackend.whenPUT(/^api\/travelExpenseReports\/\d+\/approve/).respond([204]);
         $httpBackend.whenPUT(/^api\/travelExpenseReports\/\d+\/reject/).respond([204]);
+
+        $httpBackend.whenPOST(/^api\/invoices\/\d+\/markPaid$/).respond([204, 'Ok.']);
 
         /* ############################ TEMPLATES ########################### */
         /*

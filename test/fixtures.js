@@ -1259,6 +1259,79 @@ define([], function() {
             }
         },
 
-        "api/travelExpenses/types": ["HOTEL", "TAXI"]
+        "api/travelExpenses/types": ["HOTEL", "TAXI"],
+
+        "api/invoices": {
+            "_links": {
+                "self": {
+                    "href": "http://localhost:8080/api/invoices{?page,size,sort}",
+                    "templated": true
+                },
+                "search": {
+                    "href": "http://localhost:8080/api/invoices/search"
+                }
+            },
+            "_embedded": {
+                "invoices": [
+                    {
+                        "id": 1,
+                        "version": 0,
+                        "identifier": "C01",
+                        "creationDate": "2014-06-11",
+                        "invoiceTotal": 12345.00,
+                        "dueDate": "2014-06-19",
+                        "invoiceState": "OUTSTANDING",
+                        "_links": {
+                            "self": {
+                                "href": "http://localhost:8080/api/invoices/1"
+                            },
+                            "debitor": {
+                                "href": "http://localhost:8080/api/invoices/1/debitor"
+                            }
+                        }
+                    },
+                    {
+                        "id": 2,
+                        "version": 0,
+                        "identifier": "C02",
+                        "creationDate": "2014-06-05",
+                        "invoiceTotal": 123847.00,
+                        "dueDate": "2014-06-06",
+                        "invoiceState": "OVERDUE",
+                        "_links": {
+                            "self": {
+                                "href": "http://localhost:8080/api/invoices/2"
+                            },
+                            "debitor": {
+                                "href": "http://localhost:8080/api/invoices/2/debitor"
+                            }
+                        }
+                    },
+                    {
+                        "id": 3,
+                        "version": 1,
+                        "identifier": "C03",
+                        "creationDate": "2014-06-11",
+                        "invoiceTotal": 123486.00,
+                        "dueDate": "2014-06-19",
+                        "invoiceState": "PAID",
+                        "_links": {
+                            "self": {
+                                "href": "http://localhost:8080/api/invoices/3"
+                            },
+                            "debitor": {
+                                "href": "http://localhost:8080/api/invoices/3/debitor"
+                            }
+                        }
+                    }
+                ]
+            },
+            "page": {
+                "size": 20,
+                "totalElements": 3,
+                "totalPages": 1,
+                "number": 0
+            }
+        }
     };
 });
