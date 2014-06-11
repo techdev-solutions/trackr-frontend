@@ -1,4 +1,4 @@
-define(['modules/shared/PaginationLoader', 'lodash'], function (PaginationLoader, _) {
+define(['modules/shared/PaginationLoader'], function (PaginationLoader) {
     'use strict';
     return ['$scope', '$modal', 'Restangular', '$http', function($scope, $modal, Restangular, $http) {
         var controller = this;

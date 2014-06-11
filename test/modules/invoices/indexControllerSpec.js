@@ -54,7 +54,7 @@ define(['baseTestSetup'], function(baseTestSetup) {
             $httpBackend.expectGET(/^api\/invoices\/search\/findByIdentifierLikeAndInvoiceState\?identifier=%25test%25&page=\d+&size=\d+&sort=creationDate&state=OVERDUE/);
             $httpBackend.expectGET(/^api\/invoices\/search\/findByIdentifierLikeAndInvoiceState\?identifier=%25test%25&page=\d+&size=\d+&sort=creationDate&state=OUTSTANDING/);
             $httpBackend.expectGET(/^api\/invoices\/search\/findByIdentifierLikeAndInvoiceState\?identifier=%25test%25&page=\d+&size=\d+&sort=creationDate&state=PAID/);
-            $httpBackend.flush()
+            $httpBackend.flush();
         }));
 
         it('loadInvoices only loads one state if state is set', inject(function($httpBackend) {
@@ -62,7 +62,7 @@ define(['baseTestSetup'], function(baseTestSetup) {
             scope.searchQuery = 'test';
             IndexController.loadInvoices(1, 'OVERDUE');
             $httpBackend.expectGET(/^api\/invoices\/search\/findByIdentifierLikeAndInvoiceState\?identifier=%25test%25&page=\d+&size=\d+&sort=creationDate&state=OVERDUE/);
-            $httpBackend.flush()
+            $httpBackend.flush();
         }));
     });
 });
