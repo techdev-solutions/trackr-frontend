@@ -22,7 +22,7 @@
                 <td>{{ invoice.dueDate | date:'dd.MM.yyyy' }}</td>
                 <td>{{ 'INVOICE.' + invoice.invoiceState | translate }}</td>
                 <td>
-                    <button type="button" class="btn btn-default btn-xs">
+                    <button ng-show="state !== 'PAID'" ng-click="markPaid(invoice)" type="button" class="btn btn-default btn-xs">
                         <span class="glyphicon glyphicon-ok"></span>
                     </button>
                     <button type="button" class="btn btn-default btn-xs">

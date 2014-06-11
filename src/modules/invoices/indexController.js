@@ -1,6 +1,6 @@
-define(['modules/shared/PaginationLoader'], function (PaginationLoader) {
+define(['modules/shared/PaginationLoader', 'lodash'], function (PaginationLoader, _) {
     'use strict';
-    return ['$scope', '$modal', 'Restangular', function($scope, $modal, Restangular) {
+    return ['$scope', '$modal', 'Restangular', '$http', function($scope, $modal, Restangular, $http) {
         var paginationLoader = new PaginationLoader(Restangular.allUrl('invoices', 'api/invoices/search/findByInvoiceState'),
             'invoices', 'creationDate', $scope, 20);
         /**
@@ -32,6 +32,18 @@ define(['modules/shared/PaginationLoader'], function (PaginationLoader) {
                 console.log('Invoice created');
             });
             return modalInstance;
+        };
+
+        /**
+         * Mark the invoice as paid.
+         * @param invoice Invoice to mark.
+         */
+        $scope.markPaid = function(invoice) {
+            $http.post('api/invoices/' + invoice.id + '/markPaid').then(function() {
+                _.remove($scope.invoices, function(inv) {
+                    return inv.id === invoice.id;
+                });
+            });
         };
     }];
 });
