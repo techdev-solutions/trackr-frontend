@@ -74,6 +74,7 @@ define(['fixtures'], function(fixtures) {
         $httpBackend.whenGET(/^api\/vacationRequests\/search\/findByStatusOrderBySubmissionTimeAsc\?.*/).respond(fixtures['api/vacationRequests']);
 
         $httpBackend.whenGET(/^api\/invoices\/search\/findByInvoiceState\?page=\d+&size=\d+&sort=creationDate&state=\w+/).respond(fixtures['api/invoices']);
+        $httpBackend.whenGET(/^api\/invoices\/search\/findByIdentifierLikeAndInvoiceState\?identifier=%25\w+%25&page=\d+&size=\d+&sort=creationDate&state=\w+/).respond(fixtures['api/invoices']);
 
         $httpBackend.whenDELETE(/^api\/vacationRequests\/\d+/).respond([204]);
 

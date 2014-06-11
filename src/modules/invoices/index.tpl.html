@@ -1,10 +1,17 @@
-<button type="button" class="btn btn-default" ng-click="addNew()">
-    <span class="glyphicon glyphicon-plus"></span> {{ 'ACTIONS.NEW' | translate }}
-</button>
+<h1>{{ 'INVOICE.INVOICES' | translate }}</h1>
+
+<h3>{{ 'ACTIONS.SEARCH' | translate }}</h3>
+<div class="form-group">
+    <input type="text" ng-model="searchQuery" ng-change="executeSearch()"/>
+</div>
 
 <tabset>
-    <tab ng-repeat="state in ['OVERDUE', 'OUTSTANDING', 'PAID']" heading="{{ 'INVOICE.' + state | translate }}" select="switchTab(state)">
+    <tab ng-repeat="state in states">
+        <tab-heading>
+            {{ 'INVOICE.' + state | translate }} <span class="badge">{{invoices[state].page.totalElements}}</span>
+        </tab-heading>
         <table class="table table-bordered">
+            <thead>
             <tr>
                 <th>{{ 'INVOICE.IDENTIFIER' | translate }}</th>
                 <th>{{ 'INVOICE.CREATION_DATE' | translate }}</th>
@@ -14,7 +21,9 @@
                 <th>{{ 'INVOICE.STATE' | translate }}</th>
                 <th>{{ 'ACTIONS.ACTIONS' | translate }}</th>
             </tr>
-            <tr ng-repeat="invoice in invoices">
+            </thead>
+            <tbody>
+            <tr ng-repeat="invoice in invoices[state]">
                 <td>{{invoice.identifier}}</td>
                 <td>{{ invoice.creationDate | date:'dd.MM.yyyy' }}</td>
                 <td>{{invoice.invoiceTotal}}</td>
@@ -30,7 +39,13 @@
                     </button>
                 </td>
             </tr>
+            </tbody>
         </table>
-        <pagination class="pagination-sm" total-items="invoices.page.totalElements" ng-model="invoices.page.number" items-per-page="invoices.page.size" on-select-page="setPage(page, state)" max-size="5"></pagination>
+        <pagination class="pagination-sm" total-items="invoices[state].page.totalElements" ng-model="invoices[state].page.number" items-per-page="invoices[state].page.size"
+                    ng-change="setPage(state)" max-size="5"></pagination>
     </tab>
 </tabset>
+
+<button type="button" class="btn btn-default" ng-click="addNew()">
+    <span class="glyphicon glyphicon-plus"></span> {{ 'ACTIONS.NEW' | translate }}
+</button>

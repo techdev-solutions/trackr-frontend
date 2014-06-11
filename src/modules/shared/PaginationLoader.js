@@ -6,31 +6,36 @@ define(['lodash'], function(_) {
      * @param name The name that the objects fetched should have in the $scope.
      * @param sort The sorting parameter, e.g. 'name,asc'
      * @param $scope The $scope to put the fetched objects in.
-     * @param size (Optional) Size to load, standard 5.
+     * @param [size] Size to load, standard 5.
      * @constructor
      */
     function PaginationLoader(base, name, sort, $scope, size) {
+        var self = this;
         this.base = base;
         this.name = name;
         this.sort = sort;
         this.$scope = $scope;
         this.size = size || 5;
+        this.afterObjectsGet = function(objects) {
+            self.$scope[self.name] = objects;
+        };
     }
 
     /**
-     * Load the given page from the server and put the fetched objects in the scope.
-     * @param page (Optional) The page to load, 1-based.
-     * @param otherParams (Optional) Other params to be passed to Restangular.getList().
+     * Load the given page from the server and calls the afterObjectsGet method with it.
+     * @param [page] The page to load, 1-based.
+     * @param [otherQueryParams] Other params to be passed to Restangular.getList().
+     * @param [userData] Userdata passed to the afterObjectsGet method.
      */
-    PaginationLoader.prototype.loadPage = function(page, otherParams) {
+    PaginationLoader.prototype.loadPage = function(page, otherQueryParams, userData) {
         page = page || 1;
-        var myThis = this;
+        var self = this;
         var parameters = {sort: this.sort, page: page - 1, size: this.size};
-        if(otherParams) {
-            _.merge(parameters, otherParams);
+        if(otherQueryParams) {
+            _.merge(parameters, otherQueryParams);
         }
         this.base.getList(parameters).then(function(objects) {
-            myThis.$scope[myThis.name] = objects;
+            self.afterObjectsGet(objects, userData);
         });
     };
     return PaginationLoader;

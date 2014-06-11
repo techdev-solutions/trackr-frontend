@@ -21,7 +21,7 @@ define([], function() {
             /**
              * Display an info message to the user.
              * @param text The text to display
-             * @param duration (optional) The duration, defaults to 5 seconds.
+             * @param [duration] The duration, defaults to 5 seconds.
              */
             info: function(text, duration) {
                 displayNotification(text, 'info', duration);
@@ -30,7 +30,7 @@ define([], function() {
             /**
              * Display an error message to the user.
              * @param text The text to display
-             * @param duration (optional) The duration, defaults to 5 seconds.
+             * @param [duration] The duration, defaults to 5 seconds.
              */
             error: function(text, duration) {
                 displayNotification(text, 'error', duration);
@@ -39,7 +39,7 @@ define([], function() {
             /**
              * Display a fatal message to the user.
              * @param text The text to display
-             * @param duration (optional) The duration, defaults to 5 seconds.
+             * @param [duration] The duration, defaults to 5 seconds.
              */
             fatal: function(text, duration) {
                 displayNotification(text, 'fatal', duration);
