@@ -50,10 +50,21 @@ define(['lodash'], function(_) {
             $state.go('trackr.administration.companies.edit', {id: $scope.company.companyId});
         };
 
+        /**
+         * Gets called when there's an error changing the company ID. Returns an error when there was a
+         * conflict, i.e. the companyID is in use.
+         * @param response The HTTP response for the failed call
+         * @returns {*} An error array if the status is 409, undefined otherwise.
+         */
         $scope.companyIdError = function(response) {
             if(response.status === 409) {
-                $scope.companyIdErrorText =  $filter('translate')('COMPANY.COMPANY_ID_CONFLICT');
+                return [{
+                    entity: 'company',
+                    message: $filter('translate')('COMPANY.COMPANY_ID_CONFLICT'),
+                    property: 'companyId'
+                }];
             }
+            return undefined;
         };
 
         /*

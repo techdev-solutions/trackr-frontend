@@ -6,10 +6,11 @@ define([], function() {
      * Attributes:
      * * entity: Reference to a restangularified entity
      * * property-name: the name of the property to display/edit
-     * * callback: (optional) A callback that will be called <b>after</b> a successful PATCH call to the API.
-     * * role: (optional) If a role is needed to edit the field.
-     * * own-submit: (optional) submit function to be called, overwrites the intern function. Gets the patch object as the parameter. Must return a promise.
-     * * errorCallback: (optional) A function that gets called with the HTTP response in case of an error.
+     * * [callback]: (optional) A callback that will be called <b>after</b> a successful PATCH call to the API.
+     * * [role]: (optional) If a role is needed to edit the field.
+     * * [own-submit]: (optional) submit function to be called, overwrites the intern function. Gets the patch object as the parameter. Must return a promise.
+     * * [errorCallback[: (optional) A function that gets called with the HTTP response in case of an error. Can return an array with error objects
+     *  ( { entity: '', message: 'error', property: 'fieldname'} ) or undefined.
      */
     return ['base.services.user', function(UserService) {
         return {
@@ -51,6 +52,10 @@ define([], function() {
                             scope.edit = false;
                             scope.$apply();
                         }
+
+                        if(event.which === 13) {
+                            scope.submit();
+                        }
                     });
                 }
             },
@@ -70,11 +75,14 @@ define([], function() {
                         }
                     }
                     function errorCallback(response) {
-                        if($scope.errorCallback) {
-                            $scope.errorCallback(response);
-                        }
                         //Since sometimes the errors array can be undefined (e.g. 409 conflict) default it to an empty array.
                         $scope.errors = response.data.errors || [];
+                        if($scope.errorCallback) {
+                            var customErrors = $scope.errorCallback(response);
+                            if(customErrors) {
+                                $scope.errors = $scope.errors.concat(customErrors);
+                            }
+                        }
                     }
                     var patchObject = {};
                     patchObject[$scope.propertyName] = $scope.entity[$scope.propertyName];

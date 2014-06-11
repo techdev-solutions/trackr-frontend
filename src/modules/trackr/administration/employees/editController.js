@@ -27,20 +27,19 @@ define([], function() {
         };
 
         /**
-         * Called if there was an error updating the email address
+         * Called if there was an error updating the email address.
          * @param response The HTTP response object
+         * @return {*} An error array if the status of the response is 409, undefined otherwise.
          */
         $scope.emailError = function(response) {
             if(response.status === 409) {
-                $scope.emailErrorText = $filter('translate')('CREDENTIAL.EMAIL_CONFLICT');
+                return [{
+                    entity: 'credential',
+                    message: $filter('translate')('CREDENTIAL.EMAIL_CONFLICT'),
+                    property: 'email'
+                }];
             }
-        };
-
-        /**
-         * Called if the email address was updated correctly.
-         */
-        $scope.emailOk = function() {
-            $scope.emailErrorText = undefined;
+            return undefined;
         };
 
         function watchDateOnEmployeeAndPatchOnChange(name) {
