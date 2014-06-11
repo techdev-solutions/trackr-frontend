@@ -22,8 +22,10 @@ define([], function() {
 
                     //on click show the edit field
                     element.bind('click', function() {
+                        if(!oldValue) {
+                            oldValue = scope.entity[scope.propertyName];
+                        }
                         //save the old value so we can put it back if the user wants to abort
-                        oldValue = scope.entity[scope.propertyName];
                         scope.edit = true;
                         scope.$apply();
                         //focus the cursor on the input element
@@ -61,6 +63,7 @@ define([], function() {
                 $scope.submit = function() {
                     //We only want to submit the field we changed
                     function successCallback() {
+                        $scope.errors = [];
                         $scope.edit = false;
                         if($scope.callback) {
                             $scope.callback();
@@ -70,7 +73,8 @@ define([], function() {
                         if($scope.errorCallback) {
                             $scope.errorCallback(response);
                         }
-                        $scope.errors = response.data.errors;
+                        //Since sometimes the errors array can be undefined (e.g. 409 conflict) default it to an empty array.
+                        $scope.errors = response.data.errors || [];
                     }
                     var patchObject = {};
                     patchObject[$scope.propertyName] = $scope.entity[$scope.propertyName];
