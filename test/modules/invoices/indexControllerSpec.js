@@ -27,12 +27,22 @@ define(['baseTestSetup'], function(baseTestSetup) {
             $httpBackend.flush();
         }));
 
-        it('must remove an invoice from the invoices array if it is marked as paid', inject(function($httpBackend) {
+        it('removeInvoiceFromScope must remove an invoice from', function() {
             var invoice = {id: 3};
             scope.invoices = [invoice];
-            scope.markPaid(invoice);
-            $httpBackend.flush();
+            IndexController.removeInvoiceFromScope(invoice);
             expect(scope.invoices.length).toBe(0);
-        }));
+        });
+
+        it('must call the restangular remove method on an invoice when deleting it.', function() {
+            var invoice = { id: 3, remove: function() {
+                return {
+                    then: function(cb) { cb(); }
+                };
+            }};
+            spyOn(invoice, 'remove').andCallThrough();
+            scope.remove(invoice);
+            expect(invoice.remove).toHaveBeenCalled();
+        });
     });
 });

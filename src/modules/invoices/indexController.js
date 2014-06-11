@@ -1,6 +1,7 @@
 define(['modules/shared/PaginationLoader', 'lodash'], function (PaginationLoader, _) {
     'use strict';
     return ['$scope', '$modal', 'Restangular', '$http', function($scope, $modal, Restangular, $http) {
+        var controller = this;
         var paginationLoader = new PaginationLoader(Restangular.allUrl('invoices', 'api/invoices/search/findByInvoiceState'),
             'invoices', 'creationDate', $scope, 20);
         /**
@@ -34,15 +35,29 @@ define(['modules/shared/PaginationLoader', 'lodash'], function (PaginationLoader
             return modalInstance;
         };
 
+        controller.removeInvoiceFromScope = function(invoice) {
+            _.remove($scope.invoices, function(inv) {
+                return inv.id === invoice.id;
+            });
+        };
+
+        /**
+         * Delete an invoice.
+         * @param invoice The invoice to delete.
+         */
+        $scope.remove = function(invoice) {
+            invoice.remove().then(function() {
+                controller.removeInvoiceFromScope(invoice);
+            });
+        };
+
         /**
          * Mark the invoice as paid.
          * @param invoice Invoice to mark.
          */
         $scope.markPaid = function(invoice) {
             $http.post('api/invoices/' + invoice.id + '/markPaid').then(function() {
-                _.remove($scope.invoices, function(inv) {
-                    return inv.id === invoice.id;
-                });
+                controller.removeInvoiceFromScope(invoice);
             });
         };
     }];
