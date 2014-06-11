@@ -88,6 +88,7 @@ define(['fixtures'], function(fixtures) {
         mockPost('api/vacationRequests');
         mockPost('api/travelExpenses');
         mockPost('api/travelExpenseReports');
+        mockPost('api/invoices');
 
         $httpBackend.whenPATCH(/^api\/credentials\/\d+$/).respond(function(method, url, data) {
             return [200, data];
