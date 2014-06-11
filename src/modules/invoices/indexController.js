@@ -72,7 +72,7 @@ define(['modules/shared/PaginationLoader'], function (PaginationLoader) {
          * @param state The state the tab belongs to.
          */
         $scope.setPage = function(state) {
-            controller.loadInvoices($scope.invoices[state].page.number, state);
+            controller.refreshPage(state);
         };
 
         /**
