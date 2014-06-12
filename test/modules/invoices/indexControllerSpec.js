@@ -51,9 +51,9 @@ define(['baseTestSetup'], function(baseTestSetup) {
             $httpBackend.flush();
             scope.searchQuery = 'test';
             IndexController.loadInvoices(1);
-            $httpBackend.expectGET(/^api\/invoices\/search\/findByIdentifierLikeAndInvoiceState\?identifier=%25test%25&page=\d+&size=\d+&sort=creationDate&state=OVERDUE/);
-            $httpBackend.expectGET(/^api\/invoices\/search\/findByIdentifierLikeAndInvoiceState\?identifier=%25test%25&page=\d+&size=\d+&sort=creationDate&state=OUTSTANDING/);
-            $httpBackend.expectGET(/^api\/invoices\/search\/findByIdentifierLikeAndInvoiceState\?identifier=%25test%25&page=\d+&size=\d+&sort=creationDate&state=PAID/);
+            $httpBackend.expectGET(/^api\/invoices\/search\/findByIdentifierLikeIgnoreCaseAndInvoiceState\?identifier=%25test%25&page=\d+&size=\d+&sort=creationDate&state=OVERDUE/);
+            $httpBackend.expectGET(/^api\/invoices\/search\/findByIdentifierLikeIgnoreCaseAndInvoiceState\?identifier=%25test%25&page=\d+&size=\d+&sort=creationDate&state=OUTSTANDING/);
+            $httpBackend.expectGET(/^api\/invoices\/search\/findByIdentifierLikeIgnoreCaseAndInvoiceState\?identifier=%25test%25&page=\d+&size=\d+&sort=creationDate&state=PAID/);
             $httpBackend.flush();
         }));
 
@@ -61,7 +61,7 @@ define(['baseTestSetup'], function(baseTestSetup) {
             $httpBackend.flush();
             scope.searchQuery = 'test';
             IndexController.loadInvoices(1, 'OVERDUE');
-            $httpBackend.expectGET(/^api\/invoices\/search\/findByIdentifierLikeAndInvoiceState\?identifier=%25test%25&page=\d+&size=\d+&sort=creationDate&state=OVERDUE/);
+            $httpBackend.expectGET(/^api\/invoices\/search\/findByIdentifierLikeIgnoreCaseAndInvoiceState\?identifier=%25test%25&page=\d+&size=\d+&sort=creationDate&state=OVERDUE/);
             $httpBackend.flush();
         }));
     });

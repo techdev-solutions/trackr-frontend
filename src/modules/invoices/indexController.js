@@ -28,7 +28,7 @@ define(['modules/shared/PaginationLoader'], function (PaginationLoader) {
          * The pagination loader to use when the user is searching
          * @type {PaginationLoader}
          */
-        var paginationSearchLoader = new PaginationLoader(Restangular.allUrl('invoices', 'api/invoices/search/findByIdentifierLikeAndInvoiceState'),
+        var paginationSearchLoader = new PaginationLoader(Restangular.allUrl('invoices', 'api/invoices/search/findByIdentifierLikeIgnoreCaseAndInvoiceState'),
             'invoices', 'creationDate', $scope, 10);
         paginationSearchLoader.afterObjectsGet = controller.setInvoicesInScope;
 
