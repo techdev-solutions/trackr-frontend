@@ -47,6 +47,7 @@ define(['lodash'], function(_) {
             }
 
             $scope.employee.workTimes.forEach(function(workTime) {
+                //Hours were entered so we have to create/update a billable time
                 if(workTime.hours) {
                     var billableTime = {
                         date: workTime.date,
@@ -54,6 +55,7 @@ define(['lodash'], function(_) {
                         employee: $scope.employee.links[0].href,
                         project: $scope.project._links.self.href
                     };
+                    //If the work time has a billed time id attached we can update
                     if(workTime.billedTimeId) {
                         updateBillableTime(workTime.billedTimeId, {minutes: billableTime.minutes}).then(function() {
                             workTime.error = false;
@@ -62,7 +64,9 @@ define(['lodash'], function(_) {
                             workTime.error = true;
                             workTime.posted = true;
                         });
-                    } else {
+                    }
+                    //otherwise we create a new worktime
+                    else {
                         createNewBillableTime(billableTime).then(function(data) {
                             workTime.error = false;
                             workTime.posted = true;
@@ -73,7 +77,9 @@ define(['lodash'], function(_) {
                             workTime.posted = true;
                         });
                     }
-                } else if(workTime.billedTimeId) {//delete
+                }
+                //No hours were entered. If the worktime has a billed time id we have to delete that billed time.
+                else if(workTime.billedTimeId) {
                     Restangular.one('billableTimes', workTime.billedTimeId).remove().then(function() {
                         workTime.billedTimeId = undefined;
                         workTime.billedMinutes = undefined;
