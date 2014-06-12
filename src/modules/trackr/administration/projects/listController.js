@@ -1,10 +1,10 @@
 define(['modules/shared/PaginationLoader'], function(PaginationLoader) {
     'use strict';
     return ['$scope', 'Restangular', '$modal', '$state', function($scope, Restangular, $modal, $state) {
-        var paginationLoader = new PaginationLoader(Restangular.all('projects'), 'projects', 'name,asc', $scope);
+        var paginationLoader = new PaginationLoader(Restangular.all('projects'), 'projects', 'name,asc', $scope, 10);
 
-        $scope.setPage = function(page) {
-            paginationLoader.loadPage(page);
+        $scope.setPage = function() {
+            paginationLoader.loadPage($scope.projects.page.number);
         };
 
         //initially load all companies

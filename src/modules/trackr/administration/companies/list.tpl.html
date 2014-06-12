@@ -25,7 +25,7 @@
             <footer class="table-footer">
                 <div class="row">
                     <div class="col-lg-12 text-right pagination-container">
-                        <pagination class="pagination-sm" total-items="companies.page.totalElements" ng-model="companies.page.number" items-per-page="companies.page.size" on-select-page="setPage(page)" max-size="5"></pagination>
+                        <pagination class="pagination-sm" total-items="companies.page.totalElements" ng-model="companies.page.number" items-per-page="companies.page.size" ng-change="setPage()"></pagination>
                     </div>
                 </div>
             </footer>
