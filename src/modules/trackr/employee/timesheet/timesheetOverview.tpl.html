@@ -1,6 +1,6 @@
 <datepicker ng-model="month" datepicker-mode="datepickerMode" min-mode="month"/>
 
-<table class="table">
+<table class="table table-striped">
     <thead>
     <tr>
         <th>{{ 'WORKTIME.DATE' | translate }}</th>
@@ -8,6 +8,7 @@
         <th>{{ 'WORKTIME.END' | translate }}</th>
         <th>{{ 'WORKTIME.PROJECT' | translate }}</th>
         <th>{{ 'WORKTIME.COMMENT' | translate }}</th>
+        <th>{{ 'ACTIONS.ACTIONS' | translate }}</th>
     </tr>
     </thead>
     <tbody>
@@ -17,6 +18,11 @@
         <td>{{ workTime.endTime }}</td>
         <td>{{ workTime.project.name }}</td>
         <td>{{ workTime.comment }}</td>
+        <td>
+            <button ng-click="remove(workTime)" type="button" class="btn btn-default btn-xs">
+                <span class="glyphicon glyphicon-trash"></span>
+            </button>
+        </td>
     </tr>
     </tbody>
 </table>

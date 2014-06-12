@@ -1,4 +1,4 @@
-define([], function() {
+define(['lodash'], function(_) {
     'use strict';
     return ['$scope', 'Restangular', '$filter', 'base.services.user', function($scope, Restangular, $filter, UserService) {
         $scope.month = new Date();
@@ -24,6 +24,14 @@ define([], function() {
                     });
                     $scope.workTimes = workTimes;
                 });
+        };
+
+        $scope.remove = function(workTime) {
+            workTime.remove().then(function() {
+                _.remove($scope.workTimes, function(wT) {
+                    return wT.id === workTime.id;
+                });
+            });
         };
 
         $scope.showMonth($scope.month);
