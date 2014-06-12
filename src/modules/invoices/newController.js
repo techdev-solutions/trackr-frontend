@@ -33,7 +33,7 @@ define([], function() {
             };
 
             $scope.getCompanies = function(searchString) {
-                return Restangular.allUrl('companies', 'api/companies/search/findByNameLikeOrderByNameAsc').getList({name: '%' + searchString + '%'});
+                return Restangular.allUrl('companies', 'api/companies/search/findByNameLikeIgnoreCaseOrderByNameAsc').getList({name: '%' + searchString + '%'});
             };
 
             $scope.cancel = function() {

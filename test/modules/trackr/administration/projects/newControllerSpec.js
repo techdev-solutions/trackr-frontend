@@ -33,7 +33,7 @@ define(['baseTestSetup', 'angular'], function(baseTestSetup, angular) {
 
         it('Must search for companies in the backend', inject(function($httpBackend) {
             scope.getCompanies('test');
-            $httpBackend.expectGET(/api\/companies\/search\/findByNameLikeOrderByNameAsc\?.*/);
+            $httpBackend.expectGET(/api\/companies\/search\/findByNameLikeIgnoreCaseOrderByNameAsc\?.*/);
             $httpBackend.flush();
         }));
     });
