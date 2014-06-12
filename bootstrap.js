@@ -10,7 +10,8 @@ require.config({
         'angular-translate': 'vendor/angular-translate/angular-translate',
         'angular-translate-loader-url': 'vendor/angular-translate-loader-url/angular-translate-loader-url',
         'angular-ui': 'vendor/angular-ui-bootstrap-bower/ui-bootstrap-tpls',
-        'flatify': 'flatify/scripts/app'
+        'flatify': 'flatify/scripts/app',
+        'moment': 'vendor/moment/moment'
     },
     shim: {
         'angular': { exports: 'angular', deps: ['jQuery'] },

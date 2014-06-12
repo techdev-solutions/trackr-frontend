@@ -1,12 +1,11 @@
-define([], function() {
+define(['moment'], function(moment) {
     'use strict';
     return ['$scope', 'Restangular', 'trackr.services.employee', '$filter', 'base.services.notification',
         function($scope, Restangular, EmployeeService, $filter, NotificationService) {
             var controller = this;
-            var today = new Date();
-            $scope.date = today;
-            $scope.startTime = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 9, 0, 0);
-            $scope.endTime = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 17, 30, 0);
+            $scope.date = moment().toDate();
+            $scope.startTime = moment().hour(9).minute(0).second(0).toDate();
+            $scope.endTime = moment().hour(17).minute(30).second(0).toDate();
 
             $scope.errors = [];
 
@@ -34,10 +33,28 @@ define([], function() {
                 };
             };
 
+            /**
+             * Advance to the next monday-friday.
+             * @param date The date to advance
+             * @returns {date|*} The date advanced to the next day.
+             */
+            controller.advanceToNextWorkDay = function(date) {
+                var mdate = moment(date), daysToAdd = 1;
+                if(mdate.day() === 6) {
+                    //Saturday
+                    daysToAdd = 2;
+                } else if(mdate.day() === 5) {
+                    //Friday
+                    daysToAdd = 3;
+                }
+                return mdate.add('days', daysToAdd).toDate();
+            };
+
             $scope.saveTime = function() {
                 var workTimeObject = controller.createWorkTimeEntity();
                 Restangular.all('workTimes').post(workTimeObject).then(function() {
                     $scope.errors = [];
+                    $scope.date = controller.advanceToNextWorkDay($scope.date);
                     NotificationService.info('Working time saved.');
                 }, function(response) {
                     $scope.errors = response.data.errors;
