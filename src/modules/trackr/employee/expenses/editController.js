@@ -1,7 +1,7 @@
 define(['lodash'], function(_) {
     'use strict';
-    return ['$scope', 'Restangular', 'trackr.services.travelExpenseReport', 'report', 'expenses', 'expenseTypes',
-        function($scope, Restangular, TravelExpenseReportService, report, expenses, expenseTypes) {
+    return ['$scope', 'Restangular', 'trackr.services.travelExpenseReport', 'report', 'expenses', 'expenseTypes', '$filter',
+        function($scope, Restangular, TravelExpenseReportService, report, expenses, expenseTypes, $filter) {
             var controller = this;
             /**
              * Recalculate the sum of the cost of the expenses
@@ -79,6 +79,15 @@ define(['lodash'], function(_) {
                 TravelExpenseReportService.submit(travelExpenseReport).then(function() {
                     report.status = 'SUBMITTED';
                 });
+            };
+
+            /**
+             * Translate the travel expense type from its enum value.
+             * @param type The enum value (e.g. TAXI)
+             * @returns {*} The translation (e.g. Taxi)
+             */
+            $scope.translateTravelExpenseType = function(type) {
+                return $filter('translate')('TRAVEL_EXPENSE.TYPE_VALUES.' + type);
             };
         }];
 });
