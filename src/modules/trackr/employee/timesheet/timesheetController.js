@@ -12,7 +12,7 @@ define([], function() {
 
             $scope.getProjects = function(searchString) {
                 var search = '%' + searchString + '%';
-                return Restangular.allUrl('projects', 'api/projects/search/findByNameLikeOrIdentifierLikeOrderByNameAsc').getList({name: search, identifier: search});
+                return Restangular.allUrl('projects', 'api/projects/search/findByNameLikeIgnoreCaseOrIdentifierLikeIgnoreCaseOrderByNameAsc').getList({name: search, identifier: search});
             };
 
             controller.formatTime = function(date) {

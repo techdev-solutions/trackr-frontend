@@ -25,7 +25,7 @@ define(['baseTestSetup'], function(baseTestSetup) {
 
         it('getProjects must search for projects in the backend', inject(function($httpBackend) {
             scope.getProjects('test');
-            $httpBackend.expectGET(/api\/projects\/search\/findByNameLikeOrIdentifierLikeOrderByNameAsc\?.*/);
+            $httpBackend.expectGET(/api\/projects\/search\/findByNameLikeIgnoreCaseOrIdentifierLikeIgnoreCaseOrderByNameAsc\?.*/);
             $httpBackend.flush();
         }));
 

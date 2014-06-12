@@ -30,7 +30,7 @@ define(['baseTestSetup'], function(baseTestSetup) {
 
         it('load projects with getProjects', inject(function($httpBackend) {
             scope.getProjects('abc');
-            $httpBackend.expectGET(/\api\/projects\/search\/findByNameLikeOrIdentifierLikeOrderByNameAsc\?.*/);
+            $httpBackend.expectGET(/\api\/projects\/search\/findByNameLikeIgnoreCaseOrIdentifierLikeIgnoreCaseOrderByNameAsc\?.*/);
             $httpBackend.flush();
         }));
 

@@ -65,7 +65,7 @@ define(['fixtures'], function(fixtures) {
         $httpBackend.whenGET(/^api\/billableTimes\/findEmployeeMappingByProjectAndDateBetween\?.*/)
             .respond(fixtures['api/billableTimes']);
 
-        $httpBackend.whenGET(/api\/projects\/search\/findByNameLikeOrIdentifierLikeOrderByNameAsc\?.*/)
+        $httpBackend.whenGET(/api\/projects\/search\/findByNameLikeIgnoreCaseOrIdentifierLikeIgnoreCaseOrderByNameAsc\?.*/)
             .respond(fixtures['api/projects']);
 
         $httpBackend.whenGET(/api\/projects\/search\/findByIdentifier\?.*/).respond(fixtures['api/projects']);
