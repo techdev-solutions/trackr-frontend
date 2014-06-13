@@ -20,13 +20,9 @@ define([], function() {
              */
             findByStatusWithEmployee: function(status) {
                 return Restangular.allUrl('travelExpenseReports', 'api/travelExpenseReports/search/findByStatusOrderByEmployee_LastNameAsc').getList({
-                    status: status
+                    status: status,
+                    projection: 'overview'
                 }).then(function(reports) {
-                    reports.forEach(function(report) {
-                        Restangular.one('travelExpenseReports', report.id).one('employee').get().then(function(employee) {
-                            report.employee = employee;
-                        });
-                    });
                     return reports;
                 });
             }

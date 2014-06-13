@@ -27,7 +27,7 @@
                 <td>{{invoice.identifier}}</td>
                 <td>{{ invoice.creationDate | date:'dd.MM.yyyy' }}</td>
                 <td>{{invoice.invoiceTotal}}</td>
-                <td>TODO</td>
+                <td>{{invoice.debitor.name}}</td>
                 <td>{{ invoice.dueDate | date:'dd.MM.yyyy' }}</td>
                 <td>{{ 'INVOICE.' + invoice.invoiceState | translate }}</td>
                 <td>

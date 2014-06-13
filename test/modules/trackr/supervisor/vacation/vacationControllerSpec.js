@@ -15,9 +15,9 @@ define(['baseTestSetup'], function(baseTestSetup) {
         }));
 
         it('loads all request on load', inject(function($httpBackend) {
-            $httpBackend.expectGET('api/vacationRequests/search/findByStatusOrderBySubmissionTimeAsc?status=PENDING');
-            $httpBackend.expectGET('api/vacationRequests/search/findByStatusOrderBySubmissionTimeAsc?status=APPROVED');
-            $httpBackend.expectGET('api/vacationRequests/search/findByStatusOrderBySubmissionTimeAsc?status=REJECTED');
+            $httpBackend.expectGET('api/vacationRequests/search/findByStatusOrderBySubmissionTimeAsc?projection=withEmployeeAndApprover&status=PENDING');
+            $httpBackend.expectGET('api/vacationRequests/search/findByStatusOrderBySubmissionTimeAsc?projection=withEmployeeAndApprover&status=APPROVED');
+            $httpBackend.expectGET('api/vacationRequests/search/findByStatusOrderBySubmissionTimeAsc?projection=withEmployeeAndApprover&status=REJECTED');
             $httpBackend.flush();
             expect(scope.pendingRequests).toBeDefined();
             expect(scope.approvedRequests).toBeDefined();

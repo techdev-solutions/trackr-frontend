@@ -38,7 +38,7 @@ define(['modules/shared/PaginationLoader'], function (PaginationLoader) {
          * @param [state] If provided only this specific invoice state is reloaded (OVERDUE, PAID or OUTSTANDING).
          */
         controller.loadInvoices = function(page, state) {
-            var params = {}, loader;
+            var params = { projection: 'withDebitor' }, loader;
 
             //Check if we're currently searching or not.
             if($scope.searchQuery !== '') {

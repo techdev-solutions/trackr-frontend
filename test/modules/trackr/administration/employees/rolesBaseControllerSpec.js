@@ -35,6 +35,7 @@ define(['baseTestSetup'], function(baseTestSetup) {
 
         it('The updateCredentialAuthorities function must delete an authority and remove it from the object', inject(function($httpBackend) {
             var credential = {
+                id: 0,
                 _links: {
                     self: {
                         href: 'api/credentials/0'
@@ -54,6 +55,7 @@ define(['baseTestSetup'], function(baseTestSetup) {
 
         it('The updateCredentialAuthorities function must add an authority and push it to the object', inject(function($httpBackend) {
             var credential = {
+                id: 0,
                 _links: {
                     self: {
                         href: 'api/credentials/0'

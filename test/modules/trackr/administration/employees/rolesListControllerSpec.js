@@ -11,13 +11,9 @@ define(['baseTestSetup'], function(baseTestSetup) {
         }));
 
         it('It must load all credentials with their authorities on load.', inject(function($httpBackend) {
-            $httpBackend.expectGET('api/credentials');
-            $httpBackend.expectGET(/^api\/credentials\/\d+\/authorities/);
+            $httpBackend.expectGET(/api\/credentials\?projection=\w+/);
             $httpBackend.flush();
             expect(scope.credentials).toBeDefined();
-            scope.credentials.forEach(function(credential) {
-                expect(credential.authorities).toBeDefined();
-            });
         }));
 
     });

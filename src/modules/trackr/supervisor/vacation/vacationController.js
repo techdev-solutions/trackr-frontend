@@ -9,25 +9,11 @@ define(['lodash'], function(_) {
          * @param type pending, approved or rejected
          */
         controller.loadRequests = function(type) {
-            findRequestsByStatusBase.getList({status: type.toUpperCase()}).then(function(requests) {
-                $scope[type+'Requests'] = requests;
-                controller.loadEmployeesForRequests(requests, 'employee');
-                if(type !== 'pending') {
-                    controller.loadEmployeesForRequests(requests, 'approver');
-                }
-            });
-        };
-
-        /**
-         * Load additional fields for vacation requests
-         * @param requests
-         * @param name
-         */
-        controller.loadEmployeesForRequests = function(requests, name) {
-            requests.forEach(function(request) {
-                request.one(name).get().then(function(employee) {
-                    request[name] = employee;
-                });
+            findRequestsByStatusBase.getList({
+                status: type.toUpperCase(),
+                projection: 'withEmployeeAndApprover'
+            }).then(function(requests) {
+                $scope[type + 'Requests'] = requests;
             });
         };
 

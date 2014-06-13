@@ -53,8 +53,6 @@ define(['fixtures'], function(fixtures) {
         $httpBackend.when('GET', /^api\/companies\/[\d]+\/address$/).respond(fixtures['api/addresses']._embedded.addresses[0]);
         $httpBackend.when('GET', /^api\/companies\/[\d]+\/contactPersons/).respond(fixtures['api/contactPersons']);
         $httpBackend.when('GET', /^api\/companies\/[\d]+\/projects/).respond(fixtures['api/projects']);
-        $httpBackend.whenGET(/^api\/vacationRequests\/\d+\/employee/).respond(fixtures['api/employees']._embedded.employees[0]);
-        $httpBackend.whenGET(/^api\/vacationRequests\/\d+\/approver/).respond(fixtures['api/employees']._embedded.employees[1]);
 
         $httpBackend.whenGET(/api\/workTimes\/findEmployeeMappingByProjectAndDateBetween\?.*/)
             .respond(fixtures['api/workTimes/findEmployeeMappingByProjectAndDateBetween']);
@@ -73,8 +71,8 @@ define(['fixtures'], function(fixtures) {
         $httpBackend.whenGET(/^api\/vacationRequests\/search\/findByEmployeeOrderByStartDateAsc\?.*/).respond(fixtures['api/vacationRequests']);
         $httpBackend.whenGET(/^api\/vacationRequests\/search\/findByStatusOrderBySubmissionTimeAsc\?.*/).respond(fixtures['api/vacationRequests']);
 
-        $httpBackend.whenGET(/^api\/invoices\/search\/findByInvoiceState\?page=\d+&size=\d+&sort=creationDate&state=\w+/).respond(fixtures['api/invoices']);
-        $httpBackend.whenGET(/^api\/invoices\/search\/findByIdentifierLikeIgnoreCaseAndInvoiceState\?identifier=%25\w+%25&page=\d+&size=\d+&sort=creationDate&state=\w+/).respond(fixtures['api/invoices']);
+        $httpBackend.whenGET(/^api\/invoices\/search\/findByInvoiceState\?page=\d+&projection=\w+&size=\d+&sort=creationDate&state=\w+/).respond(fixtures['api/invoices']);
+        $httpBackend.whenGET(/^api\/invoices\/search\/findByIdentifierLikeIgnoreCaseAndInvoiceState\?identifier=%25\w+%25&page=\d+&projection=\w+&size=\d+&sort=creationDate&state=\w+/).respond(fixtures['api/invoices']);
 
         $httpBackend.whenDELETE(/^api\/vacationRequests\/\d+/).respond([204]);
 
