@@ -29,12 +29,11 @@ define(['baseTestSetup'], function(baseTestSetup) {
             expect(scope.projects).toBeDefined();
         }));
 
-        it('loadProjectData must load the debitor and then call loadBillData', inject(function($httpBackend) {
+        it('loadProjectData must load BillData', inject(function($httpBackend) {
             scope.project = {
                 _links: { debitor: { href: 'api/companies/0' } }
             };
             scope.loadProjectData();
-            $httpBackend.expectGET('api/companies/0');
             $httpBackend.expectGET(/^api\/billableTimes\/findEmployeeMappingByProjectAndDateBetween\?.*/);
             $httpBackend.flush();
         }));
