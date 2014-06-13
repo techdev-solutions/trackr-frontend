@@ -10,7 +10,8 @@
                typeahead-on-select="loadWorktimes()"
                typeahead="project as getProjectLabel(project) for project in getProjects($viewValue)"
                typeahead-editable="false"
-               typeahead-min-length="1"/>
+               typeahead-min-length="1"
+               placeholder="{{ 'PROJECT.PROJECT' |translate }}"/>
     </div>
 
     <div class="form-group col-lg-2">

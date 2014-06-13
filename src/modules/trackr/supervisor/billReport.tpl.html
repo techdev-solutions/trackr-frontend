@@ -10,7 +10,8 @@
                typeahead-on-select="loadProjects(company)"
                typeahead="company as company.name for company in getCompanies($viewValue)"
                typeahead-editable="false"
-               typahead-min-length="1"/>
+               typahead-min-length="1"
+               placeholder="{{ 'PROJECT.COMPANY' |translate }}"/>
     </div>
     <div class="form-group col-lg-4">
         <input type="text"
@@ -19,7 +20,8 @@
                typeahead-on-select="loadProjectData()"
                typeahead="project as project.name for project in projects | filter:{name:$viewValue}"
                typeahead-editable="false"
-               typahead-min-length="1"/>
+               typahead-min-length="1"
+               placeholder="{{ 'PROJECT.PROJECT' |translate }}"/>
     </div>
 
     <div class="form-group col-lg-2">
