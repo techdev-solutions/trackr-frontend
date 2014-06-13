@@ -11,7 +11,15 @@ define(['moment'], function(moment) {
 
             $scope.getProjects = function(searchString) {
                 var search = '%' + searchString + '%';
-                return Restangular.allUrl('projects', 'api/projects/search/findByNameLikeIgnoreCaseOrIdentifierLikeIgnoreCaseOrderByNameAsc').getList({name: search, identifier: search});
+                return Restangular
+                    .allUrl('projects', 'api/projects/search/findByNameLikeIgnoreCaseOrIdentifierLikeIgnoreCaseOrderByNameAsc')
+                    .getList({name: search, identifier: search, projection: 'withCompanyAndDebitor'});
+            };
+
+            $scope.getProjectLabel = function(project) {
+                if(project) {
+                    return project.name + ' (' + project.company.name + ')';
+                }
             };
 
             controller.formatTime = function(date) {
@@ -22,6 +30,8 @@ define(['moment'], function(moment) {
                 var project;
                 if ($scope.project) {
                     project = $scope.project._links.self.href;
+                    //This is due to an error in Spring-Data-Rest 2.1 where the self href contains an {?projection} if projections are used.
+                    project = project.substr(0, project.indexOf('{'));
                 }
                 return {
                     employee: EmployeeService.getEmployeeHref(),

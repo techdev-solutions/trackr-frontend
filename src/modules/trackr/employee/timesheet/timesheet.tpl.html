@@ -9,7 +9,7 @@
                     <input type="text" class="form-control" id="project"
                            ng-model="project"
                            autocomplete="false"
-                           typeahead="project as project.name for project in getProjects($viewValue)"
+                           typeahead="project as getProjectLabel(project) for project in getProjects($viewValue)"
                            typeahead-editable="false"
                            typeahead-min-length="1" />
                 </div>
