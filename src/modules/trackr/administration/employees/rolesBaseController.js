@@ -31,7 +31,7 @@ define(['lodash'], function (_) {
                 The credential object could come from anywhere and have its base url messed up (e.g. /api/employees/1/credentialBase).
                 To update the object we need its self url which is saved in the _links.self object.
              */
-            var credentialBase = Restangular.oneUrl('credentials', credential._links.self.href);
+            var credentialBase = Restangular.one('credentials', credential.id);
             if($scope.hasAuthority(credential, authority)) {
                 credentialBase.customDELETE('authorities/' + authority.id).then(function() {
                     _.remove(credential.authorities, function (a) {

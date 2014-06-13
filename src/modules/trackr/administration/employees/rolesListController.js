@@ -4,12 +4,7 @@ define([], function () {
         $controller('trackr.administration.controllers.employees.roles-base', {$scope: $scope});
 
         //Load all credentials and subsequently all authorities for each credential.
-        Restangular.all('credentials').getList().then(function(credentials) {
-            credentials.forEach(function(credential) {
-                credential.all('authorities').getList().then(function(authorities) {
-                    credential.authorities = authorities;
-                });
-            });
+        Restangular.all('credentials').getList({ projection: 'allRolesOverview' }).then(function(credentials) {
             $scope.credentials = credentials;
         });
     }];
