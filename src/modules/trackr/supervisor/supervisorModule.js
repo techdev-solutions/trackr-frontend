@@ -6,6 +6,7 @@ define(['angular', 'modules/trackr/supervisor/controllers'], function(angular, c
         $stateProvider
             .state('trackr.supervisor', {
                 url: '/supervisor',
+                breadcrumbTranslateCode: 'PAGES.SUPERVISOR.TITLE',
                 views: {
                     'center@': {
                         templateUrl: 'src/modules/trackr/supervisor/supervisor.tpl.html'
@@ -14,6 +15,7 @@ define(['angular', 'modules/trackr/supervisor/controllers'], function(angular, c
             })
             .state('trackr.supervisor.bill', {
                 url: '/bill',
+                breadcrumbTranslateCode: 'PAGES.SUPERVISOR.BILL.TITLE',
                 views: {
                     'center@': {
                         templateUrl: 'src/modules/trackr/supervisor/fileBillableHours.tpl.html',
@@ -23,6 +25,7 @@ define(['angular', 'modules/trackr/supervisor/controllers'], function(angular, c
             })
             .state('trackr.supervisor.bill.report', {
                 url: '/report',
+                breadcrumbTranslateCode: 'PAGES.SUPERVISOR.BILL_CREATE.TITLE',
                 views: {
                     'center@': {
                         templateUrl: 'src/modules/trackr/supervisor/billReport.tpl.html',
@@ -32,6 +35,7 @@ define(['angular', 'modules/trackr/supervisor/controllers'], function(angular, c
             })
             .state('trackr.supervisor.vacation', {
                 url: '/vacation',
+                breadcrumbTranslateCode: 'PAGES.SUPERVISOR.VACATION.TITLE',
                 views: {
                     'center@': {
                         templateUrl: 'src/modules/trackr/supervisor/vacation/vacation.tpl.html',
@@ -41,6 +45,7 @@ define(['angular', 'modules/trackr/supervisor/controllers'], function(angular, c
             })
             .state('trackr.supervisor.expenses', {
                 url: '/expenses',
+                breadcrumbTranslateCode: 'PAGES.SUPERVISOR.TRAVEL_EXPENSE_REPORTS.TITLE',
                 resolve: {
                     reports: ['trackr.services.travelExpenseReport', function(TravelExpenseReportService) {
                         return TravelExpenseReportService.findByStatusWithEmployee('SUBMITTED');
@@ -58,6 +63,7 @@ define(['angular', 'modules/trackr/supervisor/controllers'], function(angular, c
             })
             .state('trackr.supervisor.expenses.edit', {
                 url: '/{id:\\d+}',
+                breadcrumbTranslateCode: 'ACTIONS.EDIT',
                 resolve: {
                     report: ['Restangular', '$stateParams', function(Restangular, $stateParams) {
                         return Restangular.one('travelExpenseReports', $stateParams.id).get();

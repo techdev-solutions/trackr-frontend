@@ -6,6 +6,7 @@ define(['angular', 'modules/trackr/administration/controllers'], function(angula
         $stateProvider
         .state('trackr.administration', {
             url: '/administration',
+            breadcrumbTranslateCode: 'PAGES.ADMINISTRATION.TITLE',
             views: {
                 'center@': {
                     templateUrl: 'src/modules/trackr/administration/administration.tpl.html'
@@ -15,6 +16,7 @@ define(['angular', 'modules/trackr/administration/controllers'], function(angula
         })
         .state('trackr.administration.companies', {
             url: '/companies',
+            breadcrumbTranslateCode: 'COMPANY.COMPANIES',
             views: {
                 'center@': {
                     templateUrl: 'src/modules/trackr/administration/companies/list.tpl.html',
@@ -35,6 +37,7 @@ define(['angular', 'modules/trackr/administration/controllers'], function(angula
         })
         .state('trackr.administration.employees', {
             url: '/employees',
+            breadcrumbTranslateCode: 'EMPLOYEE.EMPLOYEES',
             views: {
                 'center@': {
                     templateUrl: 'src/modules/trackr/administration/employees/list.tpl.html',
@@ -55,6 +58,7 @@ define(['angular', 'modules/trackr/administration/controllers'], function(angula
         })
         .state('trackr.administration.employees.roles', {
             url: '/roles',
+            breadcrumbTranslateCode: 'AUTHORITY.ROLES',
             views: {
                 'employee': {
                     templateUrl: 'src/modules/trackr/administration/employees/rolesList.tpl.html',
@@ -65,6 +69,7 @@ define(['angular', 'modules/trackr/administration/controllers'], function(angula
         })
         .state('trackr.administration.projects', {
             url: '/projects',
+            breadcrumbTranslateCode: 'PROJECT.PROJECTS',
             views: {
                 'center@': {
                     templateUrl: 'src/modules/trackr/administration/projects/list.tpl.html',

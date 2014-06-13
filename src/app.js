@@ -69,7 +69,7 @@ define(['angular', 'jQuery', 'i18n', 'restangular', 'angular-ui-router', 'angula
     /**
      * Implement state authorization
      */
-    app.run(['$rootScope', '$log', 'base.services.user', '$http', function($rootScope, $log, UserService, $http) {
+    app.run(['$rootScope', '$log', 'base.services.user', '$http', function($rootScope, $log, UserService) {
         UserService.setUser(trackrUser);
         $rootScope.$on('$stateChangeStart', function(event, toState) {
             if(toState.needsAuthority) {

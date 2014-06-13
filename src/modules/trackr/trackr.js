@@ -14,6 +14,7 @@ define(['angular',
             $stateProvider.
                 state('trackr', {
                     url: '/trackr',
+                    breadcrumbTranslateCode: 'PAGES.HOME.BREADCRUMB',
                     resolve: {
                         employee: ['trackr.services.employee', function(EmployeeService) {
                             return EmployeeService.loadEmployee();
@@ -24,6 +25,10 @@ define(['angular',
                         'top-menu@': {
                             templateUrl: 'src/modules/trackr/top-menu.tpl.html',
                             controller: 'base.controllers.navigation'
+                        },
+                        'breadcrumbs@': {
+                            templateUrl: 'src/modules/base/partials/breadcrumbs.tpl.html',
+                            controller: 'base.controllers.breadcrumb-controller'
                         }
                     }
                 }).
