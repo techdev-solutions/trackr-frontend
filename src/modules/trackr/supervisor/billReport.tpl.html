@@ -37,7 +37,7 @@
         <table class="table table-bordered">
             <tr>
                 <td>{{ 'PROJECT.DEBITOR' | translate}}</td>
-                <td>{{project.debitor.name}} ({{project.debitor.companyId}})</td>
+                <td><span ng-show="project.debitor">{{project.debitor.name}} ({{project.debitor.companyId}})</span></td>
             </tr>
             <tr>
                 <td>{{ 'PROJECT.HOURLY_RATE' | translate}}</td>

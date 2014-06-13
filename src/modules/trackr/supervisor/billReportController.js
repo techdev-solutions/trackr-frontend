@@ -2,19 +2,17 @@ define(['modules/trackr/supervisor/timeIntervalSetup'], function(timeIntervalSet
     'use strict';
     return ['$scope', 'Restangular', '$filter', '$http', function($scope, Restangular, $filter, $http) {
         $scope.getCompanies = function(searchString) {
-            return Restangular.allUrl('companies', 'api/companies/search/findByNameLikeIgnoreCaseOrderByNameAsc').getList({name: '%' + searchString + '%'});
+            return Restangular.allUrl('companies', 'api/companies/search/findByNameLikeIgnoreCaseOrderByNameAsc')
+                .getList({name: '%' + searchString + '%'});
         };
 
         $scope.loadProjects = function(company) {
-            company.getList('projects').then(function(projects) {
+            company.all('projects').getList({projection: 'withCompanyAndDebitor'}).then(function(projects) {
                 $scope.projects = projects;
             });
         };
 
         $scope.loadProjectData = function() {
-            Restangular.oneUrl('companies', $scope.project._links.debitor.href).get().then(function(response) {
-                $scope.project.debitor = response;
-            });
             $scope.loadBillData();
         };
 
