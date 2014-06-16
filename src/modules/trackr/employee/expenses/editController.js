@@ -1,6 +1,7 @@
 define(['lodash'], function(_) {
     'use strict';
-    return ['$scope', 'Restangular', 'trackr.services.travelExpenseReport', 'report', 'expenses', 'expenseTypes', '$filter', 'base.services.confirmation-dialog',
+    return ['$scope', 'Restangular', 'trackr.services.travelExpenseReport', 'report', 'expenses', 'expenseTypes',
+        '$filter', 'base.services.confirmation-dialog',
         function($scope, Restangular, TravelExpenseReportService, report, expenses, expenseTypes, $filter, ConfirmationDialogService) {
             var controller = this;
             /**
@@ -42,6 +43,7 @@ define(['lodash'], function(_) {
                         $scope.totalCost = controller.recalculateTotal($scope.report.expenses);
                     });
                 }
+
                 ConfirmationDialogService.openConfirmationDialog('ACTIONS.REALLY_DELETE').result.then(deleteExpense);
             };
 
