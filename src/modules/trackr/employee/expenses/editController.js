@@ -1,7 +1,7 @@
 define(['lodash'], function(_) {
     'use strict';
-    return ['$scope', 'Restangular', 'trackr.services.travelExpenseReport', 'report', 'expenses', 'expenseTypes', '$filter',
-        function($scope, Restangular, TravelExpenseReportService, report, expenses, expenseTypes, $filter) {
+    return ['$scope', 'Restangular', 'trackr.services.travelExpenseReport', 'report', 'expenses', 'expenseTypes', '$filter', 'base.services.confirmation-dialog',
+        function($scope, Restangular, TravelExpenseReportService, report, expenses, expenseTypes, $filter, ConfirmationDialogService) {
             var controller = this;
             /**
              * Recalculate the sum of the cost of the expenses
@@ -34,12 +34,15 @@ define(['lodash'], function(_) {
              * @param expense The expense to remove.
              */
             $scope.removeExpense = function(expense) {
-                Restangular.one('travelExpenses', expense.id).remove().then(function() {
-                    _.remove($scope.report.expenses, function(e) {
-                        return e.id == expense.id;
+                function deleteExpense() {
+                    Restangular.one('travelExpenses', expense.id).remove().then(function() {
+                        _.remove($scope.report.expenses, function(e) {
+                            return e.id == expense.id;
+                        });
+                        $scope.totalCost = controller.recalculateTotal($scope.report.expenses);
                     });
-                    $scope.totalCost = controller.recalculateTotal($scope.report.expenses);
-                });
+                }
+                ConfirmationDialogService.openConfirmationDialog('ACTIONS.REALLY_DELETE').result.then(deleteExpense);
             };
 
             /**

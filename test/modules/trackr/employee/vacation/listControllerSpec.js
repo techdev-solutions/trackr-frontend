@@ -1,4 +1,4 @@
-define(['baseTestSetup'], function(baseTestSetup) {
+define(['baseTestSetup', 'confirmationServiceMock'], function(baseTestSetup, ConfirmationServiceMock) {
     'use strict';
     describe('trackr.employee.controllers.vacation-list', function() {
         var EmployeeService, VacationRequestListController, scope;
@@ -15,7 +15,8 @@ define(['baseTestSetup'], function(baseTestSetup) {
             spyOn(EmployeeService, 'getEmployee').andCallThrough();
             VacationRequestListController = $controller('trackr.employee.controllers.vacation-list', {
                 $scope: scope,
-                'trackr.services.employee': EmployeeService
+                'trackr.services.employee': EmployeeService,
+                'base.services.confirmation-dialog': ConfirmationServiceMock
             });
         }));
 

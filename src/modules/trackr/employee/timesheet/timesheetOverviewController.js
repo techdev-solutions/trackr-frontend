@@ -1,6 +1,6 @@
 define(['lodash'], function(_) {
     'use strict';
-    return ['$scope', 'Restangular', '$filter', 'base.services.user', function($scope, Restangular, $filter, UserService) {
+    return ['$scope', 'Restangular', '$filter', 'base.services.user', 'base.services.confirmation-dialog', function($scope, Restangular, $filter, UserService, ConfirmationDialogService) {
         var controller = this;
         $scope.month = new Date();
         $scope.month.setDate(1);
@@ -25,11 +25,14 @@ define(['lodash'], function(_) {
         };
 
         $scope.remove = function(workTime) {
-            workTime.remove().then(function() {
-                _.remove($scope.workTimes, function(wT) {
-                    return wT.id === workTime.id;
+            function deleteWorkTime() {
+                workTime.remove().then(function() {
+                    _.remove($scope.workTimes, function(wT) {
+                        return wT.id === workTime.id;
+                    });
                 });
-            });
+            }
+            ConfirmationDialogService.openConfirmationDialog('ACTIONS.REALLY_DELETE').result.then(deleteWorkTime);
         };
 
         controller.showMonth($scope.month);

@@ -1,4 +1,4 @@
-define(['baseTestSetup', 'fixtures'], function(baseTestSetup, fixtures) {
+define(['baseTestSetup', 'fixtures', 'confirmationServiceMock'], function(baseTestSetup, fixtures, ConfirmationServiceMock) {
     'use strict';
     describe('trackr.employee.controllers.expenseReport-edit', function() {
         var EditController, scope;
@@ -11,7 +11,8 @@ define(['baseTestSetup', 'fixtures'], function(baseTestSetup, fixtures) {
                 $scope: scope,
                 expenses: report.expenses,
                 report: report,
-                expenseTypes: fixtures['api/travelExpenses/types']
+                expenseTypes: fixtures['api/travelExpenses/types'],
+                'base.services.confirmation-dialog': ConfirmationServiceMock
             });
         }));
 

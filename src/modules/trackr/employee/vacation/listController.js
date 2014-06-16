@@ -1,6 +1,6 @@
 define(['lodash'], function(_) {
     'use strict';
-    return ['$scope', 'Restangular', 'trackr.services.employee', function($scope, Restangular, EmployeeService) {
+    return ['$scope', 'Restangular', 'trackr.services.employee', 'base.services.confirmation-dialog', function($scope, Restangular, EmployeeService, ConfirmationDialogService) {
         $scope.employee = EmployeeService.getEmployee();
 
         Restangular.allUrl('vacationRequests', 'api/vacationRequests/search/findByEmployeeOrderByStartDateAsc')
@@ -19,13 +19,14 @@ define(['lodash'], function(_) {
         });
 
         $scope.cancelVacationRequest = function(vacationRequest) {
-            vacationRequest.remove().then(function() {
-                _.remove($scope.vacationRequests, function(vR) {
-                    return vR.id === vacationRequest.id;
+            function deleteVacationRequest() {
+                vacationRequest.remove().then(function() {
+                    _.remove($scope.vacationRequests, function(vR) {
+                        return vR.id === vacationRequest.id;
+                    });
                 });
-            }, function() {
-                //error
-            });
+            }
+            ConfirmationDialogService.openConfirmationDialog('ACTIONS.REALLY_DELETE').result.then(deleteVacationRequest);
         };
     }];
 });
