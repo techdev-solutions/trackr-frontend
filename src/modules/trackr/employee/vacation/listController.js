@@ -4,7 +4,10 @@ define(['lodash'], function(_) {
         $scope.employee = EmployeeService.getEmployee();
 
         Restangular.allUrl('vacationRequests', 'api/vacationRequests/search/findByEmployeeOrderByStartDateAsc')
-            .getList({employee: $scope.employee.id}).then(function(vacationRequests) {
+            .getList({
+                employee: $scope.employee.id,
+                projection: 'withEmployeeAndApprover'
+            }).then(function(vacationRequests) {
                 $scope.vacationRequests = vacationRequests;
             });
 

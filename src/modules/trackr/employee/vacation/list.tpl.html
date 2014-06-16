@@ -24,7 +24,7 @@
                     <td>{{vacationRequest.endDate | date:'dd.MM.yyyy' }}</td>
                     <td>{{vacationRequest.numberOfDays}}</td>
                     <td>{{ 'VACATION_REQUEST.' + vacationRequest.status | translate}}</td>
-                    <td>tbd</td>
+                    <td>{{vacationRequest.approver.firstName + ' ' + vacationRequest.approver.lastName}}</td>
                     <td>{{vacationRequest.approvalDate}}</td>
                     <td>
                         <a href ng-show="vacationRequest.status === 'PENDING'" ng-click="cancelVacationRequest(vacationRequest)">
