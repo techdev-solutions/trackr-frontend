@@ -46,7 +46,11 @@
         <td><bs-edit entity="expense" property-name="vat"></bs-edit> %</td>
         <td><bs-edit entity="expense" property-name="cost" callback="costEdited"></bs-edit> €</td>
         <td>{{ expense.submissionDate | date:'dd.MM.yyyy HH:mm:ss' }}</td>
-        <td><a href ng-click="removeExpense(expense)">{{ 'ACTIONS.REMOVE' | translate }}</a></td>
+        <td>
+            <a href ng-click="removeExpense(expense)">
+                <span class="glyphicon glyphicon-trash"></span>
+            </a>
+        </td>
     </tr>
 </table>
 
