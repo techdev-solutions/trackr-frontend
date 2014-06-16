@@ -1,6 +1,6 @@
 define(['modules/shared/PaginationLoader'], function (PaginationLoader) {
     'use strict';
-    return ['$scope', '$modal', 'Restangular', '$http', function($scope, $modal, Restangular, $http) {
+    return ['$scope', '$modal', 'Restangular', '$http', 'base.services.confirmation-dialog', function($scope, $modal, Restangular, $http, ConfirmationDialogService) {
         var controller = this;
         $scope.invoices = {};
         $scope.searchQuery = '';
@@ -104,9 +104,12 @@ define(['modules/shared/PaginationLoader'], function (PaginationLoader) {
          * @param invoice The invoice to delete.
          */
         $scope.remove = function(invoice) {
-            invoice.remove().then(function() {
-                controller.refreshPage(invoice.invoiceState);
-            });
+            function deleteInvoice() {
+                invoice.remove().then(function() {
+                    controller.refreshPage(invoice.invoiceState);
+                });
+            }
+            ConfirmationDialogService.openConfirmationDialog('ACTIONS.REALLY_DELETE').result.then(deleteInvoice);
         };
 
         /**

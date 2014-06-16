@@ -1,4 +1,4 @@
-define(['baseTestSetup'], function(baseTestSetup) {
+define(['baseTestSetup', 'confirmationServiceMock'], function(baseTestSetup, ConfirmationServiceMock) {
     'use strict';
     describe('invoice index controller', function() {
         var IndexController, scope;
@@ -8,7 +8,8 @@ define(['baseTestSetup'], function(baseTestSetup) {
             scope = $rootScope.$new();
 
             IndexController = $controller('invoices.controllers.index', {
-                $scope: scope
+                $scope: scope,
+                'base.services.confirmation-dialog': ConfirmationServiceMock
             });
         }));
 
