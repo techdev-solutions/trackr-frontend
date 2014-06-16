@@ -23,7 +23,8 @@ require.config({
         'angular-translate-loader-url': 'vendor/angular-translate-loader-url/angular-translate-loader-url',
         'angular-ui': 'vendor/angular-ui-bootstrap-bower/ui-bootstrap-tpls',
 		'flatify': 'flatify/scripts/app',
-        'moment': 'vendor/moment/moment'
+        'moment': 'vendor/moment/moment',
+        'confirmationServiceMock': '../test/modules/base/services/confirmationServiceMock'
     },
     shim: {
         'angular': { exports: 'angular' },

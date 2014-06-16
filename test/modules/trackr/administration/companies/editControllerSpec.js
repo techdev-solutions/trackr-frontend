@@ -1,4 +1,4 @@
-define(['baseTestSetup'], function(baseTestSetup) {
+define(['baseTestSetup', 'confirmationServiceMock'], function(baseTestSetup, confirmationServiceMock) {
     'use strict';
     describe('trackr.administration.controllers.companies.edit', function() {
         var EditController, scope;
@@ -10,7 +10,8 @@ define(['baseTestSetup'], function(baseTestSetup) {
             };
             EditController = $controller('trackr.administration.controllers.companies.edit', {
                 $scope: scope,
-                $stateParams: stateParams
+                $stateParams: stateParams,
+                'base.services.confirmation-dialog': confirmationServiceMock
             });
         }));
 

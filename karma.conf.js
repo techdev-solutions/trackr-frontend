@@ -22,6 +22,7 @@ module.exports = function (config) {
             {pattern: 'test/fixtures.js', included: false},
             {pattern: 'test/backendMock.js', included: false},
             {pattern: 'test/baseTestSetup.js', included: false},
+            {pattern: 'test/modules/**/*Mock.js', included: false},
             {pattern: 'src/i18n.js', included: false},
             {pattern: 'src/app.js', included: false},
             {pattern: 'src/vendor/**/*.js', included: false},
