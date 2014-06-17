@@ -5,8 +5,8 @@ define(['baseTestSetup', 'fixtures', 'angular'], function(baseTestSetup, fixture
         baseTestSetup();
         beforeEach(inject(function($rootScope, $controller) {
             scope = $rootScope.$new();
-            var EmployeeService = {
-                getEmployeeHref: function() { return ''; }
+            var employee = {
+                _links: { self: {href: ''}}
             };
             state = {
                 go: angular.noop
@@ -16,27 +16,32 @@ define(['baseTestSetup', 'fixtures', 'angular'], function(baseTestSetup, fixture
                 $scope: scope,
                 reports: reports,
                 $state: state,
-                'trackr.services.employee': EmployeeService
+                employee: employee
             });
         }));
 
-        it('acceptedSubmittedAndRejected must return false if status is PENDING', function() {
+        it('acceptedSubmittedAndRejected must return false if status is PENDING', inject(function($httpBackend) {
+            $httpBackend.flush();
             expect(scope.acceptedSubmittedAndRejected({status: 'PENDING'})).toBe(false);
-        });
+        }));
 
-        it('acceptedSubmittedAndRejected must return true if status is REJECTED', function() {
+        it('acceptedSubmittedAndRejected must return true if status is REJECTED', inject(function($httpBackend) {
+            $httpBackend.flush();
             expect(scope.acceptedSubmittedAndRejected({status: 'REJECTED'})).toBe(true);
-        });
+        }));
 
-        it('acceptedSubmittedAndRejected must return true if status is APPROVED', function() {
+        it('acceptedSubmittedAndRejected must return true if status is APPROVED', inject(function($httpBackend) {
+            $httpBackend.flush();
             expect(scope.acceptedSubmittedAndRejected({status: 'APPROVED'})).toBe(true);
-        });
+        }));
 
-        it('acceptedSubmittedAndRejected must return true if status is SUBMITTED', function() {
+        it('acceptedSubmittedAndRejected must return true if status is SUBMITTED', inject(function($httpBackend) {
+            $httpBackend.flush();
             expect(scope.acceptedSubmittedAndRejected({status: 'SUBMITTED'})).toBe(true);
-        });
+        }));
 
         it('must add a new report on addNew and transition to its edit state', inject(function($httpBackend) {
+            $httpBackend.flush();
             spyOn(state, 'go');
             scope.addNew();
             $httpBackend.expectPOST('api/travelExpenseReports');

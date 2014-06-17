@@ -1,8 +1,8 @@
 define(['lodash'], function(_) {
     'use strict';
-    return ['$scope', 'Restangular', 'trackr.services.travelExpenseReport', 'report', 'expenses', 'expenseTypes',
-        '$filter', 'base.services.confirmation-dialog',
-        function($scope, Restangular, TravelExpenseReportService, report, expenses, expenseTypes, $filter, ConfirmationDialogService) {
+    return ['$scope', 'Restangular', 'trackr.services.travelExpenseReport', 'expenseTypes',
+        '$filter', 'base.services.confirmation-dialog', '$stateParams',
+        function($scope, Restangular, TravelExpenseReportService, expenseTypes, $filter, ConfirmationDialogService, $stateParams) {
             var controller = this;
             /**
              * Recalculate the sum of the cost of the expenses
@@ -15,9 +15,15 @@ define(['lodash'], function(_) {
                 }, 0);
             };
 
-            $scope.report = report;
+            Restangular.one('travelExpenseReports', $stateParams.id).get({
+                projection: 'withExpenses'
+            }).then(function(report) {
+                $scope.report = report;
+                $scope.report.statusTranslateCode = 'TRAVEL_EXPENSE_REPORT.' + report.status;
+                $scope.totalCost = controller.recalculateTotal(report.expenses);
+            });
+
             $scope.expenseTypes = expenseTypes;
-            $scope.totalCost = controller.recalculateTotal(expenses);
             $scope.expense = {};
             $scope.errors = [];
 
@@ -27,7 +33,7 @@ define(['lodash'], function(_) {
              * @returns {boolean} If the report is editable
              */
             $scope.editable = function(report) {
-                return report.status === 'PENDING' || report.status === 'REJECTED';
+                return report !== undefined && (report.status === 'PENDING' || report.status === 'REJECTED');
             };
 
             /**
@@ -65,6 +71,9 @@ define(['lodash'], function(_) {
              */
             $scope.addNewExpense = function(expense, report) {
                 expense.report = report._links.self.href;
+                if(expense.report) {
+                    expense.report = expense.report.substr(0, expense.report.indexOf('{'));
+                }
                 expense.submissionDate = new Date();
                 Restangular.all('travelExpenses').post(expense).then(function(expense) {
                     report.expenses.push(expense);
@@ -82,7 +91,8 @@ define(['lodash'], function(_) {
              */
             $scope.submitReport = function(travelExpenseReport) {
                 TravelExpenseReportService.submit(travelExpenseReport).then(function() {
-                    report.status = 'SUBMITTED';
+                    $scope.report.status = 'SUBMITTED';
+                    $scope.report.statusTranslateCode = 'TRAVEL_EXPENSE_REPORT.SUBMITTED';
                 });
             };
 

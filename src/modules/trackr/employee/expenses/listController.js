@@ -1,7 +1,10 @@
 define([], function() {
     'use strict';
-    return ['$scope', 'Restangular', '$state', 'trackr.services.employee', 'reports', function($scope, Restangular, $state, EmployeeService, reports) {
-        $scope.reports = reports;
+    return ['$scope', 'Restangular', '$state', 'employee', function($scope, Restangular, $state, employee) {
+        Restangular.allUrl('travelExpenseReports', 'api/travelExpenseReports/search/findByEmployeeOrderByStatusAsc')
+            .getList({employee: employee.id}).then(function(reports) {
+                $scope.reports = reports;
+            });
 
         $scope.acceptedSubmittedAndRejected = function(travelExpenseReport) {
             return travelExpenseReport.status === 'REJECTED' ||
@@ -14,7 +17,7 @@ define([], function() {
          */
         $scope.addNew = function() {
             var newReport = {
-                employee: EmployeeService.getEmployeeHref(),
+                employee: employee._links.self.href,
                 status: 'PENDING'
             };
             Restangular.all('travelExpenseReports').post(newReport).then(function(report) {

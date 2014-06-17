@@ -78,6 +78,14 @@ define(['fixtures'], function(fixtures) {
 
         $httpBackend.whenDELETE(/^api\/contactPersons\/\d+/).respond([204]);
 
+        $httpBackend.whenGET(/^api\/travelExpenseReports\/\d+\?projection=\w+/).respond(function() {
+            var fixture = fixtures['api/travelExpenseReports']._embedded.travelExpenseReports[0];
+            fixture.expenses = fixtures['api/travelExpenses']._embedded.travelExpenses;
+            return [200, fixture];
+        });
+
+        $httpBackend.whenGET('api/travelExpenseReports/search/findByEmployeeOrderByStatusAsc').respond(fixtures['api/travelExpenseReports']);
+
         mockPost('api/contactPersons');
         mockPost('api/billableTimes');
         mockPost('api/workTimes');
