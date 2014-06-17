@@ -3,13 +3,13 @@
 <table class="table table-striped">
     <thead>
     <tr>
-        <th>{{ 'WORKTIME.DATE' | translate }}</th>
-        <th>{{ 'WORKTIME.START' | translate }}</th>
-        <th>{{ 'WORKTIME.END' | translate }}</th>
-        <th>{{ 'WORKTIME.TOTAL_HOURS' | translate }}</th>
-        <th>{{ 'WORKTIME.PROJECT' | translate }}</th>
-        <th>{{ 'WORKTIME.COMMENT' | translate }}</th>
-        <th>{{ 'ACTIONS.ACTIONS' | translate }}</th>
+        <th translate="WORKTIME.DATE"></th>
+        <th translate="WORKTIME.START"></th>
+        <th translate="WORKTIME.END"></th>
+        <th translate="WORKTIME.TOTAL_HOURS"></th>
+        <th translate="WORKTIME.PROJECT"></th>
+        <th translate="WORKTIME.COMMENT"></th>
+        <th translate="ACTIONS.ACTIONS"></th>
     </tr>
     </thead>
     <tbody>
@@ -17,7 +17,7 @@
         <td>{{ workTime.date | date:'dd.MM.yyyy' }}</td>
         <td>{{ workTime.startTime }}</td>
         <td>{{ workTime.endTime }}</td>
-        <td>{{ totalHours(workTime.endTime, workTime.startTime) }}</td>
+        <td>{{ workTime.totalHours }}</td>
         <td>{{ workTime.project.name }}</td>
         <td>{{ workTime.comment }}</td>
         <td>
@@ -25,6 +25,24 @@
                 <span class="glyphicon glyphicon-trash"></span>
             </button>
         </td>
+    </tr>
+    </tbody>
+</table>
+
+<h2 translate="PAGES.EMPLOYEE.TIMESHEET_OVERVIEW.GROUPED_BY_PROJECT"></h2>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th translate="PROJECT.PROJECT"></th>
+        <th translate="PROJECT.COMPANY"></th>
+        <th translate="WORKTIME.TOTAL_HOURS"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="(id, workTime) in groupedWorkTimes">
+        <td>{{workTime.projectName}}</td>
+        <td>{{workTime.companyName}}</td>
+        <td>{{workTime.totalHours}}</td>
     </tr>
     </tbody>
 </table>

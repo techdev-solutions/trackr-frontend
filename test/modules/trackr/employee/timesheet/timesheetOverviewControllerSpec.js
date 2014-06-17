@@ -8,6 +8,7 @@ define(['baseTestSetup'], function(baseTestSetup) {
             TimesheetController = $controller('trackr.employee.controllers.timesheet-overview', {
                 $scope: scope
             });
+            spyOn(TimesheetController, 'convertToGroupedWorktimes').andReturn({});
         }));
 
         it('Must load the current worktimes on start', inject(function($httpBackend) {
@@ -15,9 +16,15 @@ define(['baseTestSetup'], function(baseTestSetup) {
             expect(scope.workTimes).toBeDefined();
         }));
 
+        it('Must convert the worktimes to the grouped worktimes on start', inject(function($httpBackend) {
+            $httpBackend.flush();
+            expect(scope.groupedWorkTimes).toBeDefined();
+            expect(TimesheetController.convertToGroupedWorktimes).toHaveBeenCalled();
+        }));
+
         it('totalHours must calculate the total hours with floating point', inject(function($httpBackend) {
             $httpBackend.flush();
-            var totalHours = scope.totalHours('17:30:00', '08:00:00');
+            var totalHours = TimesheetController.totalHours('17:30:00', '08:00:00');
             expect(totalHours).toBe(9.5);
         }));
     });

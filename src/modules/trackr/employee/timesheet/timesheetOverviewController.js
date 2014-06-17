@@ -1,7 +1,7 @@
 define(['lodash', 'moment'], function(_, moment) {
     'use strict';
-    return ['$scope', 'Restangular', '$filter', 'base.services.user', 'base.services.confirmation-dialog',
-        function($scope, Restangular, $filter, UserService, ConfirmationDialogService) {
+    return ['$scope', 'Restangular', 'base.services.user', 'base.services.confirmation-dialog',
+        function($scope, Restangular, UserService, ConfirmationDialogService) {
             var controller = this;
             $scope.month = new Date();
             $scope.month.setDate(1);
@@ -12,15 +12,23 @@ define(['lodash', 'moment'], function(_, moment) {
                 controller.showMonth($scope.month);
             };
 
+            /**
+             * Load the work times of one month, put them in the scope and calculate the grouped worktimes.
+             * @param date The month to load.
+             */
             controller.showMonth = function(date) {
-                var end = new Date(date.getFullYear(), date.getMonth() + 1, 0, 23, 59, 59); //last day of month
                 Restangular.allUrl('workTimes', 'api/workTimes/search/findByEmployeeAndDateBetweenOrderByDateAscStartTimeAsc')
                     .getList({
                         employee: UserService.getUser().id,
-                        start: $filter('date')(date, 'yyyy-MM-dd'),
-                        end: $filter('date')(end, 'yyyy-MM-dd'),
+                        start: moment(date).startOf('month').format('YYYY-MM-DD'),
+                        end: moment(date).endOf('month').format('YYYY-MM-DD'),
                         projection: 'withProject'
                     }).then(function(workTimes) {
+                        //Add the difference of end - start to all workTimes since it will be needed at several places
+                        _.forEach(workTimes, function(workTime) {
+                            workTime.totalHours = controller.totalHours(workTime.endTime, workTime.startTime);
+                        });
+                        $scope.groupedWorkTimes = controller.convertToGroupedWorktimes(workTimes);
                         $scope.workTimes = workTimes;
                     });
             };
@@ -31,7 +39,7 @@ define(['lodash', 'moment'], function(_, moment) {
              * @param startTime A string representing a time in the format HH:mm:ss
              * @returns {*} The difference end - start with decimals (e.g. 8.5)
              */
-            $scope.totalHours = function(endTime, startTime) {
+            controller.totalHours = function(endTime, startTime) {
                 var momentStart = moment(startTime, 'HH:mm:ss');
                 var momentEnd = moment(endTime, 'HH:mm:ss');
                 return momentEnd.diff(momentStart, 'hours', true);
@@ -47,6 +55,36 @@ define(['lodash', 'moment'], function(_, moment) {
                 }
 
                 ConfirmationDialogService.openConfirmationDialog('ACTIONS.REALLY_DELETE').result.then(deleteWorkTime);
+            };
+
+            /**
+             * Transform an array of workTimes to a mapping of project ID to an object like this:
+             * {
+             *  projectName: 'Some project',
+             *  totalHours: 120, <-- aggregated hours for the whole month
+             *  companyName: 'Some company'
+             * }
+             *
+             * Loads the company name via an extra request.
+             * @param workTimes The array to convert
+             * @returns {{}}
+             */
+            controller.convertToGroupedWorktimes = function(workTimes) {
+                var out = {};
+                _.forEach(workTimes, function(workTime) {
+                    if(out[workTime.project.id]) {
+                        out[workTime.project.id].totalHours += workTime.totalHours;
+                    } else {
+                        out[workTime.project.id] = {
+                            totalHours: workTime.totalHours,
+                            projectName: workTime.project.name
+                        };
+                        Restangular.one('projects', workTime.project.id).one('company').get().then(function(company) {
+                            out[workTime.project.id].companyName = company.name;
+                        });
+                    }
+                });
+                return out;
             };
 
             controller.showMonth($scope.month);
