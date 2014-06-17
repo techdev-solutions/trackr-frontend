@@ -1,13 +1,13 @@
 <table class="table">
     <tr>
-        <th>Name</th>
-        <th>Authorities</th>
+        <th translate="CREDENTIAL.EMAIL"></th>
+        <th translate="AUTHORITY.ROLES"></th>
     </tr>
     <tr ng-repeat="credential in credentials">
         <td>{{credential.email}}</td>
         <td>
             <span ng-repeat="authority in authorities">
-                <label>{{ 'AUTHORITY.' + authority.authority | translate }}</label>
+                <label translate="{{ 'AUTHORITY.' + authority.authority }}"></label>
                 <bs-checkbox checked="hasAuthority(credential, authority)" change="updateCredentialAuthorities(credential, authority)" role="ROLE_ADMIN"></bs-checkbox>
             </span>
         </td>

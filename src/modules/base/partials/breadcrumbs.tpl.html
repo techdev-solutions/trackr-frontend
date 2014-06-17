@@ -1,5 +1,5 @@
 <ol class="breadcrumb">
     <li ng-class="{active: $last}" ng-repeat="breadcrumb in breadcrumbs">
-        <a ui-sref="{{breadcrumb.stateName}}">{{breadcrumb.translateCode | translate}}</a>
+        <a ui-sref="{{breadcrumb.stateName}}" translate="{{breadcrumb.translateCode}}"></a>
     </li>
 </ol>

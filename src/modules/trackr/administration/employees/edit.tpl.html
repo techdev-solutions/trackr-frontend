@@ -15,61 +15,61 @@
             </div>
 
             <div class="form-group">
-                <label class="col-sm-3 control-label">{{ 'AUTHORITY.ROLES' | translate }}</label>
+                <label class="col-sm-3 control-label" translate="AUTHORITY.ROLES"></label>
                 <div class="col-sm-7">
                     <span ng-if="credential" ng-repeat="authority in authorities" class="checkbox">
                         <label>
                             <bs-checkbox checked="hasAuthority(credential, authority)" change="updateCredentialAuthorities(credential, authority)" role="ROLE_ADMIN"></bs-checkbox>
-                            {{ 'AUTHORITY.' + authority.authority | translate }}
+                            <span translate="{{ 'AUTHORITY.' + authority.authority }}"></span>
                         </label>
                         <br/>
                     </span>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-3 control-label">{{ 'EMPLOYEE.TITLE' | translate }}</label>
+                <label class="col-sm-3 control-label" translate="EMPLOYEE.TITLE"></label>
                 <div class="col-sm-7">
                     <bs-edit entity="employee" property-name="title" role="ROLE_SUPERVISOR"></bs-edit>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-3 control-label">{{ 'EMPLOYEE.SALARY' | translate }}</label>
+                <label class="col-sm-3 control-label" translate="EMPLOYEE.SALARY"></label>
                 <div class="col-sm-7">
                     <bs-edit entity="employee" property-name="salary" role="ROLE_SUPERVISOR"></bs-edit>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-3 control-label">{{ 'EMPLOYEE.HOURLY_COST_RATE' | translate }}</label>
+                <label class="col-sm-3 control-label" translate="EMPLOYEE.HOURLY_COST_RATE"></label>
                 <div class="col-sm-7">
                     <bs-edit entity="employee" property-name="hourlyCostRate" role="ROLE_SUPERVISOR"></bs-edit>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-3 control-label">{{ 'EMPLOYEE.VACATION_ENTITLEMENT' | translate }}</label>
+                <label class="col-sm-3 control-label" translate="EMPLOYEE.VACATION_ENTITLEMENT"></label>
                 <div class="col-sm-7">
                     <bs-edit entity="employee" property-name="vacationEntitlement" role="ROLE_SUPERVISOR"></bs-edit>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-3 control-label">{{ 'EMPLOYEE.PHONE_NUMBER' | translate }}</label>
+                <label class="col-sm-3 control-label" translate="EMPLOYEE.PHONE_NUMBER"></label>
                 <div class="col-sm-7">
                     <bs-edit entity="employee" property-name="phoneNumber" role="ROLE_SUPERVISOR"></bs-edit>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-3 control-label">{{ 'EMPLOYEE.FEDERAL_STATE' | translate }}</label>
+                <label class="col-sm-3 control-label" translate="EMPLOYEE.FEDERAL_STATE"></label>
                 <div class="col-sm-7">
                     <select ng-model="employee.federalState.name" ng-options="s.name as s.state for s in states" class="form-control"></select>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-3 control-label">{{ 'CREDENTIAL.EMAIL' | translate }}</label>
+                <label class="col-sm-3 control-label" translate="CREDENTIAL.EMAIL"></label>
                 <div class="col-sm-7">
                     <bs-edit entity="credential" property-name="email" role="ROLE_ADMIN" error-callback="emailError"></bs-edit>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-3 control-label">{{ 'CREDENTIAL.ENABLED' | translate }}</label>
+                <label class="col-sm-3 control-label" translate="CREDENTIAL.ENABLED"></label>
                 <div class="col-sm-7">
                     <span class="checkbox">
                         <bs-checkbox checked="credential.enabled" change="changeEnabled()" role="ROLE_ADMIN"></bs-checkbox>
@@ -77,13 +77,13 @@
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-3 control-label">{{ 'EMPLOYEE.JOIN_DATE' | translate }}</label>
+                <label class="col-sm-3 control-label" translate="EMPLOYEE.JOIN_DATE"></label>
                 <div class="col-sm-2">
                     <inline-datepicker model="employee.joinDate"></inline-datepicker>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-3 control-label">{{ 'EMPLOYEE.LEAVE_DATE' | translate }}</label>
+                <label class="col-sm-3 control-label" translate="EMPLOYEE.LEAVE_DATE"></label>
                 <div class="col-sm-2">
                     <inline-datepicker model="employee.leaveDate"></inline-datepicker>
                 </div>

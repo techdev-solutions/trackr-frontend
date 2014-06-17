@@ -4,18 +4,18 @@
         <div ui-view="new"></div>
 
         <p>
-            <b>{{ 'EMPLOYEE.VACATION_ENTITLEMENT' | translate }}</b>: {{employee.vacationEntitlement}}
+            <b translate="EMPLOYEE.VACATION_ENTITLEMENT"></b>: {{employee.vacationEntitlement}}
         </p>
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>{{ 'VACATION_REQUEST.START_DATE' | translate }}</th>
-                    <th>{{ 'VACATION_REQUEST.END_DATE' | translate }}</th>
-                    <th>{{ 'VACATION_REQUEST.NUMBER_OF_DAYS' | translate }}</th>
-                    <th>{{ 'VACATION_REQUEST.STATUS' | translate }}</th>
-                    <th>{{ 'VACATION_REQUEST.APPROVER' | translate }}</th>
-                    <th>{{ 'VACATION_REQUEST.APPROVAL_DATE' | translate }}</th>
-                    <th>{{ 'ACTIONS.ACTIONS' | translate }}</th>
+                    <th translate="VACATION_REQUEST.START_DATE"></th>
+                    <th translate="VACATION_REQUEST.END_DATE"></th>
+                    <th translate="VACATION_REQUEST.NUMBER_OF_DAYS"></th>
+                    <th translate="VACATION_REQUEST.STATUS"></th>
+                    <th translate="VACATION_REQUEST.APPROVER"></th>
+                    <th translate="VACATION_REQUEST.APPROVAL_DATE"></th>
+                    <th translate="ACTIONS.ACTIONS"></th>
                 </tr>
             </thead>
             <tbody>
@@ -23,7 +23,7 @@
                     <td>{{vacationRequest.startDate | date:'dd.MM.yyyy' }}</td>
                     <td>{{vacationRequest.endDate | date:'dd.MM.yyyy' }}</td>
                     <td>{{vacationRequest.numberOfDays}}</td>
-                    <td>{{ 'VACATION_REQUEST.' + vacationRequest.status | translate}}</td>
+                    <td translate="{{'VACATION_REQUEST.' + vacationRequest.status}}"></td>
                     <td>{{vacationRequest.approver.firstName + ' ' + vacationRequest.approver.lastName}}</td>
                     <td>{{vacationRequest.approvalDate}}</td>
                     <td>

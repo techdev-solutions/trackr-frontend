@@ -1,6 +1,6 @@
 <div class="logo">
     <a ui-sref="invoices.home">
-        <span>Invoices</span>
+        <span translate="INVOICE.INVOICES"></span>
     </a>
 </div>
 
@@ -8,7 +8,7 @@
     <ul class="nav-right list-unstyled pull-right">
         <li><a href="logout">Logout</a></li>
         <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="">{{ 'LANGUAGE' | translate }}</a>
+            <a class="dropdown-toggle" data-toggle="dropdown" href="" translate="LANGUAGE"></a>
             <ul class="dropdown-menu">
                 <li><a href ng-click="changeLanguage('en')">English</a></li>
                 <li><a href ng-click="changeLanguage('de')">Deutsch</a></li>

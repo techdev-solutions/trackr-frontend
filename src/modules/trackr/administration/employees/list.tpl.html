@@ -1,31 +1,31 @@
 <div class="row">
 
-    <!-- Employee List BEGIN -->
     <div class="col-lg-3">
 
         <div class="panel panel-default">
             <div class="panel-heading">
-                <strong><span class="glyphicon glyphicon-th"></span> {{ 'EMPLOYEE.EMPLOYEES' | translate }}</strong>
+                <strong><span class="glyphicon glyphicon-th"></span> <span translate="EMPLOYEE.EMPLOYEES"></span></strong>
 
                 <button type="button" has-authority="ROLE_ADMIN" class="btn btn-default btn-xs pull-right" ng-click="addNew()">
-                    <span class="glyphicon glyphicon-plus"></span> {{ 'ACTIONS.NEW' | translate }}
+                    <span class="glyphicon glyphicon-plus"></span> <span translate="ACTIONS.NEW"></span>
                 </button>
             </div>
 
             <table class="table table-bordered table-hover">
                 <tbody>
-                    <tr ng-repeat="employee in employees" ui-sref-active="active" ui-sref="trackr.administration.employees.edit({id: employee.id})" class="clickable">
-                        <td>
-                            {{employee.firstName}} <b>{{employee.lastName}}</b>
-                        </td>
-                    </tr>
+                <tr ng-repeat="employee in employees" ui-sref-active="active" ui-sref="trackr.administration.employees.edit({id: employee.id})" class="clickable">
+                    <td>
+                        {{employee.firstName}} <b>{{employee.lastName}}</b>
+                    </td>
+                </tr>
                 </tbody>
             </table>
 
             <footer class="table-footer">
                 <div class="row">
                     <div class="col-lg-12 text-right pagination-container">
-                        <pagination class="pagination-sm" total-items="employees.page.totalElements" ng-model="employees.page.number" items-per-page="employees.page.size" ng-change="setPage()"></pagination>
+                        <pagination class="pagination-sm" total-items="employees.page.totalElements" ng-model="employees.page.number" items-per-page="employees.page.size"
+                                    ng-change="setPage()"></pagination>
                     </div>
                 </div>
             </footer>
@@ -34,16 +34,13 @@
 
         <div class="row" has-authority="ROLE_ADMIN" ui-sref-active="active">
             <div class="col-lg-12">
-                <a ui-sref="trackr.administration.employees.roles" href class="btn btn-default">{{ 'EMPLOYEE.ADMINISTRATE_ROLES' | translate }}</a>
+                <a ui-sref="trackr.administration.employees.roles" href class="btn btn-default" translate="EMPLOYEE.ADMINISTRATE_ROLES"></a>
             </div>
         </div>
 
     </div>
-    <!-- Employee List END -->
 
-    <!-- Employee Details -->
     <div class="col-lg-9">
         <ui-view name="employee"/>
     </div>
-    <!-- Employee Details END -->
 </div>

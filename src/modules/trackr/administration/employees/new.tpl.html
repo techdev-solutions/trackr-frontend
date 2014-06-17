@@ -1,5 +1,5 @@
 <div class="modal-header">
-    <h3>{{ 'EMPLOYEE.CREATE_NEW' | translate }}</h3>
+    <h3 translate="EMPLOYEE.CREATE_NEW"></h3>
 </div>
 <div class="modal-body">
     <form class="form-horizontal" action="">
@@ -13,7 +13,7 @@
         <bs-text property-name="credential.email" translate-code="CREDENTIAL.EMAIL" path="credential.email"></bs-text>
 
         <div class="form-group" ng-class="{'has-error': errors['employee.federalState']}">
-            <label class="form-label col-sm-4" for="federalState">{{ 'EMPLOYEE.FEDERAL_STATE' | translate }}</label>
+            <label class="form-label col-sm-4" for="federalState" translate="EMPLOYEE.FEDERAL_STATE"></label>
             <div class="col-sm-6">
                 <select ng-model="employee.federalState" id="federalState" ng-options="s.name as s.state for s in states"></select>
                 <span ng-show="errors['employee.federalState']" class="help-block">{{errors['employee.federalState'].defaultMessage}}</span>
@@ -21,7 +21,7 @@
         </div>
 
         <div class="form-group">
-            <label class="form-label col-sm-4" for="joinDate">{{ 'EMPLOYEE.JOIN_DATE' | translate }}</label>
+            <label class="form-label col-sm-4" for="joinDate" translate="EMPLOYEE.JOIN_DATE"></label>
             <div class="col-sm-6">
                 <div class="well well-sm" id="joinDate" ng-model="employee.joinDate">
                     <datepicker starting-day="1"></datepicker>
@@ -33,7 +33,7 @@
             <div class="col-sm-offset-4 col-sm-8">
                 <div class="checkbox">
                     <label>
-                        <input type="checkbox" ng-model="credential.enabled"> {{ 'CREDENTIAL.ENABLED' | translate }}
+                        <input type="checkbox" ng-model="credential.enabled"> <span translate="CREDENTIAL.ENABLED"></span>
                     </label>
                 </div>
             </div>
@@ -41,6 +41,6 @@
     </form>
 </div>
 <div class="modal-footer">
-    <button type="button" class="btn btn-default" ng-click="cancel()">{{ 'ACTIONS.CANCEL' | translate }}</button>
-    <button type="submit" class="btn btn-primary" ng-click="saveEmployee()">{{ 'ACTIONS.SAVE' | translate }}</button>
+    <button type="button" class="btn btn-default" ng-click="cancel()" translate="ACTIONS.CANCEL"></button>
+    <button type="submit" class="btn btn-primary" ng-click="saveEmployee()" translate="ACTIONS.SAVE"></button>
 </div>

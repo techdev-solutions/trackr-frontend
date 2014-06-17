@@ -13,37 +13,37 @@
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-3 control-label">{{ 'PROJECT.IDENTIFIER' | translate }}</label>
+                <label class="col-sm-3 control-label" translate="PROJECT.IDENTIFIER"></label>
                 <div class="col-sm-7">
                     <bs-edit entity="project" property-name="identifier" error-callback="projectIdError" callback="projectIdChanged" role="ROLE_ADMIN"></bs-edit>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-3 control-label">{{ 'PROJECT.VOLUME' | translate }}</label>
+                <label class="col-sm-3 control-label" translate="PROJECT.VOLUME"></label>
                 <div class="col-sm-7">
                     <bs-edit entity="project" property-name="volume" role="ROLE_ADMIN"></bs-edit>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-3 control-label">{{ 'PROJECT.HOURLY_RATE' | translate }}</label>
+                <label class="col-sm-3 control-label" translate="PROJECT.HOURLY_RATE"></label>
                 <div class="col-sm-7">
                     <bs-edit entity="project" property-name="hourlyRate" role="ROLE_ADMIN"></bs-edit>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-3 control-label">{{ 'PROJECT.DAILY_RATE' | translate }}</label>
+                <label class="col-sm-3 control-label" translate="PROJECT.DAILY_RATE"></label>
                 <div class="col-sm-7">
                     <bs-edit entity="project" property-name="dailyRate" role="ROLE_ADMIN"></bs-edit>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-3 control-label">{{ 'PROJECT.FIXED_PRICE' | translate }}</label>
+                <label class="col-sm-3 control-label" translate="PROJECT.FIXED_PRICE"></label>
                 <div class="col-sm-3">
                     <bs-edit entity="project" property-name="fixedPrice" role="ROLE_ADMIN"></bs-edit>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-3 control-label" for="company">{{ 'PROJECT.COMPANY' | translate }}</label>
+                <label class="col-sm-3 control-label" for="company" translate="PROJECT.COMPANY"></label>
                 <div class="col-sm-3">
                     <input type="text" class="form-control" id="company"
                            ng-model="project.company"
@@ -55,7 +55,7 @@
                 <span ng-show="companySaved" class="glyphicon glyphicon-ok"></span>
             </div>
             <div class="form-group">
-                <label class="col-sm-3 control-label" for="debitor">{{ 'PROJECT.DEBITOR' | translate }}</label>
+                <label class="col-sm-3 control-label" for="debitor" translate="PROJECT.DEBITOR"></label>
                 <div class="col-sm-3">
                     <input type="text" class="form-control" id="debitor"
                            ng-model="project.debitor"

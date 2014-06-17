@@ -1,6 +1,6 @@
-<h1>{{ 'INVOICE.INVOICES' | translate }}</h1>
+<h1 translate="INVOICE.INVOICES"></h1>
 
-<h3>{{ 'ACTIONS.SEARCH' | translate }}</h3>
+<h3 translate="ACTIONS.SEARCH"></h3>
 <div class="form-group">
     <input type="text" ng-model="searchQuery" ng-change="executeSearch()"/>
 </div>
@@ -8,18 +8,18 @@
 <tabset>
     <tab ng-repeat="state in states">
         <tab-heading>
-            {{ 'INVOICE.' + state | translate }} <span class="badge">{{invoices[state].page.totalElements}}</span>
+            <span translate="{{'INVOICE.' + state}}"></span> <span class="badge">{{invoices[state].page.totalElements}}</span>
         </tab-heading>
         <table class="table table-bordered">
             <thead>
             <tr>
-                <th>{{ 'INVOICE.IDENTIFIER' | translate }}</th>
-                <th>{{ 'INVOICE.CREATION_DATE' | translate }}</th>
-                <th>{{ 'INVOICE.INVOICE_TOTAL' | translate }}</th>
-                <th>{{ 'INVOICE.DEBITOR' | translate }}</th>
-                <th>{{ 'INVOICE.DUE_DATE' | translate }}</th>
-                <th>{{ 'INVOICE.STATE' | translate }}</th>
-                <th>{{ 'ACTIONS.ACTIONS' | translate }}</th>
+                <th translate="INVOICE.IDENTIFIER"></th>
+                <th translate="INVOICE.CREATION_DATE"></th>
+                <th translate="INVOICE.INVOICE_TOTAL"></th>
+                <th translate="INVOICE.DEBITOR"></th>
+                <th translate="INVOICE.DUE_DATE"></th>
+                <th translate="INVOICE.STATE"></th>
+                <th translate="ACTIONS.ACTIONS"></th>
             </tr>
             </thead>
             <tbody>
@@ -29,7 +29,7 @@
                 <td>{{invoice.invoiceTotal}}</td>
                 <td>{{invoice.debitor.name}}</td>
                 <td>{{ invoice.dueDate | date:'dd.MM.yyyy' }}</td>
-                <td>{{ 'INVOICE.' + invoice.invoiceState | translate }}</td>
+                <td translate="{{ 'INVOICE.' + invoice.invoiceState }}"></td>
                 <td>
                     <button ng-show="state !== 'PAID'" ng-click="markPaid(invoice)" type="button" class="btn btn-default btn-xs">
                         <span class="glyphicon glyphicon-ok"></span>
@@ -47,5 +47,5 @@
 </tabset>
 
 <button type="button" class="btn btn-default" ng-click="addNew()">
-    <span class="glyphicon glyphicon-plus"></span> {{ 'ACTIONS.NEW' | translate }}
+    <span class="glyphicon glyphicon-plus"></span> <span translate="ACTIONS.NEW"></span>
 </button>

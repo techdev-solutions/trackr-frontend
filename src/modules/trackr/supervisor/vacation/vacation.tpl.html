@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-sm-12">
-        <h1>{{ 'PAGES.SUPERVISOR.VACATION.TITLE' | translate }}</h1>
+        <h1 translate="PAGES.SUPERVISOR.VACATION.TITLE"></h1>
     </div>
 
     <div class="col-sm-12">
@@ -8,10 +8,10 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>{{ 'VACATION_REQUEST.INTERVAL' | translate }}</th>
-                    <th>{{ 'VACATION_REQUEST.NUMBER_OF_DAYS' | translate }}</th>
-                    <th>{{ 'VACATION_REQUEST.SUBMITTED' | translate }}</th>
-                    <th>{{ 'VACATION_REQUEST.EMPLOYEE' | translate }}</th>
+                    <th translate="VACATION_REQUEST.INTERVAL"></th>
+                    <th translate="VACATION_REQUEST.NUMBER_OF_DAYS"></th>
+                    <th translate="VACATION_REQUEST.SUBMITTED"></th>
+                    <th translate="VACATION_REQUEST.EMPLOYEE"></th>
                     <th></th>
                 </tr>
             </thead>
@@ -22,8 +22,8 @@
                     <td>{{request.submissionTime | date:'dd.MM.yyyy HH:mm:ss'}}</td>
                     <td>{{request.employee.firstName}} {{request.employee.lastName}}</td>
                     <td>
-                        <button type="button" ng-click="approve(request)" class="btn btn-xs btn-primary">{{ 'ACTIONS.APPROVE' | translate }}</button>
-                        <button type="button" ng-click="reject(request)" class="btn btn-xs btn-warning">{{ 'ACTIONS.REJECT' | translate }}</button>
+                        <button type="button" ng-click="approve(request)" class="btn btn-xs btn-primary" translate="ACTIONS.APPROVE"></button>
+                        <button type="button" ng-click="reject(request)" class="btn btn-xs btn-warning" translate="ACTIONS.REJECT"></button>
                     </td>
                 </tr>
             </tbody>
@@ -34,12 +34,12 @@
                 <table class="table-bordered table table-condensed">
                     <thead>
                         <tr>
-                            <th>{{ 'VACATION_REQUEST.INTERVAL' | translate }}</th>
-                            <th>{{ 'VACATION_REQUEST.NUMBER_OF_DAYS' | translate }}</th>
-                            <th>{{ 'VACATION_REQUEST.SUBMITTED' | translate }}</th>
-                            <th>{{ 'VACATION_REQUEST.APPROVAL_DATE' | translate }}</th>
-                            <th>{{ 'VACATION_REQUEST.EMPLOYEE' | translate }}</th>
-                            <th>{{ 'VACATION_REQUEST.APPROVER' | translate }}</th>
+                            <th translate="VACATION_REQUEST.INTERVAL"></th>
+                            <th translate="VACATION_REQUEST.NUMBER_OF_DAYS"></th>
+                            <th translate="VACATION_REQUEST.SUBMITTED"></th>
+                            <th translate="VACATION_REQUEST.APPROVAL_DATE"></th>
+                            <th translate="VACATION_REQUEST.EMPLOYEE"></th>
+                            <th translate="VACATION_REQUEST.APPROVER"></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -58,12 +58,12 @@
                 <table class="table-bordered table table-condensed">
                     <thead>
                         <tr>
-                            <th>{{ 'VACATION_REQUEST.INTERVAL' | translate }}</th>
-                            <th>{{ 'VACATION_REQUEST.NUMBER_OF_DAYS' | translate }}</th>
-                            <th>{{ 'VACATION_REQUEST.SUBMITTED' | translate }}</th>
-                            <th>{{ 'VACATION_REQUEST.APPROVAL_DATE' | translate }}</th>
-                            <th>{{ 'VACATION_REQUEST.EMPLOYEE' | translate }}</th>
-                            <th>{{ 'VACATION_REQUEST.APPROVER' | translate }}</th>
+                            <th translate="VACATION_REQUEST.INTERVAL"></th>
+                            <th translate="VACATION_REQUEST.NUMBER_OF_DAYS"></th>
+                            <th translate="VACATION_REQUEST.SUBMITTED"></th>
+                            <th translate="VACATION_REQUEST.APPROVAL_DATE"></th>
+                            <th translate="VACATION_REQUEST.EMPLOYEE"></th>
+                            <th translate="VACATION_REQUEST.APPROVER"></th>
                         </tr>
                     </thead>
                     <tbody>

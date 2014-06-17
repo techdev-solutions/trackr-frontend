@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-lg-12">
-        <h1>{{ 'PAGES.SUPERVISOR.BILL.TITLE' | translate }}</h1>
+        <h1 translate="PAGES.SUPERVISOR.BILL.TITLE"></h1>
     </div>
 
     <div class="form-group col-lg-4">
@@ -27,9 +27,9 @@
             <tab ng-repeat="(id, employee) in employeeMapping" heading="{{employee.name}}" ng-controller="trackr.supervisor.controllers.save-billable-hours">
                 <table class="table table-condensed table-bordered">
                     <tr>
-                        <th>{{ 'BILLABLE_TIME.DATE' | translate }}</th>
-                        <th>{{ 'PAGES.SUPERVISOR.BILL.HOURS' | translate }}</th>
-                        <th colspan="2">{{ 'BILLABLE_TIME.BILLABLE_HOURS' | translate }}</th>
+                        <th translate="BILLABLE_TIME.DATE"></th>
+                        <th translate="PAGES.SUPERVISOR.BILL.HOURS"></th>
+                        <th colspan="2" translate="BILLABLE_TIME.BILLABLE_HOURS"></th>
                     </tr>
                     <tr>
                         <td colspan="2"></td>
@@ -46,14 +46,14 @@
                         </td>
                     </tr>
                     <tr>
-                        <td><b>{{ 'PAGES.SUPERVISOR.BILL.SUM' | translate }}</b></td>
+                        <td><b translate="PAGES.SUPERVISOR.BILL.SUM"></b></td>
                         <td>{{sumMinutes / 60}}</td>
                         <td>{{sumBillableHours}}</td>
                         <td></td>
                     </tr>
                 </table>
-                <button type="button" class="btn btn-default" ng-click="createBill()">{{ 'ACTIONS.SAVE' | translate }}</button>
-                <button type="button" class="btn btn-warning" ng-click="resetHours()">{{ 'ACTIONS.RESET' | translate }}</button>
+                <button type="button" class="btn btn-default" ng-click="createBill()" translate="ACTIONS.SAVE"></button>
+                <button type="button" class="btn btn-warning" ng-click="resetHours()" translate="ACTIONS.RESET"></button>
             </tab>
         </tabset>
 

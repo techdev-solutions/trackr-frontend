@@ -5,19 +5,19 @@
 
 <form class="form-horizontal" role="form">
     <div class="form-group">
-        <label class="col-sm-2 control-label">{{ 'EMPLOYEE.TITLE' | translate }}</label>
+        <label class="col-sm-2 control-label" translate="EMPLOYEE.TITLE"></label>
         <div class="col-sm-8">
             {{employee.title}}
         </div>
     </div>
     <div class="form-group">
-        <label class="col-sm-2 control-label">{{ 'EMPLOYEE.SALARY' | translate }}</label>
+        <label class="col-sm-2 control-label" translate="EMPLOYEE.SALARY"></label>
         <div class="col-sm-8">
             {{employee.salary}}
         </div>
     </div>
     <div class="form-group">
-        <label class="col-sm-2 control-label">{{ 'EMPLOYEE.PHONE_NUMBER' | translate }}</label>
+        <label class="col-sm-2 control-label" translate="EMPLOYEE.PHONE_NUMBER"></label>
         <div class="col-sm-8">
             <bs-edit entity="employee" property-name="phoneNumber" own-submit="updateEmployee"></bs-edit>
         </div>

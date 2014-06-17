@@ -14,39 +14,39 @@
             </div>
 
             <div class="form-group">
-                <label class="col-sm-3 control-label">{{ 'COMPANY.COMPANY_ID' | translate }}</label>
+                <label class="col-sm-3 control-label" translate="COMPANY.COMPANY_ID"></label>
                 <div class="col-sm-7">
                     <bs-edit entity="company" property-name="companyId" callback="companyIdChanged" error-callback="companyIdError" role="ROLE_ADMIN"></bs-edit>
                 </div>
             </div>
 
-            <h2>{{ 'ADDRESS.ADDRESS' | translate}}</h2>
+            <h2 translate="ADDRESS.ADDRESS"></h2>
             <div class="form-group">
-                <label class="col-sm-3 control-label">{{ 'ADDRESS.STREET' | translate }}</label>
+                <label class="col-sm-3 control-label" translate="ADDRESS.STREET"></label>
                 <div class="col-sm-7">
                     <bs-edit entity="address" property-name="street" role="ROLE_ADMIN"></bs-edit>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-3 control-label">{{ 'ADDRESS.HOUSE_NUMBER' | translate }}</label>
+                <label class="col-sm-3 control-label" translate="ADDRESS.HOUSE_NUMBER"></label>
                 <div class="col-sm-7">
                     <bs-edit entity="address" property-name="houseNumber" role="ROLE_ADMIN"></bs-edit>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-3 control-label">{{ 'ADDRESS.CITY' | translate }}</label>
+                <label class="col-sm-3 control-label" translate="ADDRESS.CITY"></label>
                 <div class="col-sm-7">
                     <bs-edit entity="address" property-name="city" role="ROLE_ADMIN"></bs-edit>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-3 control-label">{{ 'ADDRESS.ZIPCODE' | translate }}</label>
+                <label class="col-sm-3 control-label" translate="ADDRESS.ZIPCODE"></label>
                 <div class="col-sm-7">
                     <bs-edit entity="address" property-name="zipCode" role="ROLE_ADMIN"></bs-edit>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-3 control-label">{{ 'ADDRESS.COUNTRY' | translate }}</label>
+                <label class="col-sm-3 control-label" translate="ADDRESS.COUNTRY"></label>
                 <div class="col-sm-7">
                     <bs-edit entity="address" property-name="country" role="ROLE_ADMIN"></bs-edit>
                 </div>
@@ -54,7 +54,7 @@
         </form>
 
         <!-- Contact Persons BEGIN -->
-        <h3>{{ 'CONTACTPERSON.CONTACTPERSONS' | translate }}</h3>
+        <h3 translate="CONTACTPERSON.CONTACTPERSONS"></h3>
         <table>
             <tr ng-repeat="contactPerson in contactPersons">
                 <td><bs-edit entity="contactPerson" property-name="salutation" role="ROLE_SUPERVISOR"></bs-edit></td>
@@ -75,7 +75,7 @@
                 <bs-text path="newContactPerson.lastName" translate-code="CONTACTPERSON.LAST_NAME" property-name="lastName" inline="true" errors="contactPersonErrors"></bs-text>
                 <bs-text path="newContactPerson.email" translate-code="CONTACTPERSON.EMAIL" property-name="email" inline="true" errors="contactPersonErrors"></bs-text>
                 <bs-text path="newContactPerson.phone" translate-code="CONTACTPERSON.PHONE" property-name="phone" inline="true" errors="contactPersonErrors"></bs-text>
-                <button type="submit" class="btn btn-success">{{ 'ACTIONS.SAVE' | translate }}</button>
+                <button type="submit" class="btn btn-success" translate="ACTIONS.SAVE"></button>
             </form>
         </div>
         <!-- Contact Persons END -->

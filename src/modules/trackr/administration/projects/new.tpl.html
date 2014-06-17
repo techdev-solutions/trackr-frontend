@@ -1,5 +1,5 @@
 <div class="modal-header">
-    <h3>{{ 'PROJECT.CREATE_NEW' | translate }}</h3>
+    <h3 translate="PROJECT.CREATE_NEW"></h3>
 </div>
 <div class="modal-body">
 <form class="form-horizontal" action="">
@@ -11,7 +11,7 @@
     <bs-text property-name="fixedPrice" translate-code="PROJECT.FIXED_PRICE" path="project.fixedPrice"></bs-text>
 
     <div class="form-group">
-        <label class="form-label col-sm-2" for="company">{{ 'PROJECT.COMPANY' | translate }}</label>
+        <label class="form-label col-sm-2" for="company" translate="PROJECT.COMPANY"></label>
         <div class="col-sm-6">
             <input type="text" class="form-control" id="company"
                    ng-model="projectCompany"
@@ -22,7 +22,7 @@
     </div>
 
     <div class="form-group">
-        <label class="form-label col-sm-2" for="debitor">{{ 'PROJECT.DEBITOR' | translate }}</label>
+        <label class="form-label col-sm-2" for="debitor" translate="PROJECT.DEBITOR"></label>
         <div class="col-sm-6">
             <input type="text" class="form-control" id="debitor"
                    ng-model="projectDebitor"
@@ -34,6 +34,6 @@
 </form>
 </div>
 <div class="modal-footer">
-    <button type="button" class="btn btn-default" ng-click="cancel()">{{ 'ACTIONS.CANCEL' | translate }}</button>
-    <button type="submit" class="btn btn-primary" ng-click="saveProject(projectCompany, projectDebitor)">{{ 'ACTIONS.SAVE' | translate }}</button>
+    <button type="button" class="btn btn-default" ng-click="cancel()" translate="ACTIONS.CANCEL"></button>
+    <button type="submit" class="btn btn-primary" ng-click="saveProject(projectCompany, projectDebitor)" translate="ACTIONS.SAVE"></button>
 </div>
