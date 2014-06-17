@@ -1,4 +1,4 @@
-define(['lodash'], function(_) {
+define(['lodash', 'moment'], function(_, moment) {
     'use strict';
     return ['$scope', 'Restangular', '$filter', 'base.services.user', 'base.services.confirmation-dialog',
         function($scope, Restangular, $filter, UserService, ConfirmationDialogService) {
@@ -23,6 +23,18 @@ define(['lodash'], function(_) {
                     }).then(function(workTimes) {
                         $scope.workTimes = workTimes;
                     });
+            };
+
+            /**
+             * Calculate the difference in hours between end and start.
+             * @param endTime A string representing a time in the format HH:mm:ss
+             * @param startTime A string representing a time in the format HH:mm:ss
+             * @returns {*} The difference end - start with decimals (e.g. 8.5)
+             */
+            $scope.totalHours = function(endTime, startTime) {
+                var momentStart = moment(startTime, 'HH:mm:ss');
+                var momentEnd = moment(endTime, 'HH:mm:ss');
+                return momentEnd.diff(momentStart, 'hours', true);
             };
 
             $scope.remove = function(workTime) {

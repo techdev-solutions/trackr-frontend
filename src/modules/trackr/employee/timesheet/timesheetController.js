@@ -26,6 +26,16 @@ define(['moment'], function(moment) {
                 return $filter('date')(date, 'HH:mm:ss');
             };
 
+            /**
+             * Calculates the difference of end - start in hours (with decimals).
+             * @param endTime a date or string parseable by moment.js
+             * @param startTime a date or string parseable by moment.js
+             * @returns {*} The difference between end and start in hours (e.g. 8.5)
+             */
+            $scope.totalTime = function(endTime, startTime) {
+                return moment(endTime).diff(startTime, 'hours', true);
+            };
+
             controller.createWorkTimeEntity = function() {
                 var project;
                 if ($scope.project) {

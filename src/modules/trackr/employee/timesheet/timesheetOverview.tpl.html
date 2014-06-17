@@ -6,6 +6,7 @@
         <th>{{ 'WORKTIME.DATE' | translate }}</th>
         <th>{{ 'WORKTIME.START' | translate }}</th>
         <th>{{ 'WORKTIME.END' | translate }}</th>
+        <th>{{ 'WORKTIME.TOTAL_HOURS' | translate }}</th>
         <th>{{ 'WORKTIME.PROJECT' | translate }}</th>
         <th>{{ 'WORKTIME.COMMENT' | translate }}</th>
         <th>{{ 'ACTIONS.ACTIONS' | translate }}</th>
@@ -16,6 +17,7 @@
         <td>{{ workTime.date | date:'dd.MM.yyyy' }}</td>
         <td>{{ workTime.startTime }}</td>
         <td>{{ workTime.endTime }}</td>
+        <td>{{ totalHours(workTime.endTime, workTime.startTime) }}</td>
         <td>{{ workTime.project.name }}</td>
         <td>{{ workTime.comment }}</td>
         <td>

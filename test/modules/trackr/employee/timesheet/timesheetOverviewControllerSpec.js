@@ -14,5 +14,11 @@ define(['baseTestSetup'], function(baseTestSetup) {
             $httpBackend.flush();
             expect(scope.workTimes).toBeDefined();
         }));
+
+        it('totalHours must calculate the total hours with floating point', inject(function($httpBackend) {
+            $httpBackend.flush();
+            var totalHours = scope.totalHours('17:30:00', '08:00:00');
+            expect(totalHours).toBe(9.5);
+        }));
     });
 });

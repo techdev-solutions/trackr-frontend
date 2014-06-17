@@ -36,6 +36,13 @@
                 </div>
             </div>
 
+            <div class="form-group">
+                <label class="form-label col-sm-2" for="totalHours">{{ 'WORKTIME.TOTAL_HOURS' | translate }}</label>
+                <div class="col-sm-6">
+                    <span id="totalHours">{{ totalTime(endTime, startTime) }}</span>
+                </div>
+            </div>
+
             <bs-text property-name="comment" translate-code="WORKTIME.COMMENT" path="comment"></bs-text>
 
             <div class="form-group">

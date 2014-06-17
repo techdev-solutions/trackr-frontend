@@ -1,4 +1,4 @@
-define(['baseTestSetup'], function(baseTestSetup) {
+define(['baseTestSetup', 'moment'], function(baseTestSetup, moment) {
     'use strict';
     describe('trackr.employee.timesheetController', function() {
         var TimesheetController, scope;
@@ -47,5 +47,12 @@ define(['baseTestSetup'], function(baseTestSetup) {
             $httpBackend.expectPOST('api/workTimes');
             $httpBackend.flush();
         }));
+
+        it('totalTime must calculate the hours between two dates with floating point', function() {
+            var endTime = moment('17:30:00', 'HH:mm:ss');
+            var startTime = moment('08:00:00', 'HH:mm:ss');
+            var totalTime = scope.totalTime(endTime, startTime);
+            expect(totalTime).toBe(9.5);
+        });
     });
 });
