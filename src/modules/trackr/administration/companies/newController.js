@@ -3,7 +3,8 @@ define([], function () {
     return ['$scope', 'Restangular', '$modalInstance', '$filter', function($scope, Restangular, $modalInstance, $filter) {
         $scope.errors = [];
         $scope.company = {
-            address: {} //address may not be null. Won't be used in the controller.
+            //address may not be null. Won't be used in the controller.
+            address: {}
         };
         $scope.address = {};
 

@@ -38,7 +38,7 @@ define(['lodash'], function(_) {
                 function deleteExpense() {
                     Restangular.one('travelExpenses', expense.id).remove().then(function() {
                         _.remove($scope.report.expenses, function(e) {
-                            return e.id == expense.id;
+                            return e.id === expense.id;
                         });
                         $scope.totalCost = controller.recalculateTotal($scope.report.expenses);
                     });

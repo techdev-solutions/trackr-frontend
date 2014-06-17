@@ -13,7 +13,8 @@ define([], function() {
         var today = new Date();
         today.setDate(1);
         $scope.start = today;
-        $scope.end = new Date(today.getFullYear(), today.getMonth() + 1, 0, 23, 59, 59); //last day of current month
+        //last day of current month
+        $scope.end = new Date(today.getFullYear(), today.getMonth() + 1, 0, 23, 59, 59);
 
         $scope.$watch('start', callback);
         $scope.$watch('end', callback);

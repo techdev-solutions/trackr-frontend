@@ -17,7 +17,8 @@ define(['modules/trackr/supervisor/timeIntervalSetup'], function(timeIntervalSet
         };
 
         $scope.loadBillData = function() {
-            if($scope.project) {//only if the user has selected a project
+            //only if the user has selected a project
+            if($scope.project) {
                 $http.get('api/billableTimes/findEmployeeMappingByProjectAndDateBetween', {
                     params: {
                         project: $scope.project.id,
