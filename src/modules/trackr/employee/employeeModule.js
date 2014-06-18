@@ -1,4 +1,4 @@
-define(['angular', 'modules/trackr/employee/controllers'], function(angular, controllers) {
+define(['angular', 'modules/trackr/employee/controllers', 'moment'], function(angular, controllers, moment) {
     'use strict';
     var employee = angular.module('trackr.employee', []);
     employee.config(['$stateProvider', function($stateProvider) {
@@ -25,6 +25,18 @@ define(['angular', 'modules/trackr/employee/controllers'], function(angular, con
             .state('trackr.employee.timesheet', {
                 url: '/timesheet',
                 breadcrumbTranslateCode: 'PAGES.EMPLOYEE.TEXT_EDIT_TIMESHEET',
+                resolve: {
+                    holidays: ['employee', 'Restangular', function(employee, Restangular) {
+                        var start = moment().startOf('year');
+                        var end = moment().endOf('year').add('month', 1);
+                        return Restangular.allUrl('holidays', 'api/holidays/search/findByFederalStateAndDayBetween')
+                            .getList({
+                                state: employee.federalState.name,
+                                start: start.format('YYYY-MM-DD'),
+                                end: end.format('YYYY-MM-DD')
+                            });
+                    }]
+                },
                 views: {
                     'center@': {
                         templateUrl: 'src/modules/trackr/employee/timesheet/timesheet.tpl.html',

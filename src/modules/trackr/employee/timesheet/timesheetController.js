@@ -1,7 +1,7 @@
-define(['moment'], function(moment) {
+define(['moment', 'lodash'], function(moment, _) {
     'use strict';
-    return ['$scope', 'Restangular', 'trackr.services.employee', '$filter', 'base.services.notification',
-        function($scope, Restangular, EmployeeService, $filter, NotificationService) {
+    return ['$scope', 'Restangular', 'trackr.services.employee', '$filter', 'base.services.notification', 'holidays',
+        function($scope, Restangular, EmployeeService, $filter, NotificationService, holidays) {
             var controller = this;
             $scope.date = moment().toDate();
             $scope.startTime = moment().hour(9).minute(0).second(0).toDate();
@@ -54,20 +54,28 @@ define(['moment'], function(moment) {
             };
 
             /**
-             * Advance to the next monday-friday.
+             * Advance to the next monday-friday that is not a public holiday.
              * @param date The date to advance
              * @returns {date|*} The date advanced to the next day.
              */
             controller.advanceToNextWorkDay = function(date) {
-                var mdate = moment(date), daysToAdd = 1;
-                if(mdate.day() === 6) {
-                    //Saturday
-                    daysToAdd = 2;
-                } else if(mdate.day() === 5) {
-                    //Friday
-                    daysToAdd = 3;
+                var mdate = moment(date).add('days', 1);
+                while(!controller.isWorkDay(mdate, holidays)) {
+                    mdate.add('days', 1);
                 }
-                return mdate.add('days', daysToAdd).toDate();
+                return mdate.toDate();
+            };
+
+            /**
+             * Test if a day is a work day given a list of public holidays.
+             * @param date The date to test
+             * @param holidays A list of public holidays
+             * @returns {boolean} true if the date is a monday-friday that is not in the list, false otherwise.
+             */
+            controller.isWorkDay = function(date, holidays) {
+                return date.day() !== 6 && date.day() !== 0 && !_.find(holidays, function(holiday) {
+                    return holiday.day === date.format('YYYY-MM-DD');
+                });
             };
 
             $scope.saveTime = function() {

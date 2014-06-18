@@ -12,7 +12,8 @@ define(['baseTestSetup', 'moment'], function(baseTestSetup, moment) {
             };
             TimesheetController = $controller('trackr.employee.controllers.timesheet', {
                 $scope: scope,
-                'trackr.services.employee': EmployeeService
+                'trackr.services.employee': EmployeeService,
+                holidays: []
             });
         }));
 
