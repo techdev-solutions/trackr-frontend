@@ -18,6 +18,7 @@ define(['lodash'], function(_) {
         //When the user selects the date employee will get updated and we to have recalculate.
         $scope.$watch('employee', function() {
             $scope.sumMinutes = controller.sumUpFieldsOfArray('enteredMinutes', $scope.employee.workTimes);
+            $scope.recalculateBillableSum();
         });
 
         $scope.recalculateBillableSum = function() {
