@@ -4,6 +4,7 @@ require.config({
         'jQuery': 'vendor/jquery/dist/jquery',
         'twitter-bootstrap': 'vendor/bootstrap/dist/js/bootstrap',
         'angular': 'vendor/angular/angular',
+        'angular-l10n-de': 'vendor/angular-i18n/angular-locale_de-de',
         'angular-ui-router': 'vendor/angular-ui-router/release/angular-ui-router',
         'restangular': 'vendor/restangular/dist/restangular',
         'lodash': 'vendor/lodash/dist/lodash',
@@ -15,6 +16,7 @@ require.config({
     },
     shim: {
         'angular': { exports: 'angular', deps: ['jQuery'] },
+        'angular-l10n-de': { deps: ['angular'] },
         'angular-ui-router': { deps: ['angular']},
         'jQuery': { exports: '$' },
         'twitter-bootstrap': { deps: ['jQuery'] },
@@ -27,7 +29,7 @@ require.config({
     }
 });
 
-var dependencies = ['angular', 'require', 'app'];
+var dependencies = ['angular', 'require', 'app', 'angular-l10n-de'];
 require(dependencies, function() {
     'use strict';
 });

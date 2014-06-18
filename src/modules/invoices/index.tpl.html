@@ -26,7 +26,7 @@
             <tr ng-repeat="invoice in invoices[state]">
                 <td>{{invoice.identifier}}</td>
                 <td>{{ invoice.creationDate | date:'dd.MM.yyyy' }}</td>
-                <td>{{invoice.invoiceTotal}}</td>
+                <td>{{ invoice.invoiceTotal | currency:'€' }}</td>
                 <td>{{invoice.debitor.name}}</td>
                 <td>{{ invoice.dueDate | date:'dd.MM.yyyy' }}</td>
                 <td translate="{{ 'INVOICE.' + invoice.invoiceState }}"></td>

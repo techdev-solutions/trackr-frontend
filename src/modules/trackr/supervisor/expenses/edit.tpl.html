@@ -15,7 +15,7 @@
         <td>{{ expense.fromDate | date:'dd.MM.yyyy'}}</td>
         <td>{{ expense.toDate | date:'dd.MM.yyyy'}}</td>
         <td>{{ expense.vat }} %</td>
-        <td>{{ expense.cost }} €</td>
+        <td>{{ expense.cost | currency:'€' }}</td>
         <td>{{ expense.submissionDate | date:'dd.MM.yyyy HH:mm:ss' }}</td>
     </tr>
 </table>

@@ -41,7 +41,7 @@
             </tr>
             <tr>
                 <td translate="PROJECT.HOURLY_RATE"></td>
-                <td>{{project.hourlyRate}} €</td>
+                <td>{{ project.hourlyRate | currency:'€' }}</td>
             </tr>
         </table>
     </div>
@@ -51,8 +51,8 @@
             <table class="table table-condensed table-bordered">
                 <tr><td translate="PAGES.SUPERVISOR.BILL_CREATE.HOURS"></td><td>{{minutes / 60}} h</td></tr>
                 <tr><td translate="PAGES.SUPERVISOR.BILL_CREATE.MAN_DAYS"></td><td>{{(minutes / 60) / 8}} d</td></tr>
-                <tr><td translate="PAGES.SUPERVISOR.BILL_CREATE.NET_PRICE"></td><td>{{(minutes / 60) * project.hourlyRate}} €</td></tr>
-                <tr><td translate="PAGES.SUPERVISOR.BILL_CREATE.GROSS_PRICE"></td><td>{{(minutes / 60) * project.hourlyRate * 1.19}} €</td></tr>
+                <tr><td translate="PAGES.SUPERVISOR.BILL_CREATE.NET_PRICE"></td><td>{{(minutes / 60) * project.hourlyRate | currency }}</td></tr>
+                <tr><td translate="PAGES.SUPERVISOR.BILL_CREATE.GROSS_PRICE"></td><td>{{(minutes / 60) * project.hourlyRate * 1.19 | currency}}</td></tr>
             </table>
         </tab>
     </tabset>
