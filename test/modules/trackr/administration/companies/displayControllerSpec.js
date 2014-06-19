@@ -11,17 +11,24 @@ define(['baseTestSetup', 'confirmationServiceMock'], function(baseTestSetup, con
             DisplayController = $controller('trackr.administration.controllers.companies.display', {
                 $scope: scope,
                 $stateParams: stateParams,
-                'base.services.confirmation-dialog': confirmationServiceMock
+                'base.services.confirmation-dialog': confirmationServiceMock,
+                'shared.services.create-or-update-modal': {
+                    showModal: function(ctrl, tpl, head, userdata) {
+                        return {
+                            result: {
+                                then: function(cb) {
+                                    cb(userdata);
+                                }
+                            }
+                        };
+                    }
+                }
             });
         }));
 
         beforeEach(inject(function($httpBackend) {
             $httpBackend.flush();
         }));
-
-        it('must have an empty object for a new contact person', function() {
-            expect(scope.newContactPerson).toBeDefined();
-        });
 
         it('must load the company at start', function() {
             expect(scope.company).toBeDefined();
@@ -34,20 +41,17 @@ define(['baseTestSetup', 'confirmationServiceMock'], function(baseTestSetup, con
             $httpBackend.flush();
         }));
 
-        it('must switch the showContactPerson form', inject(function() {
-            scope.doShowContactPersonForm(false);
-            expect(scope.showContactPersonForm).toBe(false);
-            scope.doShowContactPersonForm(true);
-            expect(scope.showContactPersonForm).toBe(true);
-        }));
-
-        it('Must add a new contact person on saveNewContactPerson', inject(function($httpBackend) {
+        it('Must push the new contact person into the array after createNewContactPerson has succeeded', function() {
             var numberOfContactPersons = scope.company.contactPersons.length;
-            scope.newContactPerson = scope.company.contactPersons[0];
-            scope.saveNewContactPerson();
-            $httpBackend.expectPOST('api/contactPersons');
-            $httpBackend.flush();
+            scope.createNewContactPerson(scope.company);
             expect(scope.company.contactPersons.length).toBe(numberOfContactPersons + 1);
-        }));
+        });
+
+        it('Must update the contact person in the array after editContactPerson has succeeded', function() {
+            var contactPerson = scope.company.contactPersons[0];
+            contactPerson.firstName = 'TESTVALUE';
+            scope.editContactPerson(contactPerson, scope.company);
+            expect(scope.company.contactPersons[0].firstName).toBe('TESTVALUE');
+        });
     });
 });
