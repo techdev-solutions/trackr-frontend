@@ -33,91 +33,128 @@ define(['fixtures'], function(fixtures) {
             });
         }
 
-        mockRoot('api/credentials');
-        mockRoot('api/contactPersons');
+        /**
+         * Mock patching a single entitiy
+         * @param url The url to mock (e.g. 'api/credentials'
+         */
+        function mockPatch(url) {
+            var pattern = new RegExp('^' + url + '/\\d+$');
+            $httpBackend.whenPATCH(pattern).respond(function(method, url, data) {
+                return [200, data];
+            });
+        }
+
+        //##### -- ADDRESSES
+        mockPatch('api/addresses');
+
+        //##### -- AUTHORITIES
         mockRoot('api/authorities');
-        mockRoot('api/projects');
-        mockRoot('api/employees');
-        mockRoot('api/companies');
-        mockRoot('api/federalStates');
-        mockRoot('api/invoices');
+        $httpBackend.whenGET(/^api\/authorities\/[\d]+$/).respond(fixtures['api/authorities']._embedded.authorities[0]);
 
-        $httpBackend.when('GET', /^api\/credentials\/[\d]+$/).respond(fixtures['api/credentials']._embedded.credentials[0]);
-        $httpBackend.when('GET', /^api\/credentials\/[\d]+\/authorities$/).respond(fixtures['api/authorities']._embedded.authorities);
-        $httpBackend.when('GET', /^api\/contactPersons\/[\d]+$/).respond(fixtures['api/contactPersons']._embedded.contactPersons[0]);
-        $httpBackend.when('GET', /^api\/authorities\/[\d]+$/).respond(fixtures['api/authorities']._embedded.authorities[0]);
-        $httpBackend.when('GET', /^api\/projects\/[\d]+$/).respond(fixtures['api/projects']._embedded.projects[0]);
-        $httpBackend.when('GET', /^api\/employees\/[\d]+$/).respond(fixtures['api/employees']._embedded.employees[0]);
-        $httpBackend.when('GET', /^api\/employees\/[\d]+\/credential$/).respond(fixtures['api/credentials']._embedded.credentials[0]);
-        $httpBackend.when('GET', /^api\/companies\/[\d]+$/).respond(fixtures['api/companies']._embedded.companies[0]);
-        $httpBackend.when('GET', /^api\/companies\/[\d]+\/address$/).respond(fixtures['api/addresses']._embedded.addresses[0]);
-        $httpBackend.when('GET', /^api\/companies\/[\d]+\/contactPersons/).respond(fixtures['api/contactPersons']);
-        $httpBackend.when('GET', /^api\/companies\/[\d]+\/projects/).respond(fixtures['api/projects']);
-
-        $httpBackend.whenGET(/api\/workTimes\/findEmployeeMappingByProjectAndDateBetween\?.*/)
-            .respond(fixtures['api/workTimes/findEmployeeMappingByProjectAndDateBetween']);
-        $httpBackend.whenGET(/api\/workTimes\/search\/findByEmployeeAndDateBetweenOrderByDateAscStartTimeAsc\?.*/)
-            .respond(fixtures['api/workTimes']);
-        $httpBackend.whenGET(/api\/workTimes\/\d+\/project/).respond(fixtures['api/projects']._embedded.projects[0]);
-
+        //#### -- BILLABLE TIMES
+        mockPost('api/billableTimes');
         $httpBackend.whenGET(/^api\/billableTimes\/findEmployeeMappingByProjectAndDateBetween\?.*/)
             .respond(fixtures['api/billableTimes']);
 
-        $httpBackend.whenGET(/api\/projects\/search\/findByNameLikeIgnoreCaseOrIdentifierLikeIgnoreCaseOrderByNameAsc\?.*/)
+        //#### -- COMPANIES
+        mockRoot('api/companies');
+        mockPost('api/companies/createWithAddress');
+        mockPatch('api/companies');
+        $httpBackend.when('GET', /^api\/companies\/[\d]+$/)
+            .respond(fixtures['api/companies']._embedded.companies[0]);
+        $httpBackend.when('GET', /^api\/companies\/[\d]+\/projects/)
             .respond(fixtures['api/projects']);
+        $httpBackend.whenGET(/^api\/companies\/search\/findByCompanyId\?companyId=\w+$/)
+            .respond(fixtures['api/companies']);
+        $httpBackend.whenGET(/^api\/companies\/search\/findByCompanyId\?companyId=\w+&projection=\w+$/)
+            .respond(function() {
+                var response = fixtures['api/companies'];
+                response._embedded.companies[0].address = fixtures['api/addresses']._embedded.addresses[0];
+                response._embedded.companies[0].contactPersons = fixtures['api/contactPersons']._embedded.contactPersons;
+                return [200, response];
+            });
+        $httpBackend.whenGET(/^api\/companies\/search\/findByNameLikeIgnoreCaseOrderByNameAsc\?.*/)
+            .respond(fixtures['api/companies']);
 
-        $httpBackend.whenGET(/api\/projects\/search\/findByIdentifier\?.*/).respond(fixtures['api/projects']);
-
-        $httpBackend.whenGET(/^api\/vacationRequests\/search\/findByEmployeeOrderByStartDateAsc\?.*/).respond(fixtures['api/vacationRequests']);
-        $httpBackend.whenGET(/^api\/vacationRequests\/search\/findByStatusOrderBySubmissionTimeAsc\?.*/).respond(fixtures['api/vacationRequests']);
-
-        $httpBackend.whenGET(/^api\/invoices\/search\/findByInvoiceState\?page=\d+&projection=\w+&size=\d+&sort=creationDate&state=\w+/).respond(fixtures['api/invoices']);
-        $httpBackend.whenGET(/^api\/invoices\/search\/findByIdentifierLikeIgnoreCaseAndInvoiceState\?identifier=%25\w+%25&page=\d+&projection=\w+&size=\d+&sort=creationDate&state=\w+/).respond(fixtures['api/invoices']);
-
-        $httpBackend.whenDELETE(/^api\/vacationRequests\/\d+/).respond([204]);
-
+        //#### -- CONTACT PERSONS
+        mockRoot('api/contactPersons');
+        mockPost('api/contactPersons');
+        $httpBackend.whenGET(/^api\/contactPersons\/[\d]+$/).respond(fixtures['api/contactPersons']._embedded.contactPersons[0]);
         $httpBackend.whenDELETE(/^api\/contactPersons\/\d+/).respond([204]);
 
-        $httpBackend.whenGET(/^api\/travelExpenseReports\/\d+\?projection=\w+/).respond(function() {
-            var fixture = fixtures['api/travelExpenseReports']._embedded.travelExpenseReports[0];
-            fixture.expenses = fixtures['api/travelExpenses']._embedded.travelExpenses;
-            return [200, fixture];
-        });
+        //#### -- CREDENTIALS
+        mockRoot('api/credentials');
+        mockPatch('api/credentials');
+        $httpBackend.whenGET(/^api\/credentials\/\d+$/).respond(fixtures['api/credentials']._embedded.credentials[0]);
+        $httpBackend.whenGET(/^api\/credentials\/\d+\/authorities$/).respond(fixtures['api/authorities']._embedded.authorities);
+        $httpBackend.whenDELETE(/^api\/credentials\/\d+\/authorities\/\d+/).respond([204]);
+        $httpBackend.whenPATCH(/^api\/credentials\/\d+\/authorities/).respond([204]);
 
-        $httpBackend.whenGET('api/travelExpenseReports/search/findByEmployeeOrderByStatusAsc').respond(fixtures['api/travelExpenseReports']);
-
-        mockPost('api/contactPersons');
-        mockPost('api/billableTimes');
-        mockPost('api/workTimes');
-        mockPost('api/companies/createWithAddress');
+        //#### -- EMPLOYEES
+        mockRoot('api/employees');
+        mockPatch('api/employees');
         mockPost('api/employees/createWithCredential');
-        mockPost('api/projects');
-        mockPost('api/vacationRequests');
-        mockPost('api/travelExpenses');
-        mockPost('api/travelExpenseReports');
-        mockPost('api/invoices');
-
-        $httpBackend.whenPATCH(/^api\/credentials\/\d+$/).respond(function(method, url, data) {
-            return [200, data];
-        });
-
-        $httpBackend.whenPATCH(/^api\/companies\/\d+$/).respond(function(method, url, data) {
-            return [200, data];
-        });
-
-        $httpBackend.whenPATCH(/^api\/addresses\/\d+$/).respond(function(method, url, data) {
-            return [200, data];
-        });
-
-        $httpBackend.whenPATCH(/^api\/employees\/\d+$/).respond(function(method, url, data) {
-            return [200, data];
-        });
+        $httpBackend.whenGET(/^api\/employees\/\d+$/).respond(fixtures['api/employees']._embedded.employees[0]);
+        $httpBackend.whenGET(/^api\/employees\/\d+\/credential$/).respond(fixtures['api/credentials']._embedded.credentials[0]);
         $httpBackend.whenPATCH(/^api\/employees\/\d+\/self$/).respond(function(method, url, data) {
             return [200, data];
         });
 
+        //#### -- FEDERAL STATES
+        mockRoot('api/federalStates');
+
+        //#### -- INVOICES
+        mockRoot('api/invoices');
+        mockPost('api/invoices');
+        $httpBackend.whenGET(/^api\/invoices\/search\/findByInvoiceState\?page=\d+&projection=\w+&size=\d+&sort=creationDate&state=\w+/)
+            .respond(fixtures['api/invoices']);
+        $httpBackend.whenGET(/^api\/invoices\/search\/findByIdentifierLikeIgnoreCaseAndInvoiceState\?identifier=%25\w+%25&page=\d+&projection=\w+&size=\d+&sort=creationDate&state=\w+/)
+            .respond(fixtures['api/invoices']);
+        $httpBackend.whenPOST(/^api\/invoices\/\d+\/markPaid$/)
+            .respond([204, 'Ok.']);
+
+        //#### -- PROJECTS
+        mockRoot('api/projects');
+        mockPost('api/projects');
+        $httpBackend.whenGET(/^api\/projects\/\d+$/)
+            .respond(fixtures['api/projects']._embedded.projects[0]);
+        $httpBackend.whenGET(/api\/projects\/search\/findByNameLikeIgnoreCaseOrIdentifierLikeIgnoreCaseOrderByNameAsc\?.*/)
+            .respond(fixtures['api/projects']);
+        $httpBackend.whenGET(/api\/projects\/search\/findByIdentifier\?.*/)
+            .respond(fixtures['api/projects']);
+
+        //#### -- TRAVEL EXPENSES
+        mockPost('api/travelExpenses');
+        mockPatch('api/travelExpenses');
+        $httpBackend.whenDELETE(/^api\/travelExpenses\/\d+/).respond([204]);
+
+        //#### -- TRAVEL EXPENSE REPORTS
+        mockPost('api/travelExpenseReports');
+        $httpBackend.whenGET(/^api\/travelExpenseReports\/\d+\?projection=\w+/)
+            .respond(function() {
+                var fixture = fixtures['api/travelExpenseReports']._embedded.travelExpenseReports[0];
+                fixture.expenses = fixtures['api/travelExpenses']._embedded.travelExpenses;
+                return [200, fixture];
+            });
+        $httpBackend.whenGET('api/travelExpenseReports/search/findByEmployeeOrderByStatusAsc')
+            .respond(fixtures['api/travelExpenseReports']);
+        $httpBackend.whenPUT(/^api\/travelExpenseReports\/\d+\/submit/)
+            .respond([204]);
+        $httpBackend.whenPUT(/^api\/travelExpenseReports\/\d+\/approve/)
+            .respond([204]);
+        $httpBackend.whenPUT(/^api\/travelExpenseReports\/\d+\/reject/)
+            .respond([204]);
+
+        //#### -- TRANSLATIONS
         $httpBackend.whenPUT(/^api\/translations\?.*/).respond({});
 
+        //#### -- VACATION REQUESTS
+        mockPost('api/vacationRequests');
+        $httpBackend.whenGET(/^api\/vacationRequests\/search\/findByEmployeeOrderByStartDateAsc\?.*/)
+            .respond(fixtures['api/vacationRequests']);
+        $httpBackend.whenGET(/^api\/vacationRequests\/search\/findByStatusOrderBySubmissionTimeAsc\?.*/)
+            .respond(fixtures['api/vacationRequests']);
+        $httpBackend.whenDELETE(/^api\/vacationRequests\/\d+/).respond([204]);
         $httpBackend.whenPUT(/^api\/vacationRequests\/\d+\/approve/).respond(function() {
             return [200, {
                 approver: 'api/employees/0',
@@ -133,29 +170,14 @@ define(['fixtures'], function(fixtures) {
             }];
         });
 
-        $httpBackend.whenGET(/^api\/companies\/search\/findByCompanyId\?companyId=\w+$/).respond(fixtures['api/companies']);
-        $httpBackend.whenGET(/^api\/companies\/search\/findByCompanyId\?companyId=\w+&projection=\w+$/)
-            .respond(function() {
-                var response = fixtures['api/companies'];
-                response._embedded.companies[0].address = fixtures['api/addresses']._embedded.addresses[0];
-                response._embedded.companies[0].contactPersons = fixtures['api/contactPersons']._embedded.contactPersons;
-                return [200, response];
-            });
-        $httpBackend.whenGET(/^api\/companies\/search\/findByNameLikeIgnoreCaseOrderByNameAsc\?.*/).respond(fixtures['api/companies']);
+        //#### -- WORK TIMES
+        mockPost('api/workTimes');
+        $httpBackend.whenGET(/api\/workTimes\/findEmployeeMappingByProjectAndDateBetween\?.*/)
+            .respond(fixtures['api/workTimes/findEmployeeMappingByProjectAndDateBetween']);
+        $httpBackend.whenGET(/api\/workTimes\/search\/findByEmployeeAndDateBetweenOrderByDateAscStartTimeAsc\?.*/)
+            .respond(fixtures['api/workTimes']);
+        $httpBackend.whenGET(/api\/workTimes\/\d+\/project/).respond(fixtures['api/projects']._embedded.projects[0]);
 
-        $httpBackend.whenDELETE(/^api\/credentials\/\d+\/authorities\/\d+/).respond([204]);
-        $httpBackend.whenPATCH(/^api\/credentials\/\d+\/authorities/).respond([204]);
-
-        $httpBackend.whenDELETE(/^api\/travelExpenses\/\d+/).respond([204]);
-        $httpBackend.whenPATCH((/^api\/travelExpenses\/\d+/)).respond(function(method, url, data) {
-            return [200, data];
-        });
-
-        $httpBackend.whenPUT(/^api\/travelExpenseReports\/\d+\/submit/).respond([204]);
-        $httpBackend.whenPUT(/^api\/travelExpenseReports\/\d+\/approve/).respond([204]);
-        $httpBackend.whenPUT(/^api\/travelExpenseReports\/\d+\/reject/).respond([204]);
-
-        $httpBackend.whenPOST(/^api\/invoices\/\d+\/markPaid$/).respond([204, 'Ok.']);
 
         /* ############################ TEMPLATES ########################### */
         /*
