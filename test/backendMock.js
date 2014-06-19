@@ -101,6 +101,14 @@ define(['fixtures'], function(fixtures) {
             return [200, data];
         });
 
+        $httpBackend.whenPATCH(/^api\/companies\/\d+$/).respond(function(method, url, data) {
+            return [200, data];
+        });
+
+        $httpBackend.whenPATCH(/^api\/addresses\/\d+$/).respond(function(method, url, data) {
+            return [200, data];
+        });
+
         $httpBackend.whenPATCH(/^api\/employees\/\d+$/).respond(function(method, url, data) {
             return [200, data];
         });
@@ -125,7 +133,14 @@ define(['fixtures'], function(fixtures) {
             }];
         });
 
-        $httpBackend.whenGET(/^api\/companies\/search\/findByCompanyId\?.*/).respond(fixtures['api/companies']);
+        $httpBackend.whenGET(/^api\/companies\/search\/findByCompanyId\?companyId=\w+$/).respond(fixtures['api/companies']);
+        $httpBackend.whenGET(/^api\/companies\/search\/findByCompanyId\?companyId=\w+&projection=\w+$/)
+            .respond(function() {
+                var response = fixtures['api/companies'];
+                response._embedded.companies[0].address = fixtures['api/addresses']._embedded.addresses[0];
+                response._embedded.companies[0].contactPersons = fixtures['api/contactPersons']._embedded.contactPersons;
+                return [200, response];
+            });
         $httpBackend.whenGET(/^api\/companies\/search\/findByNameLikeIgnoreCaseOrderByNameAsc\?.*/).respond(fixtures['api/companies']);
 
         $httpBackend.whenDELETE(/^api\/credentials\/\d+\/authorities\/\d+/).respond([204]);

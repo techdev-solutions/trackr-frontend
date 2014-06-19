@@ -1,0 +1,54 @@
+<section class="panel panel-default">
+
+    <div class="panel-body">
+
+        <h1 class="page-header">{{company.name}}
+            <button type="button" class="pull-right btn btn-default btn-sm" ng-click="showEditForm()">
+                <span class="glyphicon glyphicon-pencil"></span>
+            </button>
+        </h1>
+        <dl class="dl-horizontal">
+            <dt translate="COMPANY.COMPANY_ID"></dt>
+            <dd>{{company.companyId}}</dd>
+        </dl>
+        <h2 translate="ADDRESS.ADDRESS"></h2>
+        <dl class="dl-horizontal">
+            <dt translate="ADDRESS.STREET"></dt>
+            <dd>{{company.address.street}}</dd>
+            <dt translate="ADDRESS.HOUSE_NUMBER"></dt>
+            <dd>{{company.address.houseNumber}}</dd>
+            <dt translate="ADDRESS.CITY"></dt>
+            <dd>{{company.address.city}}</dd>
+            <dt translate="ADDRESS.ZIPCODE"></dt>
+            <dd>{{company.address.zipCode}}</dd>
+            <dt translate="ADDRESS.COUNTRY"></dt>
+            <dd>{{company.address.country}}</dd>
+        </dl>
+
+        <h2 translate="CONTACTPERSON.CONTACTPERSONS"></h2>
+        <table class="table table-condensed">
+            <tr ng-repeat="contactPerson in company.contactPersons">
+                <td>{{contactPerson.salutation}}</td>
+                <td>{{contactPerson.firstName}}</td>
+                <td>{{contactPerson.lastName}}</td>
+                <td><a href="mailto:{{contactPerson.email}}">{{contactPerson.email}}</a></td>
+                <td>{{contactPerson.phone}}</td>
+                <td has-authority="ROLE_SUPERVISOR"><a href ng-click="removeContactPerson(contactPerson)"><span class="glyphicon glyphicon-trash"></span></a></td>
+            </tr>
+        </table>
+        <div has-authority="ROLE_SUPERVISOR">
+            <button class="btn btn-sm btn-default" ng-click="doShowContactPersonForm(true)">
+                <span class="glyphicon glyphicon-plus"></span>
+            </button>
+            <form ng-show="showContactPersonForm" class="form-inline" role="form" ng-submit="saveNewContactPerson()">
+                <bs-text path="newContactPerson.salutation" translate-code="CONTACTPERSON.SALUTATION" property-name="salutation" inline="true"></bs-text>
+                <bs-text path="newContactPerson.firstName" translate-code="CONTACTPERSON.FIRST_NAME" property-name="firstName" inline="true"></bs-text>
+                <bs-text path="newContactPerson.lastName" translate-code="CONTACTPERSON.LAST_NAME" property-name="lastName" inline="true"></bs-text>
+                <bs-text path="newContactPerson.email" translate-code="CONTACTPERSON.EMAIL" property-name="email" inline="true"></bs-text>
+                <bs-text path="newContactPerson.phone" translate-code="CONTACTPERSON.PHONE" property-name="phone" inline="true"></bs-text>
+                <button type="submit" class="btn btn-success" translate="ACTIONS.SAVE"></button>
+            </form>
+        </div>
+    </div>
+
+</section>

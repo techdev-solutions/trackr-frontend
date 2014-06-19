@@ -29,8 +29,8 @@ define(['angular', 'modules/trackr/administration/controllers'], function(angula
             url: '/{id:[\\d]+}',
             views: {
                 'company': {
-                    templateUrl: 'src/modules/trackr/administration/companies/edit.tpl.html',
-                    controller: 'trackr.administration.controllers.companies.edit'
+                    templateUrl: 'src/modules/trackr/administration/companies/display.tpl.html',
+                    controller: 'trackr.administration.controllers.companies.display'
                 }
             },
             needsAuthority: 'ROLE_SUPERVISOR'

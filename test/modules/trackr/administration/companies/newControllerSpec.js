@@ -5,31 +5,18 @@ define(['baseTestSetup', 'angular'], function(baseTestSetup, angular) {
         baseTestSetup();
         beforeEach(inject(function($controller, $rootScope) {
             scope = $rootScope.$new();
+            scope.closeModal = angular.noop;
             NewController = $controller('trackr.administration.controllers.companies.new', {
-                $scope: scope,
-                //for now mocked here
-                //TODO: find out why the provider is not available
-                $modalInstance: {
-                    dismiss: angular.noop,
-                    close: angular.noop
-                }
+                $scope: scope
             });
         }));
-
-        it('must have an errors object', function() {
-            expect(scope.errors).toBeDefined();
-        });
 
         it('must have a new company object', function() {
             expect(scope.company).toBeDefined();
         });
 
-        it('must have a new address object', function() {
-            expect(scope.address).toBeDefined();
-        });
-
         it('must save the company and address', inject(function($httpBackend) {
-            scope.saveCompany();
+            scope.saveEntity();
             $httpBackend.expectPOST('api/companies/createWithAddress');
             $httpBackend.flush();
         }));
