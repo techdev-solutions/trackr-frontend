@@ -45,7 +45,7 @@ define(['lodash'], function(_) {
             Restangular.one('companies', company.id).patch(company).then(function() {
                 var address = $scope.company.address;
                 Restangular.one('addresses', address.id).patch(address).then(function() {
-                    $scope.closeModal(company);
+                    $scope.closeModal($scope.company);
                 }, function(response) {
                     $scope.errors = controller.addPrefixToErrorProperties(response.data.errors, 'address');
                 });

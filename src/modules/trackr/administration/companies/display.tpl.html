@@ -3,7 +3,7 @@
     <div class="panel-body">
 
         <h1 class="page-header">{{company.name}}
-            <button type="button" class="pull-right btn btn-default btn-sm" ng-click="showEditForm()">
+            <button has-authority="ROLE_ADMIN" type="button" class="pull-right btn btn-default btn-sm" ng-click="showEditForm()">
                 <span class="glyphicon glyphicon-pencil"></span>
             </button>
         </h1>
