@@ -34,6 +34,9 @@
                     <button ng-show="state !== 'PAID'" ng-click="markPaid(invoice)" type="button" class="btn btn-default btn-xs">
                         <span class="glyphicon glyphicon-ok"></span>
                     </button>
+                    <button ng-show="state !== 'PAID'" ng-click="showEditForm(invoice)" type="button" class="btn btn-default btn-xs">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                    </button>
                     <button ng-click="remove(invoice)" type="button" class="btn btn-default btn-xs">
                         <span class="glyphicon glyphicon-trash"></span>
                     </button>

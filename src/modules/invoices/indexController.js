@@ -1,7 +1,7 @@
 define(['modules/shared/PaginationLoader'], function(PaginationLoader) {
     'use strict';
-    return ['$scope', '$modal', 'Restangular', '$http', 'base.services.confirmation-dialog',
-        function($scope, $modal, Restangular, $http, ConfirmationDialogService) {
+    return ['$scope', 'Restangular', '$http', 'base.services.confirmation-dialog', 'shared.services.create-or-update-modal',
+        function($scope, Restangular, $http, ConfirmationDialogService, createOrUpdateModalService) {
             var controller = this;
             $scope.invoices = {};
             $scope.searchQuery = '';
@@ -89,15 +89,14 @@ define(['modules/shared/PaginationLoader'], function(PaginationLoader) {
              * @returns {*} The modal instance.
              */
             $scope.addNew = function() {
-                var modalInstance = $modal.open({
-                    backdrop: 'static',
-                    templateUrl: 'src/modules/invoices/new.tpl.html',
-                    controller: 'invoices.controllers.new'
-                });
-                modalInstance.result.then(function(invoice) {
+                var $modalInstance = createOrUpdateModalService
+                    .showModal('invoices.controllers.new',
+                    'src/modules/invoices/newOrEdit.tpl.html',
+                    'INVOICE.CREATE_NEW'
+                );
+                $modalInstance.result.then(function(invoice) {
                     controller.refreshPage(invoice.invoiceState);
                 });
-                return modalInstance;
             };
 
             /**
@@ -112,6 +111,16 @@ define(['modules/shared/PaginationLoader'], function(PaginationLoader) {
                 }
 
                 ConfirmationDialogService.openConfirmationDialog('ACTIONS.REALLY_DELETE').result.then(deleteInvoice);
+            };
+
+            $scope.showEditForm = function(invoice) {
+                var $modalInstance = createOrUpdateModalService
+                    .showModal('invoices.controllers.edit',
+                    'src/modules/invoices/newOrEdit.tpl.html',
+                    'ACTIONS.EDIT', invoice);
+                $modalInstance.result.then(function(editedInvoice) {
+                    controller.refreshPage(editedInvoice.invoiceState);
+                });
             };
 
             /**

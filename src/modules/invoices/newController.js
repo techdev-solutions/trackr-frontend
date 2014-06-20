@@ -1,11 +1,11 @@
-define([], function() {
+define(['lodash'], function(_) {
     'use strict';
-    return ['$scope', '$modalInstance', 'Restangular', '$filter', 'base.services.notification',
-        function($scope, $modalInstance, Restangular, $filter, NotificationService) {
+    return ['$scope', 'Restangular', '$filter', 'base.services.notification',
+        function($scope, Restangular, $filter, NotificationService) {
             var controller = this;
-            $scope.errors = [];
+            $scope.invoice = {};
 
-            controller.postErrorHandler = function(response) {
+            controller.onFail = function(response) {
                 if (response.status === 409) {
                     $scope.errors = [{
                             entity: 'invoice',
@@ -17,27 +17,31 @@ define([], function() {
                 }
             };
 
-            $scope.saveInvoice = function(invoice, debitor) {
-                invoice = invoice || {};
-                if (debitor) {
-                    invoice.debitor = debitor._links.self.href;
+            controller.saveInvoice = function(invoice) {
+                var invoiceEntity = _.clone(invoice, false);
+
+                if(invoice.debitor) {
+                    var debitorHref = invoice.debitor._links.self.href;
+                    invoiceEntity.debitor = debitorHref.substr(0, debitorHref.indexOf('{'));
                 }
-                invoice.invoiceState = 'OUTSTANDING';
-                Restangular.all('invoices').post(invoice)
+
+                invoiceEntity.invoiceState = 'OUTSTANDING';
+                Restangular.all('invoices').post(invoiceEntity)
                     .then(function(response) {
-                        $modalInstance.close(response);
+                        $scope.closeModal(response);
                         NotificationService.info(
-                            $filter('translate')('INVOICE.INVOICE_CREATED') + ' (' + $filter('translate')('INVOICE.' + response.invoiceState) + ')'
+                                $filter('translate')('INVOICE.INVOICE_CREATED') + ' (' + $filter('translate')('INVOICE.' + response.invoiceState) + ')'
                         );
-                    }, controller.postErrorHandler);
+                    }, controller.onFail);
+            };
+
+            $scope.saveEntity = function() {
+                controller.saveInvoice($scope.invoice);
             };
 
             $scope.getCompanies = function(searchString) {
-                return Restangular.allUrl('companies', 'api/companies/search/findByNameLikeIgnoreCaseOrderByNameAsc').getList({name: '%' + searchString + '%'});
-            };
-
-            $scope.cancel = function() {
-                $modalInstance.dismiss();
+                return Restangular.allUrl('companies', 'api/companies/search/findByNameLikeIgnoreCaseOrderByNameAsc')
+                    .getList({name: '%' + searchString + '%'});
             };
         }];
 });
