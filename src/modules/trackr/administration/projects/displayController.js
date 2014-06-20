@@ -1,4 +1,4 @@
-define([], function() {
+define(['lodash'], function(_) {
     'use strict';
     return ['$stateParams', '$scope', 'Restangular', '$state', 'shared.services.create-or-update-modal',
         function($stateParams, $scope, Restangular, $state, createOrUpdateModalService) {
@@ -29,7 +29,11 @@ define([], function() {
             };
 
             controller.projectIdentifierChanged = function() {
-
+                //Change the company id in the list in the parent controller
+                var projectInList = _.find($scope.$parent.projects, {id: $scope.project.id});
+                projectInList.identifier = $scope.project.identifier;
+                //reload so the url is correct
+                $state.go('trackr.administration.projects.edit', {id: $scope.project.identifier});
             };
         }];
 });
