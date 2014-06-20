@@ -1,0 +1,59 @@
+<form class="form-horizontal" action="">
+
+    <div ng-if="isEdit" class="form-group">
+        <label class="col-sm-3 control-label" translate="AUTHORITY.ROLES"></label>
+        <div class="col-sm-7">
+            <span ng-repeat="authority in authorities" class="checkbox">
+                <label>
+                    <input type="checkbox" ng-checked="selectedAuthorities[authority._links.self.href]" ng-model="selectedAuthorities[authority._links.self.href]"/>
+                    <span translate="{{ 'AUTHORITY.' + authority.authority }}"></span>
+                </label>
+                <br/>
+            </span>
+        </div>
+    </div>
+
+    <bs-text property-name="employee.firstName" translate-code="EMPLOYEE.FIRST_NAME" path="employee.firstName"></bs-text>
+    <bs-text property-name="employee.lastName" translate-code="EMPLOYEE.LAST_NAME" path="employee.lastName"></bs-text>
+    <bs-text property-name="employee.phoneNumber" translate-code="EMPLOYEE.PHONE_NUMBER" path="employee.phoneNumber"></bs-text>
+    <bs-text property-name="employee.title" translate-code="EMPLOYEE.TITLE" path="employee.title"></bs-text>
+    <bs-text property-name="employee.salary" translate-code="EMPLOYEE.SALARY" path="employee.salary"></bs-text>
+    <bs-text property-name="employee.hourlyCostRate" translate-code="EMPLOYEE.HOURLY_COST_RATE" path="employee.hourlyCostRate"></bs-text>
+    <bs-text property-name="employee.vacationEntitlement" translate-code="EMPLOYEE.VACATION_ENTITLEMENT" path="employee.vacationEntitlement"></bs-text>
+    <bs-text property-name="credential.email" translate-code="CREDENTIAL.EMAIL" path="employee.credential.email"></bs-text>
+
+    <div class="form-group">
+        <div class="col-sm-offset-4 col-sm-8">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" ng-model="employee.credential.enabled"> <span translate="CREDENTIAL.ENABLED"></span>
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group" error-display="employee.federalState">
+        <label class="form-label col-sm-4" for="federalState" translate="EMPLOYEE.FEDERAL_STATE"></label>
+        <div class="col-sm-6">
+            <select ng-model="employee.federalState.name" id="federalState" ng-options="s.name as s.state for s in states"></select>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="form-label col-sm-4" for="joinDate" translate="EMPLOYEE.JOIN_DATE"></label>
+        <div class="col-sm-6">
+            <div class="well well-sm" id="joinDate">
+                <datepicker starting-day="1" ng-model="employee.joinDate"></datepicker>
+            </div>
+        </div>
+    </div>
+
+    <div ng-if="isEdit" class="form-group">
+        <label class="form-label col-sm-4" for="leaveDate" translate="EMPLOYEE.LEAVE_DATE"></label>
+        <div class="col-sm-6">
+            <div class="well well-sm" id="leaveDate">
+                <datepicker starting-day="1" ng-model="employee.leaveDate" ng-change="leaveDateChange(employee.leaveDate)"></datepicker>
+            </div>
+        </div>
+    </div>
+</form>

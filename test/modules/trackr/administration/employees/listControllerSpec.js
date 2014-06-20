@@ -23,15 +23,5 @@ define(['baseTestSetup', 'angular'], function(baseTestSetup, angular) {
             expect(scope.employees).toBeDefined();
             expect(scope.employees.length).toBeGreaterThan(0);
         });
-
-        it('must open the modal dialog on addNew and reload the companies if the modal is closed and go to the new employee', inject(function($httpBackend) {
-            var modalInstance = scope.addNew();
-            expect(modalInstance).toBeDefined();
-            $httpBackend.flush();
-            modalInstance.close({id: 0});
-            $httpBackend.expectGET(/^\api\/employees\?.*$/);
-            $httpBackend.flush();
-            expect(state.go).toHaveBeenCalled();
-        }));
     });
 });

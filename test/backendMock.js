@@ -94,6 +94,12 @@ define(['fixtures'], function(fixtures) {
         mockRoot('api/employees');
         mockPatch('api/employees');
         mockPost('api/employees/createWithCredential');
+        $httpBackend.whenGET(/api\/employees\/\d+\?projection=withCredential/)
+            .respond(function() {
+                var employee = fixtures['api/employees']._embedded.employees[0];
+                employee.credential = fixtures['api/credentials']._embedded.credentials[0];
+                return [200, employee];
+            });
         $httpBackend.whenGET(/^api\/employees\/\d+$/).respond(fixtures['api/employees']._embedded.employees[0]);
         $httpBackend.whenGET(/^api\/employees\/\d+\/credential$/).respond(fixtures['api/credentials']._embedded.credentials[0]);
         $httpBackend.whenPATCH(/^api\/employees\/\d+\/self$/).respond(function(method, url, data) {
@@ -177,7 +183,6 @@ define(['fixtures'], function(fixtures) {
         $httpBackend.whenGET(/api\/workTimes\/search\/findByEmployeeAndDateBetweenOrderByDateAscStartTimeAsc\?.*/)
             .respond(fixtures['api/workTimes']);
         $httpBackend.whenGET(/api\/workTimes\/\d+\/project/).respond(fixtures['api/projects']._embedded.projects[0]);
-
 
         /* ############################ TEMPLATES ########################### */
         /*

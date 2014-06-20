@@ -1,4 +1,5 @@
 define([
+    'modules/trackr/administration/employees/displayController',
     'modules/trackr/administration/employees/editController',
     'modules/trackr/administration/employees/newController',
     'modules/trackr/administration/employees/listController',
@@ -12,7 +13,7 @@ define([
     'modules/trackr/administration/projects/listController',
     'modules/trackr/administration/projects/editController',
     'modules/trackr/administration/projects/newController'
-], function(EmployeeEditController, EmployeeNewController, EmployeeListController,
+], function(EmployeeDisplayController, EmployeeEditController, EmployeeNewController, EmployeeListController,
             RolesBaseController, RolesListController,
             CompaniesListController, CompaniesDisplayController, CompaniesEditController, CompaniesNewController,
             ContactPersonsNewOrEditController,
@@ -20,6 +21,7 @@ define([
     'use strict';
     return {
         init: function(module) {
+            module.controller('trackr.administration.controllers.employees.display', EmployeeDisplayController);
             module.controller('trackr.administration.controllers.employees.edit', EmployeeEditController);
             module.controller('trackr.administration.controllers.employees.new', EmployeeNewController);
             module.controller('trackr.administration.controllers.employees.list', EmployeeListController);

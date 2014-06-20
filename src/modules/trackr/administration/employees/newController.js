@@ -1,32 +1,41 @@
 define([], function() {
     'use strict';
-    return ['$scope', 'Restangular', '$modalInstance', '$filter', function($scope, Restangular, $modalInstance, $filter) {
-        $scope.errors = [];
-        $scope.employee = {};
-        $scope.credential = {};
+    return ['$scope', 'Restangular', '$filter', function($scope, Restangular, $filter) {
+        var controller = this;
 
-        $scope.saveEmployee = function() {
-            $scope.credential.locale = 'en';
-            Restangular.allUrl('employees', 'api/employees/createWithCredential').post({
-                employee: $scope.employee,
-                credential: $scope.credential
-            }).then(function(employee) {
-                $modalInstance.close(employee);
-            }, function(response) {
-                if(response.status === 409) {
-                    $scope.errors = {
-                        'credential.email': {
-                            defaultMessage: $filter('translate')('CREDENTIAL.EMAIL_CONFLICT')
-                        }
-                    };
-                } else {
-                    $scope.errors = response.data.errors;
-                }
-            });
+        $scope.employee = {
+            credential: {
+                locale: 'en'
+            }
         };
 
-        $scope.cancel = function() {
-            $modalInstance.dismiss();
+        controller.onFail = function(response) {
+            if (response.status === 409) {
+                $scope.errors = [{
+                    entity: 'credential',
+                    message: $filter('translate')('CREDENTIAL.EMAIL_CONFLICT'),
+                    property: 'credential.email'
+                }];
+            } else {
+                $scope.errors = response.data.errors;
+            }
+        };
+
+        $scope.saveEntity = function() {
+            //In case of an error we remember the federal state so we can set it back.
+            var federalState = $scope.employee.federalState;
+            if($scope.employee.federalState) {
+                $scope.employee.federalState = $scope.employee.federalState.name;
+            }
+            Restangular.allUrl('employees', 'api/employees/createWithCredential').post({
+                employee: $scope.employee,
+                credential: $scope.employee.credential
+            }).then(function(employee) {
+                $scope.closeModal(employee);
+            }, function(response) {
+                controller.onFail(response);
+                $scope.employee.federalState = federalState;
+            });
         };
 
         Restangular.one('federalStates').get().then(function(states) {

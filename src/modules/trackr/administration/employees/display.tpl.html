@@ -1,0 +1,42 @@
+<section class="panel panel-default">
+
+    <div class="panel-body">
+
+        <h1 class="page-header">{{employee.firstName + ' ' + employee.lastName}}
+            <button has-authority="ROLE_ADMIN" type="button" class="pull-right btn btn-default btn-sm" ng-click="showEditForm()">
+                <span class="glyphicon glyphicon-pencil"></span>
+            </button>
+        </h1>
+
+        <dl class="dl-horizontal">
+            <dt translate="AUTHORITY.ROLES"></dt>
+            <dd>
+                <span ng-repeat="authority in employee.credential.authorities">
+                    <span translate="{{ 'AUTHORITY.' + authority.authority}}"></span>&nbsp;
+                </span>
+            </dd>
+            <dt translate="EMPLOYEE.TITLE"></dt>
+            <dd>{{employee.title}}</dd>
+            <dt translate="EMPLOYEE.SALARY"></dt>
+            <dd>{{ employee.salary | currency:'€' }}</dd>
+            <dt translate="EMPLOYEE.HOURLY_COST_RATE"></dt>
+            <dd>{{ employee.hourlyCostRate | currency:'€' }}</dd>
+            <dt translate="EMPLOYEE.VACATION_ENTITLEMENT"></dt>
+            <dd>{{employee.vacationEntitlement}}</dd>
+            <dt translate="EMPLOYEE.PHONE_NUMBER"></dt>
+            <dd>{{employee.phoneNumber}}</dd>
+            <dt translate="EMPLOYEE.FEDERAL_STATE"></dt>
+            <dd>{{employee.federalState.state}}</dd>
+            <dt translate="CREDENTIAL.EMAIL"></dt>
+            <dd><a href="mailto:{{employee.credential.email}}">{{employee.credential.email}}</a></dd>
+            <dt translate="CREDENTIAL.ENABLED"></dt>
+            <dd><input type="checkbox" disabled="disabled" ng-checked="employee.credential.enabled"/></dd>
+            <dt translate="EMPLOYEE.JOIN_DATE"></dt>
+            <dd>{{ employee.joinDate | date:'dd.MM.yyyy' }}</dd>
+            <dt translate="EMPLOYEE.LEAVE_DATE"></dt>
+            <dd>{{ employee.leaveDate | date:'dd.MM.yyyy' }}</dd>
+        </dl>
+
+    </div>
+
+</section>

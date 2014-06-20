@@ -5,14 +5,9 @@ define(['baseTestSetup', 'angular'], function(baseTestSetup, angular) {
         baseTestSetup();
         beforeEach(inject(function($controller, $rootScope) {
             scope = $rootScope.$new();
+            scope.closeModal = angular.noop;
             NewController = $controller('trackr.administration.controllers.employees.new', {
-                $scope: scope,
-                //for now mocked here
-                //TODO: find out why the provider is not available
-                $modalInstance: {
-                    dismiss: angular.noop,
-                    close: angular.noop
-                }
+                $scope: scope
             });
         }));
 
@@ -22,24 +17,14 @@ define(['baseTestSetup', 'angular'], function(baseTestSetup, angular) {
             expect(scope.states).toBeDefined();
         }));
 
-        it('must have an errors object', inject(function($httpBackend) {
-            $httpBackend.flush();
-            expect(scope.errors).toBeDefined();
-        }));
-
         it('must have a new employee object', inject(function($httpBackend) {
             $httpBackend.flush();
             expect(scope.employee).toBeDefined();
         }));
 
-        it('must have a new credential object', inject(function($httpBackend) {
-            $httpBackend.flush();
-            expect(scope.credential).toBeDefined();
-        }));
-
         it('must save the emplyoee and credential', inject(function($httpBackend) {
             $httpBackend.flush();
-            scope.saveEmployee();
+            scope.saveEntity();
             $httpBackend.expectPOST('api/employees/createWithCredential');
             $httpBackend.flush();
         }));

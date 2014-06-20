@@ -50,8 +50,8 @@ define(['angular', 'modules/trackr/administration/controllers'], function(angula
             url: '/{id:[\\d]+}',
             views: {
                 'employee': {
-                    templateUrl: 'src/modules/trackr/administration/employees/edit.tpl.html',
-                    controller: 'trackr.administration.controllers.employees.edit'
+                    templateUrl: 'src/modules/trackr/administration/employees/display.tpl.html',
+                    controller: 'trackr.administration.controllers.employees.display'
                 }
             },
             needsAuthority: 'ROLE_SUPERVISOR'

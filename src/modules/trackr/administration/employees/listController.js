@@ -1,6 +1,6 @@
 define(['modules/shared/PaginationLoader'], function (PaginationLoader) {
     'use strict';
-    return ['$scope', 'Restangular', '$modal', '$state', function($scope, Restangular, $modal, $state) {
+    return ['$scope', 'Restangular', '$state', 'shared.services.create-or-update-modal', function($scope, Restangular, $state, createOrUpdateModalService) {
         var paginationLoader = new PaginationLoader(Restangular.all('employees'), 'employees', 'lastName', $scope, 10);
 
         $scope.setPage = function() {
@@ -11,15 +11,16 @@ define(['modules/shared/PaginationLoader'], function (PaginationLoader) {
         paginationLoader.loadPage();
 
         $scope.addNew = function() {
-            var modalInstance = $modal.open({
-                templateUrl: 'src/modules/trackr/administration/employees/new.tpl.html',
-                controller: 'trackr.administration.controllers.employees.new'
-            });
-            modalInstance.result.then(function(employee) {
+            var $modalInstance = createOrUpdateModalService
+                .showModal('trackr.administration.controllers.employees.new',
+                'src/modules/trackr/administration/employees/newOrEdit.tpl.html',
+                'EMPLOYEE.CREATE_NEW'
+            );
+
+            $modalInstance.result.then(function(employee) {
                 paginationLoader.loadPage();
                 $state.go('trackr.administration.employees.edit', {id: employee.id});
             });
-            return modalInstance;
         };
     }];
 });
