@@ -49,13 +49,6 @@ define(['baseTestSetup', 'fixtures', 'confirmationServiceMock'], function(baseTe
             expect(scope.totalCost).toBeLessThan(totalCostBefore);
         }));
 
-        it('must recalculate the total cost when the costEdited callback is called', inject(function($httpBackend) {
-            $httpBackend.flush();
-            spyOn(EditController, 'recalculateTotal');
-            scope.costEdited();
-            expect(EditController.recalculateTotal).toHaveBeenCalled();
-        }));
-
         it('must POST a new expense to the server on addNewExpense, set the report and submissionDate property on it', inject(function($httpBackend) {
             $httpBackend.flush();
             var expense = {cost: 1};

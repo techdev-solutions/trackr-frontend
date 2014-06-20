@@ -12,44 +12,20 @@
         <th translate="TRAVEL_EXPENSE.SUBMITTED"></th>
         <th translate="ACTIONS.ACTIONS"></th>
     </tr>
-    <tr ng-if="!editable(report)" ng-repeat="expense in report.expenses">
+    <tr ng-repeat="expense in report.expenses">
         <td translate="{{ 'TRAVEL_EXPENSE.TYPE_VALUES.' + expense.type }}"></td>
         <td>{{ expense.fromDate | date:'dd.MM.yyyy'}}</td>
         <td>{{ expense.toDate | date:'dd.MM.yyyy'}}</td>
         <td>{{ expense.vat }} %</td>
         <td>{{ expense.cost | currency:'€'}}</td>
         <td>{{ expense.submissionDate | date:'dd.MM.yyyy HH:mm:ss' }}</td>
-        <td></td>
-    </tr>
-    <tr ng-if="editable(report)" ng-repeat="expense in report.expenses" ng-controller="trackr.employee.controllers.expense-edit">
         <td>
-            <div class="form-group" error-display="type">
-                <div class="col-sm-2">
-                    <select ng-model="expense.type" ng-options="t as translateTravelExpenseType(t) for t in expenseTypes"></select>
-                </div>
-            </div>
-        </td>
-        <td>
-            <div class="form-group" error-display="fromDate">
-                <div class="col-sm-2">
-                    <inline-datepicker model="expense.fromDate"></inline-datepicker>
-                </div>
-            </div>
-        </td>
-        <td>
-            <div class="form-group" error-display="toDate">
-                <div class="col-sm-2">
-                    <inline-datepicker model="expense.toDate"></inline-datepicker>
-                </div>
-            </div>
-        </td>
-        <td><bs-edit entity="expense" property-name="vat"></bs-edit> %</td>
-        <td><bs-edit entity="expense" property-name="cost" callback="costEdited"></bs-edit> €</td>
-        <td>{{ expense.submissionDate | date:'dd.MM.yyyy HH:mm:ss' }}</td>
-        <td>
-            <a href ng-click="removeExpense(expense)">
+            <button class="btn btn-sm btn-default" ng-show="editable(report)" ng-click="showEditForm(expense)">
+                <span class="glyphicon glyphicon-pencil"></span>
+            </button>
+            <button class="btn btn-sm btn-default" ng-show="editable(report)" ng-click="removeExpense(expense)">
                 <span class="glyphicon glyphicon-trash"></span>
-            </a>
+            </button>
         </td>
     </tr>
 </table>

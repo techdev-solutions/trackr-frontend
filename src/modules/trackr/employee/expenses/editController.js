@@ -1,8 +1,8 @@
 define(['lodash'], function(_) {
     'use strict';
     return ['$scope', 'Restangular', 'trackr.services.travelExpenseReport', 'expenseTypes',
-        '$filter', 'base.services.confirmation-dialog', '$stateParams',
-        function($scope, Restangular, TravelExpenseReportService, expenseTypes, $filter, ConfirmationDialogService, $stateParams) {
+        '$filter', 'base.services.confirmation-dialog', '$stateParams', 'shared.services.create-or-update-modal',
+        function($scope, Restangular, TravelExpenseReportService, expenseTypes, $filter, ConfirmationDialogService, $stateParams, createOrUpdateModalService) {
             var controller = this;
             /**
              * Recalculate the sum of the cost of the expenses
@@ -54,11 +54,27 @@ define(['lodash'], function(_) {
             };
 
             /**
-             * Callback for when one of the expenses has its cost edited.
+             * Opens the edit form for a single expense and updates the list if the user edited the expense.
+             * @param expense
              */
-            $scope.costEdited = function() {
-                $scope.totalCost = controller.recalculateTotal($scope.report.expenses);
+            $scope.showEditForm = function(expense) {
+                var $modalInstance = createOrUpdateModalService
+                    .showModal('trackr.employee.controllers.expense-edit',
+                    'src/modules/trackr/employee/expenses/expense-edit.tpl.html',
+                    'ACTIONS.EDIT', {
+                        expense: expense,
+                        expenseTypes: $scope.expenseTypes
+                    });
+
+                $modalInstance.result.then(function(editedExpense) {
+                    var index = _.findIndex($scope.report.expenses, function(ex) {
+                        return ex.id === editedExpense.id;
+                    });
+                    $scope.report.expenses[index] = editedExpense;
+                    $scope.totalCost = controller.recalculateTotal($scope.report.expenses);
+                });
             };
+
 
             /**
              * Add a new expense to the report. Calls the backend.
