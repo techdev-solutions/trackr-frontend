@@ -1,30 +1,45 @@
-define([], function () {
+define(['lodash'], function (_) {
     'use strict';
-    return ['$scope', 'Restangular', '$modalInstance', function($scope, Restangular, $modalInstance) {
-        $scope.errors = [];
+    return ['$scope', 'Restangular', '$filter', function($scope, Restangular, $filter) {
+        var controller = this;
         $scope.project = {};
 
-        //TODO: why do we need to pass the company?
-        $scope.saveProject = function(projectCompany, debitorCompany) {
-            if(projectCompany) {
-                $scope.project.company = projectCompany._links.self.href;
-            }
-            if(debitorCompany) {
-                $scope.project.debitor = debitorCompany._links.self.href;
-            }
-            Restangular.all('projects').post($scope.project).then(function(project) {
-                $modalInstance.close(project);
-            }, function(response) {
+        controller.onFail = function(response) {
+            if(response.status === 409) {
+                $scope.errors = [{
+                    entity: 'project',
+                    message: $filter('translate')('PROJECT.IDENTIFIER_CONFLICT'),
+                    property: 'identifier'
+                }];
+            } else {
                 $scope.errors = response.data.errors;
-            });
+            }
         };
 
-        $scope.cancel = function() {
-            $modalInstance.dismiss();
+        controller.saveEntity = function(project) {
+            var projectEntity = _.clone(project, false);
+
+            if(project.company) {
+                var companyHref = project.company._links.self.href;
+                projectEntity.company = companyHref.substr(0, companyHref.indexOf('{'));
+            }
+            if(project.debitor) {
+                var debitorHref = project.debitor._links.self.href;
+                projectEntity.debitor = debitorHref.substr(0, debitorHref.indexOf('{'));
+            }
+
+            Restangular.all('projects').post(projectEntity).then(function(response) {
+                $scope.closeModal(response);
+            }, controller.onFail);
+        };
+
+        $scope.saveEntity = function() {
+            controller.saveEntity($scope.project);
         };
 
         $scope.getCompanies = function(searchString) {
-            return Restangular.allUrl('companies', 'api/companies/search/findByNameLikeIgnoreCaseOrderByNameAsc').getList({name: '%' + searchString + '%'});
+            return Restangular.allUrl('companies', 'api/companies/search/findByNameLikeIgnoreCaseOrderByNameAsc')
+                .getList({name: '%' + searchString + '%'});
         };
     }];
 });

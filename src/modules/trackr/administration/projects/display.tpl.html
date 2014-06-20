@@ -1,0 +1,29 @@
+<section class="panel panel-default">
+
+    <div class="panel-body">
+
+        <h1 class="page-header">{{project.name}}
+            <button has-authority="ROLE_ADMIN" type="button" class="pull-right btn btn-default btn-sm" ng-click="showEditForm()">
+                <span class="glyphicon glyphicon-pencil"></span>
+            </button>
+        </h1>
+
+        <dl class="dl-horizontal">
+            <dt translate="PROJECT.IDENTIFIER"></dt>
+            <dd>{{project.identifier}}</dd>
+            <dt translate="PROJECT.VOLUME"></dt>
+            <dd>{{project.volume}}</dd>
+            <dt translate="PROJECT.HOURLY_RATE"></dt>
+            <dd>{{ project.hourlyRate | currency:'€' }}</dd>
+            <dt translate="PROJECT.DAILY_RATE"></dt>
+            <dd>{{ project.dailyRate | currency:'€' }}</dd>
+            <dt translate="PROJECT.FIXED_PRICE"></dt>
+            <dd>{{ project.fixedPrice | currency:'€' }}</dd>
+            <dt translate="PROJECT.COMPANY"></dt>
+            <dd><span ng-show="project.company">{{ project.company.name + ' (' + project.company.companyId + ')'}}</span></dd>
+            <dt translate="PROJECT.DEBITOR"></dt>
+            <dd><span ng-show="project.debitor">{{ project.debitor.name + ' (' + project.debitor.companyId + ')' }}</span></dd>
+        </dl>
+    </div>
+
+</section>

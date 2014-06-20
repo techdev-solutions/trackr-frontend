@@ -1,7 +1,3 @@
-<div class="modal-header">
-    <h3 translate="PROJECT.CREATE_NEW"></h3>
-</div>
-<div class="modal-body">
 <form class="form-horizontal" action="">
     <bs-text property-name="identifier" translate-code="PROJECT.IDENTIFIER" path="project.identifier"></bs-text>
     <bs-text property-name="name" translate-code="PROJECT.NAME" path="project.name"></bs-text>
@@ -14,7 +10,7 @@
         <label class="form-label col-sm-2" for="company" translate="PROJECT.COMPANY"></label>
         <div class="col-sm-6">
             <input type="text" class="form-control" id="company"
-                   ng-model="projectCompany"
+                   ng-model="project.company"
                    typeahead="company as company.name for company in getCompanies($viewValue)"
                    typeahead-editable="false"
                    typeahead-min-length="1" />
@@ -25,15 +21,10 @@
         <label class="form-label col-sm-2" for="debitor" translate="PROJECT.DEBITOR"></label>
         <div class="col-sm-6">
             <input type="text" class="form-control" id="debitor"
-                   ng-model="projectDebitor"
+                   ng-model="project.debitor"
                    typeahead="company as company.name for company in getCompanies($viewValue)"
                    typeahead-editable="false"
                    typeahead-min-length="1" />
         </div>
     </div>
 </form>
-</div>
-<div class="modal-footer">
-    <button type="button" class="btn btn-default" ng-click="cancel()" translate="ACTIONS.CANCEL"></button>
-    <button type="submit" class="btn btn-primary" ng-click="saveProject(projectCompany, projectDebitor)" translate="ACTIONS.SAVE"></button>
-</div>

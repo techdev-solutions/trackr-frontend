@@ -1,14 +1,20 @@
 define(['baseTestSetup'], function(baseTestSetup) {
     'use strict';
-    describe('trackr.administration.controllers.projects.edit', function () {
+    describe('trackr.administration.controllers.projects.display', function () {
         var EditController, scope;
         baseTestSetup();
         beforeEach(inject(function($rootScope, $controller) {
             scope = $rootScope.$new();
-            EditController = $controller('trackr.administration.controllers.projects.edit', {
+            EditController = $controller('trackr.administration.controllers.projects.display', {
                 $scope: scope,
-                'createOrUpdateModal.userdata': {}
+                $stateParams: {
+                    id: 0
+                }
             });
+        }));
+
+        beforeEach(inject(function($httpBackend) {
+            $httpBackend.flush();
         }));
 
         it('must have a project in the scope', function() {

@@ -12,12 +12,13 @@ define([
     'modules/trackr/administration/companies/contactPersons/newOrEditController',
     'modules/trackr/administration/projects/listController',
     'modules/trackr/administration/projects/editController',
+    'modules/trackr/administration/projects/displayController',
     'modules/trackr/administration/projects/newController'
 ], function(EmployeeDisplayController, EmployeeEditController, EmployeeNewController, EmployeeListController,
             RolesBaseController, RolesListController,
             CompaniesListController, CompaniesDisplayController, CompaniesEditController, CompaniesNewController,
             ContactPersonsNewOrEditController,
-            ProjectsListController, ProjectsEditController, ProjectsNewController) {
+            ProjectsListController, ProjectsEditController, ProjectsDisplayController, ProjectsNewController) {
     'use strict';
     return {
         init: function(module) {
@@ -34,6 +35,7 @@ define([
             module.controller('trackr.administration.controllers.companies.contactPersons.new-or-edit', ContactPersonsNewOrEditController);
             module.controller('trackr.administration.controllers.projects.list', ProjectsListController);
             module.controller('trackr.administration.controllers.projects.edit', ProjectsEditController);
+            module.controller('trackr.administration.controllers.projects.display', ProjectsDisplayController);
             module.controller('trackr.administration.controllers.projects.new', ProjectsNewController);
         }
     };

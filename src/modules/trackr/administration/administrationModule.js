@@ -82,8 +82,8 @@ define(['angular', 'modules/trackr/administration/controllers'], function(angula
             url: '/{id:[\\w\\.]+}',
             views: {
                 'project': {
-                    templateUrl: 'src/modules/trackr/administration/projects/edit.tpl.html',
-                    controller: 'trackr.administration.controllers.projects.edit'
+                    templateUrl: 'src/modules/trackr/administration/projects/display.tpl.html',
+                    controller: 'trackr.administration.controllers.projects.display'
                 }
             },
             needsAuthority: 'ROLE_SUPERVISOR'

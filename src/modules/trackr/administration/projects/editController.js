@@ -1,65 +1,72 @@
-define([], function() {
+define(['lodash'], function(_) {
     'use strict';
-    return ['$stateParams', '$scope', 'Restangular', '$state', '$filter', function($stateParams, $scope, Restangular, $state, $filter) {
+    return ['createOrUpdateModal.userdata', '$scope', 'Restangular', '$filter', function(project, $scope, Restangular, $filter) {
         var controller = this;
-        $scope.projectIdChanged = function() {
-            $state.go('trackr.administration.projects.edit', {id: $scope.project.identifier});
-        };
 
-        /**
-         * Called when there was an error changing the identifier of the project.
-         * @param response The HTTP response for the failed request.
-         * @returns {*} An error array if the response status is 409, undefined otherwise.
-         */
-        $scope.projectIdError = function(response) {
+        $scope.project = _.clone(project, true);
+
+        controller.onFail = function(response) {
             if(response.status === 409) {
-                return [{
+                $scope.errors = [{
                     entity: 'project',
                     message: $filter('translate')('PROJECT.IDENTIFIER_CONFLICT'),
                     property: 'identifier'
                 }];
+            } else {
+                $scope.errors = response.data.errors;
             }
-            return undefined;
-        };
-
-        /*
-            Initialization of $scope objects
-         */
-        Restangular.allUrl('projects', 'api/projects/search/findByIdentifier').getList({
-            identifier: $stateParams.id,
-            projection: 'withCompanyAndDebitor'
-        }).then(function(projects) {
-            //TODO: why does spring return an array? The method signature is a single entity.
-            $scope.project = projects[0];
-        });
-
-        $scope.getCompanies = function(searchString) {
-            return Restangular.allUrl('companies', 'api/companies/search/findByNameLikeIgnoreCaseOrderByNameAsc').getList({name: '%' + searchString + '%'});
         };
 
         /**
-         * Change the company or debitor on a project.
-         *
-         * Sets a scope variable $scope.companySaved|$scope.debitorSaved to true after success.
-         * @param project The project
-         * @param company The company
-         * @param field 'company'|'debitor' according to what should be changed.
+         * Loads companies by their name
+         * @param searchString The name to search for
+         * @return {*} A list of companies with a matching name.
          */
-        controller.changeCompanyOrDebitor = function(project, company, field) {
-            var queryParams = {};
-            $scope[field + 'Saved'] = false;
-            project.customPUT(company._links.self.href, field, queryParams, { 'Content-Type': 'text/uri-list'})
+        $scope.getCompanies = function(searchString) {
+            return Restangular.allUrl('companies', 'api/companies/search/findByNameLikeIgnoreCaseOrderByNameAsc')
+                .getList({name: '%' + searchString + '%'});
+        };
+
+        controller.saveEntity = function(project) {
+            //Create an entity that can be used for Spring-Data-Rest
+            var projectEntity = _.pick(project, ['id', 'version', 'name', 'hourlyRate', 'fixedPrice', 'dailyRate', 'identifier', 'volume']);
+
+            //The passed project.company does not have the _links property because of the projection. So if
+            //_links is defined the user has selected a new company.
+            if(project.company && project.company._links) {
+                var companyHref = project.company._links.self.href;
+                projectEntity.company = companyHref.substr(0, companyHref.indexOf('{'));
+            }
+
+            //See above, same for debitor.
+            if(project.debitor && project.debitor._links) {
+                var debitorHref = project.debitor._links.self.href;
+                projectEntity.debitor = debitorHref.substr(0, debitorHref.indexOf('{'));
+            }
+
+            var projectBase = Restangular.one('projects', project.id);
+            projectBase.patch(projectEntity)
                 .then(function() {
-                    $scope[field + 'Saved'] = true;
-                });
+                    if (!project.company) {
+                        return projectBase.one('company').remove();
+                    }
+                })
+                .then(function() {
+                    if (!project.debitor) {
+                        return projectBase.one('debitor').remove();
+                    }
+                })
+                .then(function() {
+                    $scope.closeModal(project);
+                })
+                .catch(controller.onFail);
         };
 
-        $scope.changeCompany= function(project, company) {
-            controller.changeCompanyOrDebitor(project, company, 'company');
-        };
-
-        $scope.changeDebitor = function(project, debitor) {
-            controller.changeCompanyOrDebitor(project, debitor, 'debitor');
+        /**
+         * Delegation to protected method for better testing (project as a parameter).
+         */
+        $scope.saveEntity = function() {
+            controller.saveEntity($scope.project);
         };
     }];
 });
