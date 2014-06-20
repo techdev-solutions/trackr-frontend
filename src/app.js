@@ -1,4 +1,4 @@
-/* global document */
+/* global document, window */
 define(['angular', 'jQuery', 'i18n', 'restangular', 'angular-ui-router', 'angular-ui', 'twitter-bootstrap', 'modules/base/base', 'modules/trackr/trackr', 'modules/invoices/invoicesModule',
     'modules/shared/shared', 'flatify'
 ], function(angular, $, i18n) {
@@ -19,7 +19,7 @@ define(['angular', 'jQuery', 'i18n', 'restangular', 'angular-ui-router', 'angula
         });
     });
 
-    app.config(['RestangularProvider', '$locationProvider', 'paginationConfig', function(RestangularProvider, $locationProvider, paginationConfig) {
+    app.config(['RestangularProvider', '$locationProvider', 'paginationConfig', '$httpProvider', function(RestangularProvider, $locationProvider, paginationConfig, $httpProvider) {
         $locationProvider.html5Mode(false);
         RestangularProvider.setBaseUrl('api');
         /**  Restangularify the Spring Data Rest response
@@ -64,6 +64,22 @@ define(['angular', 'jQuery', 'i18n', 'restangular', 'angular-ui-router', 'angula
          */
         paginationConfig.previousText = '<';
         paginationConfig.nextText = '>';
+
+        //This interceptor checks if a request returns the login page and redirects to it if so.
+        $httpProvider.interceptors.push(['$q', '$log', function($q, $log) {
+            return {
+                'response': function(response) {
+                    var loginPageHeader = response.headers('trackr-login-page');
+                    if(loginPageHeader === 'true') {
+                        var redirectUrl = window.location.pathname + '/login';
+                        $log.debug('Request returned login page ', redirectUrl);
+                        window.location = redirectUrl;
+                        return $q.reject('Not logged in');
+                    }
+                    return response;
+                }
+            };
+        }]);
     }]);
 
     /**
