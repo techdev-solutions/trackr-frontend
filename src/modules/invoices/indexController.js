@@ -119,6 +119,9 @@ define(['modules/shared/PaginationLoader'], function(PaginationLoader) {
                     'src/modules/invoices/newOrEdit.tpl.html',
                     'ACTIONS.EDIT', invoice);
                 $modalInstance.result.then(function(editedInvoice) {
+                    //If the invoice dueDate gets set to a date in the past it will be marked as
+                    //overdue, so we have to refresh the page with the old state and the one with the new state.
+                    controller.refreshPage(invoice.invoiceState);
                     controller.refreshPage(editedInvoice.invoiceState);
                 });
             };
