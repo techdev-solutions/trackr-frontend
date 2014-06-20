@@ -71,8 +71,8 @@ define(['angular', 'jQuery', 'i18n', 'restangular', 'angular-ui-router', 'angula
                 'response': function(response) {
                     var loginPageHeader = response.headers('trackr-login-page');
                     if(loginPageHeader === 'true') {
-                        var redirectUrl = window.location.pathname + '/login';
-                        $log.debug('Request returned login page ', redirectUrl);
+                        var redirectUrl = window.location.pathname + 'login';
+                        $log.debug('Request returned login page, redirecting to ', redirectUrl);
                         window.location = redirectUrl;
                         return $q.reject('Not logged in');
                     }
