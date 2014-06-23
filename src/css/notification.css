@@ -4,7 +4,7 @@
     width: 100%;
     text-align: center;
     margin: 0 auto;
-    height: 0px;
+    height: 0;
 
     z-index: 9999;
 
@@ -13,8 +13,7 @@
 #notification-container ul {
     width: 450px;
     margin: 0 auto;
-    list-style-type: none;
-    list-style-position: outside;
+    list-style: none outside;
 }
 
 #notification-container li {
@@ -31,10 +30,10 @@
     margin: 20px 0;
     padding: 0;
     text-align: left;
-    text-shadow: rgba(255, 255, 255, 0.75) 0px 1px 0px;
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0px 0px 15px rgba(0, 0, 0, 0.2);
-    -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0px 0px 15px rgba(0, 0, 0, 0.2);
-    -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0px 0px 15px rgba(0, 0, 0, 0.2);
+    text-shadow: rgba(255, 255, 255, 0.75) 0 1px 0;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 0 15px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 0 15px rgba(0, 0, 0, 0.2);
+    -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 0 15px rgba(0, 0, 0, 0.2);
 
     border: 1px solid #d5d5d5;
     border-radius: 8px;
@@ -55,10 +54,6 @@
     border-color: #557393;
 }
 
-#notification-container li.info > div {
-    background: url('../img/info.png') top left no-repeat;
-}
-
 #notification-container li.success {
     background-image: linear-gradient(to bottom, #ceecc3, #a5dc95);
     background-image: -moz-linear-gradient(top, #ceecc3, #a5dc95);
@@ -67,10 +62,6 @@
     background-image: -o-linear-gradient(top, #ceecc3, #a5dc95);
     color: #0f9000;
     border-color: #10a000;
-}
-
-#notification-container li.success > div {
-    background: url('../img/success.png') top left no-repeat;
 }
 
 #notification-container li.error {
@@ -83,10 +74,6 @@
     border-color: #a54545;
 }
 
-#notification-container li.error > div {
-    background: url('../img/error.png') top left no-repeat;
-}
-
 #notification-container li.fatal {
     background-image: linear-gradient(to bottom, #3f3f3f, #2a2a2a);
     background-image: -moz-linear-gradient(top, #3f3f3f, #2a2a2a);
@@ -95,11 +82,7 @@
     background-image: -o-linear-gradient(top, #3f3f3f, #2a2a2a);
     color: #fdfdfd;
     border-color: #000000;
-    text-shadow: black 0px 1px 0px;
-}
-
-#notification-container li.fatal > div {
-    background: url('../img/question.png') top left no-repeat;
+    text-shadow: black 0 1px 0;
 }
 
 #notification-container li .close {
