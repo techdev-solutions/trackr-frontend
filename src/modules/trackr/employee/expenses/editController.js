@@ -87,9 +87,6 @@ define(['lodash'], function(_) {
              */
             $scope.addNewExpense = function(expense, report) {
                 expense.report = report._links.self.href;
-                if(expense.report) {
-                    expense.report = expense.report.substr(0, expense.report.indexOf('{'));
-                }
                 expense.submissionDate = new Date();
                 Restangular.all('travelExpenses').post(expense).then(function(expense) {
                     report.expenses.push(expense);

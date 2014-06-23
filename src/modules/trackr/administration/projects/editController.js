@@ -34,14 +34,12 @@ define(['lodash'], function(_) {
             //The passed project.company does not have the _links property because of the projection. So if
             //_links is defined the user has selected a new company.
             if(project.company && project.company._links) {
-                var companyHref = project.company._links.self.href;
-                projectEntity.company = companyHref.substr(0, companyHref.indexOf('{'));
+                projectEntity.company = project.company._links.self.href;
             }
 
             //See above, same for debitor.
             if(project.debitor && project.debitor._links) {
-                var debitorHref = project.debitor._links.self.href;
-                projectEntity.debitor = debitorHref.substr(0, debitorHref.indexOf('{'));
+                projectEntity.debitor = project.debitor._links.self.href;
             }
 
             var projectBase = Restangular.one('projects', project.id);

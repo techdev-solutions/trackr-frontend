@@ -82,7 +82,7 @@
                                 <span ng-show="request.approver">
                                     {{request.approver.firstName + ' ' + request.approver.lastName}}
                                 </span>
-                                <span ng-show="!request.approver" translate="VACATION_REQUEST.APPROVER_SYSTEM"></span>
+                                <span ng-show="!request.approver && request.status !== 'PENDING'" translate="VACATION_REQUEST.APPROVER_SYSTEM"></span>
                             </td>
                         </tr>
                     </tbody>

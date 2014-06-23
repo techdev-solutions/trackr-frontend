@@ -44,6 +44,7 @@ define(['baseTestSetup', 'moment'], function(baseTestSetup, moment) {
         });
 
         it('Must save the worktime entity to the backend', inject(function($httpBackend) {
+            scope.project = { _links: { self: { href: ''}}};
             scope.saveTime();
             $httpBackend.expectPOST('api/workTimes');
             $httpBackend.flush();

@@ -21,8 +21,7 @@ define(['lodash'], function(_) {
                 var invoiceEntity = _.clone(invoice, false);
 
                 if(invoice.debitor) {
-                    var debitorHref = invoice.debitor._links.self.href;
-                    invoiceEntity.debitor = debitorHref.substr(0, debitorHref.indexOf('{'));
+                    invoiceEntity.debitor = invoice.debitor._links.self.href;
                 }
 
                 invoiceEntity.invoiceState = 'OUTSTANDING';

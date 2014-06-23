@@ -50,15 +50,11 @@ define(['lodash'], function(_) {
             $scope.employee.workTimes.forEach(function(workTime) {
                 //Hours were entered so we have to create/update a billable time
                 if(workTime.hours) {
-                    var project = $scope.project._links.self.href;
-                    //This is due to an error in Spring-Data-Rest 2.1 where the self href contains an {?projection}
-                    //if projections are used.
-                    project = project.substr(0, project.indexOf('{'));
                     var billableTime = {
                         date: workTime.date,
                         minutes: isNaN(workTime.hours) ? workTime.hours : workTime.hours * 60,
                         employee: $scope.employee.links[0].href,
-                        project: project
+                        project: $scope.project._links.self.href
                     };
                     //If the work time has a billed time id attached we can update
                     if(workTime.billedTimeId) {

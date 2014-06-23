@@ -20,8 +20,7 @@ define(['lodash'], function(_) {
             var invoiceEntity = _.pick(invoice, ['id', 'version', 'identifier', 'creationDate', 'invoiceTotal', 'dueDate']);
 
             if(invoice.debitor && invoice.debitor._links) {
-                var debitorHref = invoice.debitor._links.self.href;
-                invoiceEntity.debitor = debitorHref.substr(0, debitorHref.indexOf('{'));
+                invoiceEntity.debitor = invoice.debitor._links.self.href;
             }
 
             var invoiceBase = Restangular.one('invoices', invoice.id);

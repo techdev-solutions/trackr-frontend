@@ -8,15 +8,10 @@ define(['lodash'], function(_) {
              * Opens a modal dialog to save a new contact person. Pushes the new contact person into the array after it has been saved.
              */
             $scope.createNewContactPerson = function(company) {
-                //Add the company relationship to the person
-                var companyLink = company._links.self.href;
-                if (companyLink) {
-                    companyLink = companyLink.substr(0, companyLink.indexOf('{'));
-                }
                 var $modalInstance = createOrUpdateModalService
                     .showModal('trackr.administration.controllers.companies.contactPersons.new-or-edit',
                     'src/modules/trackr/administration/companies/contactPersons/newOrEdit.tpl.html',
-                    'CONTACTPERSON.CREATE_NEW', { companyHref: companyLink});
+                    'CONTACTPERSON.CREATE_NEW', { companyHref: company._links.self.href});
                 $modalInstance.result.then(function(contactPerson) {
                     company.contactPersons.push(contactPerson);
                 });

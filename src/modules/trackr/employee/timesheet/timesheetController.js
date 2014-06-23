@@ -37,17 +37,9 @@ define(['moment', 'lodash'], function(moment, _) {
             };
 
             controller.createWorkTimeEntity = function() {
-                var project;
-                if ($scope.project) {
-                    project = $scope.project._links.self.href;
-                    //This is due to an error in Spring-Data-Rest 2.1 where the self href contains an {?projection} if projections are used.
-                    project = project.substr(0, project.indexOf('{'));
-                }
-                var employeeHref = EmployeeService.getEmployeeHref();
-                employeeHref = employeeHref.substr(0, employeeHref.indexOf('{'));
                 return {
-                    employee: employeeHref,
-                    project: project,
+                    employee: EmployeeService.getEmployeeHref(),
+                    project: $scope.project._links.self.href,
                     date: $scope.date,
                     startTime: controller.formatTime($scope.startTime),
                     endTime: controller.formatTime($scope.endTime),

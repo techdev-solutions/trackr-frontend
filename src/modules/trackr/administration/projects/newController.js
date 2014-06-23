@@ -20,12 +20,10 @@ define(['lodash'], function (_) {
             var projectEntity = _.clone(project, false);
 
             if(project.company) {
-                var companyHref = project.company._links.self.href;
-                projectEntity.company = companyHref.substr(0, companyHref.indexOf('{'));
+                projectEntity.company = project.company._links.self.href;
             }
             if(project.debitor) {
-                var debitorHref = project.debitor._links.self.href;
-                projectEntity.debitor = debitorHref.substr(0, debitorHref.indexOf('{'));
+                projectEntity.debitor = project.debitor._links.self.href;
             }
 
             Restangular.all('projects').post(projectEntity).then(function(response) {
