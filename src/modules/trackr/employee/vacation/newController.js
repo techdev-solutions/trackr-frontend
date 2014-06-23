@@ -1,24 +1,20 @@
-define([], function() {
+define(['moment'], function(moment) {
     'use strict';
-    return ['$scope', 'Restangular', 'trackr.services.employee', '$filter', function($scope, Restangular, EmployeeService, $filter) {
+    return ['$scope', 'Restangular', 'trackr.services.employee', function($scope, Restangular, EmployeeService) {
         var controller = this;
         $scope.vacationRequest = {};
         $scope.errors = [];
 
-        controller.formatDate = function(date) {
-            return $filter('date')(date, 'yyyy-MM-dd');
-        };
-
         controller.emitSavedVacationRequest = function(vacationRequest) {
-            vacationRequest.startDate = controller.formatDate(new Date(vacationRequest.startDate));
-            vacationRequest.endDate = controller.formatDate(new Date(vacationRequest.endDate));
+            vacationRequest.startDate = moment(vacationRequest.startDate).format('YYYY-MM-DD');
+            vacationRequest.endDate = moment(vacationRequest.endDate).format('YYYY-MM-DD');
             $scope.$emit('newVacationRequest', vacationRequest);
         };
 
         $scope.submitVacationRequest = function(vacationRequest) {
             vacationRequest.employee = EmployeeService.getEmployeeHref();
-            vacationRequest.startDate = controller.formatDate(vacationRequest.startDate);
-            vacationRequest.endDate = controller.formatDate(vacationRequest.endDate);
+            vacationRequest.startDate = moment(vacationRequest.startDate).format('YYYY-MM-DD');
+            vacationRequest.endDate = moment(vacationRequest.endDate).format('YYYY-MM-DD');
             Restangular.all('vacationRequests').post(vacationRequest).then(function(response) {
                 controller.emitSavedVacationRequest(response);
                 $scope.errors = [];

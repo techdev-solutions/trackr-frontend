@@ -1,4 +1,4 @@
-define([], function() {
+define(['moment'], function(moment) {
     'use strict';
     /**
      * Sets up a scope from an angular.js controller to have a start and end date.
@@ -10,11 +10,8 @@ define([], function() {
      * Usage: Access the dates with "$scope.start" and "scope.end".
      */
     return function($scope, callback) {
-        var today = new Date();
-        today.setDate(1);
-        $scope.start = today;
-        //last day of current month
-        $scope.end = new Date(today.getFullYear(), today.getMonth() + 1, 0, 23, 59, 59);
+        $scope.start = moment().startOf('month').toDate();
+        $scope.end = moment().endOf('month').toDate();
 
         $scope.$watch('start', callback);
         $scope.$watch('end', callback);

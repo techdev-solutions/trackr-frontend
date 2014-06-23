@@ -3,8 +3,7 @@ define(['lodash', 'moment'], function(_, moment) {
     return ['$scope', 'Restangular', 'base.services.user', 'base.services.confirmation-dialog',
         function($scope, Restangular, UserService, ConfirmationDialogService) {
             var controller = this;
-            $scope.month = new Date();
-            $scope.month.setDate(1);
+            $scope.month = moment().startOf('month');
             //This needs to be a scope variable because the datepicker changes it, so a constant is not useable in the template.
             $scope.datepickerMode = 'month';
 
@@ -20,7 +19,7 @@ define(['lodash', 'moment'], function(_, moment) {
                 Restangular.allUrl('workTimes', 'api/workTimes/search/findByEmployeeAndDateBetweenOrderByDateAscStartTimeAsc')
                     .getList({
                         employee: UserService.getUser().id,
-                        start: moment(date).startOf('month').format('YYYY-MM-DD'),
+                        start: moment(date).format('YYYY-MM-DD'),
                         end: moment(date).endOf('month').format('YYYY-MM-DD'),
                         projection: 'withProject'
                     }).then(function(workTimes) {
