@@ -1,8 +1,10 @@
 /* global localStorage */
 /* jshint camelcase: false */
-define([], function() {
+define(['config'], function(config) {
     'use strict';
     return ['$scope', '$location', '$state', '$log', '$http', function($scope, $location, $state, $log, $http) {
+        $scope.url = config.url;
+
         var hash = $location.hash();
         if(hash.indexOf('access_token') > -1) {
             var extractRegex = /access_token=([a-zA-Z0-9-]*)&/;
