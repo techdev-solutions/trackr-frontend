@@ -19,7 +19,7 @@ define(['modules/shared/PaginationLoader'], function (PaginationLoader) {
 
             $modalInstance.result.then(function(employee) {
                 paginationLoader.loadPage();
-                $state.go('trackr.administration.employees.edit', {id: employee.id});
+                $state.go('app.trackr.administration.employees.edit', {id: employee.id});
             });
         };
     }];

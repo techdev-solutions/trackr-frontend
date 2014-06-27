@@ -15,7 +15,7 @@ define(['modules/shared/PaginationLoader'], function(PaginationLoader) {
                 .showModal('trackr.administration.controllers.companies.new', 'src/modules/trackr/administration/companies/newOrEdit.tpl.html', 'COMPANY.CREATE_NEW');
             modalInstance.result.then(function(company) {
                 paginationLoader.loadPage();
-                $state.go('trackr.administration.companies.edit', {id: company.companyId});
+                $state.go('app.trackr.administration.companies.edit', {id: company.companyId});
             });
             return modalInstance;
         };

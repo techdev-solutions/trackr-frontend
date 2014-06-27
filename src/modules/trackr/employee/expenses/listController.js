@@ -21,7 +21,7 @@ define([], function() {
                 status: 'PENDING'
             };
             Restangular.all('travelExpenseReports').post(newReport).then(function(report) {
-                $state.go('trackr.employee.expenses.edit', {id: report.id});
+                $state.go('app.trackr.employee.expenses.edit', {id: report.id});
             });
         };
     }];

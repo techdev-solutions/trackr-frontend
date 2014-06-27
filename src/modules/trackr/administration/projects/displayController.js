@@ -33,7 +33,7 @@ define(['lodash'], function(_) {
                 var projectInList = _.find($scope.$parent.projects, {id: $scope.project.id});
                 projectInList.identifier = $scope.project.identifier;
                 //reload so the url is correct
-                $state.go('trackr.administration.projects.edit', {id: $scope.project.identifier});
+                $state.go('app.trackr.administration.projects.edit', {id: $scope.project.identifier});
             };
         }];
 });

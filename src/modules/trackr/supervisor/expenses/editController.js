@@ -18,13 +18,13 @@ define([], function() {
 
             $scope.accept = function(report) {
                 TravelExpenseReportService.approve(report).then(function() {
-                    $state.go('trackr.supervisor.expenses', null, { reload: true });
+                    $state.go('app.trackr.supervisor.expenses', null, { reload: true });
                 });
             };
 
             $scope.reject = function(report) {
                 TravelExpenseReportService.reject(report).then(function() {
-                    $state.go('trackr.supervisor.expenses', null, { reload: true });
+                    $state.go('app.trackr.supervisor.expenses', null, { reload: true });
                 });
             };
         }];
