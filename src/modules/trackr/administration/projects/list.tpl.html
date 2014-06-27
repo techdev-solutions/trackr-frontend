@@ -14,7 +14,7 @@
 
             <table class="table table-bordered table-hover">
                 <tbody>
-                <tr ng-repeat="project in projects" ui-sref-active="active" ui-sref="trackr.administration.projects.edit({id: project.identifier})" class="clickable">
+                <tr ng-repeat="project in projects" ui-sref-active="active" ui-sref="app.trackr.administration.projects.edit({id: project.identifier})" class="clickable">
                     <td>
                         {{project.name}}
                     </td>

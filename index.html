@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>trackr</title>
+    <base href="/">
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
 
     <link rel="stylesheet" type="text/css" href="src/vendor/bootstrap/dist/css/bootstrap.min.css"/>
@@ -17,75 +18,15 @@
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet" />
 
     <!-- process:remove -->
-    <script type="text/javascript" data-main="./bootstrap" src="src/vendor/requirejs/require.js"></script>
+    <script type="text/javascript" data-main="bootstrap" src="src/vendor/requirejs/require.js"></script>
     <!-- /process -->
 
     <!-- process:insert -->
+    <!-- This won't get loaded as long as the first data-main script is there, so it's only activated in production -->
     <script type="text/javascript" data-main="./bootstrap.prod" src="src/vendor/requirejs/require.js"></script>
     <!-- /process -->
 </head>
-<body  id="app" class="nav-min" data-custom-background="" data-off-canvas-nav="">
-
-<div id="wrapper">
-
-    <div>
-        <div>
-            <section id="header" class="top-header">
-                <header class="clearfix">
-
-                    <a href="#/" data-toggle-min-nav class="toggle-min"><i class="fa fa-bars"></i></a>
-
-                    <!-- Header menu !-->
-                    <div ui-view="top-menu"/>
-
-                </header>
-            </section>
-
-            <aside id="nav-container">
-
-                <div id="nav-wrapper">
-                    <ul id="nav"
-                        data-collapse-nav
-                        data-highlight-active>
-
-                        <li><a ui-sref="trackr.home" href> <i class="fa fa-bar-chart-o"><span class="icon-bg bg-primary"></span></i><span>trackr</span> </a></li>
-                        <li><a ui-sref="invoices.home" href> <i class="fa fa-file-text-o"><span class="icon-bg bg-success"></span></i><span>Invoices</span> </a></li>
-                    </ul>
-                </div>
-
-            </aside>
-
-            <div class="view-container">
-                <section data-ng-view="" id="content" class="animate-fade-up">
-
-                    <!-- Page Content -->
-                    <div id="page-wrapper">
-
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div ui-view="breadcrumbs"/>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <!-- main content -->
-                            <div class="col-lg-12">
-                                <div ui-view="center"/>
-                            </div>
-                        </div>
-
-                    </div>
-                    <!-- Page Content END -->
-
-                </section>
-            </div>
-        </div>
-
-    </div>
-
-</div>
-<div id="notification-container">
-    <ul td-notifications>
-    </ul>
-</div>
+<body id="app" class="nav-min" data-custom-background="" data-off-canvas-nav="">
+<div ui-view="root"></div>
 </body>
 </html>

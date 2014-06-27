@@ -6,3 +6,8 @@ dist/
 
 # grunt concat
 .tmp/
+
+# idea
+*.iml
+.idea/
+atlassian-ide-plugin.xml

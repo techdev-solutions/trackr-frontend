@@ -13,10 +13,11 @@ define(['baseTestSetup'], function(baseTestSetup) {
             });
         }));
 
-        it('should put the active user into scope', function() {
+        it('should put the active user into scope', inject(function($httpBackend) {
+            $httpBackend.flush();
             expect(UserService.getUser).toHaveBeenCalled();
             expect(scope.user).toBeDefined();
-        });
+        }));
 
         it('changeLanguage should perform a put request on the API', inject(function($httpBackend) {
             scope.changeLanguage('en');

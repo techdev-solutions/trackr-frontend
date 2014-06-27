@@ -29,7 +29,8 @@ require.config({
     }
 });
 
-var dependencies = ['angular', 'require', 'app', 'angular-l10n-de'];
-require(dependencies, function() {
+var dependencies = ['angular', 'app', 'angular-l10n-de'];
+require(dependencies, function(angular) {
     'use strict';
+    angular.bootstrap(document, ['app']);
 });

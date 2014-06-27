@@ -1,9 +1,9 @@
 <ul>
     <li ng-repeat="report in reports | filter:{ status: 'PENDING'}">
-        <a ui-sref="trackr.employee.expenses.edit({id: report.id})">Report #{{report.id}} - <span translate="{{'TRAVEL_EXPENSE_REPORT.' + report.status}}"></span></a>
+        <a ui-sref="app.trackr.employee.expenses.edit({id: report.id})">Report #{{report.id}} - <span translate="{{'TRAVEL_EXPENSE_REPORT.' + report.status}}"></span></a>
     </li>
     <li ng-repeat="report in reports | filter:acceptedSubmittedAndRejected">
-        <a ui-sref="trackr.employee.expenses.edit({id: report.id})">Report #{{report.id}} - <span translate="{{'TRAVEL_EXPENSE_REPORT.' + report.status}}"></span></a>
+        <a ui-sref="app.trackr.employee.expenses.edit({id: report.id})">Report #{{report.id}} - <span translate="{{'TRAVEL_EXPENSE_REPORT.' + report.status}}"></span></a>
     </li>
 </ul>
 <button ng-click="addNew()" type="button" class="btn btn-primary" translate="ACTIONS.NEW"></button>

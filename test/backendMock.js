@@ -153,6 +153,7 @@ define(['fixtures'], function(fixtures) {
 
         //#### -- TRANSLATIONS
         $httpBackend.whenPUT(/^api\/translations\?.*/).respond({});
+        $httpBackend.whenGET(/^api\/translations\?.*/).respond({});
 
         //#### -- VACATION REQUESTS
         mockPost('api/vacationRequests');

@@ -62,8 +62,8 @@ module.exports = function (grunt) {
                 options: {
                     baseUrl: 'src',
                     mainConfigFile: 'bootstrap.js',
-                    include: ['app'],
-                    insertRequire: ['app'],
+                    include: ['app', 'prodstarter'],
+                    insertRequire: ['prodstarter'],
                     out: '<%= config.distFolder %>/trackr.js',
                     paths: {
                         'jQuery': 'empty:',

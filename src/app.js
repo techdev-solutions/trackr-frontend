@@ -1,105 +1,67 @@
-/* global document, window */
-define(['angular', 'jQuery', 'i18n', 'restangular', 'angular-ui-router', 'angular-ui', 'twitter-bootstrap', 'modules/base/base', 'modules/trackr/trackr', 'modules/invoices/invoicesModule',
-    'modules/shared/shared', 'flatify'
-], function(angular, $, i18n) {
+/* global localStorage */
+define(['angular', 'jQuery', 'restangular', 'angular-ui-router', 'angular-ui', 'twitter-bootstrap', 'angular-translate', 'angular-translate-loader-url',
+    'modules/base/base', 'modules/trackr/trackr', 'modules/invoices/invoicesModule', 'modules/shared/shared',
+    'flatify'
+], function(angular) {
     'use strict';
-    var configFn = ['ui.router', 'ui.bootstrap', 'base', 'trackr', 'restangular', 'invoices', 'shared', 'app.directives'];
+    var configFn = ['ui.router', 'ui.bootstrap', 'base', 'trackr', 'restangular', 'invoices', 'shared', 'app.directives', 'pascalprecht.translate'];
     var app = angular.module('app', configFn);
 
-    var trackrUser;
-    /*
-     Load the current user and its authorities before the app starts.
-     After the user is loaded the trackr app gets bootstrapped manually.
-     */
-    angular.element(document).ready(function() {
-        $.get('api/principal', function(data) {
-            trackrUser = data;
-            i18n.init(app, trackrUser);
-            angular.bootstrap(document, ['app']);
-        });
-    });
+    app.config(['RestangularProvider', '$locationProvider', 'paginationConfig', '$httpProvider', '$translateProvider',
+        function(RestangularProvider, $locationProvider, paginationConfig, $httpProvider, $translateProvider) {
+            $translateProvider.useUrlLoader('api/translations');
 
-    app.config(['RestangularProvider', '$locationProvider', 'paginationConfig', '$httpProvider', function(RestangularProvider, $locationProvider, paginationConfig, $httpProvider) {
-        $locationProvider.html5Mode(false);
-        RestangularProvider.setBaseUrl('api');
-        /**  Restangularify the Spring Data Rest response
-         Spring Data Rest returns lists like this:
-         <code>
-         {
-            "_embedded": {
-                "companies": [
-                    ...
-                ]
-            }
-         }
-         </code>
-         **/
-        RestangularProvider.addResponseInterceptor(function(data, operation, route) {
-            var returnData;
-            if(operation === 'getList' && data._embedded) {
-                returnData = data._embedded[route];
-                /*
-                Fallback: if the returned data does not contain the route key take the first one.
-                Example: data = { _embedded: { travelExpenses: [] } } but route = 'expenses'.
-                 */
-                if(!returnData) {
-                    returnData = data._embedded[Object.keys(data._embedded)[0]];
+            $locationProvider.html5Mode(true).hashPrefix('!');
+
+            RestangularProvider.setBaseUrl('api');
+
+            /**  Restangularify the Spring Data Rest response
+             Spring Data Rest returns lists like this:
+             <code>
+             {
+                "_embedded": {
+                    "companies": [
+                        ...
+                    ]
                 }
-                //if there is pagination info make it one-based.
-                if(data.page) {
-                    returnData.page = data.page;
-                    returnData.page.number = returnData.page.number + 1;
-                }
-            } else if(operation === 'getList' && !data._embedded) {
-                returnData = [];
-                returnData.page = data.page;
-            } else {
-                returnData = data;
-            }
-            return returnData;
-        });
-
-        /*
-         Global pagination configuration
-         */
-        paginationConfig.previousText = '<';
-        paginationConfig.nextText = '>';
-
-        //This interceptor checks if a request returns the login page and redirects to it if so.
-        $httpProvider.interceptors.push(['$q', '$log', function($q, $log) {
-            return {
-                'response': function(response) {
-                    var loginPageHeader = response.headers('trackr-login-page');
-                    if(loginPageHeader === 'true') {
-                        var redirectUrl = window.location.pathname + 'login';
-                        $log.debug('Request returned login page, redirecting to ', redirectUrl);
-                        window.location = redirectUrl;
-                        return $q.reject('Not logged in');
+             }
+             </code>
+             **/
+            RestangularProvider.addResponseInterceptor(function(data, operation, route) {
+                var returnData;
+                if (operation === 'getList' && data._embedded) {
+                    returnData = data._embedded[route];
+                    /*
+                     Fallback: if the returned data does not contain the route key take the first one.
+                     Example: data = { _embedded: { travelExpenses: [] } } but route = 'expenses'.
+                     */
+                    if (!returnData) {
+                        returnData = data._embedded[Object.keys(data._embedded)[0]];
                     }
-                    return response;
-                }
-            };
-        }]);
-    }]);
-
-    /**
-     * Implement state authorization
-     */
-    app.run(['$rootScope', '$log', 'base.services.user', '$http', function($rootScope, $log, UserService) {
-        UserService.setUser(trackrUser);
-        $rootScope.$on('$stateChangeStart', function(event, toState) {
-            if(toState.needsAuthority) {
-                var user = UserService.getUser();
-                $log.debug('User ' + user.email + ' tries to access state ' + toState.name + ' that needs the role ' + toState.needsAuthority);
-                if(!UserService.userHasAuthority(toState.needsAuthority)) {
-                    $log.debug('User ' + user.email + ' was denied access to state ' + toState.name);
-                    event.preventDefault();
+                    //if there is pagination info make it one-based.
+                    if (data.page) {
+                        returnData.page = data.page;
+                        returnData.page.number = returnData.page.number + 1;
+                    }
+                } else if (operation === 'getList' && !data._embedded) {
+                    returnData = [];
+                    returnData.page = data.page;
                 } else {
-                    $log.debug('User ' + user.email + ' was granted access to state ' + toState.name);
+                    returnData = data;
                 }
-            }
-        });
-    }]);
+                return returnData;
+            });
 
+            /*
+             Global pagination configuration
+             */
+            paginationConfig.previousText = '<';
+            paginationConfig.nextText = '>';
+
+            var oauthToken = localStorage.getItem('oauthToken');
+            if(oauthToken) {
+                $httpProvider.defaults.headers.common.Authorization = 'Bearer ' + oauthToken;
+            }
+        }]);
     return app;
 });

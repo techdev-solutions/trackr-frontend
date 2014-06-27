@@ -4,28 +4,28 @@ define(['angular', 'modules/trackr/administration/controllers'], function(angula
 
     administration.config(['$stateProvider', function($stateProvider) {
         $stateProvider
-        .state('trackr.administration', {
+        .state('app.trackr.administration', {
             url: '/administration',
             breadcrumbTranslateCode: 'PAGES.ADMINISTRATION.TITLE',
             views: {
-                'center@': {
+                'center@app': {
                     templateUrl: 'src/modules/trackr/administration/administration.tpl.html'
                 }
             },
             needsAuthority: 'ROLE_SUPERVISOR'
         })
-        .state('trackr.administration.companies', {
+        .state('app.trackr.administration.companies', {
             url: '/companies',
             breadcrumbTranslateCode: 'COMPANY.COMPANIES',
             views: {
-                'center@': {
+                'center@app': {
                     templateUrl: 'src/modules/trackr/administration/companies/list.tpl.html',
                     controller: 'trackr.administration.controllers.companies.list'
                 }
             },
             needsAuthority: 'ROLE_SUPERVISOR'
         })
-        .state('trackr.administration.companies.edit', {
+        .state('app.trackr.administration.companies.edit', {
             url: '/{id:[\\d]+}',
             views: {
                 'company': {
@@ -35,18 +35,18 @@ define(['angular', 'modules/trackr/administration/controllers'], function(angula
             },
             needsAuthority: 'ROLE_SUPERVISOR'
         })
-        .state('trackr.administration.employees', {
+        .state('app.trackr.administration.employees', {
             url: '/employees',
             breadcrumbTranslateCode: 'EMPLOYEE.EMPLOYEES',
             views: {
-                'center@': {
+                'center@app': {
                     templateUrl: 'src/modules/trackr/administration/employees/list.tpl.html',
                     controller: 'trackr.administration.controllers.employees.list'
                 }
             },
             needsAuthority: 'ROLE_SUPERVISOR'
         })
-        .state('trackr.administration.employees.edit', {
+        .state('app.trackr.administration.employees.edit', {
             url: '/{id:[\\d]+}',
             views: {
                 'employee': {
@@ -56,7 +56,7 @@ define(['angular', 'modules/trackr/administration/controllers'], function(angula
             },
             needsAuthority: 'ROLE_SUPERVISOR'
         })
-        .state('trackr.administration.employees.roles', {
+        .state('app.trackr.administration.employees.roles', {
             url: '/roles',
             breadcrumbTranslateCode: 'AUTHORITY.ROLES',
             views: {
@@ -67,18 +67,18 @@ define(['angular', 'modules/trackr/administration/controllers'], function(angula
             },
             needsAuthority: 'ROLE_ADMIN'
         })
-        .state('trackr.administration.projects', {
+        .state('app.trackr.administration.projects', {
             url: '/projects',
             breadcrumbTranslateCode: 'PROJECT.PROJECTS',
             views: {
-                'center@': {
+                'center@app': {
                     templateUrl: 'src/modules/trackr/administration/projects/list.tpl.html',
                     controller: 'trackr.administration.controllers.projects.list'
                 }
             },
             needsAuthority: 'ROLE_SUPERVISOR'
         })
-        .state('trackr.administration.projects.edit', {
+        .state('app.trackr.administration.projects.edit', {
             url: '/{id:[\\w\\.]+}',
             views: {
                 'project': {

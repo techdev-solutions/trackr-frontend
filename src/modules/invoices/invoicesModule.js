@@ -8,20 +8,14 @@ define(['angular', 'modules/invoices/indexController', 'modules/invoices/newCont
         invoices.controller('invoices.controllers.edit', EditController);
         invoices.config(['$stateProvider', function($stateProvider) {
             $stateProvider.
-                state('invoices', {
-                    url: '/invoices',
-                    abstract: true,
+                state('app.invoices', {
+                    url: 'invoices',
                     views: {
-                        'top-menu@': {
+                        'top-menu@app': {
                             templateUrl: 'src/modules/invoices/top-menu.tpl.html',
                             controller: 'base.controllers.navigation'
-                        }
-                    }
-                }).
-                state('invoices.home', {
-                    url: '',
-                    views: {
-                        'center@': {
+                        },
+                        'center@app': {
                             templateUrl: 'src/modules/invoices/index.tpl.html',
                             controller: 'invoices.controllers.index'
                         }

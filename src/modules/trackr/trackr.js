@@ -2,40 +2,35 @@ define(['angular',
     'modules/trackr/services/services',
     'modules/trackr/administration/administrationModule',
     'modules/trackr/employee/employeeModule',
-    'modules/trackr/supervisor/supervisorModule',
-    'angular-translate',
-    'angular-translate-loader-url'],
+    'modules/trackr/supervisor/supervisorModule'],
     function(angular, services) {
         'use strict';
-        var configFn = ['trackr.administration', 'trackr.employee', 'trackr.supervisor', 'pascalprecht.translate'];
+        var configFn = ['trackr.administration', 'trackr.employee', 'trackr.supervisor'];
         var trackr = angular.module('trackr', configFn);
 
         trackr.config(['$stateProvider', function($stateProvider) {
             $stateProvider.
-                state('trackr', {
-                    url: '/trackr',
+                state('app.trackr', {
+                    url: 'trackr',
                     breadcrumbTranslateCode: 'PAGES.HOME.BREADCRUMB',
                     resolve: {
-                        employee: ['trackr.services.employee', function(EmployeeService) {
+                        //We have to require the user injection here, otherwise on a full page refresh the 'user resolve' in tha
+                        //app state will be run *after* this employee resolve - which means the UserService does not know
+                        //the user yet and the EmployeeService will fail.
+                        employee: ['trackr.services.employee', 'app.user', function(EmployeeService) {
                             return EmployeeService.loadEmployee();
                         }]
                     },
-                    abstract: true,
                     views: {
-                        'top-menu@': {
+                        'top-menu@app': {
                             templateUrl: 'src/modules/trackr/top-menu.tpl.html',
                             controller: 'base.controllers.navigation'
                         },
-                        'breadcrumbs@': {
+                        'breadcrumbs@app': {
                             templateUrl: 'src/modules/base/partials/breadcrumbs.tpl.html',
                             controller: 'base.controllers.breadcrumb-controller'
-                        }
-                    }
-                }).
-                state('trackr.home', {
-                    url: '',
-                    views: {
-                        'center@': {
+                        },
+                        'center@app': {
                             templateUrl: 'src/modules/trackr/welcome.tpl.html'
                         }
                     }

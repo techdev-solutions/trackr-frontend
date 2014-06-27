@@ -3,26 +3,26 @@ define(['angular', 'modules/trackr/employee/controllers', 'moment'], function(an
     var employee = angular.module('trackr.employee', []);
     employee.config(['$stateProvider', function($stateProvider) {
         $stateProvider
-            .state('trackr.employee', {
+            .state('app.trackr.employee', {
                 url: '/employee',
                 breadcrumbTranslateCode: 'PAGES.EMPLOYEE.TITLE',
                 views: {
-                    'center@': {
+                    'center@app': {
                         templateUrl: 'src/modules/trackr/employee/employee.tpl.html'
                     }
                 }
             })
-            .state('trackr.employee.self', {
+            .state('app.trackr.employee.self', {
                 url: '/self',
                 breadcrumbTranslateCode: 'PAGES.EMPLOYEE.TEXT_EDIT_PROFILE',
                 views: {
-                    'center@': {
+                    'center@app': {
                         templateUrl: 'src/modules/trackr/employee/self.tpl.html',
                         controller: 'trackr.employee.controllers.self'
                     }
                 }
             })
-            .state('trackr.employee.timesheet', {
+            .state('app.trackr.employee.timesheet', {
                 url: '/timesheet',
                 breadcrumbTranslateCode: 'PAGES.EMPLOYEE.TEXT_EDIT_TIMESHEET',
                 resolve: {
@@ -38,37 +38,37 @@ define(['angular', 'modules/trackr/employee/controllers', 'moment'], function(an
                     }]
                 },
                 views: {
-                    'center@': {
+                    'center@app': {
                         templateUrl: 'src/modules/trackr/employee/timesheet/timesheet.tpl.html',
                         controller: 'trackr.employee.controllers.timesheet'
                     }
                 }
             })
-            .state('trackr.employee.timesheet.overview', {
+            .state('app.trackr.employee.timesheet.overview', {
                 url: '/overview',
                 breadcrumbTranslateCode: 'PAGES.EMPLOYEE.TEXT_TIMESHEET_OVERVIEW',
                 views: {
-                    'center@': {
+                    'center@app': {
                         templateUrl: 'src/modules/trackr/employee/timesheet/timesheetOverview.tpl.html',
                         controller: 'trackr.employee.controllers.timesheet-overview'
                     }
                 }
             })
-            .state('trackr.employee.vacation', {
+            .state('app.trackr.employee.vacation', {
                 url: '/vacation',
                 breadcrumbTranslateCode: 'PAGES.EMPLOYEE.TEXT_VACATION',
                 views: {
-                    'center@': {
+                    'center@app': {
                         templateUrl: 'src/modules/trackr/employee/vacation/list.tpl.html',
                         controller: 'trackr.employee.controllers.vacation-list'
                     },
-                    'new@trackr.employee.vacation': {
+                    'new@app.trackr.employee.vacation': {
                         templateUrl: 'src/modules/trackr/employee/vacation/new.tpl.html',
                         controller: 'trackr.employee.controllers.vacation-new'
                     }
                 }
             })
-            .state('trackr.employee.expenses', {
+            .state('app.trackr.employee.expenses', {
                 url: '/expenses',
                 breadcrumbTranslateCode: 'PAGES.EMPLOYEE.TEXT_EXPENSES',
                 views: {
@@ -78,7 +78,7 @@ define(['angular', 'modules/trackr/employee/controllers', 'moment'], function(an
                     }
                 }
             })
-            .state('trackr.employee.expenses.edit', {
+            .state('app.trackr.employee.expenses.edit', {
                 url: '/{id:\\d+}',
                 breadcrumbTranslateCode: 'ACTIONS.EDIT',
                 resolve: {
@@ -87,7 +87,7 @@ define(['angular', 'modules/trackr/employee/controllers', 'moment'], function(an
                     }]
                 },
                 views: {
-                    'center@': {
+                    'center@app': {
                         templateUrl: 'src/modules/trackr/employee/expenses/edit.tpl.html',
                         controller: 'trackr.employee.controllers.expenseReport-edit'
                     }

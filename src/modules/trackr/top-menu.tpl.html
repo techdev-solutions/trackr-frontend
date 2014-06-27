@@ -1,20 +1,20 @@
 <!-- Logo -->
 <div class="logo">
-    <a href="#/">
+    <a ui-sref="app.trackr">
         <span>trackr</span>
     </a>
 </div>
 
 <div class="top-nav">
     <ul class="nav-left list-unstyled">
-        <li ui-sref-active="active"><a href ui-sref="trackr.employee" translate="PAGES.EMPLOYEE.TITLE"></a></li>
-        <li ui-sref-active="active" has-authority="ROLE_SUPERVISOR"><a href ui-sref="trackr.supervisor" translate="PAGES.SUPERVISOR.TITLE"></a></li>
-        <li ui-sref-active="active" has-authority="ROLE_SUPERVISOR"><a href ui-sref="trackr.administration" translate="PAGES.ADMINISTRATION.TITLE"></a></li>
+        <li ui-sref-active="active"><a href ui-sref="app.trackr.employee" translate="PAGES.EMPLOYEE.TITLE"></a></li>
+        <li ui-sref-active="active" has-authority="ROLE_SUPERVISOR"><a href ui-sref="app.trackr.supervisor" translate="PAGES.SUPERVISOR.TITLE"></a></li>
+        <li ui-sref-active="active" has-authority="ROLE_SUPERVISOR"><a href ui-sref="app.trackr.administration" translate="PAGES.ADMINISTRATION.TITLE"></a></li>
     </ul>
 
     <ul class="nav-right list-unstyled pull-right">
-        <li><a href ui-sref="trackr.employee.self">{{user.email}}</a></li>
-        <li><a href="logout">Logout</a></li>
+        <li><a href ui-sref="app.trackr.employee.self">{{user.email}}</a></li>
+        <li><a href="" ng-click="logout()">Logout</a></li>
         <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="" translate="LANGUAGE"></a>
             <ul class="dropdown-menu">

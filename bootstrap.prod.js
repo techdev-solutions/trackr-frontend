@@ -3,6 +3,7 @@ require.config({
         'jQuery': 'src/vendor/jquery/dist/jquery.min',
         'twitter-bootstrap': 'src/vendor/bootstrap/dist/js/bootstrap.min',
         'angular': 'src/vendor/angular/angular.min',
+        'angular-l10n-de': 'vendor/angular-i18n/angular-locale_de-de',
         'angular-ui-router': 'src/vendor/angular-ui-router/release/angular-ui-router.min',
         'restangular': 'src/vendor/restangular/dist/restangular.min',
         'lodash': 'src/vendor/lodash/dist/lodash.min',
@@ -14,6 +15,7 @@ require.config({
     },
     shim: {
         'angular': { exports: 'angular', deps: ['jQuery'] },
+        'angular-l10n-de': { deps: ['angular'] },
         'angular-ui-router': { deps: ['angular']},
         'jQuery': { exports: '$' },
         'twitter-bootstrap': { deps: ['jQuery'] },

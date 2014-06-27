@@ -1,6 +1,6 @@
 <h2><span translate="TRAVEL_EXPENSE_REPORT.TRAVEL_EXPENSE_REPORT"></span> #{{report.id}}</h2>
-<span class="pull-right"><a href ui-sref="trackr.supervisor.expenses" translate="ACTIONS.BACK"></a></span>
-<p><span translate="TRAVEL_EXPENSE_REPORT.TOTAL"></span>: {{totalCost}} €</p>
+<span class="pull-right"><a href ui-sref="app.trackr.supervisor.expenses" translate="ACTIONS.BACK"></a></span>
+<p><span translate="TRAVEL_EXPENSE_REPORT.TOTAL"></span>: {{totalCost | currency:'€'}}</p>
 <table class="table table-striped">
     <tr>
         <th translate="TRAVEL_EXPENSE.TYPE"></th>

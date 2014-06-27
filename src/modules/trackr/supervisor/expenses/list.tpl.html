@@ -2,12 +2,12 @@
 <p ng-show="reports.length === 0" translate="PAGES.SUPERVISOR.TRAVEL_EXPENSE_REPORTS.EMPTY_TEXT"></p>
 <ul>
     <li ng-repeat="report in reports">
-        <a ui-sref="trackr.supervisor.expenses.edit({id: report.id})">Report #{{report.id}} ({{report.employee.firstName + ' ' + report.employee.lastName}})</a>
+        <a ui-sref="app.trackr.supervisor.expenses.edit({id: report.id})">Report #{{report.id}} ({{report.employee.firstName + ' ' + report.employee.lastName}})</a>
     </li>
 </ul>
 <h2><span translate="TRAVEL_EXPENSE_REPORT.APPROVED"></span> <span translate="TRAVEL_EXPENSE_REPORT.TRAVEL_EXPENSE_REPORTS"></span></h2>
 <ul>
     <li ng-repeat="report in approvedReports">
-        <a ui-sref="trackr.supervisor.expenses.edit({id: report.id})">Report #{{report.id}} ({{report.employee.firstName + ' ' + report.employee.lastName}})</a>
+        <a ui-sref="app.trackr.supervisor.expenses.edit({id: report.id})">Report #{{report.id}} ({{report.employee.firstName + ' ' + report.employee.lastName}})</a>
     </li>
 </ul>
