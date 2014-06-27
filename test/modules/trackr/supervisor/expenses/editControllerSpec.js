@@ -27,7 +27,7 @@ define(['baseTestSetup', 'fixtures', 'angular'], function(baseTestSetup, fixture
             scope.accept(scope.report);
             $httpBackend.expectPUT('api/travelExpenseReports/' + scope.report.id + '/approve');
             $httpBackend.flush();
-            expect(state.go).toHaveBeenCalledWith('trackr.supervisor.expenses', null, {reload: true});
+            expect(state.go).toHaveBeenCalledWith('app.trackr.supervisor.expenses', null, {reload: true});
         }));
 
         it('must call reject on the server when rejecting', inject(function($httpBackend) {
@@ -35,7 +35,7 @@ define(['baseTestSetup', 'fixtures', 'angular'], function(baseTestSetup, fixture
             scope.reject(scope.report);
             $httpBackend.expectPUT('api/travelExpenseReports/' + scope.report.id + '/reject');
             $httpBackend.flush();
-            expect(state.go).toHaveBeenCalledWith('trackr.supervisor.expenses', null, {reload: true});
+            expect(state.go).toHaveBeenCalledWith('app.trackr.supervisor.expenses', null, {reload: true});
         }));
     });
 });

@@ -46,7 +46,7 @@ define(['baseTestSetup', 'fixtures', 'angular'], function(baseTestSetup, fixture
             scope.addNew();
             $httpBackend.expectPOST('api/travelExpenseReports');
             $httpBackend.flush();
-            expect(state.go).toHaveBeenCalledWith('trackr.employee.expenses.edit', { id : undefined });
+            expect(state.go).toHaveBeenCalledWith('app.trackr.employee.expenses.edit', { id : undefined });
         }));
     });
 });
