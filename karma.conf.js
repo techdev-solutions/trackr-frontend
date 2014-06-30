@@ -25,7 +25,6 @@ module.exports = function (config) {
             {pattern: 'test/modules/**/*Mock.js', included: false},
             {pattern: 'src/i18n.js', included: false},
             {pattern: 'src/app.js', included: false},
-            {pattern: 'src/config.js', included: false},
             {pattern: 'src/vendor/**/*.js', included: false},
 			{pattern: 'src/flatify/**/*.js', included: false},
             'test/test-main.js'
