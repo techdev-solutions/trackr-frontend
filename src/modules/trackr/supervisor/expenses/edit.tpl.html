@@ -19,7 +19,7 @@
         <td>{{ expense.submissionDate | date:'dd.MM.yyyy HH:mm:ss' }}</td>
     </tr>
 </table>
-<div ng-show="report.status === 'SUBMITTED'">
+<div ng-show="report.status === 'SUBMITTED' && report.employee.id !== principal.id ">
     <button type="button" class="btn btn-primary" ng-click="accept(report)" translate="ACTIONS.APPROVE"></button>
     <button type="button" class="btn btn-danger" ng-click="reject(report)" translate="ACTIONS.REJECT"></button>
 </div>

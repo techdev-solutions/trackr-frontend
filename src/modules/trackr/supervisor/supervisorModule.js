@@ -5,7 +5,7 @@ define(['angular', 'modules/trackr/supervisor/controllers'], function(angular, c
     supervisor.config(['$stateProvider', function($stateProvider) {
         $stateProvider
             .state('app.trackr.supervisor', {
-                url: 'supervisor',
+                url: '/supervisor',
                 breadcrumbTranslateCode: 'PAGES.SUPERVISOR.TITLE',
                 views: {
                     'center@app': {
@@ -66,7 +66,10 @@ define(['angular', 'modules/trackr/supervisor/controllers'], function(angular, c
                 breadcrumbTranslateCode: 'ACTIONS.EDIT',
                 resolve: {
                     report: ['Restangular', '$stateParams', function(Restangular, $stateParams) {
-                        return Restangular.one('travelExpenseReports', $stateParams.id).get();
+                        return Restangular.one('travelExpenseReports', $stateParams.id)
+                            .get({
+                                projection: 'overview'
+                            });
                     }],
                     expenses: ['report', function(report) {
                         return report.one('expenses').getList().then(function(expenses) {
