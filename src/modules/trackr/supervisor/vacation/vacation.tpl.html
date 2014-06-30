@@ -22,8 +22,8 @@
                     <td>{{request.submissionTime | date:'dd.MM.yyyy HH:mm:ss'}}</td>
                     <td>{{request.employee.firstName}} {{request.employee.lastName}}</td>
                     <td>
-                        <button type="button" ng-click="approve(request)" class="btn btn-xs btn-primary" translate="ACTIONS.APPROVE"></button>
-                        <button type="button" ng-click="reject(request)" class="btn btn-xs btn-warning" translate="ACTIONS.REJECT"></button>
+                        <button type="button" ng-show="request.employee.id !== principal.id" ng-click="approve(request)" class="btn btn-xs btn-primary" translate="ACTIONS.APPROVE"></button>
+                        <button type="button" ng-show="request.employee.id !== principal.id" ng-click="reject(request)" class="btn btn-xs btn-warning" translate="ACTIONS.REJECT"></button>
                     </td>
                 </tr>
             </tbody>

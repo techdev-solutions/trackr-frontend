@@ -1,6 +1,6 @@
 define(['lodash'], function(_) {
     'use strict';
-    return ['$scope', 'Restangular', '$http', function($scope, Restangular, $http) {
+    return ['$scope', 'Restangular', '$http', 'base.services.user', function($scope, Restangular, $http, UserService) {
         var controller = this;
         var findRequestsByStatusBase = Restangular.allUrl('vacationRequests', 'api/vacationRequests/search/findByStatusOrderBySubmissionTimeAsc');
 
@@ -20,6 +20,7 @@ define(['lodash'], function(_) {
         controller.loadRequests('pending');
         controller.loadRequests('approved');
         controller.loadRequests('rejected');
+        $scope.principal = UserService.getUser();
 
         /**
          * Execute an action on a vacation request.
