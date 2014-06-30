@@ -1,9 +1,10 @@
 /* global localStorage */
 /* jshint camelcase: false */
-define(['config'], function(config) {
+define([], function() {
     'use strict';
     return ['$scope', '$location', '$state', '$log', '$http', function($scope, $location, $state, $log, $http) {
-        $scope.url = config.url;
+        // Set the return_to uri to the current location, i.e. the 'authorize' page.
+        $scope.returnToUri = $location.absUrl();
 
         var hash = $location.hash();
         if(hash.indexOf('access_token') > -1) {

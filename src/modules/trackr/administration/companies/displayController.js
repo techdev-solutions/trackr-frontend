@@ -79,7 +79,7 @@ define(['lodash'], function(_) {
                 var companyInList = _.find($scope.$parent.companies, {id: $scope.company.id});
                 companyInList.companyId = $scope.company.companyId;
                 //reload so the url is correct
-                $state.go('trackr.administration.companies.edit', {id: $scope.company.companyId});
+                $state.go('app.trackr.administration.companies.edit', {id: $scope.company.companyId});
             };
 
             /*

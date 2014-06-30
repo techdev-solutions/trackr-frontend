@@ -1,5 +1,20 @@
-<div class="alert alert-danger">TODO: try to get redirect_uri from the state that directed here!</div>
-<div class="alert alert-danger">TODO: Logout button should delete the token from local storage, the default header and maybe even signal the server?</div>
-<p>
-    <a target="_self" href="/portal/oauth/authorize?client_id=trackr-page&response_type=token&redirect_uri={{url}}/authorize">TODO translate me Anmelden</a>
-</p>
+<div id="wrapper">
+    <div>
+        <div class="view-container">
+            <section data-ng-view="" id="content" class="animate-fade-up">
+                <div id="page-wrapper">
+                    <div class="row">
+                        <div class="col-lg-4 col-lg-offset-4">
+                            <p>
+                                No authentication found. Please click the following link to authenticate.
+                            </p>
+                            <a class="btn btn-primary" target="_self"
+                               href="/portal/oauth/authorize?client_id=trackr-page&response_type=token&redirect_uri={{returnToUri}}">Authenticate
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
