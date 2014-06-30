@@ -186,6 +186,7 @@ define([], function() {
                         "lastName": "Hanschke",
                         "phone": "0178/11234566",
                         "salutation": "Herr",
+                        "roles": "Der Boss",
                         "_links": {
                             "self": {
                                 "href": "http://localhost:8080/api/contactPersons/0"
@@ -203,6 +204,7 @@ define([], function() {
                         "lastName": "Krion",
                         "phone": "0178/234586923",
                         "salutation": "Herr",
+                        "roles": null,
                         "_links": {
                             "self": {
                                 "href": "http://localhost:8080/api/contactPersons/1"
