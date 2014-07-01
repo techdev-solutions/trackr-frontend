@@ -4,8 +4,7 @@
     </div>
 
     <div class="form-group col-lg-4">
-        <input type="text"
-               class="form-control"
+        <input type="text" class="form-control" autocomplete="off"
                ng-model="company"
                typeahead-on-select="loadProjects(company)"
                typeahead="company as company.name for company in getCompanies($viewValue)"
@@ -14,8 +13,7 @@
                placeholder="{{ 'PROJECT.COMPANY' |translate }}"/>
     </div>
     <div class="form-group col-lg-4">
-        <input type="text"
-               class="form-control"
+        <input type="text" class="form-control" autocomplete="off"
                ng-model="project"
                typeahead-on-select="loadProjectData()"
                typeahead="project as project.name for project in projects | filter:{name:$viewValue}"

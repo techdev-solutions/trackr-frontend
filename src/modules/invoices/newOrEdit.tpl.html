@@ -5,7 +5,7 @@
     <div class="form-group">
         <label class="form-label col-sm-2" for="debitor" translate="INVOICE.DEBITOR"></label>
         <div class="col-sm-6">
-            <input type="text" class="form-control" id="debitor"
+            <input type="text" class="form-control" id="debitor" autocomplete="off"
                    ng-model="invoice.debitor"
                    typeahead="company as company.name for company in getCompanies($viewValue)"
                    typeahead-editable="false"
