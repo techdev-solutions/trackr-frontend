@@ -1,0 +1,27 @@
+<!-- Logo -->
+<div class="logo">
+    <a ui-sref="app.reportr">
+        <span>reportr</span>
+    </a>
+</div>
+
+<div class="top-nav">
+    <ul class="nav-left list-unstyled">
+        <li ui-sref-active="active"><a href ui-sref="app.reportr.revenue" translate="PAGES.REPORTR.REVENUE.TITLE"></a></li>
+        <li ui-sref-active="active"><a href ui-sref="app.reportr.vacation" translate="PAGES.REPORTR.VACATION.TITLE"></a></li>
+        <li ui-sref-active="active"><a href ui-sref="app.reportr.project-hours" translate="PAGES.REPORTR.PROJECT_HOURS.TITLE"></a></li>
+        <li ui-sref-active="active"><a href ui-sref="app.reportr.employee-hours" translate="PAGES.REPORTR.EMPLOYEE_HOURS.TITLE"></a></li>
+        <li ui-sref-active="active"><a href ui-sref="app.reportr.travel-expense" translate="PAGES.REPORTR.TRAVEL_EXPENSE.TITLE"></a></li>
+    </ul>
+
+    <ul class="nav-right list-unstyled pull-right">
+        <li><a href="" ng-click="logout()">Logout</a></li>
+        <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="" translate="LANGUAGE"></a>
+            <ul class="dropdown-menu">
+                <li><a href ng-click="changeLanguage('en')">English</a></li>
+                <li><a href ng-click="changeLanguage('de')">Deutsch</a></li>
+            </ul>
+        </li>
+    </ul>
+</div>
