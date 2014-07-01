@@ -92,6 +92,16 @@ define(['angular', 'modules/trackr/employee/controllers', 'moment'], function(an
                         controller: 'trackr.employee.controllers.expenseReport-edit'
                     }
                 }
+            })
+            .state('app.trackr.employee.address_book', {
+                url: '/address_book',
+                breadcrumbTranslateCode: 'PAGES.EMPLOYEE.ADDRESS_BOOK.TITLE',
+                views: {
+                    'center@app': {
+                        templateUrl: 'src/modules/trackr/employee/address_book/address_book.tpl.html',
+                        controller: 'trackr.employee.controllers.address_book'
+                    }
+                }
             });
     }]);
 

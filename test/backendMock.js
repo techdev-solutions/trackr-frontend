@@ -129,6 +129,10 @@ define(['fixtures'], function(fixtures) {
         $httpBackend.whenGET(/api\/projects\/search\/findByIdentifier\?.*/)
             .respond(fixtures['api/projects']);
 
+        //#### -- REDUCED EMPLOYEES / ADDRESSBOOK
+        $httpBackend.whenGET(/^api\/address_book\?page=\d+&size=\d+/)
+            .respond(fixtures['api/address_book']._embedded.reducedEmployees);
+
         //#### -- TRAVEL EXPENSES
         mockPost('api/travelExpenses');
         mockPatch('api/travelExpenses');
