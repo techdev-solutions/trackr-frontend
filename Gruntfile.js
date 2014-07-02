@@ -11,7 +11,7 @@ module.exports = function (grunt) {
         jshint: {
             dev: {
                 files: [{
-                    src: ['src/modules/**/*.js', 'Gruntfile.js']
+                    src: ['src/modules/**/*.js', 'Gruntfile.js', 'src/flatify/scripts/flatify-directives.js']
                 }],
                 options: {
                     jshintrc: '.jshintrc'
@@ -74,8 +74,7 @@ module.exports = function (grunt) {
                         'lodash': 'empty:',
                         'angular-translate': 'empty:',
                         'angular-translate-loader-url': 'empty:',
-                        'angular-ui': 'empty:',
-                        'flatify': 'empty:'
+                        'angular-ui': 'empty:'
                     }
                 }
             }
