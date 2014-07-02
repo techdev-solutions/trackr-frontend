@@ -1,0 +1,12 @@
+<h1>Revenues</h1>
+<table class="table table-bordered">
+    <tr>
+        <th translate="INVOICE.DEBITOR"></th>
+        <th translate="PAGES.REPORTR.REVENUE.TURNOVER"></th>
+    </tr>
+    <tr ng-repeat="(debitor, totalCost) in invoices">
+        <td>{{debitor}}</td>
+        <td>{{ totalCost | currency:'€' }}</td>
+    </tr>
+</table>
+        

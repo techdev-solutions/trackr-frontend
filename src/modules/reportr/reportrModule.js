@@ -1,7 +1,11 @@
-define(['angular'], function(angular) {
+define(['angular',
+    'modules/reportr/revenueController'
+], function(angular, RevenueController) {
     'use strict';
     var configFn = [];
     var reportr = angular.module('reportr', configFn);
+
+    reportr.controller('reportr.controllers.revenue', RevenueController);
 
     reportr.config(['$stateProvider', function($stateProvider) {
         $stateProvider
@@ -19,7 +23,13 @@ define(['angular'], function(angular) {
                 needsAuthority: 'ROLE_SUPERVISOR'
             })
             .state('app.reportr.revenue', {
-                url: '/revenue'
+                url: '/revenue',
+                views: {
+                    'center@app': {
+                        templateUrl: 'src/modules/reportr/revenue.tpl.html',
+                        controller: 'reportr.controllers.revenue'
+                    }
+                }
             })
             .state('app.reportr.vacation', {
                 url: '/vacation'
