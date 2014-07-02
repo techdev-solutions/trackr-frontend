@@ -1,0 +1,28 @@
+<h1 translate="PAGES.REPORTR.PROJECT_HOURS.TITLE"></h1>
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <date-interval callback="dateSelected"></date-interval>
+    </div>
+</div>
+<div class="space-md"/>
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <table class="table table-bordered">
+            <tr>
+                <th translate="PROJECT.PROJECT"></th>
+                <th translate="PAGES.REPORTR.PROJECT_HOURS.TRACKED_HOURS"></th>
+                <th translate="PAGES.REPORTR.PROJECT_HOURS.BILLED_HOURS"></th>
+            </tr>
+            <tr ng-repeat="(project, hours) in workTimes">
+                <td>{{project}}</td>
+                <td>{{hours}}</td>
+                <td>{{ billableTimes[project] }}</td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <div ac-chart="'bar'" ac-config="barChartConfig" ac-data="barChartData" style="height: 250px;"></div>
+    </div>
+</div>

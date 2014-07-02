@@ -1,14 +1,16 @@
 define(['angular',
     'modules/reportr/revenueController',
     'modules/reportr/vacationController',
+    'modules/reportr/projectHoursController',
     'angular-charts'
-], function(angular, RevenueController, VacationController) {
+], function(angular, RevenueController, VacationController, ProjectHoursController) {
     'use strict';
     var configFn = ['angularCharts'];
     var reportr = angular.module('reportr', configFn);
 
     reportr.controller('reportr.controllers.revenue', RevenueController);
     reportr.controller('reportr.controllers.vacation', VacationController);
+    reportr.controller('reportr.controllers.project-hours', ProjectHoursController);
 
     reportr.config(['$stateProvider', function($stateProvider) {
         $stateProvider
@@ -44,7 +46,13 @@ define(['angular',
                 }
             })
             .state('app.reportr.project-hours', {
-                url: '/project_hours'
+                url: '/project_hours',
+                views: {
+                    'center@app': {
+                        templateUrl: 'src/modules/reportr/project-hours.tpl.html',
+                        controller: 'reportr.controllers.project-hours'
+                    }
+                }
             })
             .state('app.reportr.employee-hours', {
                 url: '/employee_hours'
