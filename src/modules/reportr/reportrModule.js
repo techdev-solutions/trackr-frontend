@@ -1,8 +1,9 @@
 define(['angular',
-    'modules/reportr/revenueController'
+    'modules/reportr/revenueController',
+    'angular-charts'
 ], function(angular, RevenueController) {
     'use strict';
-    var configFn = [];
+    var configFn = ['angularCharts'];
     var reportr = angular.module('reportr', configFn);
 
     reportr.controller('reportr.controllers.revenue', RevenueController);

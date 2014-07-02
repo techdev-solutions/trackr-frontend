@@ -37,8 +37,36 @@ define(['lodash', 'moment'], function(_, moment) {
                     projection: 'withDebitor'
                 })
                 .then(function(invoices) {
-                    $scope.invoices = controller.mapInvoiceTotalsToDebitor(invoices);
+                    var mappedInvoices = controller.mapInvoiceTotalsToDebitor(invoices);
+                    $scope.invoices = mappedInvoices;
+                    $scope.pieChartData = generatePieData(mappedInvoices);
                 });
+        };
+
+        function generatePieData(invoices) {
+            var data = [];
+            _.forIn(invoices, function(value, debitorName) {
+                data.push({
+                    x: debitorName,
+                    y: [value.toFixed(2)]
+                });
+            });
+            return {
+                series: [],
+                data: data
+            };
+        }
+
+        $scope.pieChartData = { series: [], data: [] };
+
+        $scope.pieChartConfig = {
+            tooltips: false,
+            labels: true,
+            legend: {
+                display: true,
+                position: 'left'
+            },
+            innerRadius: 0
         };
 
         controller.loadInvoices(moment().startOf('month').toDate(), moment().endOf('month').toDate());

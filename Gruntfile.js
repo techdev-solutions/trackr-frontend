@@ -74,7 +74,10 @@ module.exports = function (grunt) {
                         'lodash': 'empty:',
                         'angular-translate': 'empty:',
                         'angular-translate-loader-url': 'empty:',
-                        'angular-ui': 'empty:'
+                        'angular-ui': 'empty:',
+                        'd3': 'empty:',
+                        'angular-charts': 'empty:',
+                        'moment': 'empty:'
                     }
                 }
             }
