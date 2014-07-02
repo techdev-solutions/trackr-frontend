@@ -29,6 +29,13 @@ define(['lodash', 'moment'], function(_, moment) {
             controller.loadInvoices(start, end);
         };
 
+        /**
+         * Load invoices from start to end.
+         *
+         * Map the invoices to the required format and generate the piechart data
+         * @param {Date} end
+         * @param {Date} start
+         */
         controller.loadInvoices = function(start, end) {
             Restangular.allUrl('invoices', 'api/invoices/search/findByCreationDateBetween')
                 .getList({
