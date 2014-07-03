@@ -1,10 +1,14 @@
-define(['lodash', 'moment'], function(_, moment) {
+define(['lodash', 'moment', 'modules/reportr/sortHelper'], function(_, moment, SortHelper) {
     'use strict';
     return ['$http', '$scope', '$filter', function($http, $scope, $filter) {
         var controller = this;
 
         $scope.dateSelected = function(start, end) {
             controller.loadVacationRequests(start, end);
+        };
+
+        $scope.sortBy = function(property, direction) {
+            SortHelper.sortArrayOfArrays($scope.vacationRequests, property, direction);
         };
 
         /**
@@ -21,7 +25,8 @@ define(['lodash', 'moment'], function(_, moment) {
                     projection: 'withEmployeeAndApprover'
                 }
             }).then(function(response) {
-                $scope.vacationRequests = response.data;
+                $scope.vacationRequests = _.pairs(response.data);
+                SortHelper.sortArrayOfArrays($scope.vacationRequests, 1, 1);
                 var data = [{
                     x: $filter('translate')('PAGES.REPORTR.VACATION.DAYS'),
                     y: []

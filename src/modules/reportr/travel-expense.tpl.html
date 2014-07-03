@@ -9,12 +9,16 @@
     <div class="col-md-6 col-md-offset-3">
         <table class="table table-bordered">
             <tr>
-                <th translate="EMPLOYEE.EMPLOYEE"></th>
-                <th translate="PAGES.REPORTR.TRAVEL_EXPENSE.EXPENSES"></th>
+                <th table-sort="0">
+                    <translate translate="EMPLOYEE.EMPLOYEE"></translate>
+                </th>
+                <th table-sort="1">
+                    <translate translate="PAGES.REPORTR.TRAVEL_EXPENSE.EXPENSES"></translate>
+                </th>
             </tr>
-            <tr ng-repeat="(employee, cost) in travelExpenseReports">
-                <td>{{employee}}</td>
-                <td>{{cost}}</td>
+            <tr ng-repeat="travelExpenseReportData in travelExpenseReports">
+                <td>{{travelExpenseReportData[0]}}</td>
+                <td>{{travelExpenseReportData[1]}}</td>
             </tr>
         </table>
     </div>

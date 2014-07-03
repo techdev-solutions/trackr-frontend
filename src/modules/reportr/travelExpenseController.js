@@ -1,10 +1,14 @@
-define(['lodash', 'moment', 'modules/shared/utils/lodashHelpers'], function(_, moment, LodashHelpers) {
+define(['lodash', 'moment', 'modules/shared/utils/lodashHelpers', 'modules/reportr/sortHelper'], function(_, moment, LodashHelpers, SortHelper) {
     'use strict';
     return ['$scope', 'Restangular', '$filter', function($scope, Restangular, $filter) {
         var controller = this;
 
         $scope.dateSelected  = function(start, end) {
             controller.loadTravelExpenseReports(start, end);
+        };
+
+        $scope.sortBy = function(property, direction) {
+            SortHelper.sortArrayOfArrays($scope.travelExpenseReports, property, direction);
         };
 
         controller.loadTravelExpenseReports = function(start, end) {
@@ -27,9 +31,11 @@ define(['lodash', 'moment', 'modules/shared/utils/lodashHelpers'], function(_, m
                             return sum + expense.cost;
                         }, 0);
                     }
-                    $scope.travelExpenseReports =
-                        LodashHelpers.mapAndReduceValuesToSum(submittedAndApprovedReports, employeeMapper, expensesSumMapper);
-                    $scope.barChartData = controller.calculateBarChartData($scope.travelExpenseReports);
+
+                    var travelExpenseReportsMap = LodashHelpers.mapAndReduceValuesToSum(submittedAndApprovedReports, employeeMapper, expensesSumMapper);
+                    $scope.travelExpenseReports = _.pairs(travelExpenseReportsMap);
+                    SortHelper.sortArrayOfArrays($scope.travelExpenseReports, 1, 1);
+                    $scope.barChartData = controller.calculateBarChartData(travelExpenseReportsMap);
                 });
         };
 

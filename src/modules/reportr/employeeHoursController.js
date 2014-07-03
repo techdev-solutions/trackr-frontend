@@ -1,10 +1,14 @@
-define(['lodash', 'moment', 'modules/shared/utils/lodashHelpers'], function(_, moment, LodashHelpers) {
+define(['lodash', 'moment', 'modules/shared/utils/lodashHelpers', 'modules/reportr/sortHelper'], function(_, moment, LodashHelpers, SortHelper) {
     'use strict';
     return ['$scope', 'Restangular', '$filter', function($scope, Restangular, $filter) {
         var controller = this;
 
         $scope.dateSelected = function(start, end) {
             controller.loadWorkTimes(start, end);
+        };
+
+        $scope.sortBy = function(property, direction) {
+            SortHelper.sortArrayOfArrays($scope.workTimes, property, direction);
         };
 
         controller.loadWorkTimes = function(start, end) {
@@ -15,8 +19,10 @@ define(['lodash', 'moment', 'modules/shared/utils/lodashHelpers'], function(_, m
                     projection: 'withEmployee'
                 }
             ).then(function(times) {
-                    $scope.workTimes = controller.mapAndReduceWorkTimes(times);
-                    $scope.barChartData = controller.calculateBarChartData($scope.workTimes);
+                    var workTimesMap = controller.mapAndReduceWorkTimes(times);
+                    $scope.barChartData = controller.calculateBarChartData(workTimesMap);
+                    $scope.workTimes = _.pairs(workTimesMap);
+                    SortHelper.sortArrayOfArrays($scope.workTimes, 1, 1);
                 });
         };
 

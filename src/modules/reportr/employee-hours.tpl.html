@@ -9,12 +9,16 @@
     <div class="col-md-6 col-md-offset-3">
         <table class="table table-bordered">
             <tr>
-                <th translate="EMPLOYEE.EMPLOYEE"></th>
-                <th translate="PAGES.REPORTR.EMPLOYEE_HOURS.WORKED_HOURS"></th>
+                <th table-sort="0">
+                    <translate translate="EMPLOYEE.EMPLOYEE"></translate>
+                </th>
+                <th table-sort="1">
+                    <translate translate="PAGES.REPORTR.EMPLOYEE_HOURS.WORKED_HOURS"></translate>
+                </th>
             </tr>
-            <tr ng-repeat="(employee, hours) in workTimes">
-                <td>{{employee}}</td>
-                <td>{{hours}}</td>
+            <tr ng-repeat="workTimeData in workTimes">
+                <td>{{workTimeData[0]}}</td>
+                <td>{{workTimeData[1]}}</td>
             </tr>
         </table>
     </div>

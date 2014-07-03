@@ -1,10 +1,14 @@
-define(['lodash', 'moment', 'modules/shared/utils/lodashHelpers'], function(_, moment, LodashHelpers) {
+define(['lodash', 'moment', 'modules/shared/utils/lodashHelpers', 'modules/reportr/sortHelper'], function(_, moment, LodashHelpers, SortHelper) {
     'use strict';
     return ['$scope', 'Restangular', '$filter', function($scope, Restangular, $filter) {
         var controller = this;
 
         $scope.dateSelected = function(start, end) {
             controller.loadAllTimes(start, end);
+        };
+
+        $scope.sortBy = function(property, direction) {
+            SortHelper.sortArrayOfArrays($scope.projectTimes, property, direction);
         };
 
         /**
@@ -38,7 +42,7 @@ define(['lodash', 'moment', 'modules/shared/utils/lodashHelpers'], function(_, m
 
         controller.loadBillableTimes = function(start, end) {
             return controller.loadTimes(start, end, 'billableTimes', function(billableTime) {
-                return moment.duration(billableTime.minutes, 'minutes').asHours();
+                return parseFloat(moment.duration(billableTime.minutes, 'minutes').asHours().toFixed(2));
             });
         };
 
@@ -64,14 +68,29 @@ define(['lodash', 'moment', 'modules/shared/utils/lodashHelpers'], function(_, m
          * Load billable times and work times. Calculate the data for the chart.
          */
         controller.loadAllTimes = function(start, end) {
+            var billableTimes;
             controller.loadBillableTimes(start, end)
                 .then(function(billableTimesMap) {
-                    $scope.billableTimes = billableTimesMap;
+                    billableTimes = billableTimesMap;
                     return controller.loadWorkTimes(start, end);
                 })
                 .then(function(workTimesMap) {
-                    $scope.workTimes = workTimesMap;
-                    $scope.barChartData.data = controller.calculateChartData($scope.workTimes, $scope.billableTimes);
+                    $scope.barChartData.data = controller.calculateChartData(workTimesMap, billableTimes);
+
+                    var workTimeArray = _.pairs(workTimesMap);
+                    // Add the billable times if present
+                    workTimeArray.forEach(function(workTimeData) {
+                        var projectName = workTimeData[0];
+
+                        if(billableTimes[projectName]) {
+                            workTimeData[2] = billableTimes[projectName];
+                        } else {
+                            workTimeData[2] = 0;
+                        }
+                    });
+                    //TODO: check for billable times without worktimes?
+                    SortHelper.sortArrayOfArrays(workTimeArray, 2, 1);
+                    $scope.projectTimes = workTimeArray;
                 });
         };
 
