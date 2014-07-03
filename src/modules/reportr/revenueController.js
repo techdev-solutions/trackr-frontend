@@ -1,10 +1,14 @@
-define(['lodash', 'moment', 'modules/shared/utils/lodashHelpers'], function(_, moment, LodashHelpers) {
+define(['lodash', 'moment', 'modules/shared/utils/lodashHelpers', 'modules/reportr/sortHelper'], function(_, moment, LodashHelpers, SortHelper) {
     'use strict';
     return ['Restangular', '$scope', function(Restangular, $scope) {
         var controller = this;
 
         $scope.dateSelected = function(start, end) {
             controller.loadInvoices(start, end);
+        };
+
+        $scope.sortBy = function(property, direction) {
+            SortHelper.sortArrayOfArrays($scope.invoices, property, direction);
         };
 
         /**
@@ -23,7 +27,8 @@ define(['lodash', 'moment', 'modules/shared/utils/lodashHelpers'], function(_, m
                 })
                 .then(function(invoices) {
                     var mappedInvoices = LodashHelpers.mapAndReduceValuesToSum(invoices, function(invoice) { return invoice.debitor.name; }, 'invoiceTotal');
-                    $scope.invoices = mappedInvoices;
+                    $scope.invoices = _.pairs(mappedInvoices);
+                    SortHelper.sortArrayOfArrays($scope.invoices, 1, 1);
                     $scope.pieChartData = controller.generatePieData(mappedInvoices);
                 });
         };

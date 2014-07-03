@@ -9,12 +9,16 @@
     <div class="col-md-6 col-md-offset-3">
         <table class="table table-bordered">
             <tr>
-                <th translate="INVOICE.DEBITOR"></th>
-                <th translate="PAGES.REPORTR.REVENUE.TURNOVER"></th>
+                <th table-sort="0">
+                    <translate translate="INVOICE.DEBITOR"></translate>
+                </th>
+                <th table-sort="1">
+                    <translate translate="PAGES.REPORTR.REVENUE.TURNOVER"></translate>
+                </th>
             </tr>
-            <tr ng-repeat="(debitor, totalCost) in invoices">
-                <td>{{debitor}}</td>
-                <td>{{ totalCost | currency:'€' }}</td>
+            <tr ng-repeat="invoiceData in invoices">
+                <td>{{ invoiceData[0] }}</td>
+                <td>{{ invoiceData[1] | currency:'€' }}</td>
             </tr>
         </table>
     </div>
