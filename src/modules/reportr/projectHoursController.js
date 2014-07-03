@@ -1,30 +1,10 @@
-define(['lodash', 'moment'], function(_, moment) {
+define(['lodash', 'moment', 'modules/shared/utils/lodashHelpers'], function(_, moment, LodashHelpers) {
     'use strict';
     return ['$scope', 'Restangular', '$filter', function($scope, Restangular, $filter) {
         var controller = this;
 
         $scope.dateSelected = function(start, end) {
             controller.loadAllTimes(start, end);
-        };
-
-        /**
-         * Group the elements of the array by their calculated project identifier and reduce the values with the
-         * reducer callback.
-         * @param {Array} arr array with either workTimes or billableHours
-         * @param {Function} reducer callback for _.reduce taking the current sum and the current value as arguments
-         * @return {Object} Map of project identifiers to hours
-         */
-        controller.groupByProjectAndReduceHours = function(arr, reducer) {
-            var mapped = _.groupBy(arr, controller.projectIdentifier);
-            return _.mapValues(
-                mapped,
-                function(values) {
-                    var hours = _.reduce(values, reducer, 0);
-                    // Somehow in some cases angular-charts does not like strings so we have to convert to a number
-                    // after truncating to two decimal places.
-                    return parseFloat(hours.toFixed(2));
-                }
-            );
         };
 
         /**
@@ -41,10 +21,10 @@ define(['lodash', 'moment'], function(_, moment) {
          * @param {Date} start The start of the period to load
          * @param {Date} end The end of the period to load
          * @param {String} name either workTimes or billableTimes
-         * @param {Function} reducer The reducer to reduce the hours
+         * @param {Function} numberExtractor The numberExtractor to reduce the hours, function from workTime or billableTime to number.
          * @return {*} The promise from the http call.
          */
-        controller.loadTimes = function(start, end, name, reducer) {
+        controller.loadTimes = function(start, end, name, numberExtractor) {
             return Restangular.allUrl(name, 'api/' + name + '/search/findByDateBetween')
                 .getList({
                     start: start.getTime(),
@@ -52,21 +32,32 @@ define(['lodash', 'moment'], function(_, moment) {
                     projection: 'withProject'
                 }
             ).then(function(times) {
-                    $scope[name] = controller.groupByProjectAndReduceHours(times, reducer);
+                    return LodashHelpers.mapAndReduceValuesToSum(times, controller.projectIdentifier, numberExtractor);
                 });
         };
 
         controller.loadBillableTimes = function(start, end) {
-            return controller.loadTimes(start, end, 'billableTimes', function(sum, billableTime) {
-                return sum + moment.duration(billableTime.minutes, 'minutes').asHours();
+            return controller.loadTimes(start, end, 'billableTimes', function(billableTime) {
+                return moment.duration(billableTime.minutes, 'minutes').asHours();
             });
         };
 
         controller.loadWorkTimes = function(start, end) {
-            return controller.loadTimes(start, end, 'workTimes', function(sum, workTime) {
-                var diff = moment(workTime.endTime, 'HH:mm').diff(moment(workTime.startTime, 'HH:mm'), 'hours', true);
-                return sum + diff;
+            return controller.loadTimes(start, end, 'workTimes', function(workTime) {
+                return moment(workTime.endTime, 'HH:mm').diff(moment(workTime.startTime, 'HH:mm'), 'hours', true);
             });
+        };
+
+        controller.calculateChartData = function(workTimesMap, billableTimesMap) {
+            var data = [];
+            _.forIn(workTimesMap, function(hours, project) {
+                data.push({
+                    x: project,
+                    y: [hours, billableTimesMap[project]]
+                });
+
+            });
+            return data;
         };
 
         /**
@@ -74,19 +65,13 @@ define(['lodash', 'moment'], function(_, moment) {
          */
         controller.loadAllTimes = function(start, end) {
             controller.loadBillableTimes(start, end)
-                .then(function() {
+                .then(function(billableTimesMap) {
+                    $scope.billableTimes = billableTimesMap;
                     return controller.loadWorkTimes(start, end);
                 })
-                .then(function() {
-                    var data = [];
-                    _.forIn($scope.workTimes, function(hours, project) {
-                        data.push({
-                            x: project,
-                            y: [hours, $scope.billableTimes[project]]
-                        });
-
-                    });
-                    $scope.barChartData.data = data;
+                .then(function(workTimesMap) {
+                    $scope.workTimes = workTimesMap;
+                    $scope.barChartData.data = controller.calculateChartData($scope.workTimes, $scope.billableTimes);
                 });
         };
 
