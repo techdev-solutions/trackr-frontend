@@ -40,7 +40,7 @@ define(['lodash', 'moment', 'modules/shared/utils/lodashHelpers'], function(_, m
                 series: [],
                 data: data
             };
-        }
+        };
 
         $scope.pieChartData = { series: [], data: [] };
 
