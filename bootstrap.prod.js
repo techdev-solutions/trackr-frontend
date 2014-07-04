@@ -10,8 +10,9 @@ require.config({
         'angular-translate': 'src/vendor/angular-translate/angular-translate.min',
         'angular-translate-loader-url': 'src/vendor/angular-translate-loader-url/angular-translate-loader-url.min',
         'angular-ui': 'src/vendor/angular-ui-bootstrap-bower/ui-bootstrap-tpls.min',
-        'flatify': 'src/flatify/scripts/app',
-        'moment': 'vendor/moment/moment/min/moment.min'
+        'angular-charts': 'src/vendor/angular-charts/dist/angular-charts.min',
+        'moment': 'src/vendor/moment/min/moment.min',
+        'd3': 'src/vendor/d3/d3.min'
     },
     shim: {
         'angular': { exports: 'angular', deps: ['jQuery'] },
@@ -23,7 +24,8 @@ require.config({
         'lodash': { exports: '_'},
         'angular-translate': { deps: ['angular'] },
         'angular-translate-loader-url': { deps: ['angular-translate'] },
-        'angular-ui': { deps: ['angular'] }
+        'angular-ui': { deps: ['angular'] },
+        'angular-charts': { deps: ['angular', 'd3'] }
     }
 });
 require(['trackr']);

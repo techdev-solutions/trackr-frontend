@@ -186,6 +186,7 @@ define([], function() {
                         "lastName": "Hanschke",
                         "phone": "0178/11234566",
                         "salutation": "Herr",
+                        "roles": "Der Boss",
                         "_links": {
                             "self": {
                                 "href": "http://localhost:8080/api/contactPersons/0"
@@ -203,6 +204,7 @@ define([], function() {
                         "lastName": "Krion",
                         "phone": "0178/234586923",
                         "salutation": "Herr",
+                        "roles": null,
                         "_links": {
                             "self": {
                                 "href": "http://localhost:8080/api/contactPersons/1"
@@ -1332,6 +1334,16 @@ define([], function() {
                 "totalPages": 1,
                 "number": 0
             }
-        }
+        },
+
+        "api/address_book": {"_embedded": {"reducedEmployees": [
+            {"firstName": "admin", "lastName": "admin", "phoneNumber": null, "title": "technical administrator", "email": "admin@techdev.de"},
+            {"firstName": "Moritz", "lastName": "Schulze", "phoneNumber": null, "title": "Hausmeister", "email": "moritz.schulze@techdev.de"},
+            {"firstName": "Viktor", "lastName": "Widiker", "phoneNumber": null, "title": "Software Consultant", "email": "viktor.widiker@techdev.de"},
+            {"firstName": "Alexander", "lastName": "Hanschke", "phoneNumber": null, "title": "Praktikant", "email": "alexander.hanschke@techdev.de"},
+            {"firstName": "Adrian", "lastName": "Krion", "phoneNumber": null, "title": "Sekretaer", "email": "adrian.krion@techdev.de"},
+            {"firstName": "Angelika", "lastName": "Gutjahr", "phoneNumber": null, "title": "Entertainerin", "email": "angelika.gutjahr@techdev.de"},
+            {"firstName": "Nikolaj", "lastName": "Weise", "phoneNumber": null, "title": "Empfang", "email": "nikolaj.weise@techdev.de"}
+        ]}, "page": {"size": 10, "totalElements": 7, "totalPages": 1, "number": 0}}
     };
 });

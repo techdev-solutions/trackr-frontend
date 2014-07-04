@@ -1,0 +1,19 @@
+<h1 ng-translate="PAGES.EMPLOYEE.ADDRESS_BOOK.TITLE"></h1>
+<table class="table table-bordered table-striped">
+    <tr>
+        <th translate="EMPLOYEE.FIRST_NAME"></th>
+        <th translate="EMPLOYEE.LAST_NAME"></th>
+        <th translate="EMPLOYEE.TITLE"></th>
+        <th translate="EMPLOYEE.PHONE_NUMBER"></th>
+        <th translate="CREDENTIAL.EMAIL"></th>
+    </tr>
+    <tr ng-repeat="employee in employees">
+        <td>{{employee.firstName}}</td>
+        <td>{{employee.lastName}}</td>
+        <td>{{employee.title}}</td>
+        <td>{{employee.phoneNumber}}</td>
+        <td><a href="mailto:{{employee.email}}">{{employee.email}}</a></td>
+    </tr>
+</table>
+
+<pagination class="pagination-sm" total-items="employees.page.totalElements" ng-model="employees.page.number" items-per-page="employees.page.size" ng-change="setPage()"></pagination>

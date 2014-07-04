@@ -6,9 +6,8 @@
             <div class="form-group" error-display="project">
                 <label class="form-label col-sm-2" for="project" translate="WORKTIME.PROJECT"></label>
                 <div class="col-sm-2">
-                    <input type="text" class="form-control" id="project"
+                    <input type="text" class="form-control" id="project" autocomplete="off"
                            ng-model="project"
-                           autocomplete="false"
                            typeahead="project as getProjectLabel(project) for project in getProjects($viewValue)"
                            typeahead-editable="false"
                            typeahead-min-length="1" />

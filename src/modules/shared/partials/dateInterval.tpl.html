@@ -1,0 +1,41 @@
+<form class="form-inline">
+    <div class="form-group col-md-6">
+        <label for="dateIntervalStartDate">Start</label>
+        <div class="input-group">
+            <input type="text" id="dateIntervalStartDate" class="form-control" ng-model="dateIntervalStart"
+                   ng-change="dateIntervalDateChange()"
+                   datepicker-popup="yyyy-MM-dd"
+                   is-open="dateIntervalStartOpened"
+                   datepicker-options="dateIntervalOptions"
+                   close-text="{{ 'ACTIONS.CLOSE' | translate }}"
+                   current-text="{{ 'DATE.TODAY' | translate }}"
+                   toggle-weeks-text="{{ 'DATE.WEEKS' | translate }}"
+                   clear-text="{{ 'ACTIONS.CLEAR' | translate }}"/>
+            <span class="input-group-btn">
+                <button class="btn btn-default" ng-click="dateIntervalOpenDate($event, 'dateIntervalStartOpened')">
+                    <i class="glyphicon glyphicon-calendar"></i>
+                </button>
+            </span>
+        </div>
+    </div>
+
+    <div class="form-group col-md-6">
+        <label for="dateIntervalEndDate">End</label>
+        <div class="input-group">
+            <input type="text" id="dateIntervalEndDate" class="form-control" ng-model="dateIntervalEnd"
+                   ng-change="dateIntervalDateChange()"
+                   datepicker-popup="yyyy-MM-dd"
+                   is-open="dateIntervalEndOpened"
+                   datepicker-options="dateIntervalOptions"
+                   close-text="{{ 'ACTIONS.CLOSE' | translate }}"
+                   current-text="{{ 'DATE.TODAY' | translate }}"
+                   toggle-weeks-text="{{ 'DATE.WEEKS' | translate }}"
+                   clear-text="{{ 'ACTIONS.CLEAR' | translate }}"/>
+            <span class="input-group-btn">
+                <button class="btn btn-default" ng-click="dateIntervalOpenDate($event, 'dateIntervalEndOpened')">
+                    <i class="glyphicon glyphicon-calendar"></i>
+                </button>
+            </span>
+        </div>
+    </div>
+</form>

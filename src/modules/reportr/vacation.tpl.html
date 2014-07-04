@@ -1,0 +1,30 @@
+<h1 translate="PAGES.REPORTR.VACATION.TITLE"></h1>
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <date-interval callback="dateSelected"></date-interval>
+    </div>
+</div>
+<div class="space-md"/>
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <table class="table table-bordered">
+            <tr>
+                <th table-sort="0">
+                    <translate translate="EMPLOYEE.EMPLOYEE"></translate>
+                </th>
+                <th table-sort="1">
+                    <translate translate="PAGES.REPORTR.VACATION.DAYS"></translate>
+                </th>
+            </tr>
+            <tr ng-repeat="vacationRequestData in vacationRequests">
+                <td>{{vacationRequestData[0]}}</td>
+                <td>{{vacationRequestData[1]}}</td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <div ac-chart="'bar'" ac-config="barChartConfig" ac-data="barChartData" style="height: 250px;"></div>
+    </div>
+</div>

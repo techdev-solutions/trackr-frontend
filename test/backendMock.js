@@ -55,6 +55,14 @@ define(['fixtures'], function(fixtures) {
         mockPost('api/billableTimes');
         $httpBackend.whenGET(/^api\/billableTimes\/findEmployeeMappingByProjectAndDateBetween\?.*/)
             .respond(fixtures['api/billableTimes']);
+        $httpBackend.whenGET(/^api\/billableTimes\/search\/findByDateBetween\?end=\d+&projection=withProject&start=\d+/)
+            .respond(function() {
+                var data = fixtures['api/billableTimes'];
+                data._embedded.billableTimes.forEach(function(billableTime) {
+                    billableTime.project = fixtures['api/projects']._embedded.projects[0];
+                });
+                return [200, data];
+            });
 
         //#### -- COMPANIES
         mockRoot('api/companies');
@@ -116,6 +124,15 @@ define(['fixtures'], function(fixtures) {
             .respond(fixtures['api/invoices']);
         $httpBackend.whenGET(/^api\/invoices\/search\/findByIdentifierLikeIgnoreCaseAndInvoiceState\?identifier=%25\w+%25&page=\d+&projection=\w+&size=\d+&sort=creationDate&state=\w+/)
             .respond(fixtures['api/invoices']);
+        $httpBackend.whenGET(/^api\/invoices\/search\/findByCreationDateBetween\?end=\d+&projection=withDebitor&start=\d+/)
+            .respond(function() {
+                //add a debitor
+                var invoices = fixtures['api/invoices'];
+                invoices._embedded.invoices.forEach(function(invoice) {
+                    invoice.debitor = fixtures['api/companies']._embedded.companies[0];
+                });
+                return [200, invoices];
+            });
         $httpBackend.whenPOST(/^api\/invoices\/\d+\/markPaid$/)
             .respond([204, 'Ok.']);
 
@@ -128,6 +145,10 @@ define(['fixtures'], function(fixtures) {
             .respond(fixtures['api/projects']);
         $httpBackend.whenGET(/api\/projects\/search\/findByIdentifier\?.*/)
             .respond(fixtures['api/projects']);
+
+        //#### -- REDUCED EMPLOYEES / ADDRESSBOOK
+        $httpBackend.whenGET(/^api\/address_book\?page=\d+&size=\d+/)
+            .respond(fixtures['api/address_book']._embedded.reducedEmployees);
 
         //#### -- TRAVEL EXPENSES
         mockPost('api/travelExpenses');
@@ -144,6 +165,15 @@ define(['fixtures'], function(fixtures) {
             });
         $httpBackend.whenGET('api/travelExpenseReports/search/findByEmployeeOrderByStatusAsc')
             .respond(fixtures['api/travelExpenseReports']);
+        $httpBackend.whenGET(/^api\/travelExpenseReports\/search\/findBySubmissionDateBetween\?end=\d+&projection=withEmployeeAndExpenses&start=\d+$/)
+            .respond(function() {
+                var data = fixtures['api/travelExpenseReports'];
+                data._embedded.travelExpenseReports.forEach(function(report) {
+                    report.employee = fixtures['api/employees']._embedded.employees[0];
+                    report.expenses = fixtures['api/travelExpenses']._embedded.expenses;
+                });
+                return [200, data];
+            });
         $httpBackend.whenPUT(/^api\/travelExpenseReports\/\d+\/submit/)
             .respond([204]);
         $httpBackend.whenPUT(/^api\/travelExpenseReports\/\d+\/approve/)
@@ -161,6 +191,16 @@ define(['fixtures'], function(fixtures) {
             .respond(fixtures['api/vacationRequests']);
         $httpBackend.whenGET(/^api\/vacationRequests\/search\/findByStatusOrderBySubmissionTimeAsc\?.*/)
             .respond(fixtures['api/vacationRequests']);
+        $httpBackend.whenGET(/^api\/vacationRequests\/daysPerEmployeeBetween\?end=\d+&projection=withEmployeeAndApprover&start=\d+$/)
+            .respond(function() {
+                var data = fixtures['api/vacationRequests'];
+                data._embedded.vacationRequests.forEach(function(vacationRequest) {
+                    var employee = fixtures['api/employees']._embedded.employees[0];
+                    vacationRequest.employee = employee;
+                    vacationRequest.approver = employee;
+                });
+                return [200, data];
+            });
         $httpBackend.whenDELETE(/^api\/vacationRequests\/\d+/).respond([204]);
         $httpBackend.whenPUT(/^api\/vacationRequests\/\d+\/approve/).respond(function() {
             return [200, {
@@ -184,6 +224,22 @@ define(['fixtures'], function(fixtures) {
         $httpBackend.whenGET(/api\/workTimes\/search\/findByEmployeeAndDateBetweenOrderByDateAscStartTimeAsc\?.*/)
             .respond(fixtures['api/workTimes']);
         $httpBackend.whenGET(/api\/workTimes\/\d+\/project/).respond(fixtures['api/projects']._embedded.projects[0]);
+        $httpBackend.whenGET(/^api\/workTimes\/search\/findByDateBetween\?end=\d+&projection=withProject&start=\d+/)
+            .respond(function() {
+                var data = fixtures['api/workTimes'];
+                data._embedded.workTimes.forEach(function(workTime) {
+                    workTime.project = fixtures['api/projects']._embedded.projects[0];
+                });
+                return [200, data];
+            });
+        $httpBackend.whenGET(/^api\/workTimes\/search\/findByDateBetween\?end=\d+&projection=withEmployee&start=\d+$/)
+            .respond(function() {
+                var data = fixtures['api/workTimes'];
+                data._embedded.workTimes.forEach(function(workTime) {
+                    workTime.employee = fixtures['api/employees']._embedded.employees[0];
+                });
+                return [200, data];
+            });
 
         /* ############################ TEMPLATES ########################### */
         /*

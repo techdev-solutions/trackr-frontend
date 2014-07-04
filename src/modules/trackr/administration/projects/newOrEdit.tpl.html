@@ -9,7 +9,7 @@
     <div class="form-group">
         <label class="form-label col-sm-2" for="company" translate="PROJECT.COMPANY"></label>
         <div class="col-sm-6">
-            <input type="text" class="form-control" id="company"
+            <input type="text" class="form-control" id="company" autocomplete="off"
                    ng-model="project.company"
                    typeahead="company as company.name for company in getCompanies($viewValue)"
                    typeahead-editable="false"
@@ -20,7 +20,7 @@
     <div class="form-group">
         <label class="form-label col-sm-2" for="debitor" translate="PROJECT.DEBITOR"></label>
         <div class="col-sm-6">
-            <input type="text" class="form-control" id="debitor"
+            <input type="text" class="form-control" id="debitor" autocomplete="off"
                    ng-model="project.debitor"
                    typeahead="company as company.name for company in getCompanies($viewValue)"
                    typeahead-editable="false"
