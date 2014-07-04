@@ -29,7 +29,7 @@ define(['angular',
                         controller: 'base.controllers.navigation'
                     }
                 },
-                needsAuthority: 'ROLE_SUPERVISOR'
+                needsAuthority: 'ROLE_ADMIN'
             })
             .state('app.reportr.revenue', {
                 url: '/revenue',
