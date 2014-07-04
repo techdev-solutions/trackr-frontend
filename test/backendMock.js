@@ -174,6 +174,16 @@ define(['fixtures'], function(fixtures) {
             .respond(fixtures['api/vacationRequests']);
         $httpBackend.whenGET(/^api\/vacationRequests\/search\/findByStatusOrderBySubmissionTimeAsc\?.*/)
             .respond(fixtures['api/vacationRequests']);
+        $httpBackend.whenGET(/^api\/vacationRequests\/daysPerEmployeeBetween\?end=\d+&projection=withEmployeeAndApprover&start=\d+$/)
+            .respond(function() {
+                var data = fixtures['api/vacationRequests'];
+                data._embedded.vacationRequests.forEach(function(vacationRequest) {
+                    var employee = fixtures['api/employees']._embedded.employees[0];
+                    vacationRequest.employee = employee;
+                    vacationRequest.approver = employee;
+                });
+                return [200, data];
+            });
         $httpBackend.whenDELETE(/^api\/vacationRequests\/\d+/).respond([204]);
         $httpBackend.whenPUT(/^api\/vacationRequests\/\d+\/approve/).respond(function() {
             return [200, {
