@@ -63,7 +63,7 @@ define(['moment', 'modules/reportr/lodashHelpers', 'modules/reportr/sortHelper']
         /**
          * Generate the data for the bar chart. Works on the data returned by {@link mapAndReduceValuesToSum}
          * @param {Array} timesArray The array with the data for the work times and billable times
-         * @return {{series: Array, data: Array}} Data for angular-charts to display.
+         * @return {Array} Data for angular-charts to display.
          */
         controller.calculateChartData = function(timesArray) {
             var data = [];

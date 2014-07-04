@@ -55,6 +55,14 @@ define(['fixtures'], function(fixtures) {
         mockPost('api/billableTimes');
         $httpBackend.whenGET(/^api\/billableTimes\/findEmployeeMappingByProjectAndDateBetween\?.*/)
             .respond(fixtures['api/billableTimes']);
+        $httpBackend.whenGET(/^api\/billableTimes\/search\/findByDateBetween\?end=\d+&projection=withProject&start=\d+/)
+            .respond(function() {
+                var data = fixtures['api/billableTimes'];
+                data._embedded.billableTimes.forEach(function(billableTime) {
+                    billableTime.project = fixtures['api/projects']._embedded.projects[0];
+                });
+                return [200, data];
+            });
 
         //#### -- COMPANIES
         mockRoot('api/companies');
@@ -207,6 +215,14 @@ define(['fixtures'], function(fixtures) {
         $httpBackend.whenGET(/api\/workTimes\/search\/findByEmployeeAndDateBetweenOrderByDateAscStartTimeAsc\?.*/)
             .respond(fixtures['api/workTimes']);
         $httpBackend.whenGET(/api\/workTimes\/\d+\/project/).respond(fixtures['api/projects']._embedded.projects[0]);
+        $httpBackend.whenGET(/^api\/workTimes\/search\/findByDateBetween\?end=\d+&projection=withProject&start=\d+/)
+            .respond(function() {
+                var data = fixtures['api/workTimes'];
+                data._embedded.workTimes.forEach(function(workTime) {
+                    workTime.project = fixtures['api/projects']._embedded.projects[0];
+                });
+                return [200, data];
+            });
 
         /* ############################ TEMPLATES ########################### */
         /*
