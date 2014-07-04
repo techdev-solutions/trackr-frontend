@@ -116,6 +116,15 @@ define(['fixtures'], function(fixtures) {
             .respond(fixtures['api/invoices']);
         $httpBackend.whenGET(/^api\/invoices\/search\/findByIdentifierLikeIgnoreCaseAndInvoiceState\?identifier=%25\w+%25&page=\d+&projection=\w+&size=\d+&sort=creationDate&state=\w+/)
             .respond(fixtures['api/invoices']);
+        $httpBackend.whenGET(/^api\/invoices\/search\/findByCreationDateBetween\?end=\d+&projection=withDebitor&start=\d+/)
+            .respond(function() {
+                //add a debitor
+                var invoices = fixtures['api/invoices'];
+                invoices._embedded.invoices.forEach(function(invoice) {
+                    invoice.debitor = fixtures['api/companies']._embedded.companies[0];
+                });
+                return [200, invoices];
+            });
         $httpBackend.whenPOST(/^api\/invoices\/\d+\/markPaid$/)
             .respond([204, 'Ok.']);
 
