@@ -1,19 +1,21 @@
-define(['lodash', 'moment', 'modules/shared/utils/lodashHelpers', 'modules/reportr/sortHelper'], function(_, moment, LodashHelpers, SortHelper) {
+define(['moment', 'modules/reportr/lodashHelpers', 'modules/reportr/sortHelper'], function(moment, LodashHelpers, SortHelper) {
     'use strict';
     return ['$scope', 'Restangular', '$filter', function($scope, Restangular, $filter) {
         var controller = this;
 
+        // see date-interval directive
         $scope.dateSelected = function(start, end) {
             controller.loadAllTimes(start, end);
         };
 
+        // See table-sort directive
         $scope.sortBy = function(property, direction) {
             SortHelper.sortArrayOfArrays($scope.projectTimes, property, direction);
         };
 
         /**
          * Extract the project name + identifier from a work time or billable time.
-         * @param obj work time or billable time
+         * @param {Object} obj work time or billable time
          * @return {string} project name + (project identifier)
          */
         controller.projectIdentifier = function(obj) {
@@ -21,12 +23,12 @@ define(['lodash', 'moment', 'modules/shared/utils/lodashHelpers', 'modules/repor
         };
 
         /**
-         * Load billable times or work times from the backend, group them by project and reduce the hours to a single value.
+         * Load billable times or work times from the backend, run {@link mapAndReduceValuesToSum} on the result.
          * @param {Date} start The start of the period to load
          * @param {Date} end The end of the period to load
-         * @param {String} name either workTimes or billableTimes
+         * @param {String} name either 'workTimes' or 'billableTimes'
          * @param {Function} numberExtractor The numberExtractor to reduce the hours, function from workTime or billableTime to number.
-         * @return {*} The promise from the http call.
+         * @return {*} A promise resolving to the array containing the values.
          */
         controller.loadTimes = function(start, end, name, numberExtractor) {
             return Restangular.allUrl(name, 'api/' + name + '/search/findByDateBetween')
@@ -40,24 +42,35 @@ define(['lodash', 'moment', 'modules/shared/utils/lodashHelpers', 'modules/repor
                 });
         };
 
+        /**
+         * Invoke {@link loadTimes} for billableTimes
+         */
         controller.loadBillableTimes = function(start, end) {
             return controller.loadTimes(start, end, 'billableTimes', function(billableTime) {
                 return parseFloat(moment.duration(billableTime.minutes, 'minutes').asHours().toFixed(2));
             });
         };
 
+        /**
+         * Invoke {@link loadTimes} for workTimes
+         */
         controller.loadWorkTimes = function(start, end) {
             return controller.loadTimes(start, end, 'workTimes', function(workTime) {
                 return moment(workTime.endTime, 'HH:mm').diff(moment(workTime.startTime, 'HH:mm'), 'hours', true);
             });
         };
 
-        controller.calculateChartData = function(workTimesMap, billableTimesMap) {
+        /**
+         * Generate the data for the bar chart. Works on the data returned by {@link mapAndReduceValuesToSum}
+         * @param {Array} timesArray The array with the data for the work times and billable times
+         * @return {{series: Array, data: Array}} Data for angular-charts to display.
+         */
+        controller.calculateChartData = function(timesArray) {
             var data = [];
-            _.forIn(workTimesMap, function(hours, project) {
+            timesArray.forEach(function(timeData) {
                 data.push({
-                    x: project,
-                    y: [hours, billableTimesMap[project]]
+                    x: timeData[0],
+                    y: [timeData[1], timeData[2]]
                 });
 
             });
@@ -65,32 +78,44 @@ define(['lodash', 'moment', 'modules/shared/utils/lodashHelpers', 'modules/repor
         };
 
         /**
-         * Load billable times and work times. Calculate the data for the chart.
+         * Extract the billable time for a project from the billable times array.
+         * @param {Array} billableTimesArray Array of the format [ ['project1', 40], ['project2', 100] ]
+         * @param {String} projectName The name of the project to extract
+         * @return {Number} The hours billed for the project or 0 if it does not exist.
+         */
+        controller.findBillableTime = function(billableTimesArray, projectName) {
+            for (var i = 0; i < billableTimesArray.length; i++) {
+                if (billableTimesArray[i][0] === projectName) {
+                    return billableTimesArray[i][1];
+                }
+            }
+            return 0;
+        };
+
+        /**
+         * Load billable times and work times for the period. Generate the data for the bar chart.
+         *
+         * @param {Date} start The start of the period
+         * @param {Date} end The end of the period
          */
         controller.loadAllTimes = function(start, end) {
             var billableTimes;
             controller.loadBillableTimes(start, end)
-                .then(function(billableTimesMap) {
-                    billableTimes = billableTimesMap;
+                .then(function(billableTimesArray) {
+                    billableTimes = billableTimesArray;
                     return controller.loadWorkTimes(start, end);
                 })
-                .then(function(workTimesMap) {
-                    $scope.barChartData.data = controller.calculateChartData(workTimesMap, billableTimes);
-
-                    var workTimeArray = _.pairs(workTimesMap);
-                    // Add the billable times if present
-                    workTimeArray.forEach(function(workTimeData) {
+                .then(function(workTimesArray) {
+                    // Add the billable times next to the work times so we get an array of the format
+                    // [ ['project1', 100, 90], ['project2', 150, 140] ]
+                    workTimesArray.forEach(function(workTimeData) {
                         var projectName = workTimeData[0];
-
-                        if(billableTimes[projectName]) {
-                            workTimeData[2] = billableTimes[projectName];
-                        } else {
-                            workTimeData[2] = 0;
-                        }
+                        workTimeData[2] = controller.findBillableTime(billableTimes, projectName);
                     });
-                    //TODO: check for billable times without worktimes?
-                    SortHelper.sortArrayOfArrays(workTimeArray, 2, 1);
-                    $scope.projectTimes = workTimeArray;
+                    $scope.barChartData.data = controller.calculateChartData(workTimesArray);
+                    //TODO: check for billable times without work times?
+                    SortHelper.sortArrayOfArrays(workTimesArray, 2, 1);
+                    $scope.projectTimes = workTimesArray;
                 });
         };
 

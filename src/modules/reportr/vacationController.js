@@ -3,45 +3,61 @@ define(['lodash', 'moment', 'modules/reportr/sortHelper'], function(_, moment, S
     return ['$http', '$scope', '$filter', function($http, $scope, $filter) {
         var controller = this;
 
+        // see date-interval directive
         $scope.dateSelected = function(start, end) {
             controller.loadVacationRequests(start, end);
         };
 
+        // See table-sort directive
         $scope.sortBy = function(property, direction) {
             SortHelper.sortArrayOfArrays($scope.vacationRequests, property, direction);
         };
 
         /**
-         * Load the vacation requests from startDate to endDate.
+         * Load the vacation requests from start to end. Map them to the desired format which is
+         * [ ['employeeName', 3], ['anotherEmployeeName', 5] ]
+         * and generate the data for the chart.
          *
-         * @param {Date} startDate
-         * @param {Date} endDate
+         * @param {Date} start The start date of the period
+         * @param {Date} end The end date of the period.
          */
-        controller.loadVacationRequests = function(startDate, endDate) {
+        controller.loadVacationRequests = function(start, end) {
             $http.get('api/vacationRequests/daysPerEmployeeBetween', {
                 params: {
-                    start: startDate.getTime(),
-                    end: endDate.getTime(),
+                    start: start.getTime(),
+                    end: end.getTime(),
                     projection: 'withEmployeeAndApprover'
                 }
             }).then(function(response) {
                 $scope.vacationRequests = _.pairs(response.data);
                 SortHelper.sortArrayOfArrays($scope.vacationRequests, 1, 1);
-                var data = [{
+                $scope.barChartData = controller.generateBarChartData($scope.vacationRequests);
+            });
+        };
+
+        /**
+         * Generate the data for the barchart. Works on the data like it is returned by {@link mapAndReduceValuesToSum}.
+         * @param {Array} vacationRequestsArray The array with the data for the vacation requests.
+         * @return {{series: Array, data: Array}} Data for angular-charts to display.
+         */
+        controller.generateBarChartData = function(vacationRequestsArray) {
+            var data = [
+                {
                     x: $filter('translate')('PAGES.REPORTR.VACATION.DAYS'),
                     y: []
-                }];
-                var series = [];
-                _.forIn(response.data, function(days, employeeName) {
-                    // days can be 0 if the employee has a vacation request that has a cut with the period but only weekends/holidays in the current period
-                    if(days > 0) {
-                        series.push(employeeName);
-                        data[0].y.push(days);
-                    }
-                });
-                $scope.barChartData.data = data;
-                $scope.barChartData.series = series;
+                }
+            ];
+            var series = [];
+            vacationRequestsArray.forEach(function(vacationRequest) {
+                if (vacationRequest[1] > 0) {
+                    series.push(vacationRequest[0]);
+                    data[0].y.push(vacationRequest[1]);
+                }
             });
+            return {
+                series: series,
+                data: data
+            };
         };
 
         $scope.barChartData = { series: [], data: [] };
