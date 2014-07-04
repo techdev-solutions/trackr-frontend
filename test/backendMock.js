@@ -165,6 +165,15 @@ define(['fixtures'], function(fixtures) {
             });
         $httpBackend.whenGET('api/travelExpenseReports/search/findByEmployeeOrderByStatusAsc')
             .respond(fixtures['api/travelExpenseReports']);
+        $httpBackend.whenGET(/^api\/travelExpenseReports\/search\/findBySubmissionDateBetween\?end=\d+&projection=withEmployeeAndExpenses&start=\d+$/)
+            .respond(function() {
+                var data = fixtures['api/travelExpenseReports'];
+                data._embedded.travelExpenseReports.forEach(function(report) {
+                    report.employee = fixtures['api/employees']._embedded.employees[0];
+                    report.expenses = fixtures['api/travelExpenses']._embedded.expenses;
+                });
+                return [200, data];
+            });
         $httpBackend.whenPUT(/^api\/travelExpenseReports\/\d+\/submit/)
             .respond([204]);
         $httpBackend.whenPUT(/^api\/travelExpenseReports\/\d+\/approve/)
