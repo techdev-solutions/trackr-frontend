@@ -18,7 +18,7 @@
             </tr>
             <tr ng-repeat="travelExpenseReportData in travelExpenseReports">
                 <td>{{travelExpenseReportData[0]}}</td>
-                <td>{{travelExpenseReportData[1]}}</td>
+                <td>{{ travelExpenseReportData[1] | currency:'€' }}</td>
             </tr>
         </table>
     </div>
