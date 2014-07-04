@@ -223,6 +223,14 @@ define(['fixtures'], function(fixtures) {
                 });
                 return [200, data];
             });
+        $httpBackend.whenGET(/^api\/workTimes\/search\/findByDateBetween\?end=\d+&projection=withEmployee&start=\d+$/)
+            .respond(function() {
+                var data = fixtures['api/workTimes'];
+                data._embedded.workTimes.forEach(function(workTime) {
+                    workTime.employee = fixtures['api/employees']._embedded.employees[0];
+                });
+                return [200, data];
+            });
 
         /* ############################ TEMPLATES ########################### */
         /*
