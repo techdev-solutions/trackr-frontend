@@ -13,7 +13,7 @@ define(['lodash'], function(_) {
          * Uses JS sort and thus mutates the array
          * @param {Array} array The array of the special sort to sort
          * @param {String|Number} index The index to use for sorting
-         * @param {Number} direction -1 descending, 1 ascending
+         * @param {Number} direction -1 ascending, 1 descending
          */
         sortArrayOfArrays: function(array, index, direction) {
             var before = _.identity;
