@@ -70,7 +70,7 @@ define(['angular', 'modules/trackr/employee/controllers', 'moment'], function(an
             })
             .state('app.trackr.employee.expenses', {
                 url: '/expenses',
-                breadcrumbTranslateCode: 'PAGES.EMPLOYEE.TEXT_EXPENSES',
+                breadcrumbTranslateCode: 'PAGES.EMPLOYEE.EXPENSES.TITLE',
                 views: {
                     'center@app': {
                         templateUrl: 'src/modules/trackr/employee/expenses/list.tpl.html',
