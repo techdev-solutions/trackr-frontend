@@ -102,6 +102,16 @@ define(['angular', 'modules/trackr/employee/controllers', 'moment'], function(an
                         controller: 'trackr.employee.controllers.address_book'
                     }
                 }
+            })
+            .state('app.trackr.employee.sick-days', {
+                url: '/sick-days',
+                breadcrumbTranslateCode: 'PAGES.EMPLOYEE.SICK_DAYS.TITLE',
+                views: {
+                    'center@app': {
+                        templateUrl: 'src/modules/trackr/employee/sick_days/sick-days.tpl.html',
+                        controller: 'trackr.employee.controllers.sick-days'
+                    }
+                }
             });
     }]);
 

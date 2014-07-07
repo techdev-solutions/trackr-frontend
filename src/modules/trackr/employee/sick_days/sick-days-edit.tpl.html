@@ -1,0 +1,39 @@
+<form class="form-horizontal">
+    <div class="form-group" error-display="startDate">
+        <label class="form-label col-sm-4" for="startDate" translate="SICK_DAYS.START_DATE"></label>
+        <div class="input-group col-sm-6">
+            <input type="text" id="startDate" class="form-control" ng-model="sickDays.startDate"
+                   datepicker-popup="yyyy-MM-dd"
+                   is-open="$parent.$parent.startDateOpened"
+                   datepicker-options="dateOptions"
+                   close-text="{{ 'ACTIONS.CLOSE' | translate }}"
+                   current-text="{{ 'DATE.TODAY' | translate }}"
+                   toggle-weeks-text="{{ 'DATE.WEEKS' | translate }}"
+                   clear-text="{{ 'ACTIONS.CLEAR' | translate }}"/>
+            <span class="input-group-btn">
+                <button class="btn btn-default" ng-click="openDate($event, 'startDateOpened')">
+                    <i class="glyphicon glyphicon-calendar"></i>
+                </button>
+            </span>
+        </div>
+    </div>
+
+    <div class="form-group" error-display="endDate">
+        <label class="form-label col-sm-4" for="endDate" translate="SICK_DAYS.END_DATE"></label>
+        <div class="input-group col-sm-6">
+            <input type="text" id="endDate" class="form-control" ng-model="sickDays.endDate"
+                   datepicker-popup="yyyy-MM-dd"
+                   is-open="$parent.$parent.endDateOpened"
+                   datepicker-options="dateOptions"
+                   close-text="{{ 'ACTIONS.CLOSE' | translate }}"
+                   current-text="{{ 'DATE.TODAY' | translate }}"
+                   toggle-weeks-text="{{ 'DATE.WEEKS' | translate }}"
+                   clear-text="{{ 'ACTIONS.CLEAR' | translate }}"/>
+            <span class="input-group-btn">
+                <button class="btn btn-default" ng-click="openDate($event, 'endDateOpened')">
+                    <i class="glyphicon glyphicon-calendar"></i>
+                </button>
+            </span>
+        </div>
+    </div>
+</form>
