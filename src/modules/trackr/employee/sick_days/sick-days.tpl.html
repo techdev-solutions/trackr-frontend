@@ -1,0 +1,38 @@
+<h1 translate="PAGES.EMPLOYEE.SICK_DAYS.TITLE"></h1>
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <date-interval start-date="startDate" end-date="endDate"></date-interval>
+    </div>
+    <div class="col-md-1">
+        <div class="form-group">
+            <label></label>
+            <div class="input-group">
+                <button type="button" translate="ACTIONS.SUBMIT" class="btn btn-primary" ng-click="addSickDays(dateIntervalStart, dateIntervalEnd)"></button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="space-md"/>
+
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <table class="table table-bordered table-striped">
+            <tr>
+                <th translate="SICK_DAYS.START_DATE"></th>
+                <th translate="SICK_DAYS.END_DATE"></th>
+                <th translate="SICK_DAYS.TOTAL_DAYS"></th>
+                <th translate="ACTIONS.ACTIONS"></th>
+            </tr>
+            <tr ng-repeat="sickDay in sickDays">
+                <td>{{sickDay.startDate | date:'dd.MM.yyyy' }}</td>
+                <td>{{sickDay.endDate | date:'dd.MM.yyyy' }}</td>
+                <td>{{totalDays(sickDay)}}</td>
+                <td>
+                    <button class="btn btn-xs btn-default" ng-click="showEditForm(sickDay)">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                    </button>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

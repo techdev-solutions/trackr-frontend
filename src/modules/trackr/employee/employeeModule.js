@@ -70,7 +70,7 @@ define(['angular', 'modules/trackr/employee/controllers', 'moment'], function(an
             })
             .state('app.trackr.employee.expenses', {
                 url: '/expenses',
-                breadcrumbTranslateCode: 'PAGES.EMPLOYEE.TEXT_EXPENSES',
+                breadcrumbTranslateCode: 'PAGES.EMPLOYEE.EXPENSES.TITLE',
                 views: {
                     'center@app': {
                         templateUrl: 'src/modules/trackr/employee/expenses/list.tpl.html',
@@ -100,6 +100,16 @@ define(['angular', 'modules/trackr/employee/controllers', 'moment'], function(an
                     'center@app': {
                         templateUrl: 'src/modules/trackr/employee/address_book/address_book.tpl.html',
                         controller: 'trackr.employee.controllers.address_book'
+                    }
+                }
+            })
+            .state('app.trackr.employee.sick-days', {
+                url: '/sick-days',
+                breadcrumbTranslateCode: 'PAGES.EMPLOYEE.SICK_DAYS.TITLE',
+                views: {
+                    'center@app': {
+                        templateUrl: 'src/modules/trackr/employee/sick_days/sick-days.tpl.html',
+                        controller: 'trackr.employee.controllers.sick-days'
                     }
                 }
             });

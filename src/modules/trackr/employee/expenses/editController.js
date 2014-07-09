@@ -1,8 +1,9 @@
 define(['lodash'], function(_) {
     'use strict';
     return ['$scope', 'Restangular', 'trackr.services.travelExpenseReport', 'expenseTypes',
-        '$filter', 'base.services.confirmation-dialog', '$stateParams', 'shared.services.create-or-update-modal',
-        function($scope, Restangular, TravelExpenseReportService, expenseTypes, $filter, ConfirmationDialogService, $stateParams, createOrUpdateModalService) {
+        '$filter', 'base.services.confirmation-dialog', '$stateParams', 'shared.services.create-or-update-modal', '$state',
+        'base.services.notification',
+        function($scope, Restangular, TravelExpenseReportService, expenseTypes, $filter, ConfirmationDialogService, $stateParams, createOrUpdateModalService, $state, NotificationService) {
             var controller = this;
             /**
              * Recalculate the sum of the cost of the expenses
@@ -34,6 +35,15 @@ define(['lodash'], function(_) {
              */
             $scope.editable = function(report) {
                 return report !== undefined && (report.status === 'PENDING' || report.status === 'REJECTED');
+            };
+
+            /**
+             * Checks if a report is deletable. It is when it is pending.
+             * @param report The report to check
+             * @return {boolean} true if the report is deletable.
+             */
+            $scope.deletable = function(report) {
+                return report !== undefined && (report.status === 'PENDING');
             };
 
             /**
@@ -106,6 +116,23 @@ define(['lodash'], function(_) {
                 TravelExpenseReportService.submit(travelExpenseReport).then(function() {
                     $scope.report.status = 'SUBMITTED';
                     $scope.report.statusTranslateCode = 'TRAVEL_EXPENSE_REPORT.SUBMITTED';
+                });
+            };
+
+            /**
+             * Delete a report. If successful change to the overview state for reports.
+             * @param travelExpenseReport
+             */
+            $scope.deleteReport = function(travelExpenseReport) {
+                travelExpenseReport.remove().then(function() {
+                    $state.go('app.trackr.employee.expenses');
+                }, function(response) {
+                    if(response.status === 403) {
+                        NotificationService.error($filter('translate')('PAGES.EMPLOYEE.EXPENSES.DELETE_FORBIDDEN'));
+                    } else {
+                        NotificationService.fatal($filter('translate')('ERRORS.FAILED_REQUEST'));
+                    }
+
                 });
             };
 

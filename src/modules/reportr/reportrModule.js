@@ -4,8 +4,9 @@ define(['angular',
     'modules/reportr/projectHoursController',
     'modules/reportr/employeeHoursController',
     'modules/reportr/travelExpenseController',
+    'modules/reportr/sickDaysController',
     'angular-charts'
-], function(angular, RevenueController, VacationController, ProjectHoursController, EmployeeHoursController, TravelExpenseController) {
+], function(angular, RevenueController, VacationController, ProjectHoursController, EmployeeHoursController, TravelExpenseController, SickDaysController) {
     'use strict';
     var configFn = ['angularCharts'];
     var reportr = angular.module('reportr', configFn);
@@ -15,6 +16,7 @@ define(['angular',
     reportr.controller('reportr.controllers.project-hours', ProjectHoursController);
     reportr.controller('reportr.controllers.employee-hours', EmployeeHoursController);
     reportr.controller('reportr.controllers.travel-expense', TravelExpenseController);
+    reportr.controller('reportr.controllers.sick-days', SickDaysController);
 
     reportr.config(['$stateProvider', function($stateProvider) {
         $stateProvider
@@ -29,7 +31,7 @@ define(['angular',
                         controller: 'base.controllers.navigation'
                     }
                 },
-                needsAuthority: 'ROLE_SUPERVISOR'
+                needsAuthority: 'ROLE_ADMIN'
             })
             .state('app.reportr.revenue', {
                 url: '/revenue',
@@ -73,6 +75,15 @@ define(['angular',
                     'center@app': {
                         templateUrl: 'src/modules/reportr/travel-expense.tpl.html',
                         controller: 'reportr.controllers.travel-expense'
+                    }
+                }
+            })
+            .state('app.reportr.sick-days', {
+                url: '/sick-days',
+                views: {
+                    'center@app': {
+                        templateUrl: 'src/modules/reportr/sick-days.tpl.html',
+                        controller: 'reportr.controllers.sick-days'
                     }
                 }
             });

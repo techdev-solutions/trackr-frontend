@@ -23,13 +23,17 @@ define(['lodash'], function(_) {
 
     /**
      * Load the given page from the server and calls the afterObjectsGet method with it.
-     * @param [page] The page to load, 1-based.
-     * @param [otherQueryParams] Other params to be passed to Restangular.getList().
-     * @param [userData] Userdata passed to the afterObjectsGet method.
+     * @param {Number} [page] The page to load, 1-based.
+     * @param {Object} [otherQueryParams] Other params to be passed to Restangular.getList().
+     * @param {*} [userData] Userdata passed to the afterObjectsGet method.
+     * @param {String} [sort] Sort that should be used
      */
-    PaginationLoader.prototype.loadPage = function(page, otherQueryParams, userData) {
+    PaginationLoader.prototype.loadPage = function(page, otherQueryParams, userData, sort) {
         page = page || 1;
         var self = this;
+        if(sort) {
+            this.sort = sort;
+        }
         var parameters = {sort: this.sort, page: page - 1, size: this.size};
         if(otherQueryParams) {
             _.merge(parameters, otherQueryParams);

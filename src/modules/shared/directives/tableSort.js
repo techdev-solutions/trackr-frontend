@@ -3,7 +3,7 @@ define([], function() {
     'use strict';
     /**
      * Directive that appends an down- and up-arrow to the element it's applied to. When one clicks one of the arrows a callback is called
-     * with the string given as the directive value as the first argument and 1 for the down array (desc), 1 for the up arrow (asc).
+     * with the string given as the directive value as the first argument and 1 for the down arrow (desc), 1 for the up arrow (asc).
      *
      * The callback can optionally be defined by "sort-callback", otherwise the directive expects a function called "sortBy" in the scope.
      */
