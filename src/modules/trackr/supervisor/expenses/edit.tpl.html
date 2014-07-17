@@ -1,7 +1,6 @@
 <h2><span translate="TRAVEL_EXPENSE_REPORT.TRAVEL_EXPENSE_REPORT"></span> #{{report.id}}</h2>
 <h3>{{report.employee.firstName}} {{report.employee.lastName}}</h3>
 <span class="pull-right"><a href ui-sref="app.trackr.supervisor.expenses" translate="ACTIONS.BACK"></a></span>
-<p><span translate="TRAVEL_EXPENSE_REPORT.TOTAL"></span>: {{totalCost | currency:'€'}}</p>
 <table class="table table-striped">
     <tr>
         <th translate="TRAVEL_EXPENSE.TYPE"></th>
@@ -18,6 +17,11 @@
         <td>{{ expense.vat }} %</td>
         <td>{{ expense.cost | currency:'€' }}</td>
         <td>{{ expense.submissionDate | date:'dd.MM.yyyy HH:mm:ss' }}</td>
+    </tr>
+    <tr>
+        <td colspan="4"></td>
+        <td><span translate="TRAVEL_EXPENSE_REPORT.TOTAL"></span>: <b>{{totalCost | currency:'€'}}</b></td>
+        <td></td>
     </tr>
 </table>
 <div ng-show="report.status === 'SUBMITTED' && report.employee.id !== principal.id ">
