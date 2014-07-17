@@ -1,13 +1,31 @@
-<h2><span translate="TRAVEL_EXPENSE_REPORT.SUBMITTED"></span> <span translate="TRAVEL_EXPENSE_REPORT.TRAVEL_EXPENSE_REPORTS"></span></h2>
-<p ng-show="reports.length === 0" translate="PAGES.SUPERVISOR.TRAVEL_EXPENSE_REPORTS.EMPTY_TEXT"></p>
-<ul>
-    <li ng-repeat="report in reports">
-        <a ui-sref="app.trackr.supervisor.expenses.edit({id: report.id})">Report #{{report.id}} ({{report.employee.firstName + ' ' + report.employee.lastName}})</a>
-    </li>
-</ul>
-<h2><span translate="TRAVEL_EXPENSE_REPORT.APPROVED"></span> <span translate="TRAVEL_EXPENSE_REPORT.TRAVEL_EXPENSE_REPORTS"></span></h2>
-<ul>
-    <li ng-repeat="report in approvedReports">
-        <a ui-sref="app.trackr.supervisor.expenses.edit({id: report.id})">Report #{{report.id}} ({{report.employee.firstName + ' ' + report.employee.lastName}})</a>
-    </li>
-</ul>
+<tabset>
+    <tab ng-repeat="state in states">
+        <tab-heading>
+            <span translate="{{'TRAVEL_EXPENSE_REPORT.' + state}}"></span> <span class="badge">{{reports[state].page.totalElements}}</span>
+        </tab-heading>
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th translate="TRAVEL_EXPENSE_REPORT.ID"></th>
+                <th translate="TRAVEL_EXPENSE_REPORT.EMPLOYEE"></th>
+                <th translate="TRAVEL_EXPENSE_REPORT.TOTAL"></th>
+                <th translate="TRAVEL_EXPENSE_REPORT.SUBMISSION_DATE"></th>
+                <th ng-show="state === 'APPROVED'" translate="TRAVEL_EXPENSE_REPORT.APPROVER"></th>
+                <th ng-show="state === 'APPROVED'" translate="TRAVEL_EXPENSE_REPORT.APPROVAL_DATE"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="report in reports[state]">
+                <td><a ui-sref="app.trackr.supervisor.expenses.edit({id: report.id})">#{{report.id}}</a></td>
+                <td>{{ report.employee.firstName + ' ' + report.employee.lastName }}</td>
+                <td>{{ report.total | currency:'€' }}</td>
+                <td>{{ report.submissionDate | date:'dd.MM.yyyy HH:mm:ss' }}</td>
+                <td ng-show="state === 'APPROVED'">{{ report.approver.firstName + ' ' + report.approver.lastName }}</td>
+                <td ng-show="state === 'APPROVED'">{{ report.approvalDate | date:'dd.MM.yyyy HH:mm:ss' }}</td>
+            </tr>
+            </tbody>
+        </table>
+        <pagination class="pagination-sm" total-items="reports[state].page.totalElements" ng-model="reports[state].page.number" items-per-page="reports[state].page.size"
+                    ng-change="setPage(state)" max-size="5"></pagination>
+    </tab>
+</tabset>

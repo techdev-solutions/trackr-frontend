@@ -12,12 +12,12 @@ define(['baseTestSetup'], function(baseTestSetup) {
 
         it('must put the reports in the scope', inject(function($httpBackend) {
             $httpBackend.flush();
-            expect(scope.reports).toBeDefined();
+            expect(scope.reports.SUBMITTED).toBeDefined();
         }));
 
         it('must put the approved reports in the scope', inject(function($httpBackend) {
             $httpBackend.flush();
-            expect(scope.approvedReports).toBeDefined();
+            expect(scope.reports.APPROVED).toBeDefined();
         }));
     });
 });

@@ -165,7 +165,7 @@ define(['fixtures'], function(fixtures) {
             });
         $httpBackend.whenGET('api/travelExpenseReports/search/findByEmployeeOrderByStatusAsc')
             .respond(fixtures['api/travelExpenseReports']);
-        $httpBackend.whenGET(/^api\/travelExpenseReports\/search\/findByStatusOrderByEmployee_LastNameAsc\?projection=\w+&status=\w+$/)
+        $httpBackend.whenGET(/^api\/travelExpenseReports\/search\/findByStatusOrderByEmployee_LastNameAsc\?page=\d+&projection=\w+&size=\d+&sort=\w*&status=\w+$/)
             .respond(fixtures['api/travelExpenseReports']);
         $httpBackend.whenGET(/^api\/travelExpenseReports\/search\/findBySubmissionDateBetween\?end=\d+&projection=withEmployeeAndExpenses&start=\d+$/)
             .respond(function() {
