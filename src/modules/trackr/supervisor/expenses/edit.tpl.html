@@ -1,4 +1,5 @@
 <h2><span translate="TRAVEL_EXPENSE_REPORT.TRAVEL_EXPENSE_REPORT"></span> #{{report.id}}</h2>
+<h3>{{report.employee.firstName}} {{report.employee.lastName}}</h3>
 <span class="pull-right"><a href ui-sref="app.trackr.supervisor.expenses" translate="ACTIONS.BACK"></a></span>
 <p><span translate="TRAVEL_EXPENSE_REPORT.TOTAL"></span>: {{totalCost | currency:'€'}}</p>
 <table class="table table-striped">
