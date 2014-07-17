@@ -18,7 +18,6 @@
                 <th translate="INVOICE.INVOICE_TOTAL"></th>
                 <th translate="INVOICE.DEBITOR"></th>
                 <th translate="INVOICE.DUE_DATE"></th>
-                <th translate="INVOICE.STATE"></th>
                 <th translate="ACTIONS.ACTIONS"></th>
             </tr>
             </thead>
@@ -29,7 +28,6 @@
                 <td>{{ invoice.invoiceTotal | currency:'€' }}</td>
                 <td>{{invoice.debitor.name}}</td>
                 <td>{{ invoice.dueDate | date:'dd.MM.yyyy' }}</td>
-                <td translate="{{ 'INVOICE.' + invoice.invoiceState }}"></td>
                 <td>
                     <button ng-show="state !== 'PAID'" ng-click="markPaid(invoice)" type="button" class="btn btn-default btn-xs">
                         <span class="glyphicon glyphicon-ok"></span>
