@@ -46,14 +46,6 @@ define(['angular', 'modules/trackr/supervisor/controllers'], function(angular, c
             .state('app.trackr.supervisor.expenses', {
                 url: '/expenses',
                 breadcrumbTranslateCode: 'PAGES.SUPERVISOR.TRAVEL_EXPENSE_REPORTS.TITLE',
-                resolve: {
-                    reports: ['trackr.services.travelExpenseReport', function(TravelExpenseReportService) {
-                        return TravelExpenseReportService.findByStatusWithEmployee('SUBMITTED');
-                    }],
-                    approvedReports: ['trackr.services.travelExpenseReport', function(TravelExpenseReportService) {
-                        return TravelExpenseReportService.findByStatusWithEmployee('APPROVED');
-                    }]
-                },
                 views: {
                     'center@app': {
                         templateUrl: 'src/modules/trackr/supervisor/expenses/list.tpl.html',
