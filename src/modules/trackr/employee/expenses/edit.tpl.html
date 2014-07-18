@@ -1,5 +1,5 @@
 <h2><span translate="TRAVEL_EXPENSE_REPORT.TRAVEL_EXPENSE_REPORT"></span> #{{report.id}}
-    <pdf-download url="/api/travelExpenseReports/{{report.id}}/pdf" filename="report-{{report.id}}.pdf"></pdf-download>
+    <pdf-download url="api/travelExpenseReports/{{report.id}}/pdf" filename="report-{{report.id}}.pdf"></pdf-download>
 </h2>
 <span class="pull-right"><a href ui-sref="app.trackr.employee.expenses" translate="ACTIONS.BACK"></a></span>
 <h4 translate="{{ report.statusTranslateCode }}"></h4>
