@@ -43,7 +43,7 @@ define(['lodash'], function(_) {
              * @return {boolean} true if the report is deletable.
              */
             $scope.deletable = function(report) {
-                return report !== undefined && (report.status === 'PENDING');
+                return report !== undefined && (report.status === 'PENDING' || report.status === 'REJECTED');
             };
 
             /**
