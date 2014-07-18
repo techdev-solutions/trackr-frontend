@@ -1,7 +1,8 @@
-<h2><span translate="TRAVEL_EXPENSE_REPORT.TRAVEL_EXPENSE_REPORT"></span> #{{report.id}}</h2>
+<h2><span translate="TRAVEL_EXPENSE_REPORT.TRAVEL_EXPENSE_REPORT"></span> #{{report.id}}
+    <pdf-download url="/api/travelExpenseReports/{{report.id}}/pdf" filename="report-{{report.id}}.pdf"></pdf-download>
+</h2>
 <span class="pull-right"><a href ui-sref="app.trackr.employee.expenses" translate="ACTIONS.BACK"></a></span>
 <h4 translate="{{ report.statusTranslateCode }}"></h4>
-<p><span translate="TRAVEL_EXPENSE_REPORT.TOTAL"></span>: {{ totalCost | currency:'€' }}</p>
 <table class="table table-striped">
     <tr>
         <th translate="TRAVEL_EXPENSE.TYPE"></th>
@@ -27,6 +28,11 @@
                 <span class="glyphicon glyphicon-trash"></span>
             </button>
         </td>
+    </tr>
+    <tr>
+        <td colspan="5"></td>
+        <td><span translate="TRAVEL_EXPENSE_REPORT.TOTAL"></span>: <b>{{totalCost | currency:'€'}}</b></td>
+        <td colspan="2"></td>
     </tr>
 </table>
 
