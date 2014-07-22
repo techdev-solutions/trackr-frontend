@@ -14,7 +14,7 @@ define(['moment', 'modules/reportr/lodashHelpers', 'modules/reportr/sortHelper']
 
             function sickDayDays(sickDay) {
                 if(sickDay.endDate) {
-                    return moment(sickDay.endDate).diff(sickDay.startDate, 'days', false);
+                    return moment(sickDay.endDate).diff(sickDay.startDate, 'days', false) + 1;
                 } else {
                     return 0;
                 }
