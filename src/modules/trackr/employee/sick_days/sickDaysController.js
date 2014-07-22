@@ -32,7 +32,9 @@ define(['lodash', 'moment'], function(_, moment) {
 
             $scope.totalDays = function(sickDay) {
                 if(sickDay.endDate) {
-                    return moment(sickDay.endDate).diff(sickDay.startDate, 'days', false) + 1;
+                    var end = moment(sickDay.endDate).startOf('day');
+                    var start = moment(sickDay.startDate).startOf('day');
+                    return end.diff(start, 'days', false) + 1;
                 } else {
                     return '';
                 }
