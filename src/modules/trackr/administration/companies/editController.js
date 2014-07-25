@@ -38,18 +38,24 @@ define(['lodash'], function(_) {
             } else {
                 $scope.errors = controller.addPrefixToErrorProperties(response.data.errors, 'company');
             }
+            throw new Error('Error saving company.');
+        };
+
+        controller.saveAddressError = function(response) {
+            $scope.errors = controller.addPrefixToErrorProperties(response.data.errors, 'address');
+            throw new Error('Error saving address');
         };
 
         $scope.saveEntity = function() {
             var company = _.pick($scope.company, ['id', 'version', 'companyId', 'name']);
-            Restangular.one('companies', company.id).patch(company).then(function() {
-                var address = $scope.company.address;
-                Restangular.one('addresses', address.id).patch(address).then(function() {
+            Restangular.one('companies', company.id).patch(company)
+                .then(function() {
+                    var address = $scope.company.address;
+                    return Restangular.one('addresses', address.id).patch(address).catch(controller.saveAddressError);
+                }, controller.saveCompanyError)
+                .then(function() {
                     $scope.closeModal($scope.company);
-                }, function(response) {
-                    $scope.errors = controller.addPrefixToErrorProperties(response.data.errors, 'address');
                 });
-            }, controller.saveCompanyError);
         };
     }];
 });

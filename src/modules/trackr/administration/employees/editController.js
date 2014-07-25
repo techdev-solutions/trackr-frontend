@@ -42,10 +42,12 @@ define(['lodash', 'moment'], function(_, moment) {
             } else {
                 $scope.errors = controller.addPrefixToErrorProperties(response.data.errors, 'credential');
             }
+            throw new Error('Error updating credential.');
         };
 
         controller.employeeError = function(response) {
             $scope.errors = controller.addPrefixToErrorProperties(response.data.errors, 'employee');
+            throw new Error('Error updating employee');
         };
 
         /**
@@ -74,33 +76,37 @@ define(['lodash', 'moment'], function(_, moment) {
             employee.federalState = $scope.employee.federalState.name;
 
             //First, update the employee
-            Restangular.one('employees', employee.id).patch(employee).then(function(patchedEmployee) {
-                //Since we only changed the "name" property but not the "state" property of federal state we have to change it here.
-                //The returned patched employee contains the correct federalState object.
-                //If we don't do this, the federal state in the display view will be incorrect.
-                $scope.employee.federalState = patchedEmployee.federalState;
+            Restangular.one('employees', employee.id).patch(employee)
+                .then(function(patchedEmployee) {
+                    //Since we only changed the "name" property but not the "state" property of federal state we have to change it here.
+                    //The returned patched employee contains the correct federalState object.
+                    //If we don't do this, the federal state in the display view will be incorrect.
+                    $scope.employee.federalState = patchedEmployee.federalState;
 
-                //Next, update the credential
-                var credential = _.pick($scope.employee.credential, ['id', 'version', 'email', 'enabled']);
-                Restangular.one('credentials', credential.id).patch(credential).then(function() {
-
+                    //Next, update the credential
+                    var credential = _.pick($scope.employee.credential, ['id', 'version', 'email', 'enabled']);
+                    return Restangular.one('credentials', credential.id).patch(credential).catch(controller.credentialError);
+                }, controller.employeeError)
+                .then(function() {
                     //Now update the authorities for the credential.
                     var selectedAuthorities = controller.getSelectedAuthoritiesArray($scope.selectedAuthorities);
                     var selectedAuthoritiesAsString = selectedAuthorities.reduce(function(val, href) {
                         return val + href + '\n';
                     }, '');
-                    Restangular.one('credentials', userdata.employee.id)
+                    return Restangular.one('credentials', userdata.employee.id)
                         .customOperation('put', 'authorities', {}, {'Content-Type': 'text/uri-list'}, selectedAuthoritiesAsString)
                         .then(function() {
-                            //Lastly, since we pass the employee back to the display controller we have to update the authorities in
-                            //the credential object itself to the selected authorities that were saved.
-                            $scope.employee.credential.authorities = $scope.authorities.filter(function(authority) {
-                                return selectedAuthorities.indexOf(authority._links.self.href) > -1;
-                            });
-                            $scope.closeModal($scope.employee);
+                            return selectedAuthorities;
                         });
-                }, controller.credentialError);
-            }, controller.employeeError);
+                })
+                .then(function(selectedAuthorities) {
+                    //Lastly, since we pass the employee back to the display controller we have to update the authorities in
+                    //the credential object itself to the selected authorities that were saved.
+                    $scope.employee.credential.authorities = $scope.authorities.filter(function(authority) {
+                        return selectedAuthorities.indexOf(authority._links.self.href) > -1;
+                    });
+                    $scope.closeModal($scope.employee);
+                });
 
         };
     }];
