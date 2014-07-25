@@ -9,6 +9,8 @@ define(['lodash'], function(_) {
             Restangular.oneUrl('employees', 'api/employees/' + employee.id + '/self').patch(employeeEntity)
                 .then(function() {
                     $scope.closeModal(employee);
+                }, function(response) {
+                    $scope.errors = response.data.errors;
                 });
         };
 
