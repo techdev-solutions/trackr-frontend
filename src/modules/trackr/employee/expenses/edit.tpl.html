@@ -2,7 +2,7 @@
     <pdf-download url="api/travelExpenseReports/{{report.id}}/pdf" filename="report-{{report.id}}.pdf"></pdf-download>
 </h2>
 <span class="pull-right"><a href ui-sref="app.trackr.employee.expenses" translate="ACTIONS.BACK"></a></span>
-<h4 translate="{{ report.statusTranslateCode }}"></h4>
+<h4>{{ 'TRAVEL_EXPENSE_REPORT.' + report.status | translate }}</h4>
 <table class="table table-striped">
     <tr>
         <th translate="TRAVEL_EXPENSE.TYPE"></th>

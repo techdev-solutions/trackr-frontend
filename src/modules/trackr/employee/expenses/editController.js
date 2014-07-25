@@ -115,7 +115,6 @@ define(['lodash'], function(_) {
             $scope.submitReport = function(travelExpenseReport) {
                 TravelExpenseReportService.submit(travelExpenseReport).then(function() {
                     $scope.report.status = 'SUBMITTED';
-                    $scope.report.statusTranslateCode = 'TRAVEL_EXPENSE_REPORT.SUBMITTED';
                 });
             };
 
