@@ -10,7 +10,7 @@
     <bs-text property-name="cost" translate-code="TRAVEL_EXPENSE.COST" path="expense.cost"></bs-text>
 
     <div class="form-group">
-        <label class="form-label col-sm-3" for="fromDate" translate="TRAVEL_EXPENSE.FROM_DATE"></label>
+        <label class="form-label col-sm-2" for="fromDate" translate="TRAVEL_EXPENSE.FROM_DATE"></label>
         <div class="input-group col-sm-6">
             <input type="text" id="fromDate" class="form-control" ng-model="expense.fromDate"
                    datepicker-popup="yyyy-MM-dd"
@@ -29,7 +29,7 @@
     </div>
 
     <div class="form-group">
-        <label class="form-label col-sm-3" for="toDate" translate="TRAVEL_EXPENSE.TO_DATE"></label>
+        <label class="form-label col-sm-2" for="toDate" translate="TRAVEL_EXPENSE.TO_DATE"></label>
         <div class="input-group col-sm-6">
             <input type="text" id="toDate" class="form-control" ng-model="expense.toDate"
                    datepicker-popup="yyyy-MM-dd"
@@ -46,4 +46,6 @@
             </span>
         </div>
     </div>
+
+    <bs-text property-name="comment" translate-code="TRAVEL_EXPENSE.COMMENT" path="expense.comment"></bs-text>
 </form>

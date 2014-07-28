@@ -10,6 +10,7 @@
         <th translate="TRAVEL_EXPENSE.TO_DATE"></th>
         <th translate="TRAVEL_EXPENSE.VAT"></th>
         <th translate="TRAVEL_EXPENSE.COST"></th>
+        <th translate="TRAVEL_EXPENSE.COMMENT"></th>
         <th translate="TRAVEL_EXPENSE.SUBMITTED"></th>
         <th translate="ACTIONS.ACTIONS"></th>
     </tr>
@@ -19,6 +20,7 @@
         <td>{{ expense.toDate | date:'dd.MM.yyyy'}}</td>
         <td>{{ expense.vat }} %</td>
         <td>{{ expense.cost | currency:'€'}}</td>
+        <td>{{expense.comment}}</td>
         <td>{{ expense.submissionDate | date:'dd.MM.yyyy HH:mm:ss' }}</td>
         <td>
             <button class="btn btn-sm btn-default" ng-show="editable(report)" ng-click="showEditForm(expense)">
@@ -30,9 +32,9 @@
         </td>
     </tr>
     <tr>
-        <td colspan="5"></td>
+        <td colspan="4"></td>
         <td><span translate="TRAVEL_EXPENSE_REPORT.TOTAL"></span>: <b>{{totalCost | currency:'€'}}</b></td>
-        <td colspan="2"></td>
+        <td colspan="3"></td>
     </tr>
 </table>
 
@@ -53,5 +55,6 @@
 
     <bs-text property-name="cost" translate-code="TRAVEL_EXPENSE.COST" path="expense.cost" inline="true"></bs-text>
     <bs-text property-name="vat" translate-code="TRAVEL_EXPENSE.VAT" path="expense.vat" inline="true"></bs-text>
+    <bs-text property-name="comment" translate-code="TRAVEL_EXPENSE.COMMENT" path="expense.comment" inline="true"></bs-text>
     <button type="submit" class="btn btn-primary" translate="ACTIONS.ADD"></button>
 </form>
