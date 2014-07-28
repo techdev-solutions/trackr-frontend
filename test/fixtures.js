@@ -1261,6 +1261,45 @@ define([], function() {
             }
         },
 
+        "api/travelExpenseReportComments": {
+            "_embedded": {
+                "travelExpenseReportComments": [
+                    {
+                        "id": 1,
+                        "text": "Test comment 1",
+                        "submissionDate": 1406619705169,
+                        "_links": {
+                            "self": {
+                                "href": "http://localhost:8080/api/travelExpenseReportComments/1"
+                            },
+                            "employee": {
+                                "href": "http://localhost:8080/api/travelExpenseReportComments/1/employee"
+                            },
+                            "travelExpenseReport": {
+                                "href": "http://localhost:8080/api/travelExpenseReportComments/1/travelExpenseReport"
+                            }
+                        }
+                    },
+                    {
+                        "id": 2,
+                        "text": "Answer comment 1",
+                        "submissionDate": 1406619934532,
+                        "_links": {
+                            "self": {
+                                "href": "http://localhost:8080/api/travelExpenseReportComments/2"
+                            },
+                            "employee": {
+                                "href": "http://localhost:8080/api/travelExpenseReportComments/2/employee"
+                            },
+                            "travelExpenseReport": {
+                                "href": "http://localhost:8080/api/travelExpenseReportComments/2/travelExpenseReport"
+                            }
+                        }
+                    }
+                ]
+            }
+        },
+
         "api/travelExpenses/types": ["HOTEL", "TAXI"],
 
         "api/invoices": {

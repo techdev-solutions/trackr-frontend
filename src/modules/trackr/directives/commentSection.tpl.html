@@ -1,0 +1,18 @@
+<h3 translate="DIRECTIVES.COMMENT_SECTION.COMMENTS"></h3>
+<div class="row">
+    <div class="col-md-offset-1 col-md-7">
+        <ul class="list-group">
+            <li class="list-group-item" ng-repeat="comment in comments">
+                <div class="row">
+                    <div class="col-md-8">{{comment.text}}</div>
+                    <div class="col-md-4">{{ comment.employee.firstName + ' ' + comment.employee.lastName }} ({{ comment.submissionDate | date:'dd.MM.yyyy HH:mm:ss' }})</div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="col-md-3">
+        <form clasS="form-inline" ng-submit="addComment()">
+            <bs-text property-name="text" translate-code="DIRECTIVES.COMMENT_SECTION.TEXT" path="comment.text" inline="true"></bs-text>
+        </form>
+    </div>
+</div>

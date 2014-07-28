@@ -14,11 +14,18 @@ define(['baseTestSetup', 'fixtures', 'angular'], function(baseTestSetup, fixture
                 $scope: scope,
                 expenses: report.expenses,
                 report: report,
-                $state: state
+                $state: state,
+                $stateParams: {
+                    id: 0
+                }
             });
         }));
 
-        it('must calculcate the total cost of the report on load', function() {
+        beforeEach(inject(function($httpBackend) {
+            $httpBackend.flush();
+        }));
+
+        it('must calculate the total cost of the report on load', function() {
             expect(scope.totalCost).toBeDefined();
         });
 

@@ -163,6 +163,14 @@ define(['fixtures'], function(fixtures) {
                 fixture.expenses = fixtures['api/travelExpenses']._embedded.travelExpenses;
                 return [200, fixture];
             });
+        $httpBackend.whenGET(/^api\/travelExpenseReports\/\d+\/comments\?projection=\w+/)
+            .respond(function() {
+                var fixture = fixtures['api/travelExpenseReportComments']._embedded.travelExpenseReportComments;
+                fixture.forEach(function(comment) {
+                    comment.employee = fixtures['api/employees']._embedded.employees[0];
+                });
+                return [200, fixture];
+            });
         $httpBackend.whenGET('api/travelExpenseReports/search/findByEmployeeOrderByStatusAsc')
             .respond(fixtures['api/travelExpenseReports']);
         $httpBackend.whenGET(/^api\/travelExpenseReports\/search\/findByStatusOrderByEmployee_LastNameAsc\?page=\d+&projection=\w+&size=\d+&sort=\w*&status=\w+$/)
