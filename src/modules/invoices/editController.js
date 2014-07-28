@@ -46,5 +46,16 @@ define(['lodash'], function(_) {
         $scope.saveEntity = function() {
             controller.saveInvoice($scope.invoice);
         };
+
+        $scope.openDate = function($event, name) {
+            $event.stopPropagation();
+            $event.preventDefault();
+            controller[name] = true;
+        };
+
+        $scope.dateOptions = {
+            'year-format': '\'yyyy\'',
+            'starting-day': 1
+        };
     }];
 });

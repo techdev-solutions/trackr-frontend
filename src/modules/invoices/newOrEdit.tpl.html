@@ -14,20 +14,40 @@
     </div>
 
     <div class="form-group" error-display="creationDate">
-        <label class="form-label col-sm-4" for="creationDate" translate="INVOICE.CREATION_DATE"></label>
-        <div class="col-sm-6">
-            <div class="well well-sm" id="creationDate" ng-model="invoice.creationDate">
-                <datepicker starting-day="1"></datepicker>
-            </div>
+        <label class="form-label col-sm-3" for="creationDate" translate="INVOICE.CREATION_DATE"></label>
+        <div class="input-group col-sm-6">
+            <input type="text" id="creationDate" class="form-control" ng-model="invoice.creationDate"
+                   datepicker-popup="yyyy-MM-dd"
+                   is-open="ctrl.creationDateOpened"
+                   datepicker-options="dateOptions"
+                   close-text="{{ 'ACTIONS.CLOSE' | translate }}"
+                   current-text="{{ 'DATE.TODAY' | translate }}"
+                   toggle-weeks-text="{{ 'DATE.WEEKS' | translate }}"
+                   clear-text="{{ 'ACTIONS.CLEAR' | translate }}"/>
+            <span class="input-group-btn">
+                <button class="btn btn-default" ng-click="openDate($event, 'creationDateOpened')">
+                    <i class="glyphicon glyphicon-calendar"></i>
+                </button>
+            </span>
         </div>
     </div>
 
     <div class="form-group">
-        <label class="form-label col-sm-4" for="dueDate" translate="INVOICE.DUE_DATE"></label>
-        <div class="col-sm-6">
-            <div class="well well-sm" id="dueDate" ng-model="invoice.dueDate">
-                <datepicker starting-day="1"></datepicker>
-            </div>
+        <label class="form-label col-sm-3" for="dueDate" translate="INVOICE.DUE_DATE"></label>
+        <div class="input-group col-sm-6">
+            <input type="text" id="dueDate" class="form-control" ng-model="invoice.dueDate"
+                   datepicker-popup="yyyy-MM-dd"
+                   is-open="ctrl.dueDateOpened"
+                   datepicker-options="dateOptions"
+                   close-text="{{ 'ACTIONS.CLOSE' | translate }}"
+                   current-text="{{ 'DATE.TODAY' | translate }}"
+                   toggle-weeks-text="{{ 'DATE.WEEKS' | translate }}"
+                   clear-text="{{ 'ACTIONS.CLEAR' | translate }}"/>
+            <span class="input-group-btn">
+                <button class="btn btn-default" ng-click="openDate($event, 'dueDateOpened')">
+                    <i class="glyphicon glyphicon-calendar"></i>
+                </button>
+            </span>
         </div>
     </div>
 </form>

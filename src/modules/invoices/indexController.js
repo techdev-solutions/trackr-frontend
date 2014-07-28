@@ -90,7 +90,7 @@ define(['modules/shared/PaginationLoader'], function(PaginationLoader) {
              */
             $scope.addNew = function() {
                 var $modalInstance = createOrUpdateModalService
-                    .showModal('invoices.controllers.new',
+                    .showModal('invoices.controllers.new as ctrl',
                     'src/modules/invoices/newOrEdit.tpl.html',
                     'INVOICE.CREATE_NEW'
                 );
@@ -115,7 +115,7 @@ define(['modules/shared/PaginationLoader'], function(PaginationLoader) {
 
             $scope.showEditForm = function(invoice) {
                 var $modalInstance = createOrUpdateModalService
-                    .showModal('invoices.controllers.edit',
+                    .showModal('invoices.controllers.edit as ctrl',
                     'src/modules/invoices/newOrEdit.tpl.html',
                     'ACTIONS.EDIT', invoice);
                 $modalInstance.result.then(function(editedInvoice) {
