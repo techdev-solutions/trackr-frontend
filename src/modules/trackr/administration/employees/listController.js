@@ -12,7 +12,7 @@ define(['modules/shared/PaginationLoader'], function (PaginationLoader) {
 
         $scope.addNew = function() {
             var $modalInstance = createOrUpdateModalService
-                .showModal('trackr.administration.controllers.employees.new',
+                .showModal('trackr.administration.controllers.employees.new as ctrl',
                 'src/modules/trackr/administration/employees/newOrEdit.tpl.html',
                 'EMPLOYEE.CREATE_NEW'
             );

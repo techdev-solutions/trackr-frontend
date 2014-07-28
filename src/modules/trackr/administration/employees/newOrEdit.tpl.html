@@ -41,19 +41,40 @@
 
     <div class="form-group">
         <label class="form-label col-sm-4" for="joinDate" translate="EMPLOYEE.JOIN_DATE"></label>
-        <div class="col-sm-6">
-            <div class="well well-sm" id="joinDate">
-                <datepicker starting-day="1" ng-model="employee.joinDate"></datepicker>
-            </div>
+        <div class="input-group col-sm-6">
+            <input type="text" id="joinDate" class="form-control" ng-model="employee.joinDate"
+                   datepicker-popup="yyyy-MM-dd"
+                   is-open="ctrl.joinDateOpened"
+                   datepicker-options="dateOptions"
+                   close-text="{{ 'ACTIONS.CLOSE' | translate }}"
+                   current-text="{{ 'DATE.TODAY' | translate }}"
+                   toggle-weeks-text="{{ 'DATE.WEEKS' | translate }}"
+                   clear-text="{{ 'ACTIONS.CLEAR' | translate }}"/>
+            <span class="input-group-btn">
+                <button class="btn btn-default" ng-click="openDate($event, 'joinDateOpened')">
+                    <i class="glyphicon glyphicon-calendar"></i>
+                </button>
+            </span>
         </div>
     </div>
 
     <div ng-if="isEdit" class="form-group">
         <label class="form-label col-sm-4" for="leaveDate" translate="EMPLOYEE.LEAVE_DATE"></label>
-        <div class="col-sm-6">
-            <div class="well well-sm" id="leaveDate">
-                <datepicker starting-day="1" ng-model="employee.leaveDate" ng-change="leaveDateChange(employee.leaveDate)"></datepicker>
-            </div>
+        <div class="input-group col-sm-6">
+            <input type="text" id="leaveDate" class="form-control" ng-model="employee.leaveDate"
+                   ng-change="leaveDateChange(employee.leaveDate)"
+                   datepicker-popup="yyyy-MM-dd"
+                   is-open="ctrl.leaveDateOpened"
+                   datepicker-options="dateOptions"
+                   close-text="{{ 'ACTIONS.CLOSE' | translate }}"
+                   current-text="{{ 'DATE.TODAY' | translate }}"
+                   toggle-weeks-text="{{ 'DATE.WEEKS' | translate }}"
+                   clear-text="{{ 'ACTIONS.CLEAR' | translate }}"/>
+            <span class="input-group-btn">
+                <button class="btn btn-default" ng-click="openDate($event, 'leaveDateOpened')">
+                    <i class="glyphicon glyphicon-calendar"></i>
+                </button>
+            </span>
         </div>
     </div>
 </form>
