@@ -69,7 +69,7 @@ define(['lodash'], function(_) {
              */
             $scope.showEditForm = function(expense) {
                 var $modalInstance = createOrUpdateModalService
-                    .showModal('trackr.employee.controllers.expense-edit',
+                    .showModal('trackr.employee.controllers.expense-edit as ctrl',
                     'src/modules/trackr/employee/expenses/expense-edit.tpl.html',
                     'ACTIONS.EDIT', {
                         expense: expense,

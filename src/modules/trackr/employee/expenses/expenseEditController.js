@@ -32,5 +32,16 @@ define(['lodash'], function(_) {
         $scope.translateTravelExpenseType = function(type) {
             return $filter('translate')('TRAVEL_EXPENSE.TYPE_VALUES.' + type);
         };
+
+        $scope.openDate = function($event, name) {
+            $event.stopPropagation();
+            $event.preventDefault();
+            controller[name] = true;
+        };
+
+        $scope.dateOptions = {
+            'year-format': '\'yyyy\'',
+            'starting-day': 1
+        };
     }];
 });
