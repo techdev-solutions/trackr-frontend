@@ -9,12 +9,13 @@ define(
         'modules/trackr/employee/expenses/listController',
         'modules/trackr/employee/expenses/editController',
         'modules/trackr/employee/expenses/expenseEditController',
+        'modules/trackr/employee/expenses/reportNewController',
         'modules/trackr/employee/address_book/addressBookController',
         'modules/trackr/employee/sick_days/sickDaysController',
         'modules/trackr/employee/sick_days/sickDaysEditController'
     ],
     function(SelfController, SelfEditController, TimeSheetController, TimesheetOverviewController, VacationListController,
-             VacationNewController, ExpenseReportListController, ExpenseReportEditController, ExpensesEditController,
+             VacationNewController, ExpenseReportListController, ExpenseReportEditController, ExpensesEditController, ReportNewController,
              AddressBookController, SickDaysController, SickDaysEditController) {
         'use strict';
         return {
@@ -28,6 +29,7 @@ define(
                 module.controller('trackr.employee.controllers.expenseReport-list', ExpenseReportListController);
                 module.controller('trackr.employee.controllers.expenseReport-edit', ExpenseReportEditController);
                 module.controller('trackr.employee.controllers.expense-edit', ExpensesEditController);
+                module.controller('trackr.employee.controllers.expenseReport-new', ReportNewController);
                 module.controller('trackr.employee.controllers.address_book', AddressBookController);
                 module.controller('trackr.employee.controllers.sick-days', SickDaysController);
                 module.controller('trackr.employee.controllers.sick-days-edit', SickDaysEditController);

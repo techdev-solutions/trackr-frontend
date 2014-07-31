@@ -1,11 +1,11 @@
 define(['modules/shared/PaginationLoader', 'lodash'], function(PaginationLoader, _) {
     'use strict';
-    return ['$scope', 'Restangular', '$state', 'employee', function($scope, Restangular, $state, employee) {
+    return ['$scope', 'Restangular', '$state', 'employee', 'shared.services.create-or-update-modal', function($scope, Restangular, $state, employee, CreateOrUpdateModalService) {
         var controller = this;
         $scope.states = ['PENDING', 'REJECTED', 'APPROVED', 'SUBMITTED'];
         $scope.reports = {};
         var paginationLoader = new PaginationLoader(Restangular.allUrl('travelExpenseReports', 'api/travelExpenseReports/search/findByEmployeeAndStatusOrderByStatusAsc'),
-            'reports', '', $scope, 1);
+            'reports', '', $scope, 10);
 
         paginationLoader.afterObjectsGet = function(reports, state) {
             reports.forEach(function(report) {
@@ -27,7 +27,7 @@ define(['modules/shared/PaginationLoader', 'lodash'], function(PaginationLoader,
 
         controller.loadPage = function(page, state) {
             var params = {
-                projection: 'withExpenses',
+                projection: 'withExpensesAndDebitorAndProject',
                 employee: employee.id
             };
             if (state) {
@@ -49,11 +49,12 @@ define(['modules/shared/PaginationLoader', 'lodash'], function(PaginationLoader,
          * Add a new travel expense report and immediately switch to it.
          */
         $scope.addNew = function() {
-            var newReport = {
-                employee: employee._links.self.href,
-                status: 'PENDING'
-            };
-            Restangular.all('travelExpenseReports').post(newReport).then(function(report) {
+            var $modalInstance = CreateOrUpdateModalService
+                .showModal('trackr.employee.controllers.expenseReport-new as ctrl',
+                'src/modules/trackr/employee/expenses/report-new.tpl.html',
+                'TRAVEL_EXPENSE_REPORT.TRAVEL_EXPENSE_REPORT');
+
+            $modalInstance.result.then(function(report) {
                 $state.go('app.trackr.employee.expenses.edit', {id: report.id});
             });
         };

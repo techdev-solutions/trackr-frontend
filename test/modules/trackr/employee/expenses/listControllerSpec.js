@@ -19,14 +19,5 @@ define(['baseTestSetup', 'fixtures', 'angular'], function(baseTestSetup, fixture
                 employee: employee
             });
         }));
-
-        it('must add a new report on addNew and transition to its edit state', inject(function($httpBackend) {
-            $httpBackend.flush();
-            spyOn(state, 'go');
-            scope.addNew();
-            $httpBackend.expectPOST('api/travelExpenseReports');
-            $httpBackend.flush();
-            expect(state.go).toHaveBeenCalledWith('app.trackr.employee.expenses.edit', { id : undefined });
-        }));
     });
 });
