@@ -517,6 +517,7 @@ define([], function() {
                         "version": 0,
                         "companyId": 1000,
                         "name": "techdev Solutions UG",
+                        "timeForPayment": 30,
                         "_links": {
                             "self": {
                                 "href": "http://localhost:8080/api/companies/0"
