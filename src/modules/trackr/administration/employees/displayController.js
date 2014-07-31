@@ -5,7 +5,7 @@ define([], function() {
 
         $scope.showEditForm = function() {
             var $modalInstance= createOrUpdateModalService
-                .showModal('trackr.administration.controllers.employees.edit',
+                .showModal('trackr.administration.controllers.employees.edit as ctrl',
                 'src/modules/trackr/administration/employees/newOrEdit.tpl.html',
                 'ACTIONS.EDIT',
                 {
@@ -25,6 +25,7 @@ define([], function() {
             projection: 'withCredential'
         }).then(function(employee) {
             $scope.employee = employee;
+        }).then(function() {
             Restangular.one('credentials', $stateParams.id).all('authorities').getList().then(function(authorities) {
                 $scope.employee.credential.authorities = authorities;
             });

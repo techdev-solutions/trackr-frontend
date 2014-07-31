@@ -6,8 +6,9 @@ define([
     'modules/shared/directives/inlineDatepicker',
     'modules/shared/directives/dateInterval',
     'modules/shared/directives/errorDisplay',
-    'modules/shared/directives/tableSort'
-], function(bsText, bsEdit, bsCheckbox, autosize, inlineDatepicker, dateInterval, errorDisplay, tableSort) {
+    'modules/shared/directives/tableSort',
+    'modules/shared/directives/pdfDownload'
+], function(bsText, bsEdit, bsCheckbox, autosize, inlineDatepicker, dateInterval, errorDisplay, tableSort, pdfDownload) {
     'use strict';
     return {
         init: function(module) {
@@ -19,6 +20,7 @@ define([
             module.directive('dateInterval', dateInterval);
             module.directive('errorDisplay', errorDisplay);
             module.directive('tableSort', tableSort);
+            module.directive('pdfDownload', pdfDownload);
         }
     };
 });

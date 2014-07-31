@@ -13,33 +13,31 @@ define(['baseTestSetup', 'fixtures', 'confirmationServiceMock'], function(baseTe
             });
         }));
 
-        it('must calculcate the total cost of the report on load', inject(function($httpBackend) {
+        beforeEach(inject(function($httpBackend) {
             $httpBackend.flush();
+        }));
+
+        it('must calculate the total cost of the report on load', function() {
             expect(scope.totalCost).toBeDefined();
-        }));
+        });
 
-        it('editable must return true if status is PENDING', inject(function($httpBackend) {
-            $httpBackend.flush();
+        it('editable must return true if status is PENDING', function() {
             expect(scope.editable({status: 'PENDING'})).toBe(true);
-        }));
+        });
 
-        it('editable must return true if status is REJECTED', inject(function($httpBackend) {
-            $httpBackend.flush();
+        it('editable must return true if status is REJECTED', function() {
             expect(scope.editable({status: 'REJECTED'})).toBe(true);
-        }));
+        });
 
-        it('editable must return false if status is APPROVED', inject(function($httpBackend) {
-            $httpBackend.flush();
+        it('editable must return false if status is APPROVED', function() {
             expect(scope.editable({status: 'APPROVED'})).toBe(false);
-        }));
+        });
 
-        it('editable must return false if status is SUBMITTED', inject(function($httpBackend) {
-            $httpBackend.flush();
+        it('editable must return false if status is SUBMITTED', function() {
             expect(scope.editable({status: 'SUBMITTED'})).toBe(false);
-        }));
+        });
 
         it('must call a DELETE when an expense is removed and update the expenses and totalCost', inject(function($httpBackend) {
-            $httpBackend.flush();
             var expensesBefore = scope.report.expenses.length;
             var totalCostBefore = scope.totalCost;
             scope.removeExpense(scope.report.expenses[0]);
@@ -50,7 +48,6 @@ define(['baseTestSetup', 'fixtures', 'confirmationServiceMock'], function(baseTe
         }));
 
         it('must POST a new expense to the server on addNewExpense, set the report and submissionDate property on it', inject(function($httpBackend) {
-            $httpBackend.flush();
             var expense = {cost: 1};
             var countExpenses = scope.report.expenses.length;
             var oldTotalCost = scope.totalCost;
@@ -64,7 +61,6 @@ define(['baseTestSetup', 'fixtures', 'confirmationServiceMock'], function(baseTe
         }));
 
         it('must call submit on the server when submitting', inject(function($httpBackend) {
-            $httpBackend.flush();
             scope.submitReport(scope.report);
             $httpBackend.expectPUT('api/travelExpenseReports/' + scope.report.id + '/submit');
             $httpBackend.flush();

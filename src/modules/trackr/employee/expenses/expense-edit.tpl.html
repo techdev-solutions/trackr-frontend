@@ -10,20 +10,42 @@
     <bs-text property-name="cost" translate-code="TRAVEL_EXPENSE.COST" path="expense.cost"></bs-text>
 
     <div class="form-group">
-        <label class="form-label col-sm-4" for="fromDate" translate="TRAVEL_EXPENSE.FROM_DATE"></label>
-        <div class="col-sm-6">
-            <div class="well well-sm" id="fromDate">
-                <datepicker starting-day="1" ng-model="expense.fromDate"></datepicker>
-            </div>
+        <label class="form-label col-sm-2" for="fromDate" translate="TRAVEL_EXPENSE.FROM_DATE"></label>
+        <div class="input-group col-sm-6">
+            <input type="text" id="fromDate" class="form-control" ng-model="expense.fromDate"
+                   datepicker-popup="yyyy-MM-dd"
+                   is-open="ctrl.fromDateOpened"
+                   datepicker-options="dateOptions"
+                   close-text="{{ 'ACTIONS.CLOSE' | translate }}"
+                   current-text="{{ 'DATE.TODAY' | translate }}"
+                   toggle-weeks-text="{{ 'DATE.WEEKS' | translate }}"
+                   clear-text="{{ 'ACTIONS.CLEAR' | translate }}"/>
+            <span class="input-group-btn">
+                <button class="btn btn-default" ng-click="openDate($event, 'fromDateOpened')">
+                    <i class="glyphicon glyphicon-calendar"></i>
+                </button>
+            </span>
         </div>
     </div>
 
     <div class="form-group">
-        <label class="form-label col-sm-4" for="toDate" translate="TRAVEL_EXPENSE.TO_DATE"></label>
-        <div class="col-sm-6">
-            <div class="well well-sm" id="toDate">
-                <datepicker starting-day="1" ng-model="expense.toDate"></datepicker>
-            </div>
+        <label class="form-label col-sm-2" for="toDate" translate="TRAVEL_EXPENSE.TO_DATE"></label>
+        <div class="input-group col-sm-6">
+            <input type="text" id="toDate" class="form-control" ng-model="expense.toDate"
+                   datepicker-popup="yyyy-MM-dd"
+                   is-open="ctrl.toDateOpened"
+                   datepicker-options="dateOptions"
+                   close-text="{{ 'ACTIONS.CLOSE' | translate }}"
+                   current-text="{{ 'DATE.TODAY' | translate }}"
+                   toggle-weeks-text="{{ 'DATE.WEEKS' | translate }}"
+                   clear-text="{{ 'ACTIONS.CLEAR' | translate }}"/>
+            <span class="input-group-btn">
+                <button class="btn btn-default" ng-click="openDate($event, 'toDateOpened')">
+                    <i class="glyphicon glyphicon-calendar"></i>
+                </button>
+            </span>
         </div>
     </div>
+
+    <bs-text property-name="comment" translate-code="TRAVEL_EXPENSE.COMMENT" path="expense.comment"></bs-text>
 </form>

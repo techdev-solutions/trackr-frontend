@@ -42,5 +42,16 @@ define(['lodash'], function(_) {
                 return Restangular.allUrl('companies', 'api/companies/search/findByNameLikeIgnoreCaseOrderByNameAsc')
                     .getList({name: '%' + searchString + '%'});
             };
+
+            $scope.openDate = function($event, name) {
+                $event.stopPropagation();
+                $event.preventDefault();
+                controller[name] = true;
+            };
+
+            $scope.dateOptions = {
+                'year-format': '\'yyyy\'',
+                'starting-day': 1
+            };
         }];
 });

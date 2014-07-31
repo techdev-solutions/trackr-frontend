@@ -1,9 +1,10 @@
 define(['angular',
     'modules/trackr/services/services',
+    'modules/trackr/directives/directives',
     'modules/trackr/administration/administrationModule',
     'modules/trackr/employee/employeeModule',
     'modules/trackr/supervisor/supervisorModule'],
-    function(angular, services) {
+    function(angular, services, directives) {
         'use strict';
         var configFn = ['trackr.administration', 'trackr.employee', 'trackr.supervisor'];
         var trackr = angular.module('trackr', configFn);
@@ -38,5 +39,6 @@ define(['angular',
         }]);
 
         services.init(trackr);
+        directives.init(trackr);
         return trackr;
     });

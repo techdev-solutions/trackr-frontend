@@ -13,7 +13,7 @@ define(['lodash'], function(_) {
         };
 
         controller.saveExpense = function(expense) {
-            var expenseEntity = _.pick(expense, ['id', 'version', 'type', 'fromDate', 'toDate', 'vat', 'cost']);
+            var expenseEntity = _.pick(expense, ['id', 'version', 'type', 'fromDate', 'toDate', 'vat', 'cost', 'comment']);
             Restangular.one('travelExpenses', expenseEntity.id).patch(expenseEntity)
                 .then(function(result) {
                     $scope.closeModal(result);
@@ -31,6 +31,17 @@ define(['lodash'], function(_) {
          */
         $scope.translateTravelExpenseType = function(type) {
             return $filter('translate')('TRAVEL_EXPENSE.TYPE_VALUES.' + type);
+        };
+
+        $scope.openDate = function($event, name) {
+            $event.stopPropagation();
+            $event.preventDefault();
+            controller[name] = true;
+        };
+
+        $scope.dateOptions = {
+            'year-format': '\'yyyy\'',
+            'starting-day': 1
         };
     }];
 });

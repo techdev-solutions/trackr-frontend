@@ -33,7 +33,9 @@ define(['moment', 'lodash'], function(moment, _) {
              * @returns {*} The difference between end and start in hours (e.g. 8.5)
              */
             $scope.totalTime = function(endTime, startTime) {
-                return moment(endTime).diff(startTime, 'hours', true);
+                var end = moment(endTime).startOf('minute');
+                var start = moment(startTime).startOf('minute');
+                return end.diff(start, 'hours', true);
             };
 
             controller.createWorkTimeEntity = function() {

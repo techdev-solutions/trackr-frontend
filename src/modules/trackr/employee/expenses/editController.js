@@ -3,7 +3,8 @@ define(['lodash'], function(_) {
     return ['$scope', 'Restangular', 'trackr.services.travelExpenseReport', 'expenseTypes',
         '$filter', 'base.services.confirmation-dialog', '$stateParams', 'shared.services.create-or-update-modal', '$state',
         'base.services.notification',
-        function($scope, Restangular, TravelExpenseReportService, expenseTypes, $filter, ConfirmationDialogService, $stateParams, createOrUpdateModalService, $state, NotificationService) {
+        function($scope, Restangular, TravelExpenseReportService, expenseTypes, $filter, ConfirmationDialogService, $stateParams, createOrUpdateModalService, $state,
+                 NotificationService) {
             var controller = this;
             /**
              * Recalculate the sum of the cost of the expenses
@@ -18,14 +19,24 @@ define(['lodash'], function(_) {
 
             Restangular.one('travelExpenseReports', $stateParams.id).get({
                 projection: 'withExpenses'
-            }).then(function(report) {
-                $scope.report = report;
-                $scope.report.statusTranslateCode = 'TRAVEL_EXPENSE_REPORT.' + report.status;
-                $scope.totalCost = controller.recalculateTotal(report.expenses);
-            });
+            })
+                .then(function(report) {
+                    return report.all('comments').getList({
+                        projection: 'withEmployee'
+                    }).then(function(comments) {
+                        report.comments = comments;
+                        return report;
+                    });
+                })
+                .then(function(report) {
+                    $scope.report = report;
+                    $scope.report.statusTranslateCode = 'TRAVEL_EXPENSE_REPORT.' + report.status;
+                    $scope.totalCost = controller.recalculateTotal(report.expenses);
+                });
 
             $scope.expenseTypes = expenseTypes;
             $scope.expense = {};
+            $scope.comment = {};
             $scope.errors = [];
 
             /**
@@ -43,7 +54,7 @@ define(['lodash'], function(_) {
              * @return {boolean} true if the report is deletable.
              */
             $scope.deletable = function(report) {
-                return report !== undefined && (report.status === 'PENDING');
+                return report !== undefined && (report.status === 'PENDING' || report.status === 'REJECTED');
             };
 
             /**
@@ -69,7 +80,7 @@ define(['lodash'], function(_) {
              */
             $scope.showEditForm = function(expense) {
                 var $modalInstance = createOrUpdateModalService
-                    .showModal('trackr.employee.controllers.expense-edit',
+                    .showModal('trackr.employee.controllers.expense-edit as ctrl',
                     'src/modules/trackr/employee/expenses/expense-edit.tpl.html',
                     'ACTIONS.EDIT', {
                         expense: expense,
@@ -84,7 +95,6 @@ define(['lodash'], function(_) {
                     $scope.totalCost = controller.recalculateTotal($scope.report.expenses);
                 });
             };
-
 
             /**
              * Add a new expense to the report. Calls the backend.
@@ -115,7 +125,6 @@ define(['lodash'], function(_) {
             $scope.submitReport = function(travelExpenseReport) {
                 TravelExpenseReportService.submit(travelExpenseReport).then(function() {
                     $scope.report.status = 'SUBMITTED';
-                    $scope.report.statusTranslateCode = 'TRAVEL_EXPENSE_REPORT.SUBMITTED';
                 });
             };
 
@@ -127,7 +136,7 @@ define(['lodash'], function(_) {
                 travelExpenseReport.remove().then(function() {
                     $state.go('app.trackr.employee.expenses');
                 }, function(response) {
-                    if(response.status === 403) {
+                    if (response.status === 403) {
                         NotificationService.error($filter('translate')('PAGES.EMPLOYEE.EXPENSES.DELETE_FORBIDDEN'));
                     } else {
                         NotificationService.fatal($filter('translate')('ERRORS.FAILED_REQUEST'));
@@ -143,6 +152,11 @@ define(['lodash'], function(_) {
              */
             $scope.translateTravelExpenseType = function(type) {
                 return $filter('translate')('TRAVEL_EXPENSE.TYPE_VALUES.' + type);
+            };
+
+            $scope.addReport = function(comment) {
+                comment.travelExpenseReport = $scope.report._links.self.href;
+                return comment;
             };
         }];
 });

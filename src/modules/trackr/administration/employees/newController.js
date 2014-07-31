@@ -41,5 +41,11 @@ define([], function() {
         Restangular.one('federalStates').get().then(function(states) {
             $scope.states = states;
         });
+
+        $scope.openDate = function($event, name) {
+            $event.stopPropagation();
+            $event.preventDefault();
+            controller[name] = true;
+        };
     }];
 });
