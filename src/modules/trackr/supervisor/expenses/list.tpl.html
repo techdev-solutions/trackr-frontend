@@ -9,6 +9,8 @@
                 <th translate="TRAVEL_EXPENSE_REPORT.ID"></th>
                 <th translate="TRAVEL_EXPENSE_REPORT.EMPLOYEE"></th>
                 <th translate="TRAVEL_EXPENSE_REPORT.TOTAL"></th>
+                <th translate="TRAVEL_EXPENSE_REPORT.DEBITOR"></th>
+                <th translate="TRAVEL_EXPENSE_REPORT.PROJECT"></th>
                 <th translate="TRAVEL_EXPENSE_REPORT.SUBMISSION_DATE"></th>
                 <th ng-show="state === 'APPROVED'" translate="TRAVEL_EXPENSE_REPORT.APPROVER"></th>
                 <th ng-show="state === 'APPROVED'" translate="TRAVEL_EXPENSE_REPORT.APPROVAL_DATE"></th>
@@ -19,6 +21,8 @@
                 <td><a ui-sref="app.trackr.supervisor.expenses.edit({id: report.id})">#{{report.id}}</a></td>
                 <td>{{ report.employee.firstName + ' ' + report.employee.lastName }}</td>
                 <td>{{ report.total | currency:'€' }}</td>
+                <td>{{ report.debitor.name }}</td>
+                <td>{{ report.project.name }}</td>
                 <td>{{ report.submissionDate | date:'dd.MM.yyyy HH:mm:ss' }}</td>
                 <td ng-show="state === 'APPROVED'">{{ report.approver.firstName + ' ' + report.approver.lastName }}</td>
                 <td ng-show="state === 'APPROVED'">{{ report.approvalDate | date:'dd.MM.yyyy HH:mm:ss' }}</td>

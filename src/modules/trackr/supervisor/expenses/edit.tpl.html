@@ -1,6 +1,26 @@
 <h2><span translate="TRAVEL_EXPENSE_REPORT.TRAVEL_EXPENSE_REPORT"></span> #{{report.id}}</h2>
 <h3>{{report.employee.firstName}} {{report.employee.lastName}}</h3>
 <span class="pull-right"><a href ui-sref="app.trackr.supervisor.expenses" translate="ACTIONS.BACK"></a></span>
+<div class="row">
+    <div class="col-md-3 form-group">
+        <input type="text" class="form-control" autocomplete="off"
+               ng-model="report.debitor"
+               typeahead-on-select="selectCompany(report.debitor)"
+               typeahead="company as company.name for company in getCompanies($viewValue)"
+               typeahead-editable="false"
+               typahead-min-length="1"
+               placeholder="{{ 'TRAVEL_EXPENSE_REPORT.DEBITOR' | translate }}"/>
+    </div>
+    <div class="col-md-3 form-group">
+        <input type="text" class="form-control" autocomplete="off"
+               ng-model="report.project"
+               typeahead-on-select="selectProject(report.project)"
+               typeahead="project as project.name for project in projects | filter:{name:$viewValue}"
+               typeahead-editable="false"
+               typahead-min-length="1"
+               placeholder="{{ 'TRAVEL_EXPENSE_REPORT.PROJECT' | translate }} ({{ 'FIELDS.OPTIONAL' | translate }})"/>
+    </div>
+</div>
 <table class="table table-striped">
     <tr>
         <th translate="TRAVEL_EXPENSE.TYPE"></th>
