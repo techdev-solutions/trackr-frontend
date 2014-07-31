@@ -53,6 +53,12 @@ define(['lodash', 'moment'], function(_, moment) {
                     sickDays.endDate = moment(end).format('YYYY-MM-DD');
                 }
                 Restangular.all('sickDays').post(sickDays).then(function(postedSickDays) {
+                    function turnIntoString(date) {
+                        return moment(date).format('YYYY-MM-DD');
+                    }
+
+                    postedSickDays.startDate = turnIntoString(postedSickDays.startDate);
+                    postedSickDays.endDate = turnIntoString(postedSickDays.endDate);
                     $scope.sickDays.push(postedSickDays);
                 });
             };

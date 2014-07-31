@@ -90,9 +90,10 @@ define(['lodash', 'moment'], function(_, moment) {
                 .then(function() {
                     //Now update the authorities for the credential.
                     var selectedAuthorities = controller.getSelectedAuthoritiesArray($scope.selectedAuthorities);
+                    //TRACKR-205: Initial value cannot be an empty string, Restangular chokes on that if no authorities are selected.
                     var selectedAuthoritiesAsString = selectedAuthorities.reduce(function(val, href) {
                         return val + href + '\n';
-                    }, '');
+                    }, ' ');
                     return Restangular.one('credentials', userdata.employee.id)
                         .customOperation('put', 'authorities', {}, {'Content-Type': 'text/uri-list'}, selectedAuthoritiesAsString)
                         .then(function() {
