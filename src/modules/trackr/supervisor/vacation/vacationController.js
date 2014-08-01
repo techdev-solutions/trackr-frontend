@@ -30,9 +30,7 @@ define(['lodash'], function(_) {
          */
         function actionOnRequest(vacationRequest, type, resultArray) {
             $http.put('api/vacationRequests/' + vacationRequest.id + '/' + type).then(function(response) {
-                _.remove($scope.pendingRequests, function(vR) {
-                    return vR.id === vacationRequest.id;
-                });
+                _.remove($scope.pendingRequests, {id: vacationRequest.id});
                 vacationRequest.approver = response.data.approver;
                 vacationRequest.approvalDate = response.data.approvalDate;
                 vacationRequest.status = response.data.status;
