@@ -23,9 +23,7 @@ define(['lodash', 'moment'], function(_, moment) {
                     'ACTIONS.EDIT', sickDay);
 
                 $modalInstance.result.then(function(editedSickDay) {
-                    var index = _.findIndex($scope.sickDays, function(ex) {
-                        return ex.id === editedSickDay.id;
-                    });
+                    var index = _.findIndex($scope.sickDays, {id: editedSickDay.id});
                     $scope.sickDays[index] = editedSickDay;
                 });
             };
@@ -58,7 +56,9 @@ define(['lodash', 'moment'], function(_, moment) {
                     }
 
                     postedSickDays.startDate = turnIntoString(postedSickDays.startDate);
-                    postedSickDays.endDate = turnIntoString(postedSickDays.endDate);
+                    if(postedSickDays.endDate) {
+                        postedSickDays.endDate = turnIntoString(postedSickDays.endDate);
+                    }
                     $scope.sickDays.push(postedSickDays);
                 });
             };
