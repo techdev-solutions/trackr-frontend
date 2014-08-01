@@ -47,9 +47,7 @@ define(['lodash', 'moment'], function(_, moment) {
             $scope.remove = function(workTime) {
                 function deleteWorkTime() {
                     workTime.remove().then(function() {
-                        _.remove($scope.workTimes, function(wT) {
-                            return wT.id === workTime.id;
-                        });
+                        _.remove($scope.workTimes, {id: workTime.id});
                     });
                 }
 
