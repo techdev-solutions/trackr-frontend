@@ -33,6 +33,9 @@ define(['moment', 'modules/reportr/lodashHelpers', 'modules/reportr/sortHelper']
                             return invoice.debitor.name;
                         }, 'invoiceTotal');
                     SortHelper.sortArrayOfArrays($scope.invoices, 1, 1);
+                    $scope.totalRevenue = $scope.invoices.reduce(function(prev, inv) {
+                        return prev + inv[1];
+                    }, 0);
                     $scope.pieChartData = controller.generatePieData($scope.invoices);
                 });
         };
@@ -67,6 +70,8 @@ define(['moment', 'modules/reportr/lodashHelpers', 'modules/reportr/sortHelper']
             },
             innerRadius: 0
         };
+
+        $scope.totalRevenue = 0;
 
         controller.loadInvoices(moment().startOf('month').toDate(), moment().endOf('month').toDate());
     }];
