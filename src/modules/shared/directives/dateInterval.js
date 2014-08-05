@@ -10,7 +10,7 @@ define(['moment'], function(moment) {
         return {
             restrict: 'E',
             templateUrl: 'src/modules/shared/partials/dateInterval.tpl.html',
-            scope: { callback: '=', endDate: '=', startDate: '=' },
+            scope: { callback: '=', endDate: '=?', startDate: '=?' },
             controller: ['$scope', function($scope) {
                 $scope.dateIntervalStartOpened = false;
                 $scope.dateIntervalEndOpened = false;
