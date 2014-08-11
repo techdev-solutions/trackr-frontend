@@ -62,6 +62,18 @@ define(['angular', 'jQuery', 'restangular', 'angular-ui-router', 'angular-ui', '
             if(oauthToken) {
                 $httpProvider.defaults.headers.common.Authorization = 'Bearer ' + oauthToken;
             }
+
+            // We can not inject $state directly as this gives a circular dependency
+            $httpProvider.interceptors.push(['$q', '$injector', function($q, $injector) {
+                return {
+                    responseError: function(response) {
+                        if(response.status === 401) {
+                            $injector.get('$state').transitionTo('authorize');
+                        }
+                        return $q.reject(response);
+                    }
+                };
+            }]);
         }]);
     return app;
 });
