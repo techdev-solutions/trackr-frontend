@@ -1,8 +1,12 @@
 <h1 translate="INVOICE.INVOICES"></h1>
 
-<h3 translate="ACTIONS.SEARCH"></h3>
-<div class="form-group">
-    <input type="text" ng-model="searchQuery" ng-change="executeSearch()"/>
+<div class="row">
+    <h3 translate="ACTIONS.SEARCH"></h3>
+    <div class="form-group">
+        <div class="col-md-2">
+            <input class="form-control" type="text" ng-model="searchQuery" ng-change="executeSearch()"/>
+        </div>
+    </div>
 </div>
 
 <tabset>

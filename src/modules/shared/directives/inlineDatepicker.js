@@ -11,6 +11,7 @@ define([], function() {
             transclude: true,
             templateUrl: 'src/modules/shared/partials/inlineDatepicker.tpl.html',
             scope: { model: '=' },
+            replace: true,
             controller: ['$scope', function($scope) {
                 $scope.opened = false;
                 $scope.openDate = function($event) {

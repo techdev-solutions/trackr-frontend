@@ -1,43 +1,32 @@
-<div id="wrapper">
-    <div>
-        <section id="header" class="top-header">
-            <header class="clearfix">
-                <a href="" data-toggle-min-nav class="toggle-min"><i class="fa fa-bars"></i></a>
-                <!-- Header menu !-->
-                <div ui-view="top-menu"/>
-            </header>
-        </section>
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a class="clickable navbar-brand" data-toggle="dropdown">modules</a>
+                    <ul class="dropdown-menu">
+                        <li><a ui-sref="app.trackr"><span class="icon-bg bg-primary"></span><span>trackr</span></a></li>
+                        <li><a ui-sref="app.invoices"><span class="icon-bg bg-success"></span><span>Invoices</span></a></li>
+                        <li><a ui-sref="app.reportr"><span class="icon-bg bg-warning"></span><span>reportr</span></a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div ui-view="top-menu"/>
+    </div>
+</nav>
 
-        <aside id="nav-container">
-            <div id="nav-wrapper">
-                <ul id="nav"
-                    data-collapse-nav
-                    data-highlight-active>
-                    <li><a ui-sref="app.trackr"> <i class="fa fa-database"><span class="icon-bg bg-primary"></span></i><span>trackr</span> </a></li>
-                    <li><a ui-sref="app.invoices"> <i class="fa fa-file-text-o"><span class="icon-bg bg-success"></span></i><span>Invoices</span> </a></li>
-                    <li><a ui-sref="app.reportr"> <i class="fa fa-bar-chart-o"><span class="icon-bg bg-warning"></span></i><span>reportr</span> </a></li>
-                </ul>
+<div class="container">
+    <div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <div ui-view="breadcrumbs"/>
             </div>
-        </aside>
-
-        <div class="view-container">
-            <section id="content" class="animate-fade-up">
-                <!-- Page Content -->
-                <div id="page-wrapper">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div ui-view="breadcrumbs"/>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <!-- main content -->
-                        <div class="col-lg-12">
-                            <div ui-view="center"/>
-                        </div>
-                    </div>
-                </div>
-                <!-- Page Content END -->
-            </section>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div ui-view="center"/>
+            </div>
         </div>
     </div>
 </div>

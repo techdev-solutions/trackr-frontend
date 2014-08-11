@@ -1,10 +1,9 @@
 /* global localStorage */
 define(['angular', 'jQuery', 'restangular', 'angular-ui-router', 'angular-ui', 'twitter-bootstrap', 'angular-translate', 'angular-translate-loader-url',
-    'modules/base/base', 'modules/trackr/trackr', 'modules/invoices/invoicesModule', 'modules/shared/shared', 'modules/reportr/reportrModule',
-    'flatify/scripts/flatify-directives'
+    'modules/base/base', 'modules/trackr/trackr', 'modules/invoices/invoicesModule', 'modules/shared/shared', 'modules/reportr/reportrModule'
 ], function(angular) {
     'use strict';
-    var configFn = ['ui.router', 'ui.bootstrap', 'base', 'trackr', 'reportr', 'restangular', 'invoices', 'shared', 'flatify.directives', 'pascalprecht.translate'];
+    var configFn = ['ui.router', 'ui.bootstrap', 'base', 'trackr', 'reportr', 'restangular', 'invoices', 'shared', 'pascalprecht.translate'];
     var app = angular.module('app', configFn);
 
     app.config(['RestangularProvider', '$locationProvider', 'paginationConfig', '$httpProvider', '$translateProvider',
