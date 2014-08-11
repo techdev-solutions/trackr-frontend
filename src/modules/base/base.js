@@ -11,7 +11,8 @@ define([
     services.init(base);
     directives.init(base);
 
-    base.config(['$stateProvider', function($stateProvider) {
+    base.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
+        $urlRouterProvider.otherwise('/');
         $stateProvider
             .state('authorize', {
                 url: '/authorize',
