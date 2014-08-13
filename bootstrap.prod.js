@@ -12,8 +12,7 @@ require.config({
         'angular-ui': 'src/vendor/angular-ui-bootstrap-bower/ui-bootstrap-tpls.min',
         'angular-charts': 'src/vendor/angular-charts/dist/angular-charts.min',
         'moment': 'src/vendor/moment/min/moment.min',
-        'd3': 'src/vendor/d3/d3.min',
-        'issueCollector': 'jiraIssueCollector'
+        'd3': 'src/vendor/d3/d3.min'
     },
     shim: {
         'angular': { exports: 'angular', deps: ['jQuery'] },

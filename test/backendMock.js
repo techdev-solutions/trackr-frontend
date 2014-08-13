@@ -7,7 +7,8 @@ define(['fixtures'], function(fixtures) {
             enabled: true,
             authorities: [
                 {authority: 'ROLE_ADMIN', order: 0, id: 0}
-            ]
+            ],
+            fake: true
         });
 
         /**

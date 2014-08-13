@@ -13,8 +13,7 @@ require.config({
         'angular-ui': 'vendor/angular-ui-bootstrap-bower/ui-bootstrap-tpls',
         'angular-charts': 'vendor/angular-charts/dist/angular-charts',
         'moment': 'vendor/moment/moment',
-        'd3': 'vendor/d3/d3',
-        'issueCollector': 'jiraIssueCollector'
+        'd3': 'vendor/d3/d3'
     },
     shim: {
         'angular': { exports: 'angular', deps: ['jQuery'] },
@@ -32,7 +31,7 @@ require.config({
     }
 });
 
-var dependencies = ['angular', 'app', 'angular-l10n-de', 'issueCollector'];
+var dependencies = ['angular', 'app', 'angular-l10n-de'];
 require(dependencies, function(angular) {
     'use strict';
     angular.bootstrap(document, ['app']);
