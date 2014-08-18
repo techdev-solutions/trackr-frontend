@@ -11,7 +11,7 @@ define(['jQuery'], function(jQuery) {
         }
 
         jQuery.ajax({
-            url: '/conf/trackr.json',
+            url: 'conf/trackr.json',
             type: 'get',
             dataType: 'json',
             success: function(response) {
