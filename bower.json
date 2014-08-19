@@ -8,7 +8,7 @@
   "keywords": [
     "angular"
   ],
-  "license": "Closed source",
+  "license": "MIT",
   "private": true,
   "ignore": [
     "**/.*",
