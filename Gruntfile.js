@@ -108,17 +108,21 @@ module.exports = function (grunt) {
         karma: {
             dev: {
                 configFile: 'karma.conf.js',
-                singleRun: true
+                singleRun: true,
+                browsers: ['Chrome', 'Firefox']
             },
             test: {
                 configFile: 'karma.conf.js',
+                singleRun: true
+            },
+            teamcity: {
+                configFile: 'karma.conf.js',
                 singleRun: true,
-                browsers: ['PhantomJS']
+                reporters: ['progress', 'teamcity']
             },
             cover: {
                 configFile: 'karma.conf.js',
                 singleRun: true,
-                browsers: ['PhantomJS'],
                 reporters: ['progress', 'coverage']
             }
         }
@@ -138,5 +142,6 @@ module.exports = function (grunt) {
 
     grunt.registerTask('dev', ['jshint:dev', 'karma:dev']);
     grunt.registerTask('test', ['jshint', 'karma:test']);
+    grunt.registerTask('teamcityTest', ['jshint', 'karma:teamcity']);
     grunt.registerTask('dist', ['clean', 'useminPrepare', 'concat', 'copy', 'requirejs', 'uglify', 'cssmin', 'usemin', 'processhtml']);
 };
