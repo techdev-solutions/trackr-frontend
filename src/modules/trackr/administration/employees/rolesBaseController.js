@@ -16,9 +16,7 @@ define(['lodash'], function (_) {
          * @returns {Boolean|boolean} true if the credential.authorities contains authority (by id)
          */
         $scope.hasAuthority = function(credential, authority) {
-            return _.contains(_.map(credential.authorities, function (a) {
-                return a.id;
-            }), authority.id);
+            return _.contains(_.map(credential.authorities, 'id'), authority.id);
         };
 
         /**
@@ -34,12 +32,11 @@ define(['lodash'], function (_) {
             var credentialBase = Restangular.one('credentials', credential.id);
             if($scope.hasAuthority(credential, authority)) {
                 credentialBase.customDELETE('authorities/' + authority.id).then(function() {
-                    _.remove(credential.authorities, function (a) {
-                        return a.id === authority.id;
-                    });
+                    _.remove(credential.authorities, {id: authority.id});
                 });
             } else {
-                credentialBase.customOperation('patch', 'authorities', {}, {'Content-type': 'text/uri-list'}, authority._links.self.href).then(function() {
+                credentialBase.customOperation('patch', 'authorities', {}, {'Content-type': 'text/uri-list'}, authority._links.self.href)
+                    .then(function() {
                         credential.authorities.push(authority);
                     }
                 );

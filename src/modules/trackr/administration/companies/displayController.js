@@ -28,9 +28,7 @@ define(['lodash'], function(_) {
                     'src/modules/trackr/administration/companies/contactPersons/newOrEdit.tpl.html',
                     'ACTIONS.EDIT', { contactPerson: contactPerson});
                 $modalInstance.result.then(function(contactPerson) {
-                    var index = _.findIndex($scope.company.contactPersons, function(cp) {
-                        return cp.id === contactPerson.id;
-                    });
+                    var index = _.findIndex($scope.company.contactPersons, {id: contactPerson.id});
                     company.contactPersons[index] = contactPerson;
                 });
             };
@@ -46,9 +44,7 @@ define(['lodash'], function(_) {
                      Restangular would execute DELETE '/api/companies/0/contactPersons/0' which is not what we want
                      */
                     Restangular.one('contactPersons', contactPerson.id).remove().then(function() {
-                        _.remove($scope.company.contactPersons, function(cP) {
-                            return cP.id === contactPerson.id;
-                        });
+                        _.remove($scope.company.contactPersons, {id: contactPerson.id});
                     });
                 }
 

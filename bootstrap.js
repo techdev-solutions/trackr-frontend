@@ -26,7 +26,8 @@ require.config({
         'angular-translate': { deps: ['angular'] },
         'angular-translate-loader-url': { deps: ['angular-translate'] },
         'angular-ui': { deps: ['angular'] },
-        'angular-charts': { deps: ['d3', 'angular'] }
+        'angular-charts': { deps: ['d3', 'angular'] },
+        'd3': { exports: 'd3' }
     }
 });
 

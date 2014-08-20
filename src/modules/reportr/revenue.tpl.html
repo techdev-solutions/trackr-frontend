@@ -1,7 +1,13 @@
-<h1>Revenues</h1>
+<h1 translate="PAGES.REPORTR.REVENUE.TITLE"></h1>
 <div class="row">
     <div class="col-md-6 col-md-offset-3">
         <date-interval callback="dateSelected"></date-interval>
+    </div>
+</div>
+<div class="space-md"/>
+<div class="row">
+    <div class="col-md-6 col-md-offset-4">
+        <b translate="PAGES.REPORTR.REVENUE.TOTAL"></b>: {{ totalRevenue | currency:'€' }}
     </div>
 </div>
 <div class="space-md"/>

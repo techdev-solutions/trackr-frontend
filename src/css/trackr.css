@@ -1,14 +1,6 @@
 #page-wrapper {
   margin-left: 30px;
   margin-right: 30px;
-  padding-top: 20px;
-}
-.top-header .logo {
-  text-align: left;
-  padding-left: 48px;
-}
-.top-header .toggle-min {
-  left: 17px;
 }
 .clickable {
   /* clickable elements should have cursor hand */
@@ -33,36 +25,9 @@
   margin-top: 0;
   margin-bottom: 0;
 }
-bs-edit {
-  display: inline-block;
-}
-bs-edit .value {
-  margin-top: 1px;
-  font-weight: bold;
-}
-bs-edit .value.show {
-  padding: 5px 10px 4px 10px;
-  border: 1px solid transparent;
-}
-bs-edit .value.show:hover {
-  border-color: #f5f5f5;
-}
-bs-edit .value.edit .form-group {
-  margin: 0;
-}
-bs-edit .value.edit .form-group input {
-  font-size: 14px;
-}
 h1 {
   margin-top: 0;
   margin-bottom: 0;
-}
-bs-edit.like-h1 .value.edit input {
-  border: 1px solid red;
-  font-size: 36px;
-  font-weight: 500;
-  height: 50px;
-  line-height: 1.1;
 }
 .form-group .checkbox label {
   font-weight: bold;
@@ -83,4 +48,7 @@ inline-datepicker .input-group .input-group-btn button {
 }
 .form-group.has-error .help-block {
   display: block;
+}
+body {
+    padding-top: 70px;
 }

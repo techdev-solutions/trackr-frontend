@@ -69,9 +69,7 @@ define(['moment', 'lodash'], function(moment, _) {
              * @returns {boolean} true if the date is a monday-friday that is not in the list, false otherwise.
              */
             controller.isWorkDay = function(date, holidays) {
-                return date.day() !== 6 && date.day() !== 0 && !_.find(holidays, function(holiday) {
-                    return holiday.day === date.format('YYYY-MM-DD');
-                });
+                return date.day() !== 6 && date.day() !== 0 && !_.find(holidays, {day: date.format('YYYY-MM-DD')});
             };
 
             $scope.saveTime = function() {

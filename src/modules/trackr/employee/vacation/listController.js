@@ -22,9 +22,7 @@ define(['lodash'], function(_) {
             $scope.cancelVacationRequest = function(vacationRequest) {
                 function deleteVacationRequest() {
                     vacationRequest.remove().then(function() {
-                        _.remove($scope.vacationRequests, function(vR) {
-                            return vR.id === vacationRequest.id;
-                        });
+                        _.remove($scope.vacationRequests, {id: vacationRequest.id});
                     });
                 }
 

@@ -64,9 +64,7 @@ define(['lodash'], function(_) {
             $scope.removeExpense = function(expense) {
                 function deleteExpense() {
                     Restangular.one('travelExpenses', expense.id).remove().then(function() {
-                        _.remove($scope.report.expenses, function(e) {
-                            return e.id === expense.id;
-                        });
+                        _.remove($scope.report.expenses, {id: expense.id});
                         $scope.totalCost = controller.recalculateTotal($scope.report.expenses);
                     });
                 }
@@ -88,9 +86,7 @@ define(['lodash'], function(_) {
                     });
 
                 $modalInstance.result.then(function(editedExpense) {
-                    var index = _.findIndex($scope.report.expenses, function(ex) {
-                        return ex.id === editedExpense.id;
-                    });
+                    var index = _.findIndex($scope.report.expenses, {id: editedExpense.id });
                     $scope.report.expenses[index] = editedExpense;
                     $scope.totalCost = controller.recalculateTotal($scope.report.expenses);
                 });
@@ -154,6 +150,9 @@ define(['lodash'], function(_) {
                 return $filter('translate')('TRAVEL_EXPENSE.TYPE_VALUES.' + type);
             };
 
+            /**
+             * Preprocessor for comment-section.
+             */
             $scope.addReport = function(comment) {
                 comment.travelExpenseReport = $scope.report._links.self.href;
                 return comment;

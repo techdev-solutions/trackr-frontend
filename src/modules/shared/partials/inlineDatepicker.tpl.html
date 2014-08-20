@@ -1,13 +1,13 @@
 <div class="input-group">
-    <input type="text" id="date" class="form-control" ng-model="model"
-           datepicker-popup="yyyy-MM-dd"
-           is-open="opened"
-           datepicker-options="dateOptions"
-           close-text="{{ 'ACTIONS.CLOSE' | translate }}"
-           current-text="{{ 'DATE.TODAY' | translate }}"
-           toggle-weeks-text="{{ 'DATE.WEEKS' | translate }}"
-           clear-text="{{ 'ACTIONS.CLEAR' | translate }}"/>
-                        <span class="input-group-btn">
-                            <button class="btn btn-default" ng-click="openDate($event)"><i class="glyphicon glyphicon-calendar"></i></button>
-                        </span>
+<input type="text" class="form-control" ng-model="model"
+       datepicker-popup="yyyy-MM-dd"
+       is-open="opened"
+       datepicker-options="dateOptions"
+       close-text="{{ 'ACTIONS.CLOSE' | translate }}"
+       current-text="{{ 'DATE.TODAY' | translate }}"
+       toggle-weeks-text="{{ 'DATE.WEEKS' | translate }}"
+       clear-text="{{ 'ACTIONS.CLEAR' | translate }}"/>
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" ng-click="openDate($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
 </div>

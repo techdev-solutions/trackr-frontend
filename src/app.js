@@ -1,10 +1,9 @@
 /* global localStorage */
 define(['angular', 'jQuery', 'restangular', 'angular-ui-router', 'angular-ui', 'twitter-bootstrap', 'angular-translate', 'angular-translate-loader-url',
-    'modules/base/base', 'modules/trackr/trackr', 'modules/invoices/invoicesModule', 'modules/shared/shared', 'modules/reportr/reportrModule',
-    'flatify/scripts/flatify-directives'
+    'modules/base/base', 'modules/trackr/trackr', 'modules/invoices/invoicesModule', 'modules/shared/shared', 'modules/reportr/reportrModule'
 ], function(angular) {
     'use strict';
-    var configFn = ['ui.router', 'ui.bootstrap', 'base', 'trackr', 'reportr', 'restangular', 'invoices', 'shared', 'flatify.directives', 'pascalprecht.translate'];
+    var configFn = ['ui.router', 'ui.bootstrap', 'base', 'trackr', 'reportr', 'restangular', 'invoices', 'shared', 'pascalprecht.translate'];
     var app = angular.module('app', configFn);
 
     app.config(['RestangularProvider', '$locationProvider', 'paginationConfig', '$httpProvider', '$translateProvider',
@@ -62,6 +61,18 @@ define(['angular', 'jQuery', 'restangular', 'angular-ui-router', 'angular-ui', '
             if(oauthToken) {
                 $httpProvider.defaults.headers.common.Authorization = 'Bearer ' + oauthToken;
             }
+
+            // We can not inject $state directly as this gives a circular dependency
+            $httpProvider.interceptors.push(['$q', '$injector', function($q, $injector) {
+                return {
+                    responseError: function(response) {
+                        if(response.status === 401) {
+                            $injector.get('$state').transitionTo('authorize');
+                        }
+                        return $q.reject(response);
+                    }
+                };
+            }]);
         }]);
     return app;
 });

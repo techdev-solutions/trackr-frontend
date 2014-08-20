@@ -11,6 +11,9 @@ define(['lodash', 'moment'], function(_, moment) {
                 controller.showMonth($scope.month);
             };
 
+            var originalWorkTimes = [];
+            $scope.hoursPerDay = 8;
+
             /**
              * Load the work times of one month, put them in the scope and calculate the grouped worktimes.
              * @param date The month to load.
@@ -23,12 +26,13 @@ define(['lodash', 'moment'], function(_, moment) {
                         end: moment(date).endOf('month').format('YYYY-MM-DD'),
                         projection: 'withProject'
                     }).then(function(workTimes) {
+                        originalWorkTimes = workTimes;
                         //Add the difference of end - start to all workTimes since it will be needed at several places
                         _.forEach(workTimes, function(workTime) {
                             workTime.totalHours = controller.totalHours(workTime.endTime, workTime.startTime);
                         });
                         $scope.groupedWorkTimes = controller.convertToGroupedWorktimes(workTimes);
-                        $scope.workTimes = workTimes;
+                        $scope.workTimes = _.groupBy(workTimes, 'date');
                     });
             };
 
@@ -44,12 +48,25 @@ define(['lodash', 'moment'], function(_, moment) {
                 return momentEnd.diff(momentStart, 'hours', true);
             };
 
+            $scope.sumUpWorkTimeHours = function(workTimeArray) {
+                return _.reduce(workTimeArray, function(prev, wt) {
+                    return prev + wt.totalHours;
+                }, 0);
+            };
+
+            $scope.hoursColor = function(hours, perDay) {
+                if(hours > perDay) {
+                    return 'red';
+                } else {
+                    return 'black';
+                }
+            };
+
             $scope.remove = function(workTime) {
                 function deleteWorkTime() {
                     workTime.remove().then(function() {
-                        _.remove($scope.workTimes, function(wT) {
-                            return wT.id === workTime.id;
-                        });
+                        _.remove(originalWorkTimes, {id: workTime.id});
+                        $scope.workTimes = _.groupBy(originalWorkTimes, 'date');
                     });
                 }
 
