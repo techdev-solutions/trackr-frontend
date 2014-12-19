@@ -1,3 +1,9 @@
+<div ng-if="!report">
+<h2><span translate="PAGES.SUPERVISOR.TRAVEL_EXPENSE_REPORT.NOT_FOUND" translate-values="{id: reportId}"></span></h2>
+<a ui-sref="app.trackr.supervisor.expenses" translate="PAGES.SUPERVISOR.TRAVEL_EXPENSE_REPORT.BACK_TO_LIST">Back to list</a>
+</div>
+
+<div ng-if="report">
 <h2><span translate="TRAVEL_EXPENSE_REPORT.TRAVEL_EXPENSE_REPORT"></span> #{{report.id}}</h2>
 <h3>{{report.employee.firstName}} {{report.employee.lastName}}</h3>
 <span class="pull-right"><a href ui-sref="app.trackr.supervisor.expenses" translate="ACTIONS.BACK"></a></span>
@@ -53,3 +59,4 @@
 
 <div class="space-md"></div>
 <comment-section comments="report.comments" preprocessor="addReport" url="travelExpenseReportComments"></comment-section>
+</div>

@@ -1,6 +1,6 @@
 define(['modules/shared/PaginationLoader', 'lodash'], function(PaginationLoader, _) {
     'use strict';
-    return ['$scope', 'Restangular', function($scope, Restangular) {
+    return ['$scope', 'Restangular', '$state', function($scope, Restangular, $state) {
         var controller = this;
         $scope.states = ['SUBMITTED', 'APPROVED'];
         $scope.reports = {};
@@ -40,6 +40,10 @@ define(['modules/shared/PaginationLoader', 'lodash'], function(PaginationLoader,
 
         $scope.setPage = function(state) {
             controller.loadPage($scope.reports[state].page.number, state);
+        };
+
+        $scope.jumpToReport = function(reportId) {
+            $state.go('app.trackr.supervisor.expenses.edit', {id: reportId});
         };
 
         controller.loadPage(1);
