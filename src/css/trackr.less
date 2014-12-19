@@ -95,3 +95,28 @@ inline-datepicker {
 		display: block;
 	}
 }
+
+th.sortable {
+	a {
+		cursor: pointer;
+	}
+
+	&.sort-asc a:after, &.sort-desc a:after {
+		font-family: "Glyphicons Halflings";
+		display: inline-block;
+		font-weight: 200;
+		float: right;
+		color: #aaaaaa;
+		font-size: 10px;
+	}
+
+	&.sort-asc a:after {
+		content: "";
+		transform: rotate(270deg);
+	}
+
+	&.sort-desc a:after {
+		content: "";
+		transform: rotate(90deg);
+	}
+}

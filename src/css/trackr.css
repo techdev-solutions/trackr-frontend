@@ -52,3 +52,26 @@ inline-datepicker .input-group .input-group-btn button {
 body {
     padding-top: 70px;
 }
+th.sortable a {
+  cursor: pointer;
+}
+th.sortable.sort-asc a:after {
+  font-family: "Glyphicons Halflings";
+  display: inline-block;
+  font-weight: 200;
+  content: "\e072";
+  float: right;
+  color: #aaaaaa;
+  transform: rotate(270deg);
+  font-size: 10px;
+}
+th.sortable.sort-desc a:after {
+  font-family: "Glyphicons Halflings";
+  font-weight: 200;
+  display: inline-block;
+  content: "\e072";
+  float: right;
+  color: #aaaaaa;
+  transform: rotate(90deg);
+  font-size: 10px;
+}

@@ -17,16 +17,16 @@
         <table class="table table-bordered">
             <thead>
             <tr>
-                <th translate="INVOICE.IDENTIFIER"></th>
-                <th translate="INVOICE.CREATION_DATE"></th>
-                <th translate="INVOICE.INVOICE_TOTAL"></th>
-                <th translate="INVOICE.DEBITOR"></th>
-                <th translate="INVOICE.DUE_DATE"></th>
+                <th class="sortable" ng-class="{'sort-asc': isSortedAsc('identifier'), 'sort-desc': isSortedDesc('identifier')}"><a translate="INVOICE.IDENTIFIER" ng-click="loadSortedInvoices(state, 'identifier')"></a></th>
+                <th class="sortable" ng-class="{'sort-asc': isSortedAsc('creationDate'), 'sort-desc': isSortedDesc('creationDate')}"><a translate="INVOICE.CREATION_DATE" ng-click="loadSortedInvoices(state, 'creationDate')"></a></th>
+                <th class="sortable" ng-class="{'sort-asc': isSortedAsc('invoiceTotal'), 'sort-desc': isSortedDesc('invoiceTotal')}"><a translate="INVOICE.INVOICE_TOTAL" ng-click="loadSortedInvoices(state, 'invoiceTotal')"></a></th>
+                <th class="sortable" ng-class="{'sort-asc': isSortedAsc('debitor.name'), 'sort-desc': isSortedDesc('debitor.name')}"><a translate="INVOICE.DEBITOR" ng-click="loadSortedInvoices(state, 'debitor.name')"></a></th>
+                <th class="sortable" ng-class="{'sort-asc': isSortedAsc('dueDate'), 'sort-desc': isSortedDesc('dueDate')}"><a translate="INVOICE.DUE_DATE" ng-click="loadSortedInvoices(state, 'dueDate')"></a></th>
                 <th translate="ACTIONS.ACTIONS"></th>
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="invoice in invoices[state]">
+            <tr ng-repeat="invoice in invoices[state] | orderBy:order:reverse">
                 <td>{{invoice.identifier}}</td>
                 <td>{{ invoice.creationDate | date:'dd.MM.yyyy' }}</td>
                 <td>{{ invoice.invoiceTotal | currency:'€' }}</td>
