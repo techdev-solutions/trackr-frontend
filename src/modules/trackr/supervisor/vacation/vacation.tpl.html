@@ -57,8 +57,10 @@
                                 <span ng-show="!request.approver" translate="VACATION_REQUEST.APPROVER_SYSTEM"></span>
                             </td>
                             <td>
-                                <button type="button" class="btn btn-danger btn-sm"
-                                        translate="ACTIONS.DELETE" ng-click="confirmDelete(request)" ng-show="request.employee.id !== principal.id"></button>
+                                <button ng-click="confirmDelete(request)" ng-show="request.employee.id !== principal.id"
+                                        type="button" class="btn btn-default btn-xs">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </button>
                             </td>
                         </tr>
                     </tbody>
