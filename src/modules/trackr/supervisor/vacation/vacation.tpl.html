@@ -40,6 +40,7 @@
                             <th translate="VACATION_REQUEST.APPROVAL_DATE"></th>
                             <th translate="VACATION_REQUEST.EMPLOYEE"></th>
                             <th translate="VACATION_REQUEST.APPROVER"></th>
+                            <th translate="ACTIONS.ACTIONS"></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -54,6 +55,10 @@
                                     {{request.approver.firstName + ' ' + request.approver.lastName}}
                                 </span>
                                 <span ng-show="!request.approver" translate="VACATION_REQUEST.APPROVER_SYSTEM"></span>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-danger btn-sm"
+                                        translate="ACTIONS.DELETE" ng-click="confirmDelete(request)" ng-show="request.employee.id !== principal.id"></button>
                             </td>
                         </tr>
                     </tbody>
