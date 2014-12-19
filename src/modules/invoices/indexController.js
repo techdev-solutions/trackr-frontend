@@ -7,6 +7,9 @@ define(['modules/shared/PaginationLoader'], function(PaginationLoader) {
             $scope.searchQuery = '';
             $scope.states = ['OVERDUE', 'OUTSTANDING', 'PAID'];
 
+            var orderBy = null;
+            var isAscendingOrder = true;
+
             /**
              * This will override paginationLoader.afterObjectsGet because we need to set the result from
              * the query more sophisticated.
@@ -37,9 +40,14 @@ define(['modules/shared/PaginationLoader'], function(PaginationLoader) {
              * Load invoices from the server, either via the searchLoader or the normal loader.
              * @param page The page to load (1-based).
              * @param [state] If provided only this specific invoice state is reloaded (OVERDUE, PAID or OUTSTANDING).
+             * @param [sort] If provided the returned invoices are sorted by the specified column with specified sorting direction
              */
-            controller.loadInvoices = function(page, state) {
+            controller.loadInvoices = function(page, state, sort) {
                 var params = { projection: 'withDebitor' }, loader;
+
+                if (sort) {
+                    params.sort = sort;
+                }
 
                 //Check if we're currently searching or not.
                 if ($scope.searchQuery !== '') {
@@ -59,6 +67,39 @@ define(['modules/shared/PaginationLoader'], function(PaginationLoader) {
                         loader.loadPage(page, params, $scope.states[i]);
                     }
                 }
+            };
+
+            /**
+             * Load invoices in the correct sort order, ordered by the chosen property
+             * @param state The state the tab belongs to.
+             * @param sort Property name to sort the invoices.
+             */
+            $scope.loadSortedInvoices = function(state, sort) {
+                if (orderBy == sort) {
+                    isAscendingOrder = !isAscendingOrder;
+                } else {
+                    isAscendingOrder = true;
+                }
+                orderBy = sort;
+                controller.loadInvoices($scope.invoices[state].page.number, state, orderBy + ',' + (isAscendingOrder ? 'asc' : 'desc'))
+            };
+
+            /**
+             * Returns whether the invoices are sorted by the given property in ascending order.
+             * @param property Property name to check.
+             * @returns 'true', if invoices are sorted by the property above, otherwise 'false'.
+             */
+            $scope.isSortedAsc = function(property) {
+                return orderBy == property && isAscendingOrder;
+            };
+
+            /**
+             * Returns whether the invoices are sorted by the given property in ascending order.
+             * @param property Property name to check.
+             * @returns 'true', if invoices are sorted by the property above, otherwise 'false'.
+             */
+            $scope.isSortedDesc = function(property) {
+                return orderBy == property && !isAscendingOrder;
             };
 
             /**
