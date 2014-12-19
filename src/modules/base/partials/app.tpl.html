@@ -6,8 +6,8 @@
                     <a class="clickable navbar-brand" data-toggle="dropdown">modules</a>
                     <ul class="dropdown-menu">
                         <li><a ui-sref="app.trackr"><span class="icon-bg bg-primary"></span><span>trackr</span></a></li>
-                        <li><a ui-sref="app.invoices"><span class="icon-bg bg-success"></span><span>Invoices</span></a></li>
-                        <li><a ui-sref="app.reportr"><span class="icon-bg bg-warning"></span><span>reportr</span></a></li>
+                        <li><a has-authority="ROLE_ADMIN" ui-sref="app.invoices"><span class="icon-bg bg-success"></span><span>Invoices</span></a></li>
+                        <li><a has-authority="ROLE_ADMIN" ui-sref="app.reportr"><span class="icon-bg bg-warning"></span><span>reportr</span></a></li>
                     </ul>
                 </li>
             </ul>
