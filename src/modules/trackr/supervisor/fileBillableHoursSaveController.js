@@ -38,6 +38,13 @@ define(['lodash'], function(_) {
             $scope.setBillableHoursAll(undefined);
         };
 
+        $scope.transferHours = function(employee) {
+            employee.workTimes.forEach(function(workTime) {
+                workTime.hours = workTime.enteredMinutes / 60;
+            });
+            $scope.recalculateBillableSum();
+        };
+
         $scope.createBill = function() {
             function createNewBillableTime(billableTime) {
                 return Restangular.all('billableTimes').post(billableTime);

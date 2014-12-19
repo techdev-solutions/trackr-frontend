@@ -32,9 +32,13 @@
                     </tr>
                     <tr>
                         <td colspan="2"></td>
-                        <td><input class="form-control input-sm"
+                        <td class="form-inline">
+                            <input class="form-control input-sm"
                                    ng-change="setBillableHoursAll(billableHoursAll)"
-                                   ng-model="billableHoursAll" placeholder="{{ 'PAGES.SUPERVISOR.BILL.SET_ALL' | translate }}"/></td>
+                                   ng-model="billableHoursAll" placeholder="{{ 'PAGES.SUPERVISOR.BILL.SET_ALL' | translate }}"/>
+                            <button type="button" class="btn btn-sm btn-primary"
+                                    ng-click="transferHours(employee)" translate="PAGES.SUPERVISOR.BILL.TRANSFER_HOURS"></button>
+                        </td>
                     </tr>
                     <tr ng-repeat="workTime in employee.workTimes">
                         <td>{{workTime.date | date:'dd.MM.yyyy'}}</td>
