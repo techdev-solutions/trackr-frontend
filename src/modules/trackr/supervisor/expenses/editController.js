@@ -24,6 +24,12 @@ define([], function() {
                         $scope.report = report;
                         $scope.report.statusTranslateCode = 'TRAVEL_EXPENSE_REPORT.' + report.status;
                         $scope.totalCost = recalculateTotal(report.expenses);
+                    })
+                    .catch(function(response) {
+                        if(response && response.status === 404) {
+                            $scope.reportId = $stateParams.id;
+                            $scope.report = undefined;
+                        }
                     });
 
                 /**
