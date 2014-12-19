@@ -81,7 +81,7 @@ define(['modules/shared/PaginationLoader'], function(PaginationLoader) {
                     isAscendingOrder = true;
                 }
                 orderBy = sort;
-                controller.loadInvoices($scope.invoices[state].page.number, state, orderBy + ',' + (isAscendingOrder ? 'asc' : 'desc'))
+                controller.loadInvoices($scope.invoices[state].page.number, state, orderBy + ',' + (isAscendingOrder ? 'asc' : 'desc'));
             };
 
             /**
