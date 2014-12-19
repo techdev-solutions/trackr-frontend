@@ -1,3 +1,13 @@
+<form class="form-inline" ng-submit="jumpToReport(jumpReportId)">
+    <div class="form-group">
+        <div class="input-group">
+            <input id="jumpToReportId" class="form-control" type="number"
+                   ng-model="jumpReportId" placeholder="{{ 'PAGES.SUPERVISOR.TRAVEL_EXPENSE_REPORTS.JUMP_TO_REPORT' | translate }}"/>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary" translate="ACTIONS.GO"></button>
+</form>
+<br />
 <tabset>
     <tab ng-repeat="state in states">
         <tab-heading>

@@ -75,5 +75,12 @@ define(['baseTestSetup'], function(baseTestSetup) {
                 expect(workTime.hours).not.toBeDefined();
             });
         });
+
+        it('can transfer the employee entered minutes into the hours', function() {
+            scope.transferHours(scope.employee);
+            scope.employee.workTimes.forEach(function(workTime) {
+                expect(workTime.hours).toBe(workTime.enteredMinutes / 60);
+            });
+        });
     });
 });
