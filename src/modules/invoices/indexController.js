@@ -73,15 +73,19 @@ define(['modules/shared/PaginationLoader'], function(PaginationLoader) {
              * Load invoices in the correct sort order, ordered by the chosen property
              * @param state The state the tab belongs to.
              * @param sort Property name to sort the invoices.
+             * @param [ignoreSameOrderProperty] 'true', if the sorting order has to be ignored (used for pagination calls).
              */
-            $scope.loadSortedInvoices = function(state, sort) {
-                if (orderBy == sort) {
-                    isAscendingOrder = !isAscendingOrder;
-                } else {
-                    isAscendingOrder = true;
+            $scope.loadSortedInvoices = function(state, sort, ignoreSameOrderProperty) {
+                if (!ignoreSameOrderProperty) {
+                    if (orderBy == sort) {
+                        isAscendingOrder = !isAscendingOrder;
+                    } else {
+                        isAscendingOrder = true;
+                    }
                 }
                 orderBy = sort;
-                controller.loadInvoices($scope.invoices[state].page.number, state, orderBy + ',' + (isAscendingOrder ? 'asc' : 'desc'));
+                var sortingStr = orderBy === null ? null : orderBy + ',' + (isAscendingOrder ? 'asc' : 'desc');
+                controller.loadInvoices($scope.invoices[state].page.number, state, sortingStr);
             };
 
             /**
@@ -122,7 +126,7 @@ define(['modules/shared/PaginationLoader'], function(PaginationLoader) {
              * @param invoiceState The state to refresh.
              */
             controller.refreshPage = function(invoiceState) {
-                controller.loadInvoices($scope.invoices[invoiceState].page.number, invoiceState);
+                $scope.loadSortedInvoices(invoiceState, orderBy, true);
             };
 
             /**
