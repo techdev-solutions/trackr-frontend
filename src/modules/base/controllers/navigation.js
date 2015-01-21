@@ -8,7 +8,9 @@ define([], function () {
             $log.debug('User pressed logout, deleting token and transition to authorize state');
             $http.defaults.headers.common.Authorization = null;
             localStorage.removeItem('oauthToken');
-            $state.go('authorize');
+            $http.get('/api/logout').success(function() {
+                $state.go('authorize');
+            });
         };
 
         $scope.changeLanguage = function (languageCode) {

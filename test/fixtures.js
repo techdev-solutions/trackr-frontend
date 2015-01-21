@@ -4,16 +4,8 @@ define([], function() {
     return {
         "api": {
             "_links": {
-                "credentials": {
-                    "href": "http://localhost:8080/api/credentials{?page,size,sort}",
-                    "templated": true
-                },
                 "contactPersons": {
                     "href": "http://localhost:8080/api/contactPersons{?page,size,sort}",
-                    "templated": true
-                },
-                "authorities": {
-                    "href": "http://localhost:8080/api/authorities{?page,size,sort}",
                     "templated": true
                 },
                 "projects": {
@@ -32,140 +24,6 @@ define([], function() {
                     "href": "http://localhost:8080/api/companies{?page,size,sort}",
                     "templated": true
                 }
-            }
-        },
-
-        "api/credentials": {
-            "_links": {
-                "self": {
-                    "href": "http://localhost:8080/api/credentials{?page,size,sort}",
-                    "templated": true
-                },
-                "search": {
-                    "href": "http://localhost:8080/api/credentials/search"
-                }
-            },
-            "_embedded": {
-                "credentials": [
-                    {
-                        "id": 0,
-                        "email": "admin@techdev.de",
-                        "enabled": true,
-                        "_links": {
-                            "self": {
-                                "href": "http://localhost:8080/api/credentials/0"
-                            },
-                            "employee": {
-                                "href": "http://localhost:8080/api/credentials/0/employee"
-                            },
-                            "authorities": {
-                                "href": "http://localhost:8080/api/credentials/0/authorities"
-                            }
-                        }
-                    },
-                    {
-                        "id": 1,
-                        "email": "moritz.schulze@techdev.de",
-                        "enabled": true,
-                        "_links": {
-                            "self": {
-                                "href": "http://localhost:8080/api/credentials/1"
-                            },
-                            "employee": {
-                                "href": "http://localhost:8080/api/credentials/1/employee"
-                            },
-                            "authorities": {
-                                "href": "http://localhost:8080/api/credentials/1/authorities"
-                            }
-                        }
-                    },
-                    {
-                        "id": 2,
-                        "email": "viktor.widiker@techdev.de",
-                        "enabled": true,
-                        "_links": {
-                            "self": {
-                                "href": "http://localhost:8080/api/credentials/2"
-                            },
-                            "employee": {
-                                "href": "http://localhost:8080/api/credentials/2/employee"
-                            },
-                            "authorities": {
-                                "href": "http://localhost:8080/api/credentials/2/authorities"
-                            }
-                        }
-                    },
-                    {
-                        "id": 3,
-                        "email": "alexander.hanschke@techdev.de",
-                        "enabled": true,
-                        "_links": {
-                            "self": {
-                                "href": "http://localhost:8080/api/credentials/3"
-                            },
-                            "employee": {
-                                "href": "http://localhost:8080/api/credentials/3/employee"
-                            },
-                            "authorities": {
-                                "href": "http://localhost:8080/api/credentials/3/authorities"
-                            }
-                        }
-                    },
-                    {
-                        "id": 4,
-                        "email": "adrian.krion@techdev.de",
-                        "enabled": true,
-                        "_links": {
-                            "self": {
-                                "href": "http://localhost:8080/api/credentials/4"
-                            },
-                            "employee": {
-                                "href": "http://localhost:8080/api/credentials/4/employee"
-                            },
-                            "authorities": {
-                                "href": "http://localhost:8080/api/credentials/4/authorities"
-                            }
-                        }
-                    },
-                    {
-                        "id": 5,
-                        "email": "angelika.gutjahr@techdev.de",
-                        "enabled": true,
-                        "_links": {
-                            "self": {
-                                "href": "http://localhost:8080/api/credentials/5"
-                            },
-                            "employee": {
-                                "href": "http://localhost:8080/api/credentials/5/employee"
-                            },
-                            "authorities": {
-                                "href": "http://localhost:8080/api/credentials/5/authorities"
-                            }
-                        }
-                    },
-                    {
-                        "id": 6,
-                        "email": "nikolaj.weise@techdev.de",
-                        "enabled": true,
-                        "_links": {
-                            "self": {
-                                "href": "http://localhost:8080/api/credentials/6"
-                            },
-                            "employee": {
-                                "href": "http://localhost:8080/api/credentials/6/employee"
-                            },
-                            "authorities": {
-                                "href": "http://localhost:8080/api/credentials/6/authorities"
-                            }
-                        }
-                    }
-                ]
-            },
-            "page": {
-                "size": 20,
-                "totalElements": 7,
-                "totalPages": 1,
-                "number": 0
             }
         },
 
@@ -219,55 +77,6 @@ define([], function() {
             "page": {
                 "size": 20,
                 "totalElements": 2,
-                "totalPages": 1,
-                "number": 0
-            }
-        },
-
-        "api/authorities": {
-            "_links": {
-                "self": {
-                    "href": "http://localhost:8080/api/authorities{?page,size,sort}",
-                    "templated": true
-                }
-            },
-            "_embedded": {
-                "authorities": [
-                    {
-                        "id": 0,
-                        "authority": "ROLE_ADMIN",
-                        "order": 0,
-                        "_links": {
-                            "self": {
-                                "href": "http://localhost:8080/api/authorities/0"
-                            }
-                        }
-                    },
-                    {
-                        "id": 1,
-                        "authority": "ROLE_SUPERVISOR",
-                        "order": 1,
-                        "_links": {
-                            "self": {
-                                "href": "http://localhost:8080/api/authorities/1"
-                            }
-                        }
-                    },
-                    {
-                        "id": 2,
-                        "authority": "ROLE_EMPLOYEE",
-                        "order": 2,
-                        "_links": {
-                            "self": {
-                                "href": "http://localhost:8080/api/authorities/2"
-                            }
-                        }
-                    }
-                ]
-            },
-            "page": {
-                "size": 20,
-                "totalElements": 3,
                 "totalPages": 1,
                 "number": 0
             }
@@ -358,9 +167,6 @@ define([], function() {
                         "_links": {
                             "self": {
                                 "href": "http://localhost:8080/api/employees/0"
-                            },
-                            "credential": {
-                                "href": "http://localhost:8080/api/employees/0/credential"
                             }
                         }
                     },
@@ -379,9 +185,6 @@ define([], function() {
                         "_links": {
                             "self": {
                                 "href": "http://localhost:8080/api/employees/1"
-                            },
-                            "credential": {
-                                "href": "http://localhost:8080/api/employees/1/credential"
                             }
                         }
                     },
@@ -400,9 +203,6 @@ define([], function() {
                         "_links": {
                             "self": {
                                 "href": "http://localhost:8080/api/employees/2"
-                            },
-                            "credential": {
-                                "href": "http://localhost:8080/api/employees/2/credential"
                             }
                         }
                     },
@@ -421,9 +221,6 @@ define([], function() {
                         "_links": {
                             "self": {
                                 "href": "http://localhost:8080/api/employees/3"
-                            },
-                            "credential": {
-                                "href": "http://localhost:8080/api/employees/3/credential"
                             }
                         }
                     },
@@ -442,9 +239,6 @@ define([], function() {
                         "_links": {
                             "self": {
                                 "href": "http://localhost:8080/api/employees/4"
-                            },
-                            "credential": {
-                                "href": "http://localhost:8080/api/employees/4/credential"
                             }
                         }
                     },
@@ -463,9 +257,6 @@ define([], function() {
                         "_links": {
                             "self": {
                                 "href": "http://localhost:8080/api/employees/5"
-                            },
-                            "credential": {
-                                "href": "http://localhost:8080/api/employees/5/credential"
                             }
                         }
                     },
@@ -484,9 +275,6 @@ define([], function() {
                         "_links": {
                             "self": {
                                 "href": "http://localhost:8080/api/employees/6"
-                            },
-                            "credential": {
-                                "href": "http://localhost:8080/api/employees/6/credential"
                             }
                         }
                     }

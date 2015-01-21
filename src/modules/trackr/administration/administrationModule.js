@@ -56,17 +56,6 @@ define(['angular', 'modules/trackr/administration/controllers'], function(angula
             },
             needsAuthority: 'ROLE_SUPERVISOR'
         })
-        .state('app.trackr.administration.employees.roles', {
-            url: '/roles',
-            breadcrumbTranslateCode: 'AUTHORITY.ROLES',
-            views: {
-                'employee': {
-                    templateUrl: 'src/modules/trackr/administration/employees/rolesList.tpl.html',
-                    controller: 'trackr.administration.controllers.employees.roles-list'
-                }
-            },
-            needsAuthority: 'ROLE_ADMIN'
-        })
         .state('app.trackr.administration.projects', {
             url: '/projects',
             breadcrumbTranslateCode: 'PROJECT.PROJECTS',
