@@ -3,18 +3,14 @@ define([], function() {
     return ['$scope', 'Restangular', '$filter', function($scope, Restangular, $filter) {
         var controller = this;
 
-        $scope.employee = {
-            credential: {
-                locale: 'en'
-            }
-        };
+        $scope.employee = {};
 
         controller.onFail = function(response) {
             if (response.status === 409) {
                 $scope.errors = [{
-                    entity: 'credential',
+                    entity: 'employee',
                     message: $filter('translate')('CREDENTIAL.EMAIL_CONFLICT'),
-                    property: 'credential.email'
+                    property: 'email'
                 }];
             } else {
                 $scope.errors = response.data.errors;
@@ -27,10 +23,8 @@ define([], function() {
             if($scope.employee.federalState) {
                 $scope.employee.federalState = $scope.employee.federalState.name;
             }
-            Restangular.allUrl('employees', 'api/employees/createWithCredential').post({
-                employee: $scope.employee,
-                credential: $scope.employee.credential
-            }).then(function(employee) {
+            Restangular.all('employees').post($scope.employee)
+            .then(function(employee) {
                 $scope.closeModal(employee);
             }, function(response) {
                 controller.onFail(response);

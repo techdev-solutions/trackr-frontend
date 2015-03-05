@@ -12,7 +12,7 @@ define([], function() {
                 user = _user;
                 if(user) {
                     user.highestAuthority = user.authorities.sort(function(a1, a2) {
-                        return a1.order - a2.order;
+                        return permissionLevels[a1.authority] - permissionLevels[a2.authority];
                     })[0];
                 }
             },

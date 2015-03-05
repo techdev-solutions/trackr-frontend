@@ -3,9 +3,8 @@ define([], function() {
     return ['$scope', 'Restangular', '$filter', function($scope, Restangular, $filter) {
         var controller = this;
 
-        $scope.company = {
-            address: {}
-        };
+        $scope.company = {};
+        $scope.address = {};
 
         controller.onFail = function(response) {
             if (response.status === 409) {
@@ -13,7 +12,7 @@ define([], function() {
                     {
                         entity: 'company',
                         message: $filter('translate')('COMPANY.COMPANY_ID_CONFLICT'),
-                        property: 'company.companyId'
+                        property: 'companyId'
                     }
                 ];
             } else {
@@ -22,12 +21,17 @@ define([], function() {
         };
 
         $scope.saveEntity = function() {
-            Restangular.allUrl('companies', 'api/companies/createWithAddress').post({
-                company: $scope.company,
-                address: $scope.company.address
-            }).then(function(company) {
-                $scope.closeModal(company);
-            }, controller.onFail);
+            // TODO: address exists now even if the company does not!
+            Restangular.all('addresses')
+                .post($scope.address)
+                .then(function(address) {
+                    $scope.company.address = address._links.self.href;
+                    return Restangular.all('companies').post($scope.company);
+                })
+                .then(function(company) {
+                    return $scope.closeModal(company);
+                })
+                .catch(controller.onFail);
         };
     }];
 });

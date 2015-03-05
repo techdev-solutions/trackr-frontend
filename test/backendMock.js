@@ -6,7 +6,7 @@ define(['fixtures'], function(fixtures) {
             email: 'admin@techdev.de',
             enabled: true,
             authorities: [
-                {authority: 'ROLE_ADMIN', order: 0, id: 0}
+                {authority: 'ROLE_ADMIN'}
             ],
             fake: true
         });
@@ -36,7 +36,7 @@ define(['fixtures'], function(fixtures) {
 
         /**
          * Mock patching a single entitiy
-         * @param url The url to mock (e.g. 'api/credentials'
+         * @param url The url to mock (e.g. 'api/employees'
          */
         function mockPatch(url) {
             var pattern = new RegExp('^' + url + '/\\d+$');
@@ -47,10 +47,11 @@ define(['fixtures'], function(fixtures) {
 
         //##### -- ADDRESSES
         mockPatch('api/addresses');
-
-        //##### -- AUTHORITIES
-        mockRoot('api/authorities');
-        $httpBackend.whenGET(/^api\/authorities\/[\d]+$/).respond(fixtures['api/authorities']._embedded.authorities[0]);
+        $httpBackend.whenPOST('api/addresses')
+            .respond(function() {
+                var address = { _links: { self: { href: '' } } };
+                return [200, address];
+            });
 
         //#### -- BILLABLE TIMES
         mockPost('api/billableTimes');
@@ -67,7 +68,7 @@ define(['fixtures'], function(fixtures) {
 
         //#### -- COMPANIES
         mockRoot('api/companies');
-        mockPost('api/companies/createWithAddress');
+        mockPost('api/companies');
         mockPatch('api/companies');
         $httpBackend.when('GET', /^api\/companies\/[\d]+$/)
             .respond(fixtures['api/companies']._embedded.companies[0]);
@@ -91,26 +92,11 @@ define(['fixtures'], function(fixtures) {
         $httpBackend.whenGET(/^api\/contactPersons\/[\d]+$/).respond(fixtures['api/contactPersons']._embedded.contactPersons[0]);
         $httpBackend.whenDELETE(/^api\/contactPersons\/\d+/).respond([204]);
 
-        //#### -- CREDENTIALS
-        mockRoot('api/credentials');
-        mockPatch('api/credentials');
-        $httpBackend.whenGET(/^api\/credentials\/\d+$/).respond(fixtures['api/credentials']._embedded.credentials[0]);
-        $httpBackend.whenGET(/^api\/credentials\/\d+\/authorities$/).respond(fixtures['api/authorities']._embedded.authorities);
-        $httpBackend.whenDELETE(/^api\/credentials\/\d+\/authorities\/\d+/).respond([204]);
-        $httpBackend.whenPATCH(/^api\/credentials\/\d+\/authorities/).respond([204]);
-
         //#### -- EMPLOYEES
         mockRoot('api/employees');
         mockPatch('api/employees');
-        mockPost('api/employees/createWithCredential');
-        $httpBackend.whenGET(/api\/employees\/\d+\?projection=withCredential/)
-            .respond(function() {
-                var employee = fixtures['api/employees']._embedded.employees[0];
-                employee.credential = fixtures['api/credentials']._embedded.credentials[0];
-                return [200, employee];
-            });
+        mockPost('api/employees');
         $httpBackend.whenGET(/^api\/employees\/\d+$/).respond(fixtures['api/employees']._embedded.employees[0]);
-        $httpBackend.whenGET(/^api\/employees\/\d+\/credential$/).respond(fixtures['api/credentials']._embedded.credentials[0]);
         $httpBackend.whenPATCH(/^api\/employees\/\d+\/self$/).respond(function(method, url, data) {
             return [200, data];
         });

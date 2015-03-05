@@ -1,7 +1,6 @@
 define([], function() {
     'use strict';
-    return ['Restangular', '$scope', '$stateParams', '$controller', 'shared.services.create-or-update-modal', function(Restangular, $scope, $stateParams, $controller, createOrUpdateModalService) {
-        $controller('trackr.administration.controllers.employees.roles-base', {$scope: $scope});
+    return ['Restangular', '$scope', '$stateParams', 'shared.services.create-or-update-modal', function(Restangular, $scope, $stateParams, createOrUpdateModalService) {
 
         $scope.showEditForm = function() {
             var $modalInstance= createOrUpdateModalService
@@ -21,15 +20,10 @@ define([], function() {
         /*
          Initial load of employee and associated data.
          */
-        Restangular.one('employees', $stateParams.id).get({
-            projection: 'withCredential'
-        }).then(function(employee) {
-            $scope.employee = employee;
-        }).then(function() {
-            Restangular.one('credentials', $stateParams.id).all('authorities').getList().then(function(authorities) {
-                $scope.employee.credential.authorities = authorities;
+        Restangular.one('employees', $stateParams.id).get()
+            .then(function(employee) {
+                $scope.employee = employee;
             });
-        });
 
         Restangular.one('federalStates').get().then(function(states) {
             $scope.states = states;

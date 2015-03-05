@@ -3,8 +3,6 @@ define([
     'modules/trackr/administration/employees/editController',
     'modules/trackr/administration/employees/newController',
     'modules/trackr/administration/employees/listController',
-    'modules/trackr/administration/employees/rolesBaseController',
-    'modules/trackr/administration/employees/rolesListController',
     'modules/trackr/administration/companies/listController',
     'modules/trackr/administration/companies/displayController',
     'modules/trackr/administration/companies/editController',
@@ -15,7 +13,6 @@ define([
     'modules/trackr/administration/projects/displayController',
     'modules/trackr/administration/projects/newController'
 ], function(EmployeeDisplayController, EmployeeEditController, EmployeeNewController, EmployeeListController,
-            RolesBaseController, RolesListController,
             CompaniesListController, CompaniesDisplayController, CompaniesEditController, CompaniesNewController,
             ContactPersonsNewOrEditController,
             ProjectsListController, ProjectsEditController, ProjectsDisplayController, ProjectsNewController) {
@@ -26,8 +23,6 @@ define([
             module.controller('trackr.administration.controllers.employees.edit', EmployeeEditController);
             module.controller('trackr.administration.controllers.employees.new', EmployeeNewController);
             module.controller('trackr.administration.controllers.employees.list', EmployeeListController);
-            module.controller('trackr.administration.controllers.employees.roles-base', RolesBaseController);
-            module.controller('trackr.administration.controllers.employees.roles-list', RolesListController);
             module.controller('trackr.administration.controllers.companies.list', CompaniesListController);
             module.controller('trackr.administration.controllers.companies.display', CompaniesDisplayController);
             module.controller('trackr.administration.controllers.companies.edit', CompaniesEditController);
