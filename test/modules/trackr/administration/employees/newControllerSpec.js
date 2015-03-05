@@ -23,9 +23,8 @@ define(['baseTestSetup', 'angular'], function(baseTestSetup, angular) {
         }));
 
         it('must save the emplyoee and credential', inject(function($httpBackend) {
-            $httpBackend.flush();
             scope.saveEntity();
-            $httpBackend.expectPOST('api/employees/createWithCredential');
+            $httpBackend.expectPOST('api/employees');
             $httpBackend.flush();
         }));
     });

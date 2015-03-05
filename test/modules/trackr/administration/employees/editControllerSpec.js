@@ -9,17 +9,10 @@ define(['baseTestSetup'], function(baseTestSetup) {
                 $scope: scope,
                 'createOrUpdateModal.userdata': {
                     employee: {
-                        credential: {
-                            authorities: []
-                        }
                     },
                     states: []
                 }
             });
-        }));
-
-        beforeEach(inject(function($httpBackend) {
-            $httpBackend.flush();
         }));
 
         it('must have an employee in scope', function() {
@@ -28,10 +21,6 @@ define(['baseTestSetup'], function(baseTestSetup) {
 
         it('must have the federal states in scope', function() {
             expect(scope.states).toBeDefined();
-        });
-
-        it('must have the selectedAuthorities in the scope', function() {
-            expect(scope.selectedAuthorities).toBeDefined();
         });
     });
 });

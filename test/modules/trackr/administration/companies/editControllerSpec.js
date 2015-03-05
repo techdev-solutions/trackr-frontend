@@ -17,16 +17,6 @@ define(['angular', 'baseTestSetup', 'fixtures'], function(angular, baseTestSetup
             });
         }));
 
-        it('addPrefixToErrorProperties must add a prefix to all properties in an errors array', function() {
-            var errors = [
-                {property: 'test'},
-                {property: 'test2'}
-            ];
-            var errorsResult = EditController.addPrefixToErrorProperties(errors, 'prefix');
-            expect(errorsResult[0].property).toBe('prefix.test');
-            expect(errorsResult[1].property).toBe('prefix.test2');
-        });
-
         it('saveEntity must first save the company and then the address', inject(function($httpBackend) {
             scope.saveEntity();
             $httpBackend.expectPATCH('api/companies/' + scope.company.id);
