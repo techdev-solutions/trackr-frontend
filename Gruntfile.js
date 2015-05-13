@@ -118,7 +118,15 @@ module.exports = function (grunt) {
             teamcity: {
                 configFile: 'karma.conf.js',
                 singleRun: true,
-                reporters: ['progress', 'teamcity']
+                reporters: ['progress', 'teamcity', 'coverage', 'junit'],
+                coverageReporter: {
+                    type : 'lcovonly',
+                    dir : 'reports',
+                    subdir: 'coverage'
+                },
+                junitReporter: {
+                    outputFile: 'reports/junit/TEST-karma.xml'
+                }
             },
             cover: {
                 configFile: 'karma.conf.js',
