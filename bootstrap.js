@@ -13,7 +13,9 @@ require.config({
         'angular-ui': 'vendor/angular-ui-bootstrap-bower/ui-bootstrap-tpls',
         'angular-charts': 'vendor/angular-charts/dist/angular-charts',
         'moment': 'vendor/moment/moment',
-        'd3': 'vendor/d3/d3'
+        'd3': 'vendor/d3/d3',
+        'chartjs': 'vendor/chartjs/Chart',
+        'randomColor': 'vendor/randomColor/randomColor'
     },
     shim: {
         'angular': { exports: 'angular', deps: ['jQuery'] },

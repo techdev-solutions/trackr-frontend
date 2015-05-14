@@ -43,33 +43,18 @@ define(['moment', 'modules/reportr/lodashHelpers', 'modules/reportr/sortHelper']
         /**
          * Generate the data for the piechart. Works on the data returned by {@link mapAndReduceValuesToSum}
          * @param {Array} invoicesArray The array with the data for the invoices
-         * @return {{series: Array, data: Array}} Data for angular-charts to display.
+         * @return Array Data for the pie chart directive
          */
         controller.generatePieData = function(invoicesArray) {
-            var data = [];
-            invoicesArray.forEach(function(invoice) {
-                data.push({
-                    x: invoice[0],
-                    y: [invoice[1].toFixed(2)]
-                });
+            return invoicesArray.map(function(invoice) {
+                return {
+                    label: invoice[0],
+                    value: invoice[1].toFixed(2)
+                };
             });
-            return {
-                series: [],
-                data: data
-            };
         };
 
-        $scope.pieChartData = { series: [], data: [] };
-
-        $scope.pieChartConfig = {
-            tooltips: false,
-            labels: true,
-            legend: {
-                display: true,
-                position: 'left'
-            },
-            innerRadius: 0
-        };
+        $scope.pieChartData = [];
 
         $scope.totalRevenue = 0;
 

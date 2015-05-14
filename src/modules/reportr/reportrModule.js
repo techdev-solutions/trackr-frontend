@@ -6,10 +6,11 @@ define(['angular',
     'modules/reportr/travelExpenseController',
     'modules/reportr/expensesDebitorController',
     'modules/reportr/sickDaysController',
+    './charts/chartsModule',
     'angular-charts'
 ], function(angular, RevenueController, VacationController, ProjectHoursController, EmployeeHoursController, TravelExpenseController, ExpensesDebitorController, SickDaysController) {
     'use strict';
-    var configFn = ['angularCharts'];
+    var configFn = ['angularCharts', 'charts'];
     var reportr = angular.module('reportr', configFn);
 
     reportr.controller('reportr.controllers.revenue', RevenueController);
