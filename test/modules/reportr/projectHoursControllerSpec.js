@@ -22,10 +22,10 @@ define(['baseTestSetup'], function(baseTestSetup) {
             var hoursArray = [ ['project1', 100, 90], ['project2', 200, 180] ];
             var barData = ProjectHoursController.calculateChartData(hoursArray);
 
-            expect(barData[0].x).toEqual('project1');
-            expect(barData[0].y).toEqual([100, 90]);
-            expect(barData[1].x).toEqual('project2');
-            expect(barData[1].y).toEqual([200, 180]);
+            expect(barData.labels[0]).toEqual('project1');
+            expect(barData.datasets[0].data).toEqual([90, 180]);
+            expect(barData.labels[1]).toEqual('project2');
+            expect(barData.datasets[1].data).toEqual([100, 200]);
         });
 
         it('project identifier', function() {
