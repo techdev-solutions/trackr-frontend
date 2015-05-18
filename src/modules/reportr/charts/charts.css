@@ -1,12 +1,12 @@
-.piechart-legend {
+.chart-legend {
     list-style: none;
 }
 
-.piechart-legend li {
+.chart-legend li {
     margin: 2px 0;
 }
 
-.piechart-legend li span {
+.chart-legend li span {
     float: left;
     width: 17px;
     margin-right: 5px

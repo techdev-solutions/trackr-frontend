@@ -1,7 +1,7 @@
 define(['chartjs', './colors'], function(Chart, colors) {
     'use strict';
 
-    var legendTemplate = '<ul class="piechart-legend">' +
+    var legendTemplate = '<ul class="chart-legend">' +
         '<% for (var i=0; i<segments.length; i++){%>' +
         '   <li><span style="background-color:<%=segments[i].fillColor%>">&nbsp;</span><%if(segments[i].label){%><%=segments[i].label%><%}%></li>' +
         '<%}%></ul>';
@@ -41,7 +41,7 @@ define(['chartjs', './colors'], function(Chart, colors) {
                 scope.$watch('data', function(newData) {
                     if(pie) {
                         pie.destroy();
-                        element.children('.piechart-legend').remove();
+                        element.children('.chart-legend').remove();
                     }
                     if(!newData) {
                         return;
