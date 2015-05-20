@@ -1,9 +1,10 @@
-define(['moment', 'modules/reportr/lodashHelpers', 'modules/reportr/sortHelper'], function(moment, LodashHelpers, SortHelper) {
+define(['moment', './lodashHelpers', './sortHelper'], function(moment, LodashHelpers, SortHelper) {
     'use strict';
-    return ['$scope', 'Restangular', '$filter', function($scope, Restangular, $filter) {
+    var sickDaysController = function($scope, Restangular, $filter, intervalLocationService) {
         var controller = this;
 
         $scope.dateSelected = function(start, end) {
+            intervalLocationService.saveIntervalToLocation(start, end);
             controller.loadSickDays(start, end);
         };
 
@@ -73,6 +74,9 @@ define(['moment', 'modules/reportr/lodashHelpers', 'modules/reportr/sortHelper']
             }
         };
 
-        controller.loadSickDays(moment().startOf('month').toDate(), moment().endOf('month').toDate());
-    }];
+        $scope.interval = intervalLocationService.loadIntervalFromLocation();
+        controller.loadSickDays($scope.interval.start, $scope.interval.end);
+    };
+    sickDaysController.$inject = ['$scope', 'Restangular', '$filter', 'reportr.intervalLocationService'];
+    return sickDaysController;
 });

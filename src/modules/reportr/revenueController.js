@@ -1,10 +1,11 @@
-define(['moment', 'modules/reportr/lodashHelpers', 'modules/reportr/sortHelper'], function(moment, LodashHelpers, SortHelper) {
+define(['./lodashHelpers', './sortHelper'], function(LodashHelpers, SortHelper) {
     'use strict';
-    return ['Restangular', '$scope', function(Restangular, $scope) {
+    var revenueController = function(Restangular, $scope, intervalLocationService) {
         var controller = this;
 
         // see date-interval directive
         $scope.dateSelected = function(start, end) {
+            intervalLocationService.saveIntervalToLocation(start, end);
             controller.loadInvoices(start, end);
         };
 
@@ -73,6 +74,9 @@ define(['moment', 'modules/reportr/lodashHelpers', 'modules/reportr/sortHelper']
 
         $scope.totalRevenue = 0;
 
-        controller.loadInvoices(moment().startOf('month').toDate(), moment().endOf('month').toDate());
-    }];
+        $scope.interval = intervalLocationService.loadIntervalFromLocation();
+        controller.loadInvoices($scope.interval.start, $scope.interval.end);
+    };
+    revenueController.$inject = ['Restangular', '$scope', 'reportr.intervalLocationService'];
+    return revenueController;
 });
