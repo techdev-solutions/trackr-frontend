@@ -29,7 +29,6 @@
     "angular-translate-loader-url": "2.2.0",
     "moment": "~2.8.1",
     "angular-i18n": "~1.2.22",
-    "angular-charts": "0.2.6",
     "chartjs": "~1.0.2",
     "randomColor": "~0.2.0"
   },
