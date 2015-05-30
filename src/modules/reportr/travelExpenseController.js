@@ -1,10 +1,11 @@
-define(['lodash', 'moment', 'modules/reportr/lodashHelpers', 'modules/reportr/sortHelper'], function(_, moment, LodashHelpers, SortHelper) {
+define(['lodash', './lodashHelpers', './sortHelper'], function(_, LodashHelpers, SortHelper) {
     'use strict';
-    return ['$scope', 'Restangular', '$filter', function($scope, Restangular, $filter) {
+    var travelExpenseController = function($scope, Restangular, $filter, intervalLocationService) {
         var controller = this;
 
         // see date-interval directive
         $scope.dateSelected = function(start, end) {
+            intervalLocationService.saveIntervalToLocation(start, end);
             controller.loadTravelExpenseReports(start, end);
         };
 
@@ -91,6 +92,9 @@ define(['lodash', 'moment', 'modules/reportr/lodashHelpers', 'modules/reportr/so
             }
         };
 
-        controller.loadTravelExpenseReports(moment().startOf('month').toDate(), moment().endOf('month').toDate());
-    }];
+        $scope.interval = intervalLocationService.loadIntervalFromLocation();
+        controller.loadTravelExpenseReports($scope.interval.start, $scope.interval.end);
+    };
+    travelExpenseController.$inject = ['$scope', 'Restangular', '$filter', 'reportr.intervalLocationService'];
+    return travelExpenseController;
 });

@@ -1,10 +1,11 @@
-define(['moment', 'modules/reportr/lodashHelpers', 'modules/reportr/sortHelper'], function(moment, LodashHelpers, SortHelper) {
+define(['moment', './lodashHelpers', './sortHelper'], function(moment, LodashHelpers, SortHelper) {
     'use strict';
-    return ['$scope', 'Restangular', '$filter', function($scope, Restangular, $filter) {
+    var projectHoursController = function($scope, Restangular, $filter, intervalLocationService) {
         var controller = this;
 
         // see date-interval directive
         $scope.dateSelected = function(start, end) {
+            intervalLocationService.saveIntervalToLocation(start, end);
             controller.loadAllTimes(start, end);
         };
 
@@ -137,6 +138,9 @@ define(['moment', 'modules/reportr/lodashHelpers', 'modules/reportr/sortHelper']
             datasets: []
         };
 
-        controller.loadAllTimes(moment().startOf('month').toDate(), moment().endOf('month').toDate());
-    }];
+        $scope.interval = intervalLocationService.loadIntervalFromLocation();
+        controller.loadAllTimes($scope.interval.start, $scope.interval.end);
+    };
+    projectHoursController.$inject = ['$scope', 'Restangular', '$filter', 'reportr.intervalLocationService'];
+    return projectHoursController;
 });

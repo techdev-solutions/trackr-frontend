@@ -1,10 +1,11 @@
-define(['lodash', 'moment', 'modules/reportr/sortHelper'], function(_, moment, SortHelper) {
+define(['lodash', './sortHelper'], function(_, SortHelper) {
     'use strict';
-    return ['$http', '$scope', '$filter', function($http, $scope, $filter) {
+    var vacationController = function($http, $scope, $filter, intervalLocationService) {
         var controller = this;
 
         // see date-interval directive
         $scope.dateSelected = function(start, end) {
+            intervalLocationService.saveIntervalToLocation(start, end);
             controller.loadVacationRequests(start, end);
         };
 
@@ -60,6 +61,10 @@ define(['lodash', 'moment', 'modules/reportr/sortHelper'], function(_, moment, S
 
         $scope.barChartData = { labels: [], datasets: [] };
 
-        controller.loadVacationRequests(moment().startOf('month').toDate(), moment().endOf('month').toDate());
-    }];
+        $scope.interval = intervalLocationService.loadIntervalFromLocation();
+        controller.loadVacationRequests($scope.interval.start, $scope.interval.end);
+    };
+
+    vacationController.$inject = ['$http', '$scope', '$filter', 'reportr.intervalLocationService'];
+    return vacationController;
 });
