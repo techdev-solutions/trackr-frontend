@@ -20,13 +20,13 @@ define(['baseTestSetup'], function(baseTestSetup) {
         it('generate bar chart data', function() {
             var travelExpenseArray = [ ['employee1', 1000], ['employee2', 900] ];
             var barData = TravelExpenseController.calculateBarChartData(travelExpenseArray);
-            expect(barData.series.length).toEqual(2);
-            expect(barData.series).toContain('employee1');
-            expect(barData.series).toContain('employee2');
-            expect(barData.data[0].x).toBeDefined();
-            expect(barData.data[0].y.length).toBe(2);
-            expect(barData.data[0].y).toContain(1000);
-            expect(barData.data[0].y).toContain(900);
+            expect(barData.labels.length).toEqual(2);
+            expect(barData.labels).toContain('employee1');
+            expect(barData.labels).toContain('employee2');
+            expect(barData.datasets[0].label).toBeDefined();
+            expect(barData.datasets[0].data.length).toBe(2);
+            expect(barData.datasets[0].data).toContain(1000);
+            expect(barData.datasets[0].data).toContain(900);
         });
 
         it('when a date is selected loadTravelExpenseReports must be triggered', function() {

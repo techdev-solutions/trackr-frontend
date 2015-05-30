@@ -64,33 +64,22 @@ define(['lodash', './lodashHelpers', './sortHelper'], function(_, LodashHelpers,
          * @return {{series: Array, data: Object}} Data for angular-charts to display.
          */
         controller.calculateBarChartData = function(travelExpenseArray) {
-            var data = [
-                {
-                    x: $filter('translate')('PAGES.REPORTR.TRAVEL_EXPENSE.EXPENSES'),
-                    y: []
-                }
-            ];
+            var data = [];
             var series = [];
             travelExpenseArray.forEach(function(travelExpense) {
                 series.push(travelExpense[0]);
-                data[0].y.push(travelExpense[1]);
+                data.push(travelExpense[1]);
             });
             return {
-                series: series,
-                data: data
+                labels: series,
+                datasets: [{
+                    label: $filter('translate')('PAGES.REPORTR.TRAVEL_EXPENSE.EXPENSES'),
+                    data: data
+                }]
             };
         };
 
-        $scope.barChartData = { series: [], data: [] };
-
-        $scope.barChartConfig = {
-            tooltips: true,
-            labels: false,
-            legend: {
-                display: true,
-                position: 'left'
-            }
-        };
+        $scope.barChartData = { labels: [], datasets: [] };
 
         $scope.interval = intervalLocationService.loadIntervalFromLocation();
         controller.loadTravelExpenseReports($scope.interval.start, $scope.interval.end);
