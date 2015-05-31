@@ -1,7 +1,7 @@
 define(['chartjs', './colors'], function(Chart, colors) {
     'use strict';
 
-    var legendTemplate = '<ul class="chart-legend">' +
+    var legendTemplate = '<ul>' +
         '<% for (var i=0; i<datasets.length; i++){%>' +
             '<li><span style="background-color:<%=datasets[i].fillColor%>">&nbsp;</span>' +
             '<%if(datasets[i].label){%><%=datasets[i].label%><%}%></li>' +
@@ -28,6 +28,15 @@ define(['chartjs', './colors'], function(Chart, colors) {
         };
     }
 
+    /**
+     * Directive to display a bar chart with a legend.
+     *
+     * Attributes:
+     * data - The data to be displayed in the format for a chart.js bar chart (see http://www.chartjs.org/docs/#bar-chart-example-usage).
+     *   Colors are chosen randomly.
+     * width - optional, the width in px. Default is 800.
+     * heigth - optional, the height in px. Default is 400.
+     */
     return function() {
         return {
             restrict: 'E',
@@ -35,15 +44,20 @@ define(['chartjs', './colors'], function(Chart, colors) {
             scope: {
                 data: '='
             },
-            template: '<div><canvas width="800" height="400"></canvas></div>',
+            template: function(element, attributes) {
+                var width = attributes.width || 800;
+                var height = attributes.height || 400;
+                return '<div><canvas width="'+width+'" height="'+height+'"></canvas><div style="left: '+width+'px" class="chart-legend"></div></div>';
+            },
             link: function(scope, element) {
                 var barChart;
                 var context = element.children()[0].getContext('2d');
+                var legendDiv = element.children('.chart-legend');
 
                 scope.$watch('data', function(newData) {
                     if(barChart) {
                         barChart.destroy();
-                        element.children('.chart-legend').remove();
+                        legendDiv.children('ul').remove();
                     }
                     if(!newData) {
                         return;
@@ -51,7 +65,7 @@ define(['chartjs', './colors'], function(Chart, colors) {
 
                     var barChartData = addColorsToData(scope.data);
                     barChart = new Chart(context).Bar(barChartData, options);
-                    element.append(barChart.generateLegend());
+                    legendDiv.append(barChart.generateLegend());
                 });
             }
         };
