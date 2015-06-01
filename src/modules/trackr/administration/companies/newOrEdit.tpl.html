@@ -1,10 +1,12 @@
-<form class="form-horizontal" action="">
-    <bs-text property-name="companyId" translate-code="COMPANY.COMPANY_ID" path="company.companyId"></bs-text>
-    <bs-text property-name="name" translate-code="COMPANY.NAME" path="company.name"></bs-text>
+<form name="form" class="form-horizontal" ng-submit="alert(1);">
+    <input type="number" id="companyId" name="companyId" ng-model="company.companyId" required bs-decorate="COMPANY.COMPANY_ID"/>
+    <input type="text" id="name" name="name" ng-model="company.name" required bs-decorate="COMPANY.NAME"/>
+    <!--<bs-text property-name="name" translate-code="COMPANY.NAME" path="company.name"></bs-text>-->
     <bs-text property-name="timeForPayment" translate-code="COMPANY.TIME_FOR_PAYMENT" path="company.timeForPayment"></bs-text>
     <bs-text property-name="street" translate-code="ADDRESS.STREET" path="address.street"></bs-text>
     <bs-text property-name="houseNumber" translate-code="ADDRESS.HOUSE_NUMBER" path="address.houseNumber"></bs-text>
     <bs-text property-name="zipCode" translate-code="ADDRESS.ZIPCODE" path="address.zipCode"></bs-text>
     <bs-text property-name="city" translate-code="ADDRESS.CITY" path="address.city"></bs-text>
     <bs-text property-name="country" translate-code="ADDRESS.COUNTRY" path="address.country"></bs-text>
+    <input type="submit"/>
 </form>
