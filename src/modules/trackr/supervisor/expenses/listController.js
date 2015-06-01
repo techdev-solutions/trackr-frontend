@@ -4,8 +4,8 @@ define(['modules/shared/PaginationLoader', 'lodash'], function(PaginationLoader,
         var controller = this;
         $scope.states = ['SUBMITTED', 'APPROVED'];
         $scope.reports = {};
-        var paginationLoader = new PaginationLoader(Restangular.allUrl('travelExpenseReports', 'api/travelExpenseReports/search/findByStatusOrderByEmployee_LastNameAsc'),
-            'reports', '', $scope, 10);
+        var paginationLoader = new PaginationLoader(Restangular.allUrl('travelExpenseReports', 'api/travelExpenseReports/search/findByStatus'),
+            'reports', 'employee.lastName,asc', $scope, 10);
 
         var orderBy = null;
         var isAscendingOrder = true;
