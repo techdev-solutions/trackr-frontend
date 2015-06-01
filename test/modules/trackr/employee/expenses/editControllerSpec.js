@@ -47,19 +47,6 @@ define(['baseTestSetup', 'fixtures', 'confirmationServiceMock'], function(baseTe
             expect(scope.totalCost).toBeLessThan(totalCostBefore);
         }));
 
-        it('must POST a new expense to the server on addNewExpense, set the report and submissionDate property on it', inject(function($httpBackend) {
-            var expense = {cost: 1};
-            var countExpenses = scope.report.expenses.length;
-            var oldTotalCost = scope.totalCost;
-            scope.addNewExpense(expense, scope.report);
-            $httpBackend.expectPOST('api/travelExpenses');
-            $httpBackend.flush();
-            expect(expense.report).toBeDefined();
-            expect(expense.submissionDate).toBeDefined();
-            expect(scope.report.expenses.length).toBe(countExpenses + 1);
-            expect(scope.totalCost).toBeGreaterThan(oldTotalCost);
-        }));
-
         it('must call submit on the server when submitting', inject(function($httpBackend) {
             scope.submitReport(scope.report);
             $httpBackend.expectPUT('api/travelExpenseReports/' + scope.report.id + '/submit');

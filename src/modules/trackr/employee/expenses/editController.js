@@ -35,7 +35,6 @@ define(['lodash'], function(_) {
                 });
 
             $scope.expenseTypes = expenseTypes;
-            $scope.expense = {};
             $scope.comment = {};
             $scope.errors = [];
 
@@ -93,28 +92,6 @@ define(['lodash'], function(_) {
             };
 
             /**
-             * Add a new expense to the report. Calls the backend.
-             *
-             * Will automatically set the submission date and report ref.
-             *
-             * Will add the cost of the expense to the totalCost scope variable.
-             * @param expense The expense to add.
-             * @param report The report to add the expense to.
-             */
-            $scope.addNewExpense = function(expense, report) {
-                expense.report = report._links.self.href;
-                expense.submissionDate = new Date();
-                Restangular.all('travelExpenses').post(expense).then(function(expense) {
-                    report.expenses.push(expense);
-                    $scope.totalCost = $scope.totalCost + parseFloat(expense.cost);
-                    $scope.errors = [];
-                    $scope.expense = {};
-                }, function(response) {
-                    $scope.errors = response.data.errors;
-                });
-            };
-
-            /**
              * Sets the status of the report to submitted.
              * @param travelExpenseReport
              */
@@ -157,5 +134,11 @@ define(['lodash'], function(_) {
                 comment.travelExpenseReport = $scope.report._links.self.href;
                 return comment;
             };
+
+            $scope.$on('newExpense', function(event, expense) {
+                event.stopPropagation();
+                $scope.report.expenses.push(expense);
+                $scope.totalCost = $scope.totalCost + parseFloat(expense.cost);
+            });
         }];
 });

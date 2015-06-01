@@ -13,7 +13,7 @@ define(['lodash'], function(_) {
         };
 
         controller.saveExpense = function(expense) {
-            var expenseEntity = _.pick(expense, ['id', 'version', 'type', 'fromDate', 'toDate', 'vat', 'cost', 'comment']);
+            var expenseEntity = _.pick(expense, ['id', 'version', 'type', 'fromDate', 'toDate', 'vat', 'cost', 'comment', 'paid']);
             Restangular.one('travelExpenses', expenseEntity.id).patch(expenseEntity)
                 .then(function(result) {
                     $scope.closeModal(result);

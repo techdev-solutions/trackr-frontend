@@ -1,6 +1,6 @@
 <form class="form-horizontal">
     <div class="form-group" error-display="type">
-        <label class="form-label col-sm-4" for="type" translate="TRAVEL_EXPENSE.TYPE"></label>
+        <label class="form-label col-sm-2" for="type" translate="TRAVEL_EXPENSE.TYPE"></label>
         <div class="col-sm-6">
             <select ng-model="expense.type" id="type" ng-options="t as translateTravelExpenseType(t) for t in expenseTypes"></select>
         </div>
@@ -48,4 +48,14 @@
     </div>
 
     <bs-text property-name="comment" translate-code="TRAVEL_EXPENSE.COMMENT" path="expense.comment"></bs-text>
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" ng-model="expense.paid"> <span translate="TRAVEL_EXPENSE.PAID"></span>
+                </label>
+            </div>
+        </div>
+    </div>
 </form>
