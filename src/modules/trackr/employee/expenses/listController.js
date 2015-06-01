@@ -50,7 +50,7 @@ define(['modules/shared/PaginationLoader', 'lodash'], function(PaginationLoader,
          */
         $scope.addNew = function() {
             var $modalInstance = CreateOrUpdateModalService
-                .showModal('trackr.employee.controllers.expenseReport-new as ctrl',
+                .showModal('trackr.employee.expenses.expenseReportNewController as ctrl',
                 'src/modules/trackr/employee/expenses/report-new.tpl.html',
                 'TRAVEL_EXPENSE_REPORT.TRAVEL_EXPENSE_REPORT');
 

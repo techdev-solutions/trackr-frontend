@@ -1,11 +1,11 @@
 define(['baseTestSetup'], function(baseTestSetup) {
     'use strict';
-    describe('trackr.employee.controllers.expense-new', function() {
+    describe('trackr.employee.expenses.expenseNewController', function() {
         var NewController, scope;
         baseTestSetup();
         beforeEach(inject(function($controller, $rootScope) {
             scope = $rootScope.$new();
-            NewController = $controller('trackr.employee.controllers.expense-new', {
+            NewController = $controller('trackr.employee.expenses.expenseNewController', {
                 $scope: scope
             });
         }));

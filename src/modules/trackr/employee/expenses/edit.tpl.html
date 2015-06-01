@@ -6,49 +6,16 @@
 <h5>{{ report.debitor.name }} <span ng-show="report.project"> - {{report.project.name}}</span></h5>
 <div class="row">
     <div class="col-md-8">
-        <table class="table table-striped">
-            <tr>
-                <th translate="TRAVEL_EXPENSE.TYPE"></th>
-                <th translate="TRAVEL_EXPENSE.FROM_DATE"></th>
-                <th translate="TRAVEL_EXPENSE.TO_DATE"></th>
-                <th translate="TRAVEL_EXPENSE.VAT"></th>
-                <th translate="TRAVEL_EXPENSE.COST"></th>
-                <th translate="TRAVEL_EXPENSE.COMMENT"></th>
-                <th translate="TRAVEL_EXPENSE.PAID"></th>
-                <th translate="ACTIONS.ACTIONS"></th>
-            </tr>
-            <tr ng-repeat="expense in report.expenses">
-                <td translate="{{ 'TRAVEL_EXPENSE.TYPE_VALUES.' + expense.type }}"></td>
-                <td>{{ expense.fromDate | date:'dd.MM.yyyy'}}</td>
-                <td>{{ expense.toDate | date:'dd.MM.yyyy'}}</td>
-                <td>{{ expense.vat }} %</td>
-                <td>{{ expense.cost | currency:'€'}}</td>
-                <td>{{ expense.comment }}</td>
-                <td><span class="glyphicon glyphicon-ok" ng-show="expense.paid"></span></td>
-                <td>
-                    <button class="btn btn-sm btn-default" ng-show="editable(report)" ng-click="showEditForm(expense)">
-                        <span class="glyphicon glyphicon-pencil"></span>
-                    </button>
-                    <button class="btn btn-sm btn-default" ng-show="editable(report)" ng-click="removeExpense(expense)">
-                        <span class="glyphicon glyphicon-trash"></span>
-                    </button>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="3"></td>
-                <td colspan="2"><span translate="TRAVEL_EXPENSE_REPORT.TOTAL"></span>: <b>{{totalCost | currency:'€'}}</b></td>
-                <td colspan="3"><span translate="PAGES.EMPLOYEE.EXPENSES.REIMBURSEMENT"></span>: <b>{{totalReimbursement | currency:'€'}}</b></td>
-            </tr>
-        </table>
+        <employee-expenses-table expenses="report.expenses" editable="editable(report)"/>
     </div>
-    <div ng-if="editable(report)" ng-controller="trackr.employee.controllers.expense-new" class="col-md-4">
+    <div ng-if="editable(report)" ng-controller="trackr.employee.expenses.expenseNewController" class="col-md-4">
         <div ng-include="'src/modules/trackr/employee/expenses/expense-edit.tpl.html'"></div>
         <button type="submit" class="btn btn-primary" translate="ACTIONS.ADD" ng-click="addNewExpense(report)"></button>
     </div>
 </div>
 
-<button type="button" ng-click="submitReport(report)" class="btn btn-primary" translate="ACTIONS.SUBMIT"></button>
-<button type="button" ng-click="deleteReport(report)" class="btn btn-danger" translate="ACTIONS.REMOVE"></button>
+<button ng-if="editable(report)" type="button" ng-click="submitReport(report)" class="btn btn-primary" translate="ACTIONS.SUBMIT"></button>
+<button ng-if="deletable(report)" type="button" ng-click="deleteReport(report)" class="btn btn-danger" translate="ACTIONS.REMOVE"></button>
 
 <div class="space-md"></div>
 <comment-section comments="report.comments" preprocessor="addReport" url="travelExpenseReportComments"></comment-section>

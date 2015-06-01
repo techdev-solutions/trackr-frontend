@@ -1,11 +1,11 @@
 define(['baseTestSetup'], function(baseTestSetup) {
     'use strict';
-    describe('trackr.employee.controllers.expense-edit', function() {
+    describe('trackr.employee.expenses.expenseEditController', function() {
         var EditController, scope;
         baseTestSetup();
         beforeEach(inject(function($rootScope, $controller) {
             scope = $rootScope.$new();
-            EditController = $controller('trackr.employee.controllers.expense-edit', {
+            EditController = $controller('trackr.employee.expenses.expenseEditController', {
                 $scope: scope,
                 'createOrUpdateModal.userdata': {
                     expense: {},
