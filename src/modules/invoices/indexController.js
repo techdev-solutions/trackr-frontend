@@ -77,7 +77,7 @@ define(['modules/shared/PaginationLoader'], function(PaginationLoader) {
              */
             $scope.loadSortedInvoices = function(state, sort, ignoreSameOrderProperty) {
                 if (!ignoreSameOrderProperty) {
-                    if (orderBy == sort) {
+                    if (orderBy === sort) {
                         isAscendingOrder = !isAscendingOrder;
                     } else {
                         isAscendingOrder = true;
@@ -94,7 +94,7 @@ define(['modules/shared/PaginationLoader'], function(PaginationLoader) {
              * @returns 'true', if invoices are sorted by the property above, otherwise 'false'.
              */
             $scope.isSortedAsc = function(property) {
-                return orderBy == property && isAscendingOrder;
+                return orderBy === property && isAscendingOrder;
             };
 
             /**
@@ -103,7 +103,7 @@ define(['modules/shared/PaginationLoader'], function(PaginationLoader) {
              * @returns 'true', if invoices are sorted by the property above, otherwise 'false'.
              */
             $scope.isSortedDesc = function(property) {
-                return orderBy == property && !isAscendingOrder;
+                return orderBy === property && !isAscendingOrder;
             };
 
             /**
