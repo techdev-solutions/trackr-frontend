@@ -1,7 +1,7 @@
 define([], function () {
     'use strict';
 
-    var expenseNewController = function($scope, Restangular) {
+    var expenseNewController = function($scope, Restangular, $filter) {
         var controller = this;
 
         $scope.ctrl = this; // todo legacy because the included modal references it this way..
@@ -22,6 +22,15 @@ define([], function () {
             });
         };
 
+        /**
+         * Translate the travel expense type from its enum value.
+         * @param type The enum value (e.g. TAXI)
+         * @returns {*} The translation (e.g. Taxi)
+         */
+        $scope.translateTravelExpenseType = function(type) {
+            return $filter('translate')('TRAVEL_EXPENSE.TYPE_VALUES.' + type);
+        };
+
         $scope.openDate = function($event, name) {
             $event.stopPropagation();
             $event.preventDefault();
@@ -34,6 +43,6 @@ define([], function () {
         };
 
     };
-    expenseNewController.$inject = ['$scope', 'Restangular'];
+    expenseNewController.$inject = ['$scope', 'Restangular', '$filter'];
     return expenseNewController;
 });

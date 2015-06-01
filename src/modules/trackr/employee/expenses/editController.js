@@ -17,6 +17,12 @@ define(['lodash'], function(_) {
                 }, 0);
             };
 
+            controller.recalculateTotalReimbursement = function(expenses) {
+                return expenses.reduce(function(prev, expense) {
+                    return prev + (expense.paid === true ? 0 : parseFloat(expense.cost));
+                }, 0);
+            };
+
             Restangular.one('travelExpenseReports', $stateParams.id).get({
                 projection: 'withExpensesAndDebitorAndProject'
             })
@@ -32,6 +38,7 @@ define(['lodash'], function(_) {
                     $scope.report = report;
                     $scope.report.statusTranslateCode = 'TRAVEL_EXPENSE_REPORT.' + report.status;
                     $scope.totalCost = controller.recalculateTotal(report.expenses);
+                    $scope.totalReimbursement = controller.recalculateTotalReimbursement(report.expenses);
                 });
 
             $scope.expenseTypes = expenseTypes;
@@ -65,6 +72,7 @@ define(['lodash'], function(_) {
                     Restangular.one('travelExpenses', expense.id).remove().then(function() {
                         _.remove($scope.report.expenses, {id: expense.id});
                         $scope.totalCost = controller.recalculateTotal($scope.report.expenses);
+                        $scope.totalReimbursement = controller.recalculateTotalReimbursement($scope.report.expenses);
                     });
                 }
 
@@ -88,6 +96,7 @@ define(['lodash'], function(_) {
                     var index = _.findIndex($scope.report.expenses, {id: editedExpense.id });
                     $scope.report.expenses[index] = editedExpense;
                     $scope.totalCost = controller.recalculateTotal($scope.report.expenses);
+                    $scope.totalReimbursement = controller.recalculateTotalReimbursement($scope.report.expenses);
                 });
             };
 
@@ -119,15 +128,6 @@ define(['lodash'], function(_) {
             };
 
             /**
-             * Translate the travel expense type from its enum value.
-             * @param type The enum value (e.g. TAXI)
-             * @returns {*} The translation (e.g. Taxi)
-             */
-            $scope.translateTravelExpenseType = function(type) {
-                return $filter('translate')('TRAVEL_EXPENSE.TYPE_VALUES.' + type);
-            };
-
-            /**
              * Preprocessor for comment-section.
              */
             $scope.addReport = function(comment) {
@@ -139,6 +139,9 @@ define(['lodash'], function(_) {
                 event.stopPropagation();
                 $scope.report.expenses.push(expense);
                 $scope.totalCost = $scope.totalCost + parseFloat(expense.cost);
+                if(expense.paid === false) {
+                    $scope.totalReimbursement = $scope.totalReimbursement + parseFloat(expense.cost);
+                }
             });
         }];
 });
