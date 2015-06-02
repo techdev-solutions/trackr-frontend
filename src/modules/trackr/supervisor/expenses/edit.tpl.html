@@ -6,6 +6,9 @@
 <div ng-if="report">
 <h2><span translate="TRAVEL_EXPENSE_REPORT.TRAVEL_EXPENSE_REPORT"></span> #{{report.id}}</h2>
 <h3>{{report.employee.firstName}} {{report.employee.lastName}}</h3>
+<h4 ng-show="report.status === 'APPROVED'">
+    <span translate="PAGES.SUPERVISOR.TRAVEL_EXPENSE_REPORTS.APPROVED_BY"></span> {{report.approver.firstName + ' ' + report.approver.lastName}}
+</h4>
 <span class="pull-right"><a href ui-sref="app.trackr.supervisor.expenses" translate="ACTIONS.BACK"></a></span>
 <div class="row">
     <div class="col-md-3 form-group">
