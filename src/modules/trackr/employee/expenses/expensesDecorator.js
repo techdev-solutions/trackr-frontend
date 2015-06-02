@@ -6,6 +6,7 @@ define([], function() {
      * @returns {Number}
      */
     function totalCost() {
+        /*jshint validthis:true */
         return this.reduce(function(prev, expense) {
             return prev + parseFloat(expense.cost);
         }, 0);
@@ -16,6 +17,7 @@ define([], function() {
      * @returns {Number}
      */
     function totalReimbursement() {
+        /*jshint validthis:true */
         return this.reduce(function(prev, expense) {
             return prev + (expense.paid ? 0 : parseFloat(expense.cost));
         }, 0);

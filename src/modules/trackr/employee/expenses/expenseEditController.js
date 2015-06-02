@@ -1,6 +1,7 @@
 define(['lodash'], function(_) {
     'use strict';
     function expenseEditController(userdata, TravelExpenseService, $scope, Restangular, $filter) {
+        /*jshint validthis:true */
         var controller = this;
         $scope.expense = _.clone(userdata.expense, false);
         $scope.expenseTypes = TravelExpenseService.getTypes();
