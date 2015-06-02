@@ -4,18 +4,22 @@
 <span class="pull-right"><a href ui-sref="app.trackr.employee.expenses" translate="ACTIONS.BACK"></a></span>
 <h4>{{ 'TRAVEL_EXPENSE_REPORT.' + report.status | translate }}</h4>
 <h5>{{ report.debitor.name }} <span ng-show="report.project"> - {{report.project.name}}</span></h5>
+
 <div class="row">
-    <div class="col-md-8">
-        <employee-expenses-table expenses="report.expenses" editable="editable(report)"/>
+    <employee-expenses-table expenses="report.expenses" editable="editable(report)"/>
+</div>
+
+<div class="row">
+    <div class="col-md-3">
+        <button ng-if="editable(report)" type="button" ng-click="submitReport(report)" class="btn btn-primary" translate="ACTIONS.SUBMIT"></button>
+        <button ng-if="deletable(report)" type="button" ng-click="deleteReport(report)" class="btn btn-danger" translate="ACTIONS.REMOVE"></button>
     </div>
-    <div ng-if="editable(report)" ng-controller="trackr.employee.expenses.expenseNewController" class="col-md-4">
+    <div ng-if="editable(report)" ng-controller="trackr.employee.expenses.expenseNewController" class="col-md-9">
         <div ng-include="'src/modules/trackr/employee/expenses/expense-edit.tpl.html'"></div>
         <button type="submit" class="btn btn-primary" translate="ACTIONS.ADD" ng-click="addNewExpense(report)"></button>
     </div>
 </div>
 
-<button ng-if="editable(report)" type="button" ng-click="submitReport(report)" class="btn btn-primary" translate="ACTIONS.SUBMIT"></button>
-<button ng-if="deletable(report)" type="button" ng-click="deleteReport(report)" class="btn btn-danger" translate="ACTIONS.REMOVE"></button>
 
 <div class="space-md"></div>
 <comment-section comments="report.comments" preprocessor="addReport" url="travelExpenseReportComments"></comment-section>
