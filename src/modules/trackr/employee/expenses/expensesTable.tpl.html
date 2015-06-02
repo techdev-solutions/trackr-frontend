@@ -9,7 +9,7 @@
         <th translate="TRAVEL_EXPENSE.PAID"></th>
         <th translate="ACTIONS.ACTIONS"></th>
     </tr>
-    <tr ng-repeat="expense in expenses">
+    <tr ng-repeat="expense in expenses track by expense.id">
         <td translate="{{ 'TRAVEL_EXPENSE.TYPE_VALUES.' + expense.type }}"></td>
         <td>{{ expense.fromDate | date:'dd.MM.yyyy'}}</td>
         <td>{{ expense.toDate | date:'dd.MM.yyyy'}}</td>
@@ -28,7 +28,7 @@
     </tr>
     <tr>
         <td colspan="3"></td>
-        <td colspan="2"><span translate="TRAVEL_EXPENSE_REPORT.TOTAL"></span>: <b>{{totalCost() | currency:'€'}}</b></td>
-        <td colspan="3"><span translate="PAGES.EMPLOYEE.EXPENSES.REIMBURSEMENT"></span>: <b>{{totalReimbursement() | currency:'€'}}</b></td>
+        <td colspan="2"><span translate="TRAVEL_EXPENSE_REPORT.TOTAL"></span>: <b>{{expenses.totalCost() | currency:'€'}}</b></td>
+        <td colspan="3"><span translate="PAGES.EMPLOYEE.EXPENSES.REIMBURSEMENT"></span>: <b>{{expenses.totalReimbursement() | currency:'€'}}</b></td>
     </tr>
 </table>

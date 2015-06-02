@@ -1,4 +1,4 @@
-define([], function() {
+define(['./expensesDecorator'], function(expensesDecorator) {
     'use strict';
     return ['$scope', 'Restangular', 'trackr.services.travelExpenseReport', 'expenseTypes',
         '$filter', '$stateParams', '$state', 'base.services.notification',
@@ -18,6 +18,7 @@ define([], function() {
                 })
                 .then(function(report) {
                     $scope.report = report;
+                    expensesDecorator($scope.report.expenses);
                     $scope.report.statusTranslateCode = 'TRAVEL_EXPENSE_REPORT.' + report.status;
                 });
 

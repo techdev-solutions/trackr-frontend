@@ -35,21 +35,23 @@
         <th translate="TRAVEL_EXPENSE.VAT"></th>
         <th translate="TRAVEL_EXPENSE.COST"></th>
         <th translate="TRAVEL_EXPENSE.COMMENT"></th>
+        <th translate="TRAVEL_EXPENSE.PAID"></th>
         <th translate="TRAVEL_EXPENSE.SUBMITTED"></th>
     </tr>
-    <tr ng-repeat="expense in report.expenses">
+    <tr ng-repeat="expense in report.expenses track by expense.id">
         <td translate="{{expense.type}}"></td>
         <td>{{ expense.fromDate | date:'dd.MM.yyyy'}}</td>
         <td>{{ expense.toDate | date:'dd.MM.yyyy'}}</td>
         <td>{{ expense.vat }} %</td>
         <td>{{ expense.cost | currency:'€' }}</td>
         <td>{{expense.comment}}</td>
+        <td><span class="glyphicon glyphicon-ok" ng-show="expense.paid"></span></td>
         <td>{{ expense.submissionDate | date:'dd.MM.yyyy HH:mm:ss' }}</td>
     </tr>
     <tr>
-        <td colspan="4"></td>
-        <td><span translate="TRAVEL_EXPENSE_REPORT.TOTAL"></span>: <b>{{totalCost | currency:'€'}}</b></td>
-        <td></td>
+        <td colspan="3"></td>
+        <td colspan="2"><span translate="TRAVEL_EXPENSE_REPORT.TOTAL"></span>: <b>{{report.expenses.totalCost() | currency:'€'}}</b></td>
+        <td colspan="3"><span translate="PAGES.EMPLOYEE.EXPENSES.REIMBURSEMENT"></span>: <b>{{report.expenses.totalReimbursement() | currency:'€'}}</b></td>
     </tr>
 </table>
 <div ng-show="report.status === 'SUBMITTED' && report.employee.id !== principal.id ">

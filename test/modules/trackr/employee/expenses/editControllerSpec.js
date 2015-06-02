@@ -16,6 +16,11 @@ define(['baseTestSetup', 'fixtures'], function(baseTestSetup, fixtures) {
             $httpBackend.flush();
         }));
 
+        it('must decorate the expenses array', function() {
+            expect(scope.report.expenses.totalCost).toBeDefined();
+            expect(scope.report.expenses.totalReimbursement).toBeDefined();
+        });
+
         it('editable must return true if status is PENDING', function() {
             expect(scope.editable({status: 'PENDING'})).toBe(true);
         });

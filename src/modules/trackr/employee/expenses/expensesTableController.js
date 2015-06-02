@@ -4,22 +4,6 @@ define(['lodash'], function(_) {
         $scope.expenses = [];
 
         /**
-         * Recalculate the sum of the cost of the expenses
-         * @return The sum of all costs.
-         */
-        $scope.totalCost = function() {
-            return $scope.expenses.reduce(function(prev, expense) {
-                return prev + parseFloat(expense.cost);
-            }, 0);
-        };
-
-        $scope.totalReimbursement = function() {
-            return $scope.expenses.reduce(function(prev, expense) {
-                return prev + (expense.paid === true ? 0 : parseFloat(expense.cost));
-            }, 0);
-        };
-
-        /**
          * Remove an expense from the report.
          * @param expense The expense to remove.
          */

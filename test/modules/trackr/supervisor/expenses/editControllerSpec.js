@@ -1,6 +1,6 @@
 define(['baseTestSetup', 'fixtures', 'angular'], function(baseTestSetup, fixtures, angular) {
     'use strict';
-    describe('trackr.supervisor.controllers.expenseReport-edit', function() {
+    describe('trackr.supervisor.expenses.EditController', function() {
         var EditController, scope, state;
         baseTestSetup();
         beforeEach(inject(function($rootScope, $controller) {
@@ -10,7 +10,7 @@ define(['baseTestSetup', 'fixtures', 'angular'], function(baseTestSetup, fixture
             state = {
                 go: angular.noop
             };
-            EditController = $controller('trackr.supervisor.controllers.expenseReport-edit', {
+            EditController = $controller('trackr.supervisor.expenses.EditController', {
                 $scope: scope,
                 expenses: report.expenses,
                 report: report,
@@ -25,8 +25,9 @@ define(['baseTestSetup', 'fixtures', 'angular'], function(baseTestSetup, fixture
             $httpBackend.flush();
         }));
 
-        it('must calculate the total cost of the report on load', function() {
-            expect(scope.totalCost).toBeDefined();
+        it('must decorate the expenses array', function() {
+            expect(scope.report.expenses.totalCost).toBeDefined();
+            expect(scope.report.expenses.totalReimbursement).toBeDefined();
         });
 
         it('must call approve on the server when approving', inject(function($httpBackend) {

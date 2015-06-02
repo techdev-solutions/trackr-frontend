@@ -11,18 +11,6 @@ define(['baseTestSetup', 'confirmationServiceMock'], function(baseTestSetup, Con
             });
         }));
 
-        it('must calculate the total cost of expenses', function() {
-            scope.expenses = [{cost: 10}, {cost: 13}];
-            var totalCost = scope.totalCost();
-            expect(totalCost).toBe(23);
-        });
-
-        it('must calculate the total reimbursement of expenses', function() {
-            scope.expenses = [{cost: 10, paid: true}, {cost: 13, paid: false}];
-            var totalReimbursement = scope.totalReimbursement();
-            expect(totalReimbursement).toBe(13);
-        });
-
         it('must call DELETE when removing an expense', inject(function($httpBackend) {
             scope.expenses = [{id: 0}, {id: 1}];
             scope.removeExpense(scope.expenses[1]);
