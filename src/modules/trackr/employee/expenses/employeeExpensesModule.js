@@ -20,7 +20,7 @@ define(['angular', './listController', './editController', './expenseEditControl
                     breadcrumbTranslateCode: 'ACTIONS.EDIT',
                     resolve: {
                         expenseTypes: ['trackr.services.travelExpense', function(TravelExpenseService) {
-                            return TravelExpenseService.getTypes();
+                            return TravelExpenseService.loadTypes();
                         }]
                     },
                     views: {

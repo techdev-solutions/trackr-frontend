@@ -8,8 +8,10 @@ define(['baseTestSetup', 'angular'], function(baseTestSetup, angular) {
             EditController = $controller('trackr.employee.expenses.expenseEditController', {
                 $scope: scope,
                 'createOrUpdateModal.userdata': {
-                    expense: {},
-                    expenseTypes: []
+                    expense: {}
+                },
+                'trackr.services.travelExpense': {
+                    getTypes: function() { return ['TAXI']; }
                 }
             });
         }));

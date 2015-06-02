@@ -1,9 +1,8 @@
 define(['./expensesDecorator'], function(expensesDecorator) {
     'use strict';
-    return ['$scope', 'Restangular', 'trackr.services.travelExpenseReport', 'expenseTypes',
-        '$filter', '$stateParams', '$state', 'base.services.notification',
-        function($scope, Restangular, TravelExpenseReportService, expenseTypes, $filter, $stateParams, $state,
-                 NotificationService) {
+    return ['$scope', 'Restangular', 'trackr.services.travelExpenseReport', '$filter', '$stateParams', '$state',
+        'base.services.notification',
+        function($scope, Restangular, TravelExpenseReportService, $filter, $stateParams, $state, NotificationService) {
 
             Restangular.one('travelExpenseReports', $stateParams.id).get({
                 projection: 'withExpensesAndDebitorAndProject'
@@ -22,7 +21,6 @@ define(['./expensesDecorator'], function(expensesDecorator) {
                     $scope.report.statusTranslateCode = 'TRAVEL_EXPENSE_REPORT.' + report.status;
                 });
 
-            $scope.expenseTypes = expenseTypes;
             $scope.comment = {};
             $scope.errors = [];
 

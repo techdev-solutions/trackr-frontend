@@ -1,11 +1,12 @@
 define([], function () {
     'use strict';
 
-    var expenseNewController = function($scope, Restangular, $filter) {
+    var expenseNewController = function($scope, Restangular, $filter, TravelExpenseService) {
         var controller = this;
 
         $scope.ctrl = this; // todo legacy because the included modal references it this way..
         $scope.expense = {};
+        $scope.expenseTypes = TravelExpenseService.getTypes();
 
         $scope.addNewExpense = function(report) {
             $scope.expense.report = report._links.self.href;
@@ -43,6 +44,6 @@ define([], function () {
         };
 
     };
-    expenseNewController.$inject = ['$scope', 'Restangular', '$filter'];
+    expenseNewController.$inject = ['$scope', 'Restangular', '$filter', 'trackr.services.travelExpense'];
     return expenseNewController;
 });

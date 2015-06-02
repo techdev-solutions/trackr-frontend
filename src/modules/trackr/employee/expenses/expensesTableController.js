@@ -26,8 +26,7 @@ define(['lodash'], function(_) {
                 .showModal('trackr.employee.expenses.expenseEditController as ctrl',
                 'src/modules/trackr/employee/expenses/expense-edit.tpl.html',
                 'ACTIONS.EDIT', {
-                    expense: expense,
-                    expenseTypes: $scope.expenseTypes
+                    expense: expense
                 });
 
             $modalInstance.result.then(function(editedExpense) {
