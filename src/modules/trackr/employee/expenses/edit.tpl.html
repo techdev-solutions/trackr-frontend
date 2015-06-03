@@ -2,7 +2,9 @@
     <pdf-download url="api/travelExpenseReports/{{report.id}}/pdf" filename="report-{{report.id}}.pdf"></pdf-download>
 </h2>
 <span class="pull-right"><a href ui-sref="app.trackr.employee.expenses" translate="ACTIONS.BACK"></a></span>
-<h4>{{ 'TRAVEL_EXPENSE_REPORT.' + report.status | translate }}</h4>
+<h4>{{ 'TRAVEL_EXPENSE_REPORT.' + report.status | translate }}
+    <span ng-show="report.status === 'APPROVED'">({{report.approver.firstName + ' ' + report.approver.lastName}})</span>
+</h4>
 <h5>{{ report.debitor.name }} <span ng-show="report.project"> - {{report.project.name}}</span></h5>
 <table class="table table-striped">
     <tr>

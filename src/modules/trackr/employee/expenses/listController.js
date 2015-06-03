@@ -27,7 +27,7 @@ define(['modules/shared/PaginationLoader', 'lodash'], function(PaginationLoader,
 
         controller.loadPage = function(page, state) {
             var params = {
-                projection: 'withExpensesAndDebitorAndProject',
+                projection: 'overview',
                 employee: employee.id
             };
             if (state) {

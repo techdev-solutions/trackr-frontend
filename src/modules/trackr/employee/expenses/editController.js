@@ -18,7 +18,7 @@ define(['lodash'], function(_) {
             };
 
             Restangular.one('travelExpenseReports', $stateParams.id).get({
-                projection: 'withExpensesAndDebitorAndProject'
+                projection: 'overview'
             })
                 .then(function(report) {
                     return report.all('comments').getList({
