@@ -1,7 +1,7 @@
 define(['modules/shared/PaginationLoader'], function(PaginationLoader) {
     'use strict';
     return ['Restangular', '$scope', function(Restangular, $scope) {
-        var paginationLoader = new PaginationLoader(Restangular.all('address_book'), 'employees', 'lastName,asc', $scope, 20);
+        var paginationLoader = new PaginationLoader(Restangular.all('address_book'), 'employees', 'lastName,asc', $scope, 10);
 
         $scope.setPage = function() {
             paginationLoader.loadPage($scope.employees.page.number);
