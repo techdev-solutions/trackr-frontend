@@ -5,10 +5,11 @@ define(['lodash'], function(_) {
         $scope.employee = _.clone(employee, false);
 
         controller.saveEntity = function(employee) {
-            var employeeEntity = _.pick(employee, ['phoneNumber', 'firstName', 'lastName']);
-            Restangular.oneUrl('employees', 'api/employees/' + employee.id + '/self').patch(employeeEntity)
-                .then(function() {
-                    $scope.closeModal(employee);
+            var request = Restangular.oneUrl('employees', 'api/employees/' + employee.id + '/self');
+            _.assign(request, _.pick(employee, ['version', 'phoneNumber', 'firstName', 'lastName', 'address']));
+            request.put()
+                .then(function(updatedEmployee) {
+                    $scope.closeModal(updatedEmployee);
                 }, function(response) {
                     $scope.errors = response.data.errors;
                 });

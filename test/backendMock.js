@@ -97,7 +97,8 @@ define(['fixtures'], function(fixtures) {
         mockPatch('api/employees');
         mockPost('api/employees');
         $httpBackend.whenGET(/^api\/employees\/\d+$/).respond(fixtures['api/employees']._embedded.employees[0]);
-        $httpBackend.whenPATCH(/^api\/employees\/\d+\/self$/).respond(function(method, url, data) {
+        $httpBackend.whenGET(/^api\/employees\/\d+\/self$/).respond(fixtures['api/employees']._embedded.employees[0]);
+        $httpBackend.whenPUT(/^api\/employees\/\d+\/self$/).respond(function(method, url, data) {
             return [200, data];
         });
 
