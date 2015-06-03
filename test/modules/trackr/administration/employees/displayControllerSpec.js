@@ -1,11 +1,11 @@
 define(['baseTestSetup'], function(baseTestSetup) {
     'use strict';
-    describe('trackr.administration.controllers.employees.display', function () {
+    describe('trackr.administration.employees.displayController', function () {
         var EditController, scope;
         baseTestSetup();
         beforeEach(inject(function($rootScope, $controller) {
             scope = $rootScope.$new();
-            EditController = $controller('trackr.administration.controllers.employees.display', {
+            EditController = $controller('trackr.administration.employees.displayController', {
                 $scope: scope,
                 $stateParams: {
                     id: 0

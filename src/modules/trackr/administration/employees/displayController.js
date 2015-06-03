@@ -4,7 +4,7 @@ define([], function() {
 
         $scope.showEditForm = function() {
             var $modalInstance= createOrUpdateModalService
-                .showModal('trackr.administration.controllers.employees.edit as ctrl',
+                .showModal('trackr.administration.employees.editController as ctrl',
                 'src/modules/trackr/administration/employees/newOrEdit.tpl.html',
                 'ACTIONS.EDIT',
                 {
