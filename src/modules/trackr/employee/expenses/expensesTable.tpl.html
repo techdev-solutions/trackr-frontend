@@ -1,0 +1,34 @@
+<table class="table table-striped">
+    <tr>
+        <th translate="TRAVEL_EXPENSE.TYPE"></th>
+        <th translate="TRAVEL_EXPENSE.FROM_DATE"></th>
+        <th translate="TRAVEL_EXPENSE.TO_DATE"></th>
+        <th translate="TRAVEL_EXPENSE.VAT"></th>
+        <th translate="TRAVEL_EXPENSE.COST"></th>
+        <th translate="TRAVEL_EXPENSE.COMMENT"></th>
+        <th translate="TRAVEL_EXPENSE.PAID"></th>
+        <th translate="ACTIONS.ACTIONS"></th>
+    </tr>
+    <tr ng-repeat="expense in expenses track by expense.id">
+        <td translate="{{ 'TRAVEL_EXPENSE.TYPE_VALUES.' + expense.type }}"></td>
+        <td>{{ expense.fromDate | date:'dd.MM.yyyy'}}</td>
+        <td>{{ expense.toDate | date:'dd.MM.yyyy'}}</td>
+        <td>{{ expense.vat }} %</td>
+        <td>{{ expense.cost | currency:'€'}}</td>
+        <td>{{ expense.comment }}</td>
+        <td><span class="glyphicon glyphicon-ok" ng-show="expense.paid"></span></td>
+        <td>
+            <button class="btn btn-sm btn-default" ng-show="editable" ng-click="showEditForm(expense)">
+                <span class="glyphicon glyphicon-pencil"></span>
+            </button>
+            <button class="btn btn-sm btn-default" ng-show="editable" ng-click="removeExpense(expense)">
+                <span class="glyphicon glyphicon-trash"></span>
+            </button>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="3"></td>
+        <td colspan="2"><span translate="TRAVEL_EXPENSE_REPORT.TOTAL"></span>: <b>{{expenses.totalCost() | currency:'€'}}</b></td>
+        <td colspan="3"><span translate="PAGES.EMPLOYEE.EXPENSES.REIMBURSEMENT"></span>: <b>{{expenses.totalReimbursement() | currency:'€'}}</b></td>
+    </tr>
+</table>

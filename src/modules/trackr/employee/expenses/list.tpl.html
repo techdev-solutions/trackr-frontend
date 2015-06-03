@@ -16,7 +16,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="report in reports[state]">
+            <tr ng-repeat="report in reports[state] track by report.id">
                 <td><a ui-sref="app.trackr.employee.expenses.edit({id: report.id})">#{{report.id}}</a></td>
                 <td>{{ report.total | currency:'€' }}</td>
                 <td>{{ report.debitor.name }}</td>

@@ -1,4 +1,4 @@
-define([], function() {
+define(['modules/trackr/employee/expenses/expensesDecorator'], function(expensesDecorator) {
         'use strict';
         return ['$scope', 'Restangular', 'trackr.services.travelExpenseReport', '$state', 'base.services.user', '$stateParams', 'base.services.notification',
             function($scope, Restangular, TravelExpenseReportService, $state, UserService, $stateParams, NotificationService) {
@@ -23,7 +23,7 @@ define([], function() {
                     .then(function(report) {
                         $scope.report = report;
                         $scope.report.statusTranslateCode = 'TRAVEL_EXPENSE_REPORT.' + report.status;
-                        $scope.totalCost = recalculateTotal(report.expenses);
+                        expensesDecorator($scope.report.expenses);
                     })
                     .catch(function(response) {
                         if(response && response.status === 404) {
@@ -31,17 +31,6 @@ define([], function() {
                             $scope.report = undefined;
                         }
                     });
-
-                /**
-                 * Recalculate the sum of the cost of the expenses
-                 * @param  expenses An array of expenses, each must have the property "cost".
-                 * @return The sum of all costs.
-                 */
-                function recalculateTotal(expenses) {
-                    return expenses.reduce(function(prev, expense) {
-                        return prev + parseFloat(expense.cost);
-                    }, 0);
-                }
 
                 $scope.report = {};
                 $scope.principal = UserService.getUser();

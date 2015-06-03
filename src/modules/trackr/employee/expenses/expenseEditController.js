@@ -1,19 +1,17 @@
 define(['lodash'], function(_) {
     'use strict';
-    /**
-     * Controller to watch editing of some fields of a single expense in a report.
-     */
-    return ['createOrUpdateModal.userdata', '$scope', 'Restangular', '$filter', function(userdata, $scope, Restangular, $filter) {
+    function expenseEditController(userdata, TravelExpenseService, $scope, Restangular, $filter) {
+        /*jshint validthis:true */
         var controller = this;
         $scope.expense = _.clone(userdata.expense, false);
-        $scope.expenseTypes = userdata.expenseTypes;
+        $scope.expenseTypes = TravelExpenseService.getTypes();
 
         controller.onFail = function(response) {
             $scope.errors = response.data.errors;
         };
 
         controller.saveExpense = function(expense) {
-            var expenseEntity = _.pick(expense, ['id', 'version', 'type', 'fromDate', 'toDate', 'vat', 'cost', 'comment']);
+            var expenseEntity = _.pick(expense, ['id', 'version', 'type', 'fromDate', 'toDate', 'vat', 'cost', 'comment', 'paid']);
             Restangular.one('travelExpenses', expenseEntity.id).patch(expenseEntity)
                 .then(function(result) {
                     $scope.closeModal(result);
@@ -43,5 +41,7 @@ define(['lodash'], function(_) {
             'year-format': '\'yyyy\'',
             'starting-day': 1
         };
-    }];
+    }
+    expenseEditController.$inject = ['createOrUpdateModal.userdata', 'trackr.services.travelExpense', '$scope', 'Restangular', '$filter'];
+    return expenseEditController;
 });

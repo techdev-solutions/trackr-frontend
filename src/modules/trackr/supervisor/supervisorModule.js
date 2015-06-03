@@ -1,6 +1,6 @@
-define(['angular', 'modules/trackr/supervisor/controllers'], function(angular, controllers) {
+define(['angular', './controllers', './expenses/supervisorExpensesModule'], function(angular, controllers) {
     'use strict';
-    var supervisor = angular.module('trackr.supervisor', []);
+    var supervisor = angular.module('trackr.supervisor', ['trackr.supervisor.expenses']);
 
     supervisor.config(['$stateProvider', function($stateProvider) {
         $stateProvider
@@ -40,26 +40,6 @@ define(['angular', 'modules/trackr/supervisor/controllers'], function(angular, c
                     'center@app': {
                         templateUrl: 'src/modules/trackr/supervisor/vacation/vacation.tpl.html',
                         controller: 'trackr.supervisor.controllers.vacation'
-                    }
-                }
-            })
-            .state('app.trackr.supervisor.expenses', {
-                url: '/expenses',
-                breadcrumbTranslateCode: 'PAGES.SUPERVISOR.TRAVEL_EXPENSE_REPORTS.TITLE',
-                views: {
-                    'center@app': {
-                        templateUrl: 'src/modules/trackr/supervisor/expenses/list.tpl.html',
-                        controller: 'trackr.supervisor.controllers.expenseReport-list'
-                    }
-                }
-            })
-            .state('app.trackr.supervisor.expenses.edit', {
-                url: '/{id:\\d+}',
-                breadcrumbTranslateCode: 'ACTIONS.EDIT',
-                views: {
-                    'center@app': {
-                        templateUrl: 'src/modules/trackr/supervisor/expenses/edit.tpl.html',
-                        controller: 'trackr.supervisor.controllers.expenseReport-edit'
                     }
                 }
             });

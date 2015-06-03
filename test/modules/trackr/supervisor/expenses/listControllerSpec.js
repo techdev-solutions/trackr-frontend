@@ -1,11 +1,11 @@
 define(['baseTestSetup'], function(baseTestSetup) {
     'use strict';
-    describe('trackr.supervisor.controllers.expenseReport-list', function() {
+    describe('trackr.supervisor.expenses.ListController', function() {
         var ListController, scope;
         baseTestSetup();
         beforeEach(inject(function($rootScope, $controller) {
             scope = $rootScope.$new();
-            ListController = $controller('trackr.supervisor.controllers.expenseReport-list', {
+            ListController = $controller('trackr.supervisor.expenses.ListController', {
                 $scope: scope
             });
         }));
