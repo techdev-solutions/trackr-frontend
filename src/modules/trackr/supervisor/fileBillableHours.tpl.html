@@ -27,12 +27,13 @@
                 <table class="table table-condensed table-bordered">
                     <tr>
                         <th translate="BILLABLE_TIME.DATE"></th>
+                        <th translate="WORKTIME.COMMENT"></th>
                         <th translate="PAGES.SUPERVISOR.BILL.HOURS"></th>
                         <th colspan="2" translate="BILLABLE_TIME.BILLABLE_HOURS"></th>
                     </tr>
                     <tr>
-                        <td colspan="2"></td>
-                        <td class="form-inline">
+                        <td colspan="3"></td>
+                        <td colspan="2" class="form-inline">
                             <input class="form-control input-sm"
                                    ng-change="setBillableHoursAll(billableHoursAll)"
                                    ng-model="billableHoursAll" placeholder="{{ 'PAGES.SUPERVISOR.BILL.SET_ALL' | translate }}"/>
@@ -42,6 +43,7 @@
                     </tr>
                     <tr ng-repeat="workTime in employee.workTimes">
                         <td>{{workTime.date | date:'dd.MM.yyyy'}}</td>
+                        <td>{{workTime.comment}}</td>
                         <td>{{workTime.enteredMinutes / 60}}</td>
                         <td><input class="input-sm form-control" ng-model="workTime.hours" ng-change="recalculateBillableSum()"/></td>
                         <td>
@@ -49,10 +51,9 @@
                         </td>
                     </tr>
                     <tr>
-                        <td><b translate="PAGES.SUPERVISOR.BILL.SUM"></b></td>
+                        <td colspan="2"><b translate="PAGES.SUPERVISOR.BILL.SUM"></b></td>
                         <td>{{sumMinutes / 60}}</td>
-                        <td>{{sumBillableHours}}</td>
-                        <td></td>
+                        <td colspan="2">{{sumBillableHours}}</td>
                     </tr>
                 </table>
                 <button type="button" class="btn btn-default" ng-click="createBill()" translate="ACTIONS.SAVE"></button>
