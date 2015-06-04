@@ -58,33 +58,22 @@ define(['moment', './lodashHelpers', './sortHelper'], function(moment, LodashHel
          * @return {{series: Array, data: Array}} Data for angular-charts to display.
          */
         controller.calculateBarChartData = function(workTimesArray) {
-            var data = [
-                {
-                    x: $filter('translate')('PAGES.REPORTR.EMPLOYEE_HOURS.WORKED_HOURS'),
-                    y: []
-                }
-            ];
+            var data = [];
             var series = [];
             workTimesArray.forEach(function(workTime) {
                 series.push(workTime[0]);
-                data[0].y.push(workTime[1]);
+                data.push(workTime[1]);
             });
             return {
-                series: series,
-                data: data
+                labels: series,
+                datasets: [{
+                    label: $filter('translate')('PAGES.REPORTR.EMPLOYEE_HOURS.WORKED_HOURS'),
+                    data: data
+                }]
             };
         };
 
-        $scope.barChartData = { series: [], data: [] };
-
-        $scope.barChartConfig = {
-            tooltips: true,
-            labels: false,
-            legend: {
-                display: true,
-                position: 'left'
-            }
-        };
+        $scope.barChartData = { labels: [], datasets: [] };
 
         $scope.interval = intervalLocationService.loadIntervalFromLocation();
         controller.loadWorkTimes($scope.interval.start, $scope.interval.end);

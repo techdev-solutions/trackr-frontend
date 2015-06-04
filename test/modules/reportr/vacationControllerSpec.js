@@ -20,13 +20,13 @@ define(['baseTestSetup'], function(baseTestSetup) {
         it('generate bar chart data', function() {
             var invoicesArray = [ ['employee1', 3], ['employee2', 5] ];
             var barData = VacationController.generateBarChartData(invoicesArray);
-            expect(barData.series.length).toEqual(2);
-            expect(barData.series).toContain('employee1');
-            expect(barData.series).toContain('employee2');
-            expect(barData.data[0].x).toBeDefined();
-            expect(barData.data[0].y.length).toBe(2);
-            expect(barData.data[0].y).toContain(3);
-            expect(barData.data[0].y).toContain(5);
+            expect(barData.labels.length).toEqual(2);
+            expect(barData.labels).toContain('employee1');
+            expect(barData.labels).toContain('employee2');
+            expect(barData.datasets[0]).toBeDefined();
+            expect(barData.datasets[0].data.length).toBe(2);
+            expect(barData.datasets[0].data).toContain(3);
+            expect(barData.datasets[0].data).toContain(5);
         });
 
         it('when a date is selected loadInvoices must be triggered', function() {

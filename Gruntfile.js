@@ -69,15 +69,16 @@ module.exports = function (grunt) {
                         'jQuery': 'empty:',
                         'twitter-bootstrap': 'empty:',
                         'angular': 'empty:',
+                        'angular-l10n-de': 'empty:',
                         'angular-ui-router': 'empty:',
                         'restangular':'empty:',
                         'lodash': 'empty:',
                         'angular-translate': 'empty:',
                         'angular-translate-loader-url': 'empty:',
                         'angular-ui': 'empty:',
-                        'd3': 'empty:',
-                        'angular-charts': 'empty:',
-                        'moment': 'empty:'
+                        'moment': 'empty:',
+                        'chartjs': 'empty:',
+                        'randomColor': 'empty:'
                     }
                 }
             }

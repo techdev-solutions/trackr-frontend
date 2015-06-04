@@ -20,11 +20,10 @@ define(['baseTestSetup'], function(baseTestSetup) {
         it('generate pie chart data', function() {
             var invoicesArray = [ ['project1', 400], ['project2', 500] ];
             var pieData = RevenueController.generatePieData(invoicesArray);
-            expect(pieData.series.length).toEqual(0);
-            expect(pieData.data[0].x).toEqual('project1');
-            expect(pieData.data[0].y).toEqual(['400.00']);
-            expect(pieData.data[1].x).toEqual('project2');
-            expect(pieData.data[1].y).toEqual(['500.00']);
+            expect(pieData[0].label).toEqual('project1');
+            expect(pieData[0].value).toEqual('400.00');
+            expect(pieData[1].label).toEqual('project2');
+            expect(pieData[1].value).toEqual('500.00');
         });
 
         it('when a date is selected loadInvoices must be triggered', function() {

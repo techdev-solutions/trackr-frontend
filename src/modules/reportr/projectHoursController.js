@@ -64,16 +64,29 @@ define(['moment', './lodashHelpers', './sortHelper'], function(moment, LodashHel
         /**
          * Generate the data for the bar chart. Works on the data returned by {@link mapAndReduceValuesToSum}
          * @param {Array} timesArray The array with the data for the work times and billable times
-         * @return {Array} Data for angular-charts to display.
+         * @return {{labels: Array, datasets: Array}} Data for the barchart directive to display.
          */
         controller.calculateChartData = function(timesArray) {
-            var data = [];
-            timesArray.forEach(function(timeData) {
-                data.push({
-                    x: timeData[0],
-                    y: [timeData[1], timeData[2]]
-                });
+            var trackedHours = [];
+            var billedHours = [];
+            var data = {
+                // labels will contain the projects
+                labels: [],
+                // datasets is 0: tracked hours, 1: billed hours
+                datasets: [{
+                    label: $filter('translate')('PAGES.REPORTR.PROJECT_HOURS.TRACKED_HOURS'),
+                    data: trackedHours
+                },
+                {
+                    label: $filter('translate')('PAGES.REPORTR.PROJECT_HOURS.BILLED_HOURS'),
+                    data: billedHours
+                }]
+            };
 
+            timesArray.forEach(function(timeData) {
+                data.labels.push(timeData[0]);
+                trackedHours.push(timeData[2]);
+                billedHours.push(timeData[1]);
             });
             return data;
         };
@@ -113,7 +126,7 @@ define(['moment', './lodashHelpers', './sortHelper'], function(moment, LodashHel
                         var projectName = workTimeData[0];
                         workTimeData[2] = controller.findBillableTime(billableTimes, projectName);
                     });
-                    $scope.barChartData.data = controller.calculateChartData(workTimesArray);
+                    $scope.barChartData = controller.calculateChartData(workTimesArray);
                     //TODO: check for billable times without work times?
                     SortHelper.sortArrayOfArrays(workTimesArray, 2, 1);
                     $scope.projectTimes = workTimesArray;
@@ -121,20 +134,8 @@ define(['moment', './lodashHelpers', './sortHelper'], function(moment, LodashHel
         };
 
         $scope.barChartData = {
-            series: [
-                $filter('translate')('PAGES.REPORTR.PROJECT_HOURS.TRACKED_HOURS'),
-                $filter('translate')('PAGES.REPORTR.PROJECT_HOURS.BILLED_HOURS')
-            ],
-            data: []
-        };
-
-        $scope.barChartConfig = {
-            tooltips: true,
-            labels: false,
-            legend: {
-                display: true,
-                position: 'left'
-            }
+            labels: [],
+            datasets: []
         };
 
         $scope.interval = intervalLocationService.loadIntervalFromLocation();

@@ -42,35 +42,24 @@ define(['lodash', './sortHelper'], function(_, SortHelper) {
          * @return {{series: Array, data: Array}} Data for angular-charts to display.
          */
         controller.generateBarChartData = function(vacationRequestsArray) {
-            var data = [
-                {
-                    x: $filter('translate')('PAGES.REPORTR.VACATION.DAYS'),
-                    y: []
-                }
-            ];
+            var data = [];
             var series = [];
             vacationRequestsArray.forEach(function(vacationRequest) {
                 if (vacationRequest[1] > 0) {
                     series.push(vacationRequest[0]);
-                    data[0].y.push(vacationRequest[1]);
+                    data.push(vacationRequest[1]);
                 }
             });
             return {
-                series: series,
-                data: data
+                labels: series,
+                datasets: [{
+                    label: $filter('translate')('PAGES.REPORTR.VACATION.DAYS'),
+                    data: data
+                }]
             };
         };
 
-        $scope.barChartData = { series: [], data: [] };
-
-        $scope.barChartConfig = {
-            tooltips: true,
-            labels: false,
-            legend: {
-                display: true,
-                position: 'left'
-            }
-        };
+        $scope.barChartData = { labels: [], datasets: [] };
 
         $scope.interval = intervalLocationService.loadIntervalFromLocation();
         controller.loadVacationRequests($scope.interval.start, $scope.interval.end);

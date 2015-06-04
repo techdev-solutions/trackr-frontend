@@ -20,13 +20,13 @@ define(['baseTestSetup'], function(baseTestSetup) {
         it('generate bar chart data', function() {
             var employeeHoursArray = [ ['employee1', 120], ['employee2', 130] ];
             var barData = EmployeeHoursController.calculateBarChartData(employeeHoursArray);
-            expect(barData.series.length).toEqual(2);
-            expect(barData.series).toContain('employee1');
-            expect(barData.series).toContain('employee2');
-            expect(barData.data[0].x).toBeDefined();
-            expect(barData.data[0].y.length).toBe(2);
-            expect(barData.data[0].y).toContain(120);
-            expect(barData.data[0].y).toContain(130);
+            expect(barData.labels.length).toEqual(2);
+            expect(barData.labels).toContain('employee1');
+            expect(barData.labels).toContain('employee2');
+            expect(barData.datasets[0].label).toBeDefined();
+            expect(barData.datasets[0].data.length).toBe(2);
+            expect(barData.datasets[0].data).toContain(120);
+            expect(barData.datasets[0].data).toContain(130);
         });
 
         it('when a date is selected loadWorkTimes must be triggered', function() {

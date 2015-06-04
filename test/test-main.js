@@ -25,7 +25,9 @@ require.config({
         'angular-charts': 'vendor/angular-charts/dist/angular-charts',
         'moment': 'vendor/moment/moment',
         'd3': 'vendor/d3/d3',
-        'confirmationServiceMock': '../test/modules/base/services/confirmationServiceMock'
+        'confirmationServiceMock': '../test/modules/base/services/confirmationServiceMock',
+        'chartjs': 'vendor/chartjs/Chart',
+        'randomColor': 'vendor/randomColor/randomColor'
     },
     shim: {
         'angular': { exports: 'angular' },
