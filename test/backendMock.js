@@ -52,6 +52,9 @@ define(['fixtures'], function(fixtures) {
                 var address = { _links: { self: { href: '' } } };
                 return [200, address];
             });
+        $httpBackend.whenPUT(/^api\/addresses\/\d+$/).respond(function(method, url, data) {
+            return [201, data];
+        });
 
         //#### -- BILLABLE TIMES
         mockPost('api/billableTimes');
@@ -97,10 +100,16 @@ define(['fixtures'], function(fixtures) {
         mockPatch('api/employees');
         mockPost('api/employees');
         $httpBackend.whenGET(/^api\/employees\/\d+$/).respond(fixtures['api/employees']._embedded.employees[0]);
+        $httpBackend.whenGET(/^api\/employees\/\d+\?projection=withAddress$/).respond(function() {
+            var employee = fixtures['api/employees']._embedded.employees[0];
+            employee.address = fixtures['api/addresses']._embedded.addresses[0];
+            return [200, employee];
+        });
         $httpBackend.whenGET(/^api\/employees\/\d+\/self$/).respond(fixtures['api/employees']._embedded.employees[0]);
         $httpBackend.whenPUT(/^api\/employees\/\d+\/self$/).respond(function(method, url, data) {
             return [200, data];
         });
+        $httpBackend.whenPUT(/^api\/employees\/\d+\/address$/).respond([204]);
 
         //#### -- FEDERAL STATES
         mockRoot('api/federalStates');

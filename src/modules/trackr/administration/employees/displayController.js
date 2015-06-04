@@ -17,10 +17,24 @@ define([], function() {
             });
         };
 
+        $scope.showAddressEditForm = function() {
+            var $modalInstance = createOrUpdateModalService
+                .showModal('trackr.administration.employees.addressEditController as ctrl',
+                'src/modules/trackr/administration/employees/addressEdit.tpl.html',
+                'ACTIONS.EDIT',
+                $scope.employee
+            );
+            $modalInstance.result.then(function(address) {
+                $scope.employee.address = address;
+            });
+        };
+
         /*
          Initial load of employee and associated data.
          */
-        Restangular.one('employees', $stateParams.id).get()
+        Restangular.one('employees', $stateParams.id).get({
+                projection: 'withAddress'
+            })
             .then(function(employee) {
                 $scope.employee = employee;
             });

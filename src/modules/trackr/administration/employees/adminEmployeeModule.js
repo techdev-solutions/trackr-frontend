@@ -1,5 +1,5 @@
-define(['angular', './editController', './listController', './newController', './displayController'],
-    function(angular, EditController, ListController, NewController, DisplayController) {
+define(['angular', './editController', './listController', './newController', './displayController', './addressEditController'],
+    function(angular, EditController, ListController, NewController, DisplayController, AddressEditController) {
         'use strict';
         function config($stateProvider) {
             $stateProvider
@@ -31,6 +31,7 @@ define(['angular', './editController', './listController', './newController', '.
 
         module.controller('trackr.administration.employees.displayController', DisplayController);
         module.controller('trackr.administration.employees.editController', EditController);
+        module.controller('trackr.administration.employees.addressEditController', AddressEditController);
         module.controller('trackr.administration.employees.newController', NewController);
         module.controller('trackr.administration.employees.listController', ListController);
         return module;
