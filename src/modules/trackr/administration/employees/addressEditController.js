@@ -37,7 +37,7 @@ define(['lodash'], function(_) {
             }, onFailedRequest);
         }
 
-         function onFailedRequest(response) {
+        function onFailedRequest(response) {
             $scope.errors = response.data.errors;
         }
     }
