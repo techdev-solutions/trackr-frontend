@@ -1,10 +1,11 @@
-define(['moment', 'modules/reportr/lodashHelpers', 'modules/reportr/sortHelper'], function(moment, LodashHelpers, SortHelper) {
+define(['moment', './lodashHelpers', './sortHelper'], function(moment, LodashHelpers, SortHelper) {
     'use strict';
-    return ['$scope', 'Restangular', '$filter', function($scope, Restangular, $filter) {
+    var employeeHoursController = function($scope, Restangular, $filter, intervalLocationService) {
         var controller = this;
 
         // see date-interval directive
         $scope.dateSelected = function(start, end) {
+            intervalLocationService.saveIntervalToLocation(start, end);
             controller.loadWorkTimes(start, end);
         };
 
@@ -57,34 +58,26 @@ define(['moment', 'modules/reportr/lodashHelpers', 'modules/reportr/sortHelper']
          * @return {{series: Array, data: Array}} Data for angular-charts to display.
          */
         controller.calculateBarChartData = function(workTimesArray) {
-            var data = [
-                {
-                    x: $filter('translate')('PAGES.REPORTR.EMPLOYEE_HOURS.WORKED_HOURS'),
-                    y: []
-                }
-            ];
+            var data = [];
             var series = [];
             workTimesArray.forEach(function(workTime) {
                 series.push(workTime[0]);
-                data[0].y.push(workTime[1]);
+                data.push(workTime[1]);
             });
             return {
-                series: series,
-                data: data
+                labels: series,
+                datasets: [{
+                    label: $filter('translate')('PAGES.REPORTR.EMPLOYEE_HOURS.WORKED_HOURS'),
+                    data: data
+                }]
             };
         };
 
-        $scope.barChartData = { series: [], data: [] };
+        $scope.barChartData = { labels: [], datasets: [] };
 
-        $scope.barChartConfig = {
-            tooltips: true,
-            labels: false,
-            legend: {
-                display: true,
-                position: 'left'
-            }
-        };
-
-        controller.loadWorkTimes(moment().startOf('month').toDate(), moment().endOf('month').toDate());
-    }];
+        $scope.interval = intervalLocationService.loadIntervalFromLocation();
+        controller.loadWorkTimes($scope.interval.start, $scope.interval.end);
+    };
+    employeeHoursController.$inject = ['$scope', 'Restangular', '$filter', 'reportr.intervalLocationService'];
+    return employeeHoursController;
 });

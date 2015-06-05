@@ -1,6 +1,6 @@
-define(['angular', 'modules/trackr/employee/controllers', 'moment'], function(angular, controllers, moment) {
+define(['angular', './controllers', 'moment', './expenses/employeeExpensesModule'], function(angular, controllers, moment) {
     'use strict';
-    var employee = angular.module('trackr.employee', []);
+    var employee = angular.module('trackr.employee', ['trackr.employee.expenses']);
     employee.config(['$stateProvider', function($stateProvider) {
         $stateProvider
             .state('app.trackr.employee', {
@@ -65,31 +65,6 @@ define(['angular', 'modules/trackr/employee/controllers', 'moment'], function(an
                     'new@app.trackr.employee.vacation': {
                         templateUrl: 'src/modules/trackr/employee/vacation/new.tpl.html',
                         controller: 'trackr.employee.controllers.vacation-new'
-                    }
-                }
-            })
-            .state('app.trackr.employee.expenses', {
-                url: '/expenses',
-                breadcrumbTranslateCode: 'PAGES.EMPLOYEE.EXPENSES.TITLE',
-                views: {
-                    'center@app': {
-                        templateUrl: 'src/modules/trackr/employee/expenses/list.tpl.html',
-                        controller: 'trackr.employee.controllers.expenseReport-list'
-                    }
-                }
-            })
-            .state('app.trackr.employee.expenses.edit', {
-                url: '/{id:\\d+}',
-                breadcrumbTranslateCode: 'ACTIONS.EDIT',
-                resolve: {
-                    expenseTypes: ['trackr.services.travelExpense', function(TravelExpenseService) {
-                        return TravelExpenseService.getTypes();
-                    }]
-                },
-                views: {
-                    'center@app': {
-                        templateUrl: 'src/modules/trackr/employee/expenses/edit.tpl.html',
-                        controller: 'trackr.employee.controllers.expenseReport-edit'
                     }
                 }
             })

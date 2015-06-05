@@ -6,17 +6,17 @@
         <table class="table table-bordered">
             <thead>
             <tr>
-                <th translate="TRAVEL_EXPENSE_REPORT.ID"></th>
+                <th class="sortable" ng-class="{'sort-asc': isSortedAsc('id'), 'sort-desc': isSortedDesc('id')}"><a translate="TRAVEL_EXPENSE_REPORT.ID" ng-click="loadSortedReports(state, 'id')"></a></th>
                 <th translate="TRAVEL_EXPENSE_REPORT.TOTAL"></th>
-                <th translate="TRAVEL_EXPENSE_REPORT.DEBITOR"></th>
-                <th translate="TRAVEL_EXPENSE_REPORT.PROJECT"></th>
-                <th ng-show="state !== 'PENDING'" translate="TRAVEL_EXPENSE_REPORT.SUBMISSION_DATE"></th>
-                <th ng-show="state === 'APPROVED'" translate="TRAVEL_EXPENSE_REPORT.APPROVER"></th>
-                <th ng-show="state === 'APPROVED'" translate="TRAVEL_EXPENSE_REPORT.APPROVAL_DATE"></th>
+                <th class="sortable" ng-class="{'sort-asc': isSortedAsc('debitor.name'), 'sort-desc': isSortedDesc('debitor.name')}"><a translate="TRAVEL_EXPENSE_REPORT.DEBITOR" ng-click="loadSortedReports(state, 'debitor.name')"></a></th>
+                <th class="sortable" ng-class="{'sort-asc': isSortedAsc('project.name'), 'sort-desc': isSortedDesc('project.name')}"><a translate="TRAVEL_EXPENSE_REPORT.PROJECT" ng-click="loadSortedReports(state, 'project.name')"></a></th>
+                <th ng-show="state !== 'PENDING'" class="sortable" ng-class="{'sort-asc': isSortedAsc('submissionDate'), 'sort-desc': isSortedDesc('submissionDate')}"><a translate="TRAVEL_EXPENSE_REPORT.SUBMISSION_DATE" ng-click="loadSortedReports(state, 'submissionDate')"></a></th>
+                <th ng-show="state === 'APPROVED'" class="sortable" ng-class="{'sort-asc': isSortedAsc('approver.lastName'), 'sort-desc': isSortedDesc('approver.lastName')}"><a translate="TRAVEL_EXPENSE_REPORT.APPROVER" ng-click="loadSortedReports(state, 'approver.lastName')"></a></th>
+                <th ng-show="state === 'APPROVED'" class="sortable" ng-class="{'sort-asc': isSortedAsc('approvalDate'), 'sort-desc': isSortedDesc('approvalDate')}"><a translate="TRAVEL_EXPENSE_REPORT.APPROVAL_DATE" ng-click="loadSortedReports(state, 'approvalDate')"></a></th>
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="report in reports[state]">
+            <tr ng-repeat="report in reports[state] track by report.id">
                 <td><a ui-sref="app.trackr.employee.expenses.edit({id: report.id})">#{{report.id}}</a></td>
                 <td>{{ report.total | currency:'€' }}</td>
                 <td>{{ report.debitor.name }}</td>

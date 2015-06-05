@@ -69,15 +69,16 @@ module.exports = function (grunt) {
                         'jQuery': 'empty:',
                         'twitter-bootstrap': 'empty:',
                         'angular': 'empty:',
+                        'angular-l10n-de': 'empty:',
                         'angular-ui-router': 'empty:',
                         'restangular':'empty:',
                         'lodash': 'empty:',
                         'angular-translate': 'empty:',
                         'angular-translate-loader-url': 'empty:',
                         'angular-ui': 'empty:',
-                        'd3': 'empty:',
-                        'angular-charts': 'empty:',
-                        'moment': 'empty:'
+                        'moment': 'empty:',
+                        'chartjs': 'empty:',
+                        'randomColor': 'empty:'
                     }
                 }
             }
@@ -118,7 +119,15 @@ module.exports = function (grunt) {
             teamcity: {
                 configFile: 'karma.conf.js',
                 singleRun: true,
-                reporters: ['progress', 'teamcity']
+                reporters: ['progress', 'teamcity', 'coverage', 'junit'],
+                coverageReporter: {
+                    type : 'lcovonly',
+                    dir : 'reports',
+                    subdir: 'coverage'
+                },
+                junitReporter: {
+                    outputFile: 'reports/junit/TEST-karma.xml'
+                }
             },
             cover: {
                 configFile: 'karma.conf.js',

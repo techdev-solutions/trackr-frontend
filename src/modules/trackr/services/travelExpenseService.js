@@ -1,11 +1,16 @@
 define([], function() {
     'use strict';
     return ['$http', function($http) {
+        var expenseTypes;
         return {
-            getTypes: function() {
+            loadTypes: function() {
                 return $http.get('api/travelExpenses/types').then(function(response) {
-                    return response.data;
+                    expenseTypes = response.data;
+                    return expenseTypes;
                 });
+            },
+            getTypes: function() {
+                return expenseTypes;
             }
         };
     }];

@@ -12,6 +12,13 @@ define([], function() {
                 element.fadeIn(300).delay(scope.notification.duration).slideUp(300, function() {
                     element.remove();
                 });
+
+                scope.close = function() {
+                    element.clearQueue();
+                    element.slideUp(300, function() {
+                        element.remove();
+                    });
+                };
             }
         };
     }];

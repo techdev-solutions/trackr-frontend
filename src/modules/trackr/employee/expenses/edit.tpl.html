@@ -2,63 +2,26 @@
     <pdf-download url="api/travelExpenseReports/{{report.id}}/pdf" filename="report-{{report.id}}.pdf"></pdf-download>
 </h2>
 <span class="pull-right"><a href ui-sref="app.trackr.employee.expenses" translate="ACTIONS.BACK"></a></span>
-<h4>{{ 'TRAVEL_EXPENSE_REPORT.' + report.status | translate }}</h4>
+<h4>{{ 'TRAVEL_EXPENSE_REPORT.' + report.status | translate }}
+    <span ng-show="report.status === 'APPROVED'">({{report.approver.firstName + ' ' + report.approver.lastName}})</span>
+</h4>
 <h5>{{ report.debitor.name }} <span ng-show="report.project"> - {{report.project.name}}</span></h5>
-<table class="table table-striped">
-    <tr>
-        <th translate="TRAVEL_EXPENSE.TYPE"></th>
-        <th translate="TRAVEL_EXPENSE.FROM_DATE"></th>
-        <th translate="TRAVEL_EXPENSE.TO_DATE"></th>
-        <th translate="TRAVEL_EXPENSE.VAT"></th>
-        <th translate="TRAVEL_EXPENSE.COST"></th>
-        <th translate="TRAVEL_EXPENSE.COMMENT"></th>
-        <th translate="TRAVEL_EXPENSE.SUBMITTED"></th>
-        <th translate="ACTIONS.ACTIONS"></th>
-    </tr>
-    <tr ng-repeat="expense in report.expenses">
-        <td translate="{{ 'TRAVEL_EXPENSE.TYPE_VALUES.' + expense.type }}"></td>
-        <td>{{ expense.fromDate | date:'dd.MM.yyyy'}}</td>
-        <td>{{ expense.toDate | date:'dd.MM.yyyy'}}</td>
-        <td>{{ expense.vat }} %</td>
-        <td>{{ expense.cost | currency:'€'}}</td>
-        <td>{{expense.comment}}</td>
-        <td>{{ expense.submissionDate | date:'dd.MM.yyyy HH:mm:ss' }}</td>
-        <td>
-            <button class="btn btn-sm btn-default" ng-show="editable(report)" ng-click="showEditForm(expense)">
-                <span class="glyphicon glyphicon-pencil"></span>
-            </button>
-            <button class="btn btn-sm btn-default" ng-show="editable(report)" ng-click="removeExpense(expense)">
-                <span class="glyphicon glyphicon-trash"></span>
-            </button>
-        </td>
-    </tr>
-    <tr>
-        <td colspan="4"></td>
-        <td><span translate="TRAVEL_EXPENSE_REPORT.TOTAL"></span>: <b>{{totalCost | currency:'€'}}</b></td>
-        <td colspan="3"></td>
-    </tr>
-</table>
 
-<button ng-if="editable(report)" type="button" ng-click="submitReport(report)" class="btn btn-primary" translate="ACTIONS.SUBMIT"></button>
-<button ng-if="deletable(report)" type="button" ng-click="deleteReport(report)" class="btn btn-danger" translate="ACTIONS.REMOVE"></button>
+<div class="row">
+    <employee-expenses-table expenses="report.expenses" editable="editable(report)"/>
+</div>
 
-<form ng-if="editable(report)" action="" class="form-inline" ng-submit="addNewExpense(expense, report)">
-    <div class="form-group" error-display="fromDate">
-        <inline-datepicker model="expense.fromDate"></inline-datepicker>
+<div class="row">
+    <div class="col-md-3">
+        <button ng-if="editable(report)" type="button" ng-click="submitReport(report)" class="btn btn-primary" translate="ACTIONS.SUBMIT"></button>
+        <button ng-if="deletable(report)" type="button" ng-click="deleteReport(report)" class="btn btn-danger" translate="ACTIONS.REMOVE"></button>
     </div>
-    <div class="form-group" error-display="toDate">
-        <inline-datepicker model="expense.toDate"></inline-datepicker>
+    <div ng-if="editable(report)" ng-controller="trackr.employee.expenses.expenseNewController" class="col-md-9">
+        <div ng-include="'src/modules/trackr/employee/expenses/expense-edit.tpl.html'"></div>
+        <button type="submit" class="btn btn-primary" translate="ACTIONS.ADD" ng-click="addNewExpense(report)"></button>
     </div>
+</div>
 
-    <div class="form-group" error-display="type">
-        <select ng-model="expense.type" ng-options="t as translateTravelExpenseType(t) for t in expenseTypes"></select>
-    </div>
-
-    <bs-text property-name="cost" translate-code="TRAVEL_EXPENSE.COST" path="expense.cost" inline="true"></bs-text>
-    <bs-text property-name="vat" translate-code="TRAVEL_EXPENSE.VAT" path="expense.vat" inline="true"></bs-text>
-    <bs-text property-name="comment" translate-code="TRAVEL_EXPENSE.COMMENT" path="expense.comment" inline="true"></bs-text>
-    <button type="submit" class="btn btn-primary" translate="ACTIONS.ADD"></button>
-</form>
 
 <div class="space-md"></div>
 <comment-section comments="report.comments" preprocessor="addReport" url="travelExpenseReportComments"></comment-section>

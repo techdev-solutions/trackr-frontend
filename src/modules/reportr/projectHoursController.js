@@ -1,10 +1,11 @@
-define(['moment', 'modules/reportr/lodashHelpers', 'modules/reportr/sortHelper'], function(moment, LodashHelpers, SortHelper) {
+define(['moment', './lodashHelpers', './sortHelper'], function(moment, LodashHelpers, SortHelper) {
     'use strict';
-    return ['$scope', 'Restangular', '$filter', function($scope, Restangular, $filter) {
+    var projectHoursController = function($scope, Restangular, $filter, intervalLocationService) {
         var controller = this;
 
         // see date-interval directive
         $scope.dateSelected = function(start, end) {
+            intervalLocationService.saveIntervalToLocation(start, end);
             controller.loadAllTimes(start, end);
         };
 
@@ -63,16 +64,29 @@ define(['moment', 'modules/reportr/lodashHelpers', 'modules/reportr/sortHelper']
         /**
          * Generate the data for the bar chart. Works on the data returned by {@link mapAndReduceValuesToSum}
          * @param {Array} timesArray The array with the data for the work times and billable times
-         * @return {Array} Data for angular-charts to display.
+         * @return {{labels: Array, datasets: Array}} Data for the barchart directive to display.
          */
         controller.calculateChartData = function(timesArray) {
-            var data = [];
-            timesArray.forEach(function(timeData) {
-                data.push({
-                    x: timeData[0],
-                    y: [timeData[1], timeData[2]]
-                });
+            var trackedHours = [];
+            var billedHours = [];
+            var data = {
+                // labels will contain the projects
+                labels: [],
+                // datasets is 0: tracked hours, 1: billed hours
+                datasets: [{
+                    label: $filter('translate')('PAGES.REPORTR.PROJECT_HOURS.TRACKED_HOURS'),
+                    data: trackedHours
+                },
+                {
+                    label: $filter('translate')('PAGES.REPORTR.PROJECT_HOURS.BILLED_HOURS'),
+                    data: billedHours
+                }]
+            };
 
+            timesArray.forEach(function(timeData) {
+                data.labels.push(timeData[0]);
+                trackedHours.push(timeData[2]);
+                billedHours.push(timeData[1]);
             });
             return data;
         };
@@ -112,7 +126,7 @@ define(['moment', 'modules/reportr/lodashHelpers', 'modules/reportr/sortHelper']
                         var projectName = workTimeData[0];
                         workTimeData[2] = controller.findBillableTime(billableTimes, projectName);
                     });
-                    $scope.barChartData.data = controller.calculateChartData(workTimesArray);
+                    $scope.barChartData = controller.calculateChartData(workTimesArray);
                     //TODO: check for billable times without work times?
                     SortHelper.sortArrayOfArrays(workTimesArray, 2, 1);
                     $scope.projectTimes = workTimesArray;
@@ -120,22 +134,13 @@ define(['moment', 'modules/reportr/lodashHelpers', 'modules/reportr/sortHelper']
         };
 
         $scope.barChartData = {
-            series: [
-                $filter('translate')('PAGES.REPORTR.PROJECT_HOURS.TRACKED_HOURS'),
-                $filter('translate')('PAGES.REPORTR.PROJECT_HOURS.BILLED_HOURS')
-            ],
-            data: []
+            labels: [],
+            datasets: []
         };
 
-        $scope.barChartConfig = {
-            tooltips: true,
-            labels: false,
-            legend: {
-                display: true,
-                position: 'left'
-            }
-        };
-
-        controller.loadAllTimes(moment().startOf('month').toDate(), moment().endOf('month').toDate());
-    }];
+        $scope.interval = intervalLocationService.loadIntervalFromLocation();
+        controller.loadAllTimes($scope.interval.start, $scope.interval.end);
+    };
+    projectHoursController.$inject = ['$scope', 'Restangular', '$filter', 'reportr.intervalLocationService'];
+    return projectHoursController;
 });

@@ -6,11 +6,11 @@ define(['angular',
     'modules/reportr/travelExpenseController',
     'modules/reportr/expensesDebitorController',
     'modules/reportr/sickDaysController',
-    'angular-charts'
-], function(angular, RevenueController, VacationController, ProjectHoursController, EmployeeHoursController, TravelExpenseController, ExpensesDebitorController, SickDaysController) {
+    './intervalLocationService',
+    './charts/chartsModule'
+], function(angular, RevenueController, VacationController, ProjectHoursController, EmployeeHoursController, TravelExpenseController, ExpensesDebitorController, SickDaysController, intervalLocationService) {
     'use strict';
-    var configFn = ['angularCharts'];
-    var reportr = angular.module('reportr', configFn);
+    var reportr = angular.module('reportr', ['charts']);
 
     reportr.controller('reportr.controllers.revenue', RevenueController);
     reportr.controller('reportr.controllers.vacation', VacationController);
@@ -20,6 +20,7 @@ define(['angular',
     reportr.controller('reportr.controllers.expenses-debitor', ExpensesDebitorController);
     reportr.controller('reportr.controllers.sick-days', SickDaysController);
 
+    reportr.service('reportr.intervalLocationService', intervalLocationService);
     reportr.config(['$stateProvider', function($stateProvider) {
         $stateProvider
             .state('app.reportr', {

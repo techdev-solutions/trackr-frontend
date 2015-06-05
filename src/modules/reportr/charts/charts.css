@@ -1,0 +1,22 @@
+.chart-legend {
+    position: absolute;
+    top: 20px;
+}
+
+.chart-legend ul {
+    list-style: none;
+}
+
+.chart-legend ul li {
+    margin: 2px 0;
+}
+
+.chart-legend ul li span {
+    float: left;
+    width: 17px;
+    margin-right: 5px
+}
+
+.piechart canvas {
+    margin-right: 20px;
+}

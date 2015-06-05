@@ -7,7 +7,6 @@
     height: 0;
 
     z-index: 9999;
-
 }
 
 #notification-container ul {
@@ -20,11 +19,6 @@
     color: #555555;
 
     background-color: #FAFAFA;
-    background-image: linear-gradient(to bottom, #FFFFFF, #F2F2F2);
-    background-image: -moz-linear-gradient(top, #FFFFFF, #F2F2F2);
-    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#FFFFFF), to(#F2F2F2));
-    background-image: -webkit-linear-gradient(top, #FFFFFF, #F2F2F2);
-    background-image: -o-linear-gradient(top, #FFFFFF, #F2F2F2);
     background-repeat: repeat-x;
 
     margin: 20px 0;
@@ -36,60 +30,45 @@
     -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 0 15px rgba(0, 0, 0, 0.2);
 
     border: 1px solid #d5d5d5;
-    border-radius: 8px;
+    border-radius: 5px;
 }
 
 #notification-container li > div {
-    padding: 10px 15px 12px 61px;
+    padding: 10px 15px 12px 15px;
     min-height: 24px;
 }
 
 #notification-container li.info {
-    background-image: linear-gradient(to bottom, #cae5ff, #a0ccff);
-    background-image: -moz-linear-gradient(top, #cae5ff, #a0ccff);
-    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#cae5ff), to(#a0ccff));
-    background-image: -webkit-linear-gradient(top, #cae5ff, #a0ccff);
-    background-image: -o-linear-gradient(top, #cae5ff, #a0ccff);
+    background-color: #cae5ff;
     color: #004d7f;
     border-color: #557393;
 }
 
 #notification-container li.success {
-    background-image: linear-gradient(to bottom, #ceecc3, #a5dc95);
-    background-image: -moz-linear-gradient(top, #ceecc3, #a5dc95);
-    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ceecc3), to(#a5dc95));
-    background-image: -webkit-linear-gradient(top, #ceecc3, #a5dc95);
-    background-image: -o-linear-gradient(top, #ceecc3, #a5dc95);
+    background-color: #ceecc3;
     color: #0f9000;
     border-color: #10a000;
 }
 
 #notification-container li.error {
-    background-image: linear-gradient(to bottom, #ffd0d0, #ffaaaa);
-    background-image: -moz-linear-gradient(top, #ffd0d0, #ffaaaa);
-    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffd0d0), to(#ffaaaa));
-    background-image: -webkit-linear-gradient(top, #ffd0d0, #ffaaaa);
-    background-image: -o-linear-gradient(top, #ffd0d0, #ffaaaa);
+    background-color: #ffd0d0;
     color: #a54545;
     border-color: #a54545;
 }
 
 #notification-container li.fatal {
-    background-image: linear-gradient(to bottom, #3f3f3f, #2a2a2a);
-    background-image: -moz-linear-gradient(top, #3f3f3f, #2a2a2a);
-    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#3f3f3f), to(#2a2a2a));
-    background-image: -webkit-linear-gradient(top, #3f3f3f, #2a2a2a);
-    background-image: -o-linear-gradient(top, #3f3f3f, #2a2a2a);
+    background-color: #3f3f3f;
     color: #fdfdfd;
     border-color: #000000;
     text-shadow: black 0 1px 0;
 }
 
 #notification-container li .close {
+    font-size: 14px;
     float: right;
     position: relative;
-    left: 8px;
-    top: -5px;
+    left: -3px;
+    top: 3px;
     visibility: hidden;
 }
 

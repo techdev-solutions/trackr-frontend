@@ -17,7 +17,7 @@ define(['modules/shared/PaginationLoader'], function(PaginationLoader) {
                 'PROJECT.CREATE_NEW');
             $modalInstance.result.then(function(project) {
                 paginationLoader.loadPage();
-                $state.go('trackr.administration.projects.edit', {id: project.identifier});
+                $state.go('app.trackr.administration.projects.edit', {id: project.identifier});
             });
         };
     }];

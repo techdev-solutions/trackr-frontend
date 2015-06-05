@@ -1,7 +1,7 @@
 <h1 translate="PAGES.REPORTR.EMPLOYEE_HOURS.TITLE"></h1>
 <div class="row">
     <div class="col-md-6 col-md-offset-3">
-        <date-interval callback="dateSelected"></date-interval>
+        <date-interval start-date="interval.start" end-date="interval.end" callback="dateSelected"></date-interval>
     </div>
 </div>
 <div class="space-md"/>
@@ -24,7 +24,7 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-md-8 col-md-offset-2">
-        <div ac-chart="'bar'" ac-config="barChartConfig" ac-data="barChartData" style="height: 250px;"></div>
+    <div class="col-md-12">
+        <bar-chart data="barChartData" width="600" height="300"></bar-chart>
     </div>
 </div>

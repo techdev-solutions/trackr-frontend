@@ -26,7 +26,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="invoice in invoices[state] | orderBy:order:reverse">
+            <tr ng-repeat="invoice in invoices[state]">
                 <td>{{invoice.identifier}}</td>
                 <td>{{ invoice.creationDate | date:'dd.MM.yyyy' }}</td>
                 <td>{{ invoice.invoiceTotal | currency:'€' }}</td>

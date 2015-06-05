@@ -1,9 +1,10 @@
-define(['moment', 'modules/reportr/lodashHelpers', 'modules/reportr/sortHelper'], function(moment, LodashHelpers, SortHelper) {
+define(['moment', './lodashHelpers', './sortHelper'], function(moment, LodashHelpers, SortHelper) {
     'use strict';
-    return ['$scope', 'Restangular', '$filter', function($scope, Restangular, $filter) {
+    var sickDaysController = function($scope, Restangular, $filter, intervalLocationService) {
         var controller = this;
 
         $scope.dateSelected = function(start, end) {
+            intervalLocationService.saveIntervalToLocation(start, end);
             controller.loadSickDays(start, end);
         };
 
@@ -45,34 +46,26 @@ define(['moment', 'modules/reportr/lodashHelpers', 'modules/reportr/sortHelper']
          * @return {{series: Array, data: Object}} Data for angular-charts to display.
          */
         controller.calculateBarChartData = function(travelExpenseArray) {
-            var data = [
-                {
-                    x: $filter('translate')('SICK_DAYS.TOTAL_DAYS'),
-                    y: []
-                }
-            ];
+            var data = [];
             var series = [];
             travelExpenseArray.forEach(function(sickDays) {
                 series.push(sickDays[0]);
-                data[0].y.push(sickDays[1]);
+                data.push(sickDays[1]);
             });
             return {
-                series: series,
-                data: data
+                labels: series,
+                datasets: [{
+                    label: $filter('translate')('SICK_DAYS.TOTAL_DAYS'),
+                    data: data
+                }]
             };
         };
 
-        $scope.barChartData = { series: [], data: [] };
+        $scope.barChartData = { labels: [], datasets: [] };
 
-        $scope.barChartConfig = {
-            tooltips: true,
-            labels: false,
-            legend: {
-                display: true,
-                position: 'left'
-            }
-        };
-
-        controller.loadSickDays(moment().startOf('month').toDate(), moment().endOf('month').toDate());
-    }];
+        $scope.interval = intervalLocationService.loadIntervalFromLocation();
+        controller.loadSickDays($scope.interval.start, $scope.interval.end);
+    };
+    sickDaysController.$inject = ['$scope', 'Restangular', '$filter', 'reportr.intervalLocationService'];
+    return sickDaysController;
 });
