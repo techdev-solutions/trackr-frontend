@@ -2,7 +2,7 @@ define([], function() {
     'use strict';
     function selfController($scope, UserService, Restangular, createOrUpdateModalService) {
         var user = UserService.getUser();
-        Restangular.oneUrl('employees', 'api/employees/' + user.id + '/self').get()
+        Restangular.one('employees', user.id).one('self').get()
             .then(function(employee) {
                 $scope.employee = employee;
             });

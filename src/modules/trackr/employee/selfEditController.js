@@ -5,7 +5,7 @@ define(['lodash'], function(_) {
         $scope.employee = _.clone(employee, true);
 
         controller.saveEntity = function(employee) {
-            var request = Restangular.oneUrl('employees', 'api/employees/' + employee.id + '/self');
+            var request = Restangular.one('employees', employee.id).one('self');
             _.assign(request, _.pick(employee, ['version', 'phoneNumber', 'firstName', 'lastName', 'address']));
             request.put()
                 .then(function(updatedEmployee) {
