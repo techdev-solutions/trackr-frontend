@@ -1,10 +1,11 @@
 define([], function() {
     'use strict';
-    return ['$scope', 'base.services.user', 'Restangular', 'shared.services.create-or-update-modal', function($scope, UserService, Restangular, createOrUpdateModalService) {
+    function selfController($scope, UserService, Restangular, createOrUpdateModalService) {
         var user = UserService.getUser();
-        Restangular.one('employees', user.id).get().then(function(employee) {
-            $scope.employee = employee;
-        });
+        Restangular.one('employees', user.id).one('self').get()
+            .then(function(employee) {
+                $scope.employee = employee;
+            });
 
         $scope.showEditForm = function() {
             var $modalInstance = createOrUpdateModalService
@@ -16,8 +17,7 @@ define([], function() {
             });
         };
 
-        $scope.updateEmployee = function(patch) {
-            return Restangular.oneUrl('employees', 'api/employees/' + user.id + '/self').patch(patch);
-        };
-    }];
+    }
+    selfController.$inject = ['$scope', 'base.services.user', 'Restangular', 'shared.services.create-or-update-modal'];
+    return selfController;
 });

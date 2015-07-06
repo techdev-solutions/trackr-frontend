@@ -13,16 +13,22 @@
         <th table-sort="phoneNumber">
             <translate translate="EMPLOYEE.PHONE_NUMBER"></translate>
         </th>
-        <th table-sort="credential.email">
+        <th table-sort="email">
             <translate translate="CREDENTIAL.EMAIL"></translate>
         </th>
+        <th translate="ADDRESS.ADDRESS"></th>
     </tr>
-    <tr ng-repeat="employee in employees">
+    <tr ng-repeat="employee in employees track by employee.id">
         <td>{{employee.firstName}}</td>
         <td>{{employee.lastName}}</td>
         <td>{{employee.title}}</td>
         <td>{{employee.phoneNumber}}</td>
         <td><a href="mailto:{{employee.email}}">{{employee.email}}</a></td>
+        <td>
+            {{employee.address.street}} {{employee.address.houseNumber}}<br/>
+            {{employee.address.zipCode}} {{employee.address.city}}<br/>
+            {{employee.address.country}}
+        </td>
     </tr>
 </table>
 

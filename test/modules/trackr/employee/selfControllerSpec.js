@@ -22,15 +22,10 @@ define(['baseTestSetup'], function(baseTestSetup) {
         }));
 
         it('should load the employee from via the API', inject(function($httpBackend) {
-            $httpBackend.expectGET('api/employees/1');
+            $httpBackend.expectGET('api/employees/1/self');
             $httpBackend.flush();
             expect(scope.employee).toBeDefined();
         }));
 
-        it('updateEmployee should patch the employee via the self API method', inject(function($httpBackend) {
-            scope.updateEmployee({});
-            $httpBackend.expectPATCH('api/employees/1/self');
-            $httpBackend.flush();
-        }));
     });
 });

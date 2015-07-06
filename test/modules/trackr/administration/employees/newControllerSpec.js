@@ -1,12 +1,12 @@
 define(['baseTestSetup', 'angular'], function(baseTestSetup, angular) {
     'use strict';
-    describe('trackr.administration.controllers.employees.new', function() {
+    describe('trackr.administration.employees.listController', function() {
         var NewController, scope;
         baseTestSetup();
         beforeEach(inject(function($controller, $rootScope) {
             scope = $rootScope.$new();
             scope.closeModal = angular.noop;
-            NewController = $controller('trackr.administration.controllers.employees.new', {
+            NewController = $controller('trackr.administration.employees.newController', {
                 $scope: scope
             });
         }));

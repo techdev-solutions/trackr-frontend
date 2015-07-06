@@ -1,6 +1,6 @@
 define(['baseTestSetup', 'angular'], function(baseTestSetup, angular) {
     'use strict';
-    describe('trackr.administration.controllers.employees.list', function() {
+    describe('trackr.administration.employees.listController', function() {
         var ListController, scope, state;
         baseTestSetup();
         beforeEach(inject(function($controller, $rootScope) {
@@ -9,7 +9,7 @@ define(['baseTestSetup', 'angular'], function(baseTestSetup, angular) {
                 go: angular.noop
             };
             spyOn(state, 'go');
-            ListController = $controller('trackr.administration.controllers.employees.list', {
+            ListController = $controller('trackr.administration.employees.listController', {
                 $scope: scope,
                 $state: state
             });
