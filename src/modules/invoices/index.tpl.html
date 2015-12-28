@@ -9,8 +9,8 @@
     </div>
 </div>
 
-<tabset>
-    <tab ng-repeat="state in states">
+<uib-tabset>
+    <uib-tab ng-repeat="state in states">
         <tab-heading>
             <span translate="{{'INVOICE.' + state}}"></span> <span class="badge">{{invoices[state].page.totalElements}}</span>
         </tab-heading>
@@ -46,10 +46,10 @@
             </tr>
             </tbody>
         </table>
-        <pagination class="pagination-sm" total-items="invoices[state].page.totalElements" ng-model="invoices[state].page.number" items-per-page="invoices[state].page.size"
-                    ng-change="setPage(state)" max-size="5"></pagination>
-    </tab>
-</tabset>
+        <uib-pagination class="pagination-sm" total-items="invoices[state].page.totalElements" ng-model="invoices[state].page.number" items-per-page="invoices[state].page.size"
+                    ng-change="setPage(state)" max-size="5"></uib-pagination>
+    </uib-tab>
+</uib-tabset>
 
 <button type="button" class="btn btn-default" ng-click="addNew()">
     <span class="glyphicon glyphicon-plus"></span> <span translate="ACTIONS.NEW"></span>

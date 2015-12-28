@@ -11,7 +11,7 @@
         <div class="col-sm-6">
             <input type="text" class="form-control" id="company" autocomplete="off"
                    ng-model="project.company"
-                   typeahead="company as company.name for company in getCompanies($viewValue)"
+                   uib-typeahead="company as company.name for company in getCompanies($viewValue)"
                    typeahead-editable="false"
                    typeahead-min-length="1" />
         </div>
@@ -22,7 +22,7 @@
         <div class="col-sm-6">
             <input type="text" class="form-control" id="debitor" autocomplete="off"
                    ng-model="project.debitor"
-                   typeahead="company as company.name for company in getCompanies($viewValue)"
+                   uib-typeahead="company as company.name for company in getCompanies($viewValue)"
                    typeahead-editable="false"
                    typeahead-min-length="1" />
         </div>

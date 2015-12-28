@@ -6,7 +6,7 @@ define([], function() {
      * Expects a "child"-controller name that will be instantiated after the basic setup of the scope. The child controller will get the scope of this
      * controller injected and thus can override any methods. It also gets the userdata injected.
      */
-    return ['$scope', '$modalInstance', 'controllerName', '$controller', 'templateName', 'createOrUpdateModal.userdata', 'titleTranslateCode',
+    return ['$scope', '$uibModalInstance', 'controllerName', '$controller', 'templateName', 'createOrUpdateModal.userdata', 'titleTranslateCode',
         function($scope, $modalInstance, controllerName, $controller, templateName, userdata, titleTranslateCode) {
             $scope.errors = [];
 

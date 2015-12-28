@@ -11,7 +11,7 @@ define(['lodash', 'moment'], function(_, moment) {
         $scope.openDate = function(event, name) {
             event.stopPropagation();
             event.preventDefault();
-            $scope[name] = true;
+            $scope[name] = !$scope[name];
         };
 
         controller.onError = function(response) {

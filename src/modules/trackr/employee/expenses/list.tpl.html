@@ -1,5 +1,5 @@
-<tabset>
-    <tab ng-repeat="state in states">
+<uib-tabset>
+    <uib-tab ng-repeat="state in states">
         <tab-heading>
             <span translate="{{'TRAVEL_EXPENSE_REPORT.' + state}}"></span> <span class="badge">{{reports[state].page.totalElements}}</span>
         </tab-heading>
@@ -27,8 +27,8 @@
             </tr>
             </tbody>
         </table>
-        <pagination class="pagination-sm" total-items="reports[state].page.totalElements" ng-model="reports[state].page.number" items-per-page="reports[state].page.size"
-                    ng-change="setPage(state)" max-size="5"></pagination>
-    </tab>
-</tabset>
+        <uib-pagination class="pagination-sm" total-items="reports[state].page.totalElements" ng-model="reports[state].page.number" items-per-page="reports[state].page.size"
+                    ng-change="setPage(state)" max-size="5"></uib-pagination>
+    </uib-tab>
+</uib-tabset>
 <button ng-click="addNew()" type="button" class="btn btn-primary" translate="ACTIONS.NEW"></button>

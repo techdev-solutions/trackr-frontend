@@ -1,6 +1,6 @@
 define([], function() {
     'use strict';
-    return ['$modal', function($modal) {
+    return ['$uibModal', function($modal) {
         return {
             /**
              * Opens a confirmation dialog with the buttons ok/cancel and the text translated by the translate code.
