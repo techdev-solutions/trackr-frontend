@@ -15,7 +15,7 @@ require.config({
         'angular-ui-router': 'vendor/angular-ui-router/release/angular-ui-router',
         'angular-mocks': 'vendor/angular-mocks/angular-mocks',
         'restangular':'vendor/restangular/dist/restangular',
-        'lodash': 'vendor/lodash/dist/lodash',
+        'lodash': 'vendor/lodash/lodash',
         'fixtures': '../test/fixtures',
         'baseTestSetup': '../test/baseTestSetup',
         'backendMock': '../test/backendMock',

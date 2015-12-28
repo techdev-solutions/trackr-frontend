@@ -7,7 +7,7 @@ require.config({
         'angular-l10n-de': 'vendor/angular-i18n/angular-locale_de-de',
         'angular-ui-router': 'vendor/angular-ui-router/release/angular-ui-router',
         'restangular': 'vendor/restangular/dist/restangular',
-        'lodash': 'vendor/lodash/dist/lodash',
+        'lodash': 'vendor/lodash/lodash',
         'angular-translate': 'vendor/angular-translate/angular-translate',
         'angular-translate-loader-url': 'vendor/angular-translate-loader-url/angular-translate-loader-url',
         'angular-ui': 'vendor/angular-ui-bootstrap-bower/ui-bootstrap-tpls',
