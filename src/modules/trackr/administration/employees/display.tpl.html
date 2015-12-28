@@ -2,7 +2,12 @@
 
     <div class="panel-body">
 
-        <h1 class="page-header">{{employee.firstName + ' ' + employee.lastName}}
+        <h1 class="page-header">
+            {{employee.firstName + ' ' + employee.lastName}}
+            <span ng-if="employee.deleted">(<span translate="EMPLOYEE.DELETED"></span>)</span>
+            <button ng-if="!employee.deleted" has-authority="ROLE_ADMIN" type="button" class="pull-right btn btn-default btn-sm" ng-click="deleteConfirm()">
+                <span class="glyphicon glyphicon-trash"></span>
+            </button>
             <button has-authority="ROLE_ADMIN" type="button" class="pull-right btn btn-default btn-sm" ng-click="showEditForm()">
                 <span class="glyphicon glyphicon-pencil"></span>
             </button>

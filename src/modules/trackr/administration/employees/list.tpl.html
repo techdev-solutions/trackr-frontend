@@ -14,7 +14,7 @@
             <table class="table table-bordered table-hover">
                 <tbody>
                 <tr ng-repeat="employee in employees" ui-sref-active="active" ui-sref="app.trackr.administration.employees.edit({id: employee.id})" class="clickable">
-                    <td>
+                    <td ng-class="{ 'text-muted': employee.deleted}">
                         {{employee.firstName}} <b>{{employee.lastName}}</b>
                     </td>
                 </tr>

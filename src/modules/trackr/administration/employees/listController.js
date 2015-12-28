@@ -22,5 +22,15 @@ define(['modules/shared/PaginationLoader'], function (PaginationLoader) {
                 $state.go('app.trackr.administration.employees.edit', {id: employee.id});
             });
         };
+
+        $scope.$on('employee.deleted', function (event, id) {
+            $scope.employees
+                .filter(function (employee) {
+                    return employee.id === id;
+                })
+                .forEach(function (employee) {
+                    employee.deleted = true;
+                });
+        });
     }];
 });
