@@ -7,7 +7,7 @@
         <div class="col-sm-6">
             <input type="text" class="form-control" id="debitor" autocomplete="off"
                    ng-model="invoice.debitor"
-                   typeahead="company as company.name for company in getCompanies($viewValue)"
+                   uib-typeahead="company as company.name for company in getCompanies($viewValue)"
                    typeahead-editable="false"
                    typeahead-min-length="1" />
         </div>
@@ -17,7 +17,7 @@
         <label class="form-label col-sm-3" for="creationDate" translate="INVOICE.CREATION_DATE"></label>
         <div class="input-group col-sm-6">
             <input type="text" id="creationDate" class="form-control" ng-model="invoice.creationDate"
-                   datepicker-popup="yyyy-MM-dd"
+                   uib-datepicker-popup="yyyy-MM-dd"
                    is-open="ctrl.creationDateOpened"
                    datepicker-options="dateOptions"
                    close-text="{{ 'ACTIONS.CLOSE' | translate }}"
@@ -36,7 +36,7 @@
         <label class="form-label col-sm-3" for="dueDate" translate="INVOICE.DUE_DATE"></label>
         <div class="input-group col-sm-6">
             <input type="text" id="dueDate" class="form-control" ng-model="invoice.dueDate"
-                   datepicker-popup="yyyy-MM-dd"
+                   uib-datepicker-popup="yyyy-MM-dd"
                    is-open="ctrl.dueDateOpened"
                    datepicker-options="dateOptions"
                    close-text="{{ 'ACTIONS.CLOSE' | translate }}"

@@ -6,7 +6,7 @@ define(['angular', 'jQuery', 'restangular', 'angular-ui-router', 'angular-ui', '
     var configFn = ['ui.router', 'ui.bootstrap', 'base', 'trackr', 'reportr', 'restangular', 'invoices', 'shared', 'pascalprecht.translate'];
     var app = angular.module('app', configFn);
 
-    app.config(['RestangularProvider', '$locationProvider', 'paginationConfig', '$httpProvider', '$translateProvider',
+    app.config(['RestangularProvider', '$locationProvider', 'uibPaginationConfig', '$httpProvider', '$translateProvider',
         function(RestangularProvider, $locationProvider, paginationConfig, $httpProvider, $translateProvider) {
             $translateProvider.useUrlLoader('api/translations');
 

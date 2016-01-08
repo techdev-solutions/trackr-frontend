@@ -6,7 +6,7 @@ require.config({
         'angular-l10n-de': 'src/vendor/angular-i18n/angular-locale_de-de',
         'angular-ui-router': 'src/vendor/angular-ui-router/release/angular-ui-router.min',
         'restangular': 'src/vendor/restangular/dist/restangular.min',
-        'lodash': 'src/vendor/lodash/dist/lodash.min',
+        'lodash': 'src/vendor/lodash/lodash.min',
         'angular-translate': 'src/vendor/angular-translate/angular-translate.min',
         'angular-translate-loader-url': 'src/vendor/angular-translate-loader-url/angular-translate-loader-url.min',
         'angular-ui': 'src/vendor/angular-ui-bootstrap-bower/ui-bootstrap-tpls.min',

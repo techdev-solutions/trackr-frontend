@@ -12,7 +12,7 @@ define(['modules/shared/PaginationLoader'], function (PaginationLoader) {
 
         $scope.addNew = function() {
             var $modalInstance = createOrUpdateModalService
-                .showModal('trackr.administration.controllers.employees.new as ctrl',
+                .showModal('trackr.administration.employees.newController as ctrl',
                 'src/modules/trackr/administration/employees/newOrEdit.tpl.html',
                 'EMPLOYEE.CREATE_NEW'
             );
@@ -22,5 +22,15 @@ define(['modules/shared/PaginationLoader'], function (PaginationLoader) {
                 $state.go('app.trackr.administration.employees.edit', {id: employee.id});
             });
         };
+
+        $scope.$on('employee.deleted', function (event, id) {
+            $scope.employees
+                .filter(function (employee) {
+                    return employee.id === id;
+                })
+                .forEach(function (employee) {
+                    employee.deleted = true;
+                });
+        });
     }];
 });

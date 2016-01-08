@@ -7,7 +7,7 @@
         <input type="text" class="form-control" autocomplete="off"
                ng-model="company"
                typeahead-on-select="loadProjects(company)"
-               typeahead="company as company.name for company in getCompanies($viewValue)"
+               uib-typeahead="company as company.name for company in getCompanies($viewValue)"
                typeahead-editable="false"
                typahead-min-length="1"
                placeholder="{{ 'PROJECT.COMPANY' |translate }}"/>
@@ -16,7 +16,7 @@
         <input type="text" class="form-control" autocomplete="off"
                ng-model="project"
                typeahead-on-select="loadProjectData()"
-               typeahead="project as project.name for project in projects | filter:{name:$viewValue}"
+               uib-typeahead="project as project.name for project in projects | filter:{name:$viewValue}"
                typeahead-editable="false"
                typahead-min-length="1"
                placeholder="{{ 'PROJECT.PROJECT' |translate }}"/>
@@ -44,15 +44,15 @@
         </table>
     </div>
 
-    <tabset>
-        <tab ng-repeat="(employee, minutes) in employeeMapping" heading="{{employee}}">
+    <uib-tabset>
+        <uib-tab ng-repeat="(employee, minutes) in employeeMapping" heading="{{employee}}">
             <table class="table table-condensed table-bordered">
                 <tr><td translate="PAGES.SUPERVISOR.BILL_CREATE.HOURS"></td><td>{{minutes / 60}} h</td></tr>
                 <tr><td translate="PAGES.SUPERVISOR.BILL_CREATE.MAN_DAYS"></td><td>{{(minutes / 60) / 8}} d</td></tr>
                 <tr><td translate="PAGES.SUPERVISOR.BILL_CREATE.NET_PRICE"></td><td>{{(minutes / 60) * project.hourlyRate | currency }}</td></tr>
                 <tr><td translate="PAGES.SUPERVISOR.BILL_CREATE.GROSS_PRICE"></td><td>{{(minutes / 60) * project.hourlyRate * 1.19 | currency}}</td></tr>
             </table>
-        </tab>
-    </tabset>
+        </uib-tab>
+    </uib-tabset>
 
 </div>

@@ -176,7 +176,11 @@ define(['modules/shared/PaginationLoader'], function(PaginationLoader) {
              * @param invoice Invoice to mark.
              */
             $scope.markPaid = function(invoice) {
-                $http.post('api/invoices/' + invoice.id + '/markPaid').then(function() {
+                $http({
+                    method: 'POST',
+                    url: 'api/invoices/' + invoice.id + '/markPaid',
+                    transformResponse: [] // Server returns 'Ok.', for now we don't want angular to parse this as JSON.
+                }).then(function() {
                     controller.refreshPage(invoice.invoiceState);
                     controller.refreshPage('PAID');
                 });

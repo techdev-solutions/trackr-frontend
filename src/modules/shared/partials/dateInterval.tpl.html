@@ -4,7 +4,7 @@
         <div class="input-group">
             <input type="text" id="dateIntervalStartDate" class="form-control" ng-model="dateIntervalStart"
                    ng-change="dateIntervalDateChange()"
-                   datepicker-popup="yyyy-MM-dd"
+                   uib-datepicker-popup="yyyy-MM-dd"
                    is-open="dateIntervalStartOpened"
                    datepicker-options="dateIntervalOptions"
                    close-text="{{ 'ACTIONS.CLOSE' | translate }}"
@@ -24,7 +24,7 @@
         <div class="input-group">
             <input type="text" id="dateIntervalEndDate" class="form-control" ng-model="dateIntervalEnd"
                    ng-change="dateIntervalDateChange()"
-                   datepicker-popup="yyyy-MM-dd"
+                   uib-datepicker-popup="yyyy-MM-dd"
                    is-open="dateIntervalEndOpened"
                    datepicker-options="dateIntervalOptions"
                    close-text="{{ 'ACTIONS.CLOSE' | translate }}"

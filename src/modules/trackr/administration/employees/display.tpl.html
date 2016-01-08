@@ -2,7 +2,12 @@
 
     <div class="panel-body">
 
-        <h1 class="page-header">{{employee.firstName + ' ' + employee.lastName}}
+        <h1 class="page-header">
+            {{employee.firstName + ' ' + employee.lastName}}
+            <span ng-if="employee.deleted">(<span translate="EMPLOYEE.DELETED"></span>)</span>
+            <button ng-if="!employee.deleted" has-authority="ROLE_ADMIN" type="button" class="pull-right btn btn-default btn-sm" ng-click="deleteConfirm()">
+                <span class="glyphicon glyphicon-trash"></span>
+            </button>
             <button has-authority="ROLE_ADMIN" type="button" class="pull-right btn btn-default btn-sm" ng-click="showEditForm()">
                 <span class="glyphicon glyphicon-pencil"></span>
             </button>
@@ -29,6 +34,20 @@
             <dd>{{ employee.leaveDate | date:'dd.MM.yyyy' }}</dd>
         </dl>
 
+        <h1 class="page-header">
+            <translate translate="ADDRESS.ADDRESS"></translate>
+            <button has-authority="ROLE_ADMIN" type="button" class="pull-right btn btn-default btn-sm" ng-click="showAddressEditForm()">
+                <span class="glyphicon glyphicon-pencil"></span>
+            </button>
+        </h1>
+        <dl class="dl-horizontal">
+            <dt></dt>
+            <dd>
+                {{employee.address.street}} {{employee.address.houseNumber}}<br/>
+                {{employee.address.zipCode}} {{employee.address.city}}<br/>
+                {{employee.address.country}}
+            </dd>
+        </dl>
     </div>
 
 </section>

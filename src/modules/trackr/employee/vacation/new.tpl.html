@@ -1,13 +1,13 @@
-<form action="" ng-submit="submitVacationRequest(vacationRequest)">
+<form ng-submit="submitVacationRequest(vacationRequest)">
     <div class="row" error-display="startDate">
         <div class="col-sm-4">
             <div class="well well-sm" ng-model="vacationRequest.startDate">
-                <datepicker starting-day="1"></datepicker>
+                <uib-datepicker starting-day="1"></uib-datepicker>
             </div>
         </div>
         <div class="col-sm-4" error-display="endDate">
             <div class="well well-sm" ng-model="vacationRequest.endDate">
-                <datepicker starting-day="1"></datepicker>
+                <uib-datepicker starting-day="1"></uib-datepicker>
             </div>
         </div>
     </div>

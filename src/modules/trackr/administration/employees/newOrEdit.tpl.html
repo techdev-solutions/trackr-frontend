@@ -20,7 +20,7 @@
         <label class="form-label col-sm-4" for="joinDate" translate="EMPLOYEE.JOIN_DATE"></label>
         <div class="input-group col-sm-6">
             <input type="text" id="joinDate" class="form-control" ng-model="employee.joinDate"
-                   datepicker-popup="yyyy-MM-dd"
+                   uib-datepicker-popup="yyyy-MM-dd"
                    is-open="ctrl.joinDateOpened"
                    datepicker-options="dateOptions"
                    close-text="{{ 'ACTIONS.CLOSE' | translate }}"
@@ -40,7 +40,7 @@
         <div class="input-group col-sm-6">
             <input type="text" id="leaveDate" class="form-control" ng-model="employee.leaveDate"
                    ng-change="leaveDateChange(employee.leaveDate)"
-                   datepicker-popup="yyyy-MM-dd"
+                   uib-datepicker-popup="yyyy-MM-dd"
                    is-open="ctrl.leaveDateOpened"
                    datepicker-options="dateOptions"
                    close-text="{{ 'ACTIONS.CLOSE' | translate }}"

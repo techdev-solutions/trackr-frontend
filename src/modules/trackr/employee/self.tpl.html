@@ -11,4 +11,10 @@
     <dd>{{ employee.salary | currency:'€' }}</dd>
     <dt translate="EMPLOYEE.PHONE_NUMBER"></dt>
     <dd>{{employee.phoneNumber}}</dd>
+    <dt translate="ADDRESS.STREET"></dt>
+    <dd>{{employee.address.street}} {{employee.address.houseNumber}}</dd>
+    <dt translate="ADDRESS.CITY"></dt>
+    <dd>{{employee.address.zipCode}} {{employee.address.city}}</dd>
+    <dt translate="ADDRESS.COUNTRY"></dt>
+    <dd>{{employee.address.country}}</dd>
 </dl>

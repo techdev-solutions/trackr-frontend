@@ -1,6 +1,6 @@
 define(['lodash'], function(_) {
     'use strict';
-    return ['$modal', function($modal) {
+    return ['$uibModal', function($modal) {
         return {
             /**
              * Opens a modal dialog. Uses the 'shared.controllers.create-or-update-modal' that will call '$controller(controllerName)' at its end, thus instantiating

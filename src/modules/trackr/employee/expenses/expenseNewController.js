@@ -35,7 +35,7 @@ define([], function () {
         $scope.openDate = function($event, name) {
             $event.stopPropagation();
             $event.preventDefault();
-            controller[name] = true;
+            controller[name] = !controller[name];
         };
 
         $scope.dateOptions = {
