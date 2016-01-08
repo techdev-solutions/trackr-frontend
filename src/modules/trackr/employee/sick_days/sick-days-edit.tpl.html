@@ -3,8 +3,8 @@
         <label class="form-label col-sm-4" for="startDate" translate="SICK_DAYS.START_DATE"></label>
         <div class="input-group col-sm-6">
             <input type="text" id="startDate" class="form-control" ng-model="sickDays.startDate"
-                   datepicker-popup="yyyy-MM-dd"
-                   is-open="$parent.$parent.startDateOpened"
+                   uib-datepicker-popup="yyyy-MM-dd"
+                   is-open="startDateOpened"
                    datepicker-options="dateOptions"
                    close-text="{{ 'ACTIONS.CLOSE' | translate }}"
                    current-text="{{ 'DATE.TODAY' | translate }}"
@@ -22,8 +22,8 @@
         <label class="form-label col-sm-4" for="endDate" translate="SICK_DAYS.END_DATE"></label>
         <div class="input-group col-sm-6">
             <input type="text" id="endDate" class="form-control" ng-model="sickDays.endDate"
-                   datepicker-popup="yyyy-MM-dd"
-                   is-open="$parent.$parent.endDateOpened"
+                   uib-datepicker-popup="yyyy-MM-dd"
+                   is-open="endDateOpened"
                    datepicker-options="dateOptions"
                    close-text="{{ 'ACTIONS.CLOSE' | translate }}"
                    current-text="{{ 'DATE.TODAY' | translate }}"

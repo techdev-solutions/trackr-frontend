@@ -2,7 +2,7 @@
     <input type="text" class="form-control" autocomplete="off"
            ng-model="ctrl.company"
            typeahead-on-select="loadProjects(ctrl.company)"
-           typeahead="company as company.name for company in getCompanies($viewValue)"
+           uib-typeahead="company as company.name for company in getCompanies($viewValue)"
            typeahead-editable="false"
            typahead-min-length="1"
            placeholder="{{ 'TRAVEL_EXPENSE_REPORT.DEBITOR' | translate }}"/>
@@ -10,7 +10,7 @@
 <div class="form-group">
     <input type="text" class="form-control" autocomplete="off"
            ng-model="ctrl.project"
-           typeahead="project as project.name for project in projects | filter:{name:$viewValue}"
+           uib-typeahead="project as project.name for project in projects | filter:{name:$viewValue}"
            typeahead-editable="false"
            typahead-min-length="1"
            placeholder="{{ 'TRAVEL_EXPENSE_REPORT.PROJECT' | translate }} ({{ 'FIELDS.OPTIONAL' | translate }})"/>

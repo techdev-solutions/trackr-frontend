@@ -1,6 +1,6 @@
 define([], function() {
     'use strict';
-    return ['$scope', 'translationCode', '$modalInstance', function($scope, translationCode, $modalInstance) {
+    return ['$scope', 'translationCode', '$uibModalInstance', function($scope, translationCode, $modalInstance) {
         $scope.translationCode = translationCode;
 
         $scope.cancel = function() {

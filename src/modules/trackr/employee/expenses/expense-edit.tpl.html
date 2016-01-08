@@ -13,7 +13,7 @@
         <label class="form-label col-sm-2" for="fromDate" translate="TRAVEL_EXPENSE.FROM_DATE"></label>
         <div class="input-group col-sm-6">
             <input type="text" id="fromDate" class="form-control" ng-model="expense.fromDate"
-                   datepicker-popup="yyyy-MM-dd"
+                   uib-datepicker-popup="yyyy-MM-dd"
                    is-open="ctrl.fromDateOpened"
                    datepicker-options="dateOptions"
                    close-text="{{ 'ACTIONS.CLOSE' | translate }}"
@@ -32,7 +32,7 @@
         <label class="form-label col-sm-2" for="toDate" translate="TRAVEL_EXPENSE.TO_DATE"></label>
         <div class="input-group col-sm-6">
             <input type="text" id="toDate" class="form-control" ng-model="expense.toDate"
-                   datepicker-popup="yyyy-MM-dd"
+                   uib-datepicker-popup="yyyy-MM-dd"
                    is-open="ctrl.toDateOpened"
                    datepicker-options="dateOptions"
                    close-text="{{ 'ACTIONS.CLOSE' | translate }}"
