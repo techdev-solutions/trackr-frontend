@@ -23,6 +23,7 @@
     "grunt-karma": "0.8.3",
     "grunt-processhtml": "0.2.9",
     "grunt-usemin": "2.0.2",
+    "karma": "0.12.x",
     "karma-chrome-launcher": "0.1.10",
     "karma-coverage": "0.2.7",
     "karma-firefox-launcher": "0.1.6",
