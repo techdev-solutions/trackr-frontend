@@ -9,7 +9,7 @@
                                 No authentication found. Please click the following link to authenticate.
                             </p>
                             <a class="btn btn-primary" target="_self"
-                               href="/portal/oauth/authorize?client_id=trackr-page&response_type=token&redirect_uri={{returnToUri}}">Authenticate
+                               href="{{ 'portalUrl' | configValue }}/oauth/authorize?client_id=trackr-page&response_type=token&redirect_uri={{returnToUri}}">Authenticate
                             </a>
                         </div>
                     </div>

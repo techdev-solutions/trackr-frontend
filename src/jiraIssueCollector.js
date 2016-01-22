@@ -1,4 +1,4 @@
-define(['jQuery'], function(jQuery) {
+define(['jQuery', 'configuration'], function(jQuery, config) {
     'use strict';
     return function() {
         function loadIssueCollector(url) {
@@ -10,15 +10,8 @@ define(['jQuery'], function(jQuery) {
             });
         }
 
-        jQuery.ajax({
-            url: 'conf/trackr.json',
-            type: 'get',
-            dataType: 'json',
-            success: function(response) {
-                if(response.jiraIssueCollectorUrl) {
-                    loadIssueCollector(response.jiraIssueCollectorUrl);
-                }
-            }
-        });
+        if(config.jiraIssueCollectorUrl) {
+            loadIssueCollector(config.jiraIssueCollectorUrl);
+        }
     };
 });
