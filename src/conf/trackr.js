@@ -1,5 +1,5 @@
 define([], function () {
     return {
-        "portalUrl": "http://localhost/portal"
+        "portalUrl": "http://localhost:8081/"
     }
 });
