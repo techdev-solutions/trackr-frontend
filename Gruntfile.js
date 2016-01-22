@@ -78,7 +78,8 @@ module.exports = function (grunt) {
                         'angular-ui': 'empty:',
                         'moment': 'empty:',
                         'chartjs': 'empty:',
-                        'randomColor': 'empty:'
+                        'randomColor': 'empty:',
+                        'configuration': 'empty:'
                     }
                 }
             }
