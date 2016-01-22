@@ -1,16 +1,20 @@
 define([
     'angular',
-    'modules/base/controllers/controllers',
-    'modules/base/services/services',
-    'modules/base/directives/directives',
+    './controllers/controllers',
+    './services/services',
+    './directives/directives',
+    './filters/filters',
     'i18n',
-    'jiraIssueCollector'
-], function(angular, controllers, services, directives, i18n, issueCollector) {
+    'jiraIssueCollector',
+    'configuration'
+], function(angular, controllers, services, directives, filters, i18n, issueCollector, config) {
     'use strict';
     var base = angular.module('base', []);
     controllers.init(base);
     services.init(base);
     directives.init(base);
+    filters.init(base);
+    base.value('base.config', config);
 
     base.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
         $urlRouterProvider.otherwise('/');
@@ -48,9 +52,7 @@ define([
                     'app.user': ['$rootScope', '$log', 'base.services.user', '$http', '$state', function($rootScope, $log, UserService, $http, $state) {
                         //Try to load the user. If the user cannot be loaded
                         return $http.get('api/principal').then(function(response) {
-                            if(response.data.fake !== true) {
-                                issueCollector();
-                            }
+                            issueCollector();
                             var user = response.data;
                             UserService.setUser(user);
                             enableStateAuthorization($rootScope, $log, UserService);

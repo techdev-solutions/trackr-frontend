@@ -12,7 +12,8 @@ require.config({
         'angular-ui': 'src/vendor/angular-ui-bootstrap-bower/ui-bootstrap-tpls.min',
         'moment': 'src/vendor/moment/min/moment.min',
         'chartjs': 'src/vendor/chartjs/Chart.min',
-        'randomColor': 'src/vendor/randomColor/randomColor'
+        'randomColor': 'src/vendor/randomColor/randomColor',
+        'configuration': 'conf/trackr'
     },
     shim: {
         'angular': { exports: 'angular', deps: ['jQuery'] },

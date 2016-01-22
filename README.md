@@ -24,20 +24,13 @@ Here is my nginx config:
         listen       80;
         server_name  localhost;
 
-        root /Users/moritz/workspace/techdev/trackr-frontend/;
-
-        location /trackr/api/ {
+        location /api/ {
           proxy_pass http://localhost:8080/;
         }
 
-        location /trackr/ {
+        location / {
           alias /Users/moritz/workspace/techdev/trackr-frontend/dist/;
           try_files $uri $uri/ index.html =404;
-        }
-
-        location /portal/ {
-          proxy_pass http://localhost:8081/;
-          proxy_redirect http://localhost:8081/ http://localhost/portal/;
         }
 
     }
@@ -48,24 +41,3 @@ Put this in /etc/nginx/sites-available/trackr.conf, then make a symbolic link
     ln -s /etc/nginx/sites-avialable/trackr.conf /etc/nginx/sites-enabled/
 
 And be sure that the sites-enabled are loaded in the nginx.conf. If you start nginx you can find trackr under http://localhost:9090/.
-
-A similar Apache config is
-
-    LoadModule proxy_module /usr/lib/apache2/modules/mod_proxy.so
-    LoadModule proxy_http_module /usr/lib/apache2/modules/mod_proxy_http.so
-    LoadModule substitute_module /usr/lib/apache2/modules/mod_substitute.so
-
-    <VirtualHost *:80>
-        DocumentRoot /var/www/
-        Alias /trackr /var/www/trackr-frontend
-        <Location /trackr/api>
-            ProxyPreserveHost On
-            ProxyPass http://localhost:8080
-        </Location>
-        <Location /portal/>
-            ProxyPreserveHost Off
-            ProxyPass http://localhost:8081/
-            ProxyPassReverse http://localhost:8081/
-        </Location>
-
-    </VirtualHost>
