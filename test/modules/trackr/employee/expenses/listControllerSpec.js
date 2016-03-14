@@ -6,6 +6,7 @@ define(['baseTestSetup', 'fixtures', 'angular'], function(baseTestSetup, fixture
         beforeEach(inject(function($rootScope, $controller) {
             scope = $rootScope.$new();
             var employee = {
+                id: 0,
                 _links: { self: {href: ''}}
             };
             state = {

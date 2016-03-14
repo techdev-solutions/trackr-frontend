@@ -6,7 +6,7 @@ define(['lodash', 'moment'], function(_, moment) {
 
             Restangular.allUrl('sickDays', 'api/sickDays/search/findByEmployee')
                 .getList({
-                    employee: EmployeeService.getEmployee().id
+                    employee: '/employees/' + EmployeeService.getEmployee().id
                 })
                 .then(function(sickDays) {
                     $scope.sickDays = sickDays;

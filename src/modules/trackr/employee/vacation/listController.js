@@ -6,7 +6,7 @@ define(['lodash'], function(_) {
 
             Restangular.allUrl('vacationRequests', 'api/vacationRequests/search/findByEmployeeOrderByStartDateAsc')
                 .getList({
-                    employee: $scope.employee.id,
+                    employee: '/employees/' + $scope.employee.id,
                     projection: 'withEmployeeAndApprover'
                 }).then(function(vacationRequests) {
                     $scope.vacationRequests = vacationRequests;

@@ -81,12 +81,11 @@ define(['lodash'], function(_) {
             /*
              Initialization of $scope objects
              */
-            Restangular.allUrl('companies', 'api/companies/search/findByCompanyId').getList({
+            Restangular.oneUrl('companies', 'api/companies/search/findByCompanyId').get({
                 companyId: $stateParams.id,
                 projection: 'withAddressAndContactPersons'
-            }).then(function(companies) {
-                //TODO: why does spring return an array? The method signature is a single entity.
-                $scope.company = companies[0];
+            }).then(function(company) {
+                $scope.company = company;
             });
         }];
 });

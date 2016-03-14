@@ -21,7 +21,7 @@ define(['lodash', 'moment'], function(_, moment) {
             controller.showMonth = function(date) {
                 Restangular.allUrl('workTimes', 'api/workTimes/search/findByEmployeeAndDateBetweenOrderByDateAscStartTimeAsc')
                     .getList({
-                        employee: UserService.getUser().id,
+                        employee: '/employees/' + UserService.getUser().id,
                         start: moment(date).format('YYYY-MM-DD'),
                         end: moment(date).endOf('month').format('YYYY-MM-DD'),
                         projection: 'withProject'
