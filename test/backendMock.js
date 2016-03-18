@@ -80,9 +80,9 @@ define(['fixtures'], function(fixtures) {
             .respond(fixtures['api/companies']);
         $httpBackend.whenGET(/^api\/companies\/search\/findByCompanyId\?companyId=\w+&projection=\w+$/)
             .respond(function() {
-                var response = fixtures['api/companies'];
-                response._embedded.companies[0].address = fixtures['api/addresses']._embedded.addresses[0];
-                response._embedded.companies[0].contactPersons = fixtures['api/contactPersons']._embedded.contactPersons;
+                var response = fixtures['api/companies']._embedded.companies[0];
+                response.address = fixtures['api/addresses']._embedded.addresses[0];
+                response.contactPersons = fixtures['api/contactPersons']._embedded.contactPersons;
                 return [200, response];
             });
         $httpBackend.whenGET(/^api\/companies\/search\/findByNameLikeIgnoreCaseOrderByNameAsc\?.*/)
@@ -167,7 +167,7 @@ define(['fixtures'], function(fixtures) {
                 });
                 return [200, fixture];
             });
-        $httpBackend.whenGET(/^api\/travelExpenseReports\/search\/findByEmployeeAndStatusOrderByStatusAsc\?page=\d+&projection=\w+&size=\d+&sort=\w*&status=\w+$/)
+        $httpBackend.whenGET(/^api\/travelExpenseReports\/search\/findByEmployeeAndStatusOrderByStatusAsc\?employee=%2Femployees%2F\d+&page=\d+&projection=\w+&size=\d+&sort=\w*&status=\w+$/)
             .respond(fixtures['api/travelExpenseReports']);
         $httpBackend.whenGET(/^api\/travelExpenseReports\/search\/findByStatus\?page=\d+&projection=\w+&size=\d+&sort=[\w,\.]*&status=\w+$/)
             .respond(fixtures['api/travelExpenseReports']);

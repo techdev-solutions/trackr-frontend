@@ -6,12 +6,11 @@ define(['lodash'], function(_) {
             /*
              Initialization of $scope objects
              */
-            Restangular.allUrl('projects', 'api/projects/search/findByIdentifier').getList({
+            Restangular.oneUrl('projects', 'api/projects/search/findByIdentifier').get({
                 identifier: $stateParams.id,
                 projection: 'withCompanyAndDebitor'
-            }).then(function(projects) {
-                //TODO: why does spring return an array? The method signature is a single entity.
-                $scope.project = projects[0];
+            }).then(function(project) {
+                $scope.project = project;
             });
 
             $scope.showEditForm = function() {
