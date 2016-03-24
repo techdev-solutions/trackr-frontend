@@ -37,7 +37,7 @@ define(['modules/shared/PaginationLoader', 'lodash'], function(PaginationLoader,
         controller.loadPage = function(page, state, sort) {
             var params = {
                 projection: 'overview',
-                employee: employee.id
+                employee: '/employees/' + employee.id
             };
 
             if (sort) {
